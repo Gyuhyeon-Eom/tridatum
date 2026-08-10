@@ -524,3 +524,38 @@ section.hero{
 /* 문의 페이지 대형 연락처 */
 .contact-grid.big .val{font-size:clamp(20px,2.6vw,30px)}
 .contact-grid.big .lab{font-size:13px}
+
+/* ==========================================================================
+   인터랙션 폴리시 — 호버 리프트 · 히어로 글로우
+   ========================================================================== */
+a.card,.card,.bento .b,.member,.axis,.shot,.numbers>div{
+  transition:transform .25s ease,box-shadow .25s ease,border-color .15s ease,
+             opacity .65s ease var(--d,0s);
+}
+a.card:hover,.bento .b:hover,.member:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 36px -22px rgba(15,34,51,.28);
+  border-color:rgba(15,34,51,.18);
+}
+.shot:hover{transform:translateY(-5px);box-shadow:0 36px 64px -34px rgba(15,34,51,.35)}
+/* 리빌(.fade.in) 최종 transform과 충돌하지 않도록 높은 특이도로 재선언 */
+.js a.card.fade.in:hover,.js .bento .b.fade.in:hover,.js .member.fade.in:hover{transform:translateY(-4px)}
+.btn{transition:background .15s ease,border-color .15s ease,transform .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px -12px rgba(15,34,51,.35)}
+.prow{transition:background .15s ease}
+.prow:hover{background:rgba(15,34,51,.025)}
+
+/* 히어로 글로우 — 서브페이지 첫 화면의 은은한 브랜드 그라데이션 */
+.page{position:relative}
+.page.glow{overflow:hidden}
+.page.glow::before{
+  content:"";position:absolute;top:-8%;right:-4%;width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(224,112,60,.13),transparent 70%);
+  pointer-events:none;
+}
+.page.glow::after{
+  content:"";position:absolute;bottom:-12%;left:-6%;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(62,124,166,.11),transparent 70%);
+  pointer-events:none;
+}
+.page.glow>.wrap{position:relative;z-index:1}
