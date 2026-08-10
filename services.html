@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서비스 — Tridatum</title>
+<meta name="description" content="판단을 돕는 분석, 먼저 찾아내는 모델, 읽고 쓰는 AI. 발주처가 실제로 겪는 문제 단위로 일합니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230F2233'/%3E%3Crect x='7' y='21' width='5' height='5' fill='%23E0703C'/%3E%3Crect x='13.5' y='13' width='5' height='13' fill='%23FDFCFA'/%3E%3Crect x='20' y='6' width='5' height='20' fill='%23FDFCFA'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body data-page="services">
+
+<div data-include="partials/header.html"></div>
+
+<section class="page-hero wrap">
+  <div class="kicker">SERVICE</div>
+  <h1>기술이 아니라,<br>겪고 있는 문제에서 출발합니다</h1>
+  <p>발주처가 실제로 겪는 상황 단위로 서비스를 구성했습니다. 지금 상황이 이 중 하나와 비슷하다면, 그대로 문의 주시면 됩니다.</p>
+</section>
+
+<section class="wrap">
+  <div class="axes">
+    <div class="axis fade">
+      <div class="num">01</div>
+      <h3>판단을 돕는 분석</h3>
+      <div class="when">근거가 없어 정책을 정하지 못할 때</div>
+      <ul>
+        <li><b>실태 진단</b> — 현황 분석 · 수급 격차 · 공간 분포</li>
+        <li><b>효과 검증</b> — 정책효과 · 인과추론(DID) · 유의성 판정</li>
+        <li><b>지표 체계</b> — BI 대시보드 · 반복 측정 가능한 정책 지표</li>
+      </ul>
+    </div>
+    <div class="axis fade">
+      <div class="num">02</div>
+      <h3>먼저 찾아내는 모델</h3>
+      <div class="when">사람이 다 볼 수 없어 놓치는 것이 있을 때</div>
+      <ul>
+        <li><b>발생 예측</b> — 위험도 등급화 · 우선순위 산출</li>
+        <li><b>이상 탐지</b> — 이상징후 · 부정행위 선별 · 조사 대상 축소</li>
+        <li><b>조기 경보</b> — 실시간 모니터링 · 파이프라인 자동화</li>
+      </ul>
+    </div>
+    <div class="axis fade">
+      <div class="num">03</div>
+      <h3>읽고 쓰는 AI</h3>
+      <div class="when">서류를 사람이 일일이 읽고 있을 때</div>
+      <ul>
+        <li><b>문서 지능</b> — 스캔 서류 전사 · 필수정보 추출 · 구조화</li>
+        <li><b>지식 검색</b> — 폐쇄망 LLM · 하이브리드 RAG · 출처 추적</li>
+        <li><b>초안 생성</b> — 판단 문안 자동작성 · 이미지 분류</li>
+      </ul>
+    </div>
+  </div>
+  <div class="base-band fade">
+    <b>공통 기반</b>
+    <span>폐쇄망 · 대용량 데이터 엔지니어링 — 외부 API 차단 환경 자체 구축 · 억 단위 DW 이관 · 파이프라인 자동화 · 개인정보 비식별</span>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="kicker">TECH</div>
+      <h2>실제 사업에서 사용해 본 기술만 적습니다</h2>
+      <p>학습 수준이거나 검토만 한 기술은 제외했습니다.</p>
+    </div>
+    <div class="tech">
+      <div class="fade"><h4>데이터 처리 · 인프라</h4><p>Python · FastAPI · Docker · Oracle · PostgreSQL · Airflow · DuckDB · pgvector · 전자정부프레임워크</p></div>
+      <div class="fade"><h4>분석 · 모델링</h4><p>scikit-learn · XGBoost · CatBoost · PU Learning · SHAP · 인과추론(DID) · 시계열 · 임계값 최적화</p></div>
+      <div class="fade"><h4>생성형 AI · LLM</h4><p>vLLM · LangGraph · Ollama · bge-m3 · 하이브리드 RAG · Text-to-SQL(AST 검증) · 지식그래프</p></div>
+      <div class="fade"><h4>비전 · 이미지</h4><p>EfficientNet · MobileNetV3 · 이미지+메타데이터 결합 분류 · 환각 · 오전사 기계 검출</p></div>
+      <div class="fade"><h4>공간분석 · GIS</h4><p>QGIS · GeoPandas · Moran's I · Maxent 등가 서식지 모델 · 격자 분석 · O-D 복원</p></div>
+      <div class="fade"><h4>시각화 · 운영</h4><p>Tableau · Prometheus · Grafana · Langfuse · 산출 자동화 · 개인정보 마스킹 · 감사 추적</p></div>
+    </div>
+    <p class="fineprint fade">환경 독립 설계 — 개발과 운영(폐쇄망)이 같은 코드로 동작하도록 구성합니다. 발주처 인프라가 바뀌어도 재개발이 필요 없습니다.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="band fade">
+    <b>어느 축에 해당하는지 모르셔도 됩니다</b>
+    <p>데이터와 상황만 말씀해 주시면, 무엇이 가능하고 무엇이 어려운지부터 정리해 드립니다.</p>
+    <a class="btn" href="contact.html">문의하기</a>
+  </div>
+</section>
+
+<div data-include="partials/footer.html"></div>
+
+<script src="assets/js/include.js"></script>
+<script src="assets/js/fade.js"></script>
+</body>
+</html>

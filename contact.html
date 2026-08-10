@@ -7,21 +7,13 @@
 <meta name="description" content="데이터가 있는데 어디서부터 손대야 할지 모르겠다면, 그 상태 그대로 연락 주셔도 됩니다. 사전 진단은 비용 없이 진행합니다.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230F2233'/%3E%3Crect x='7' y='21' width='5' height='5' fill='%23E0703C'/%3E%3Crect x='13.5' y='13' width='5' height='13' fill='%23FDFCFA'/%3E%3Crect x='20' y='6' width='5' height='20' fill='%23FDFCFA'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/components.css">
 </head>
-<body>
+<body data-page="contact">
 
-<header>
-  <div class="wrap nav">
-    <a class="logo" href="index.html">Tridatum<em>.</em></a>
-    <nav class="menu">
-      <a href="about.html">회사소개</a>
-      <a href="work.html">수행 실적</a>
-      <a class="active" href="contact.html">문의</a>
-      <a class="cta" href="contact.html">프로젝트 상담</a>
-    </nav>
-  </div>
-</header>
+<div data-include="partials/header.html"></div>
 
 <section class="page-hero wrap">
   <div class="kicker">CONTACT</div>
@@ -71,26 +63,9 @@
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <div class="cols">
-      <div>
-        <div class="brand">Tridatum<em>.</em></div>
-        <p class="desc">공공 데이터 분석 · AI 전문팀. 분석부터 시스템 이관까지 실무자가 직접 수행합니다.</p>
-      </div>
-      <nav>
-        <a href="about.html">회사소개</a>
-        <a href="work.html">수행 실적</a>
-        <a href="contact.html">문의</a>
-      </nav>
-    </div>
-    <div class="meta">
-      <span>© 2026 Tridatum · 법인 설립 준비 중</span>
-      <span><a href="mailto:kwon31403@gmail.com">kwon31403@gmail.com</a></span>
-    </div>
-  </div>
-</footer>
+<div data-include="partials/footer.html"></div>
 
-<script src="assets/fade.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/fade.js"></script>
 </body>
 </html>

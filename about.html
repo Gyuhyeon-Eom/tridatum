@@ -4,29 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회사소개 — Tridatum</title>
-<meta name="description" content="공공기관 발주 사업을 직접 수행해 온 3인이 분석부터 시스템 이관까지 담당합니다.">
+<meta name="description" content="공공 데이터 분석 실무 경력을 가진 3인이 만든 팀. 분석하는 사람이 직접 만나고, 직접 만들고, 직접 넘깁니다.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230F2233'/%3E%3Crect x='7' y='21' width='5' height='5' fill='%23E0703C'/%3E%3Crect x='13.5' y='13' width='5' height='13' fill='%23FDFCFA'/%3E%3Crect x='20' y='6' width='5' height='20' fill='%23FDFCFA'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/components.css">
 </head>
-<body>
+<body data-page="about">
 
-<header>
-  <div class="wrap nav">
-    <a class="logo" href="index.html">Tridatum<em>.</em></a>
-    <nav class="menu">
-      <a class="active" href="about.html">회사소개</a>
-      <a href="work.html">수행 실적</a>
-      <a href="contact.html">문의</a>
-      <a class="cta" href="contact.html">프로젝트 상담</a>
-    </nav>
-  </div>
-</header>
+<div data-include="partials/header.html"></div>
 
 <section class="page-hero wrap">
   <div class="kicker">ABOUT</div>
   <h1>분석하는 사람이 직접 만나고,<br>직접 만들고, 직접 넘깁니다</h1>
-  <p>Tridatum은 공공 데이터 분석 실무 경력을 가진 3인이 만든 팀입니다. 영업·관리 인력 없이, 기획부터 설계 · 구축 · 검증 · 교육까지 실무자가 직접 수행합니다.</p>
+  <p>Tridatum은 공공 데이터 분석 실무 경력을 가진 3인이 만든 팀입니다. 영업 · 관리 인력 없이, 기획부터 설계 · 구축 · 검증 · 교육까지 실무자가 직접 수행합니다.</p>
 </section>
 
 <section class="wrap">
@@ -80,49 +72,23 @@
       <div class="fade"><div class="n">05</div><h4>운영 이관</h4><p>매뉴얼 · 교육 · 안정화까지. 담당자가 자립 운영 가능한 상태로 넘깁니다.</p></div>
     </div>
     <div class="band fade" style="margin-top:24px">
-      <b>"모델을 만들었습니다"로 끝내지 않습니다</b>
-      <p>공공사업의 성패는 사업이 끝난 다음 해에 갈립니다. 담당자가 바뀌어도 돌아가는지, 데이터가 갱신돼도 재현되는지가 전부입니다. 그래서 코드 · 매뉴얼 · 교육 · 재실행 절차까지를 하나의 납품물로 봅니다.</p>
+      <b>공공사업의 성패는 사업이 끝난 다음 해에 갈립니다</b>
+      <p>담당자가 바뀌어도 돌아가는지, 데이터가 갱신돼도 재현되는지가 전부입니다. 그래서 코드 · 매뉴얼 · 교육 · 재실행 절차까지를 하나의 납품물로 봅니다.</p>
     </div>
   </div>
 </section>
 
 <section class="wrap">
-  <div class="sec-head fade">
-    <div class="kicker">TECH</div>
-    <h2>실제 사업에서 사용해 본 기술만 적습니다</h2>
-    <p>학습 수준이거나 검토만 한 기술은 제외했습니다.</p>
+  <div class="band fade">
+    <b>함께 일해보시겠어요?</b>
+    <p>결재 단계도, 영업 담당도 없습니다. 분석을 수행하는 사람이 회의에 들어가고 직접 답변합니다.</p>
+    <a class="btn" href="contact.html">문의하기</a>
   </div>
-  <div class="tech">
-    <div class="fade"><h4>데이터 처리 · 인프라</h4><p>Python · FastAPI · Docker · Oracle · PostgreSQL · Airflow · DuckDB · pgvector · 전자정부프레임워크</p></div>
-    <div class="fade"><h4>분석 · 모델링</h4><p>scikit-learn · XGBoost · CatBoost · PU Learning · SHAP · 인과추론(DID) · 시계열 · 임계값 최적화</p></div>
-    <div class="fade"><h4>생성형 AI · LLM</h4><p>vLLM · LangGraph · Ollama · bge-m3 · 하이브리드 RAG · Text-to-SQL(AST 검증) · 지식그래프</p></div>
-    <div class="fade"><h4>비전 · 이미지</h4><p>EfficientNet · MobileNetV3 · 이미지+메타데이터 결합 분류 · 환각 · 오전사 기계 검출</p></div>
-    <div class="fade"><h4>공간분석 · GIS</h4><p>QGIS · GeoPandas · Moran's I · Maxent 등가 서식지 모델 · 격자 분석 · O-D 복원</p></div>
-    <div class="fade"><h4>시각화 · 운영</h4><p>Tableau · Prometheus · Grafana · Langfuse · 산출 자동화 · 개인정보 마스킹 · 감사 추적</p></div>
-  </div>
-  <p class="fineprint fade">환경 독립 설계 — 개발과 운영(폐쇄망)이 같은 코드로 동작하도록 구성합니다. 발주처 인프라가 바뀌어도 재개발이 필요 없습니다.</p>
 </section>
 
-<footer>
-  <div class="wrap">
-    <div class="cols">
-      <div>
-        <div class="brand">Tridatum<em>.</em></div>
-        <p class="desc">공공 데이터 분석 · AI 전문팀. 분석부터 시스템 이관까지 실무자가 직접 수행합니다.</p>
-      </div>
-      <nav>
-        <a href="about.html">회사소개</a>
-        <a href="work.html">수행 실적</a>
-        <a href="contact.html">문의</a>
-      </nav>
-    </div>
-    <div class="meta">
-      <span>© 2026 Tridatum · 법인 설립 준비 중</span>
-      <span><a href="mailto:kwon31403@gmail.com">kwon31403@gmail.com</a></span>
-    </div>
-  </div>
-</footer>
+<div data-include="partials/footer.html"></div>
 
-<script src="assets/fade.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/fade.js"></script>
 </body>
 </html>
