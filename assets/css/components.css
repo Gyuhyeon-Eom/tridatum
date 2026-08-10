@@ -15,15 +15,16 @@
 }
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero h1 .line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
-.hero h1 .inner{display:inline-block;transform:translateY(115%);transition:transform .85s cubic-bezier(.22,.61,.36,1)}
+.hero h1 .inner{display:inline-block;transition:transform .85s cubic-bezier(.22,.61,.36,1)}
 .hero h1 .line:nth-child(2) .inner{transition-delay:.12s}
 .hero p.lede{margin-top:24px;max-width:540px;font-size:17.5px;color:rgba(255,255,255,.72)}
 .hero .btns{margin-top:44px}
-.hero .lede,.hero .btns{opacity:0;transform:translateY(14px);transition:opacity .7s ease .45s,transform .7s ease .45s}
-.hero.go h1 .inner{transform:none}
-.hero.go .lede,.hero.go .btns{opacity:1;transform:none}
+.hero .lede,.hero .btns{transition:opacity .7s ease .45s,transform .7s ease .45s}
+/* 숨김 상태는 JS가 있을 때만 — JS 실패 시에도 히어로는 항상 보인다 */
+.js .hero:not(.go) h1 .inner{transform:translateY(115%)}
+.js .hero:not(.go) .lede,.js .hero:not(.go) .btns{opacity:0;transform:translateY(14px)}
 @media(prefers-reduced-motion:reduce){
-  .hero h1 .inner,.hero .lede,.hero .btns{transform:none;opacity:1;transition:none}
+  .js .hero:not(.go) h1 .inner,.js .hero:not(.go) .lede,.js .hero:not(.go) .btns{transform:none;opacity:1;transition:none}
 }
 .hero .btn.primary{background:var(--accent);color:#fff}
 .hero .btn.primary:hover{background:#c95f30}
@@ -117,6 +118,78 @@ a.card:hover{border-color:var(--ink-45)}
 .card .metric b{font-size:22px;font-weight:700}
 .card .metric span{display:block;font-size:13px;color:var(--ink-45);margin-top:2px}
 .card .go{margin-top:20px;display:inline-block;font-size:14px;font-weight:600;color:var(--accent)}
+
+/* ---------- 라이브 데모 패널 — 쇼케이스를 이미지가 아닌 HTML/SVG로 직접 그림 ---------- */
+.panel{padding:16px;display:flex;flex-direction:column;gap:12px;background:#fff}
+.panel .pt{font-size:13.5px;font-weight:700}
+.panel .pt span{font-weight:600;font-size:9.5px;letter-spacing:.08em;color:var(--ink-45);margin-left:8px}
+.panel .box{border:1px solid var(--line);background:var(--bg);padding:10px 12px;min-width:0}
+.panel .bt{font-size:11px;font-weight:700;margin-bottom:8px}
+.panel svg{display:block;width:100%;height:auto}
+.panel .grid2{display:grid;grid-template-columns:5fr 7fr;gap:10px}
+.panel .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:560px){.panel .grid2,.panel .grid3{grid-template-columns:1fr}}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{border:1px solid var(--line);background:var(--bg);padding:8px 10px}
+.kpi .k{display:flex;justify-content:space-between;gap:4px;font-size:10px;color:var(--ink-45)}
+.kpi .k i{font-style:normal;font-weight:700}
+.kpi .k .up{color:var(--accent)} .kpi .k .ok{color:#1F7A5C}
+.kpi b{display:block;font-size:18px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:10.5px;color:var(--ink-70)}
+.legend i{display:inline-block;width:8px;height:8px;margin-right:5px;border-radius:2px}
+
+.donut-wrap{display:flex;align-items:center;gap:14px}
+.donut{position:relative;width:92px;height:92px;flex:none}
+.donut .ring{
+  width:100%;height:100%;border-radius:50%;
+  background:conic-gradient(#E0703C 0 12.3%,#B5822B 12.3% 30.9%,#3E7CA6 30.9% 59.5%,#CBD2D8 59.5% 100%);
+  -webkit-mask:radial-gradient(circle,transparent 29px,#000 30px);
+  mask:radial-gradient(circle,transparent 29px,#000 30px);
+}
+.donut .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.donut .c b{font-size:16px;font-weight:700;line-height:1.1}
+.donut .c span{font-size:8.5px;color:var(--ink-45)}
+.donut-lg{display:grid;gap:4px;font-size:10.5px;color:var(--ink-70)}
+.donut-lg b{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700;margin-left:4px}
+
+.hbar .r{display:grid;grid-template-columns:56px 1fr 26px;gap:8px;align-items:center;font-size:10.5px;color:var(--ink-70)}
+.hbar .r+.r{margin-top:6px}
+.hbar .bar{display:block;height:8px;background:var(--bg-soft);border-radius:4px;overflow:hidden}
+.hbar .bar i{display:block;height:8px;border-radius:4px}
+.hbar b{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+
+.mrows{display:grid;gap:6px}
+.mrow{border:1px solid var(--line);background:var(--bg);padding:7px 10px;font-size:10.5px}
+.mrow .top{display:flex;justify-content:space-between;align-items:baseline}
+.mrow .lab{font-weight:600;color:var(--ink-70)}
+.mrow b{font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
+.mrow .note{display:block;color:var(--ink-45);font-size:9.5px;margin-top:1px}
+
+.cm{display:grid;grid-template-columns:auto 1fr 1fr;gap:2px;font-size:10px;color:var(--ink-45);align-items:stretch}
+.cm .h{display:flex;align-items:center;justify-content:center;padding:2px 6px}
+.cm .v{display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;padding:9px 0}
+.cm .v.tn{background:#E3ECF3;color:var(--ink)}
+.cm .v.fp{background:#F3F6F8;color:var(--ink-70)}
+.cm .v.fn{background:#F3F6F8;color:var(--ink-70)}
+.cm .v.tp{background:#3E7CA6;color:#fff}
+
+.docv{display:grid;gap:6px;font-size:10.5px}
+.docv .f{display:grid;grid-template-columns:50px 1fr;gap:8px;padding:6px 8px;border:1px solid var(--line);background:#fff;line-height:1.5}
+.docv .f .n{color:var(--ink-45)}
+.docv .f .v{font-weight:600;color:var(--ink);min-width:0}
+.chip{display:inline-block;padding:2px 7px;border-radius:3px;font-size:9.5px;font-weight:700}
+.chip.warn{background:rgba(181,130,43,.14);color:#8a6118}
+.chip.ok{background:rgba(31,122,92,.12);color:#1F7A5C}
+.chip.info{background:rgba(62,124,166,.12);color:#2d6088}
+
+.chat{display:grid;gap:8px}
+.chat .q,.chat .a{max-width:92%;padding:8px 11px;font-size:10.5px;line-height:1.55;border-radius:10px}
+.chat .q{justify-self:end;background:var(--ink);color:#fff;border-bottom-right-radius:3px}
+.chat .a{justify-self:start;background:var(--bg-soft);border:1px solid var(--line);border-bottom-left-radius:3px}
+.chat .src{font-size:9.5px;color:var(--ink-45);border-top:1px dashed var(--line);margin-top:6px;padding-top:5px}
 
 /* ---------- 원칙 (다크 스테이트먼트) ---------- */
 .principles{background:var(--ink);color:#fff;padding-block:88px}

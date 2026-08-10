@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tridatum — 공공 데이터 분석 · AI</title>
 <meta name="description" content="담당자가 실제로 쓰는 데이터 시스템을 만듭니다. 공공 데이터 분석 · AI 전문팀 Tridatum.">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="assets/css/base.css">
@@ -33,8 +34,8 @@
 <div class="orgs">
   <div class="wrap">
     <span class="lab">함께한 기관</span>
-    <span class="org"><img src="assets/img/orgs/mma.png" alt="병무청" onerror="this.parentNode.textContent=this.alt"></span>
-    <span class="org"><img src="assets/img/orgs/mpva.png" alt="국가보훈부" onerror="this.parentNode.textContent=this.alt"></span>
+    <span class="org"><img src="assets/img/orgs/mma.svg" alt="병무청" onerror="this.parentNode.textContent=this.alt"></span>
+    <span class="org"><img src="assets/img/orgs/mpva.svg" alt="국가보훈부" onerror="this.parentNode.textContent=this.alt"></span>
     <span class="org"><img src="assets/img/orgs/reb.png" alt="한국부동산원" onerror="this.parentNode.textContent=this.alt"></span>
     <span class="org"><img src="assets/img/orgs/wdca.png" alt="국립야생동물질병관리원" onerror="this.parentNode.textContent=this.alt"></span>
     <span class="org"><img src="assets/img/orgs/keco.png" alt="한국환경공단" onerror="this.parentNode.textContent=this.alt"></span>
@@ -90,33 +91,201 @@
     <div class="sec-head fade">
       <div class="kicker">DELIVERABLES</div>
       <h2>납품물은 이렇게 생겼습니다</h2>
-      <p>보고서 한 권으로 끝나지 않습니다. 담당자가 매일 여는 화면과, 판단 근거까지 담긴 리포트를 만듭니다.</p>
+      <p>아래 화면은 이미지가 아니라 이 페이지 위에 코드로 직접 그린 것입니다. 우리가 만드는 결과물의 축소판입니다.</p>
     </div>
+
     <div class="show-row fade">
       <div class="txt">
         <div class="eyebrow">운영 대시보드</div>
         <h3>담당자가 매일 여는 화면</h3>
-        <p>지표 · 공간 분포 · 추이 · 우선 대응 순위를 스크롤 없이 한 화면에. 분석 용어 대신 현업의 표현을 씁니다.</p>
+        <p>지표 · 등급 구성 · 추이 · 우선 대응 순위를 스크롤 없이 한 화면에. 분석 용어 대신 현업의 표현을 씁니다.</p>
       </div>
-      <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="assets/img/shot-dashboard.png" alt="위험도 모니터링 대시보드 예시 화면" loading="lazy"></div>
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div>
+        <div class="panel">
+          <div class="pt">위험도 모니터링 대시보드 <span>SAMPLE</span></div>
+          <div class="kpis">
+            <div class="kpi"><span class="k">고위험 지역 <i class="up">+4</i></span><b>27</b></div>
+            <div class="kpi"><span class="k">탐지 재현율 <i class="ok">+2.1%p</i></span><b>85.4%</b></div>
+            <div class="kpi"><span class="k">우선 점검 농가 <i class="up">+12</i></span><b>163</b></div>
+            <div class="kpi"><span class="k">데이터 최신성 <i class="ok">정상</i></span><b>D-1</b></div>
+          </div>
+          <div class="grid2">
+            <div class="box">
+              <div class="bt">등급 구성</div>
+              <div class="donut-wrap">
+                <div class="donut"><div class="ring"></div><div class="c"><b>220</b><span>전체 지역</span></div></div>
+                <div class="donut-lg">
+                  <span><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#E0703C;margin-right:5px"></i>A등급<b>27</b></span>
+                  <span><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#B5822B;margin-right:5px"></i>B등급<b>41</b></span>
+                  <span><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#3E7CA6;margin-right:5px"></i>C등급<b>63</b></span>
+                  <span><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#CBD2D8;margin-right:5px"></i>D등급<b>89</b></span>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <div class="bt">월별 발생 추이 · 예측 대비 실측</div>
+              <svg viewBox="0 0 300 116" role="img" aria-label="월별 발생 추이 차트">
+                <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(15,34,51,.15)"/>
+                <line x1="8" y1="56" x2="292" y2="56" stroke="rgba(15,34,51,.06)"/>
+                <line x1="8" y1="12" x2="292" y2="12" stroke="rgba(15,34,51,.06)"/>
+                <text x="290" y="97" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">0</text>
+                <text x="290" y="53" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">20</text>
+                <text x="290" y="22" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">40</text>
+                <path d="M8,31.8 L33.8,16.4 L59.6,18.6 L85.5,42.8 L111.3,69.2 L137.1,78 L162.9,84.6 L188.7,82.4 L214.5,71.4 L240.4,58.2 L266.2,42.8 L292,23 L292,100 L8,100 Z" fill="rgba(62,124,166,.14)"/>
+                <path d="M8,31.8 L33.8,16.4 L59.6,18.6 L85.5,42.8 L111.3,69.2 L137.1,78 L162.9,84.6 L188.7,82.4 L214.5,71.4 L240.4,58.2 L266.2,42.8 L292,23" fill="none" stroke="#3E7CA6" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M8,27.4 L33.8,12 L59.6,16.4 L85.5,38.4 L111.3,67 L137.1,75.8 L162.9,82.4 L188.7,82.4 L214.5,69.2 L240.4,56 L266.2,38.4 L292,18.6" fill="none" stroke="#E0703C" stroke-width="2" stroke-dasharray="4 3" stroke-linejoin="round"/>
+                <text x="8" y="113" font-size="8" fill="rgba(15,34,51,.4)">1월</text>
+                <text x="150" y="113" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="middle">6월</text>
+                <text x="292" y="113" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">12월</text>
+              </svg>
+              <div class="legend" style="margin-top:6px">
+                <span><i style="background:#3E7CA6"></i>실측</span>
+                <span><i style="background:#E0703C"></i>예측</span>
+              </div>
+            </div>
+          </div>
+          <div class="box hbar">
+            <div class="bt">우선 대응 지역 Top 4 · 위험 점수</div>
+            <div class="r"><span>A시 ○○면</span><span class="bar"><i style="width:94%;background:#E0703C"></i></span><b>94</b></div>
+            <div class="r"><span>B군 △△읍</span><span class="bar"><i style="width:88%;background:#E0703C"></i></span><b>88</b></div>
+            <div class="r"><span>C시 □□동</span><span class="bar"><i style="width:81%;background:#B5822B"></i></span><b>81</b></div>
+            <div class="r"><span>D군 ◇◇면</span><span class="bar"><i style="width:74%;background:#B5822B"></i></span><b>74</b></div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="show-row flip fade">
       <div class="txt">
         <div class="eyebrow">모델 검증 리포트</div>
         <h3>성능 수치가 아니라, 판단 과정을 제출합니다</h3>
-        <p>보정도 · 변수 기여도 · 임계값 선택 근거까지. 검토한 뒤 채택하지 않은 대안도 함께 기록합니다.</p>
+        <p>곡선 위 어느 지점을 왜 채택했는지, 혼동행렬까지. 검토한 뒤 채택하지 않은 대안도 함께 기록합니다.</p>
       </div>
-      <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="assets/img/shot-model-report.png" alt="예측 모델 검증 리포트 예시" loading="lazy"></div>
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div>
+        <div class="panel">
+          <div class="pt">예측 모델 검증 리포트 <span>SAMPLE</span></div>
+          <div class="grid2" style="grid-template-columns:7fr 5fr">
+            <div class="box">
+              <div class="bt">Precision–Recall 곡선 · 채택 지점</div>
+              <svg viewBox="0 0 220 130" role="img" aria-label="Precision-Recall 곡선">
+                <line x1="10" y1="110" x2="210" y2="110" stroke="rgba(15,34,51,.15)"/>
+                <line x1="10" y1="110" x2="10" y2="10" stroke="rgba(15,34,51,.15)"/>
+                <line x1="10" y1="108.6" x2="210" y2="108.6" stroke="rgba(15,34,51,.3)" stroke-dasharray="3 3"/>
+                <text x="210" y="105" font-size="7.5" fill="rgba(15,34,51,.4)" text-anchor="end">무작위 기준선 (양성률 1.4%)</text>
+                <path d="M10,13 L50,15 L90,20 L130,28 L160,38 L180.8,49.7 L200,68 L210,80" fill="none" stroke="#E0703C" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="180.8" cy="49.7" r="4" fill="#0F2233" stroke="#fff" stroke-width="1.5"/>
+                <text x="176" y="42" font-size="8" font-weight="700" fill="#0F2233" text-anchor="end">채택 P .603 / R .854</text>
+                <text x="110" y="124" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="middle">Recall</text>
+                <text x="6" y="60" font-size="8" fill="rgba(15,34,51,.4)" transform="rotate(-90 6 60)" text-anchor="middle">Precision</text>
+              </svg>
+            </div>
+            <div class="mrows">
+              <div class="mrow"><span class="top"><span class="lab">Precision</span><b>0.603</b></span><span class="note">0.31 → 0.603 · 2배 개선</span></div>
+              <div class="mrow"><span class="top"><span class="lab">Recall</span><b>0.854</b></span><span class="note">누락 최소화 우선</span></div>
+              <div class="mrow"><span class="top"><span class="lab">F1</span><b>0.707</b></span><span class="note">이전 대비 +45%</span></div>
+              <div class="mrow"><span class="top"><span class="lab">AUC</span><b>0.976</b></span><span class="note">불균형 데이터 참고치</span></div>
+            </div>
+          </div>
+          <div class="grid2">
+            <div class="box">
+              <div class="bt">혼동행렬 · 임계값 0.545</div>
+              <div class="cm">
+                <div class="h"></div><div class="h">음성 예측</div><div class="h">양성 예측</div>
+                <div class="h">실제−</div><div class="v tn">892</div><div class="v fp">41</div>
+                <div class="h">실제+</div><div class="v fn">11</div><div class="v tp">64</div>
+              </div>
+            </div>
+            <div class="box">
+              <div class="bt">검토 후 미채택한 대안</div>
+              <div style="font-size:10.5px;color:var(--ink-70);line-height:1.7">계절별 모델 분리 <span style="color:var(--ink-45)">— 소구간 성능 저하</span><br>최신 구간만 학습 <span style="color:var(--ink-45)">— 과거 패턴 손실</span><br>4종 앙상블 <span style="color:var(--ink-45)">— 운영 복잡도 과다</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="show-row fade">
       <div class="txt">
         <div class="eyebrow">정책효과 리포트</div>
         <h3>"효과가 있었다"로 끝내지 않습니다</h3>
         <p>효과 크기와 신뢰구간, 효과가 없던 구간까지 함께 제시해 정책 판단의 근거로 쓰이게 합니다.</p>
       </div>
-      <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="assets/img/shot-policy-report.png" alt="정책효과 분석 리포트 예시" loading="lazy"></div>
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div>
+        <div class="panel">
+          <div class="pt">정책효과 분석 리포트 <span>SAMPLE</span></div>
+          <div class="box">
+            <div class="bt">정책 시행 기준 개월별 효과 추정 (95% 신뢰구간)</div>
+            <svg viewBox="0 0 300 130" role="img" aria-label="이벤트 스터디 차트">
+              <rect x="10" y="8" width="104" height="104" fill="rgba(15,34,51,.04)"/>
+              <line x1="10" y1="95" x2="290" y2="95" stroke="rgba(15,34,51,.25)"/>
+              <line x1="114" y1="8" x2="114" y2="112" stroke="#0F2233" stroke-dasharray="4 3" stroke-width="1.2"/>
+              <text x="118" y="16" font-size="8" font-weight="700" fill="#0F2233">정책 시행</text>
+              <text x="16" y="16" font-size="7.5" fill="rgba(15,34,51,.45)">사전 추세 — 유의한 차이 없음</text>
+              <g stroke="rgba(15,34,51,.35)" stroke-width="1.2">
+                <line x1="15" y1="84" x2="15" y2="104"/><line x1="33" y1="86" x2="33" y2="106"/><line x1="51" y1="87" x2="51" y2="107"/><line x1="69" y1="92" x2="69" y2="112"/><line x1="87" y1="79" x2="87" y2="99"/><line x1="105" y1="81" x2="105" y2="101"/>
+              </g>
+              <g fill="rgba(15,34,51,.45)">
+                <circle cx="15" cy="94" r="3"/><circle cx="33" cy="96" r="3"/><circle cx="51" cy="97" r="3"/><circle cx="69" cy="102" r="3"/><circle cx="87" cy="89" r="3"/><circle cx="105" cy="91" r="3"/>
+              </g>
+              <g stroke="#E0703C" stroke-width="1.2">
+                <line x1="141" y1="77.5" x2="141" y2="97.5"/><line x1="159" y1="71" x2="159" y2="91"/><line x1="177" y1="64" x2="177" y2="84"/><line x1="195" y1="57" x2="195" y2="77"/><line x1="213" y1="50" x2="213" y2="70"/><line x1="231" y1="42.5" x2="231" y2="62.5"/><line x1="249" y1="36" x2="249" y2="56"/><line x1="267" y1="29" x2="267" y2="49"/><line x1="285" y1="21" x2="285" y2="41"/>
+              </g>
+              <g fill="#E0703C">
+                <circle cx="123" cy="95" r="3" fill="rgba(15,34,51,.45)"/>
+                <circle cx="141" cy="87.5" r="3"/><circle cx="159" cy="81" r="3"/><circle cx="177" cy="74" r="3"/><circle cx="195" cy="67" r="3"/><circle cx="213" cy="60" r="3"/><circle cx="231" cy="52.5" r="3"/><circle cx="249" cy="46" r="3"/><circle cx="267" cy="39" r="3"/><circle cx="285" cy="31" r="3"/>
+              </g>
+              <text x="15" y="124" font-size="8" fill="rgba(15,34,51,.4)">-6개월</text>
+              <text x="290" y="124" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">+9개월</text>
+              <text x="6" y="95" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end" transform="rotate(-90 6 95)">효과(%p)</text>
+            </svg>
+          </div>
+          <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
+            <div class="kpi"><span class="k">순효과 <i class="up">시행 12개월</i></span><b>+12.8%</b></div>
+            <div class="kpi"><span class="k">유의 시작 <i>이전은 무의미</i></span><b>3개월차</b></div>
+            <div class="kpi"><span class="k">사전 추세 <i class="ok">DID 가정 충족</i></span><b>평행</b></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="fineprint fade">※ 예시 데이터 기반 데모 화면입니다. 실제 납품물은 발주처 데이터와 업무 용어로 구성됩니다.</p>
+
+    <div class="show-row flip fade">
+      <div class="txt">
+        <div class="eyebrow">폐쇄망 문서 AI · 챗봇</div>
+        <h3>모르면 모른다고 말하는 AI</h3>
+        <p>읽을 수 없는 항목은 추측 대신 ⟦판독불가⟧로 신고하고, 모든 답변에 문서 · 페이지 출처를 붙입니다. 실서비스로 운영 중인 폐쇄망 챗봇 '레비챗'과 같은 구조입니다.</p>
+      </div>
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div>
+        <div class="panel">
+          <div class="pt">문서 AI + 폐쇄망 챗봇 <span>SAMPLE</span></div>
+          <div class="grid2" style="grid-template-columns:1.15fr 1fr">
+            <div class="box">
+              <div class="bt">스캔 서류 전사 · 구조화</div>
+              <div class="docv">
+                <div class="f"><span class="n">상병명</span><span class="v">좌측 슬관절 반월상연골 파열 <span class="chip info">KCD M23.2</span></span></div>
+                <div class="f"><span class="n">수술일자</span><span class="v">2019-03-14 <span class="chip ok">정규화 완료</span></span></div>
+                <div class="f"><span class="n">판독</span><span class="v"><span class="chip warn">⟦판독불가⟧</span> 추측하지 않고 검수 큐로</span></div>
+                <div class="f"><span class="n">원문 위치</span><span class="v">p.7 / 3행 <span class="chip info">역추적 가능</span></span></div>
+              </div>
+              <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+                <span class="chip ok">환각 기계검사 통과</span>
+                <span class="chip info">개인정보 마스킹 완료</span>
+              </div>
+            </div>
+            <div class="box">
+              <div class="bt">안건 맥락을 아는 질의응답 · 폐쇄망 내부 구동</div>
+              <div class="chat">
+                <div class="q">이 안건과 유사한 과거 인정 사례 있어?</div>
+                <div class="a">동일 상이부위 · 유사 사건경위 인정 사례 <b>4건</b>이 확인됩니다. 공통점은 수술 이후 연속 치료기록이 존재한다는 점입니다.
+                  <div class="src">출처 · 심의의결서 2021-0842 p.3 / 2022-1156 p.5 외 2건 — 원문 발췌 첨부</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="fineprint fade">※ 예시 데이터 기반 데모입니다. 실제 납품물은 발주처 데이터와 업무 용어로 구성됩니다.</p>
   </div>
 </section>
 
