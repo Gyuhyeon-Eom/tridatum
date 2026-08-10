@@ -94,7 +94,7 @@
       <p>아래 화면은 이미지가 아니라 이 페이지 위에 코드로 직접 그린 것입니다. 우리가 만드는 결과물의 축소판입니다.</p>
     </div>
 
-    <div class="show-row fade">
+    <div class="show-row full fade">
       <div class="txt">
         <div class="eyebrow">운영 대시보드</div>
         <h3>담당자가 매일 여는 화면</h3>
@@ -124,7 +124,7 @@
             </div>
             <div class="box">
               <div class="bt">월별 발생 추이 · 예측 대비 실측</div>
-              <svg viewBox="0 0 300 116" role="img" aria-label="월별 발생 추이 차트">
+              <svg class="sweep" viewBox="0 0 300 116" role="img" aria-label="월별 발생 추이 차트">
                 <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(15,34,51,.15)"/>
                 <line x1="8" y1="56" x2="292" y2="56" stroke="rgba(15,34,51,.06)"/>
                 <line x1="8" y1="12" x2="292" y2="12" stroke="rgba(15,34,51,.06)"/>
@@ -146,10 +146,10 @@
           </div>
           <div class="box hbar">
             <div class="bt">우선 대응 지역 Top 4 · 위험 점수</div>
-            <div class="r"><span>A시 ○○면</span><span class="bar"><i style="width:94%;background:#E0703C"></i></span><b>94</b></div>
-            <div class="r"><span>B군 △△읍</span><span class="bar"><i style="width:88%;background:#E0703C"></i></span><b>88</b></div>
-            <div class="r"><span>C시 □□동</span><span class="bar"><i style="width:81%;background:#B5822B"></i></span><b>81</b></div>
-            <div class="r"><span>D군 ◇◇면</span><span class="bar"><i style="width:74%;background:#B5822B"></i></span><b>74</b></div>
+            <div class="r"><span>A시 ○○면</span><span class="bar"><i style="--w:94%;background:#E0703C"></i></span><b>94</b></div>
+            <div class="r"><span>B군 △△읍</span><span class="bar"><i style="--w:88%;background:#E0703C"></i></span><b>88</b></div>
+            <div class="r"><span>C시 □□동</span><span class="bar"><i style="--w:81%;background:#B5822B"></i></span><b>81</b></div>
+            <div class="r"><span>D군 ◇◇면</span><span class="bar"><i style="--w:74%;background:#B5822B"></i></span><b>74</b></div>
           </div>
         </div>
       </div>
@@ -167,7 +167,7 @@
           <div class="grid2" style="grid-template-columns:7fr 5fr">
             <div class="box">
               <div class="bt">Precision–Recall 곡선 · 채택 지점</div>
-              <svg viewBox="0 0 220 130" role="img" aria-label="Precision-Recall 곡선">
+              <svg class="sweep" viewBox="0 0 220 130" role="img" aria-label="Precision-Recall 곡선">
                 <line x1="10" y1="110" x2="210" y2="110" stroke="rgba(15,34,51,.15)"/>
                 <line x1="10" y1="110" x2="10" y2="10" stroke="rgba(15,34,51,.15)"/>
                 <line x1="10" y1="108.6" x2="210" y2="108.6" stroke="rgba(15,34,51,.3)" stroke-dasharray="3 3"/>
@@ -215,7 +215,7 @@
           <div class="pt">정책효과 분석 리포트 <span>SAMPLE</span></div>
           <div class="box">
             <div class="bt">정책 시행 기준 개월별 효과 추정 (95% 신뢰구간)</div>
-            <svg viewBox="0 0 300 130" role="img" aria-label="이벤트 스터디 차트">
+            <svg class="sweep" viewBox="0 0 300 130" role="img" aria-label="이벤트 스터디 차트">
               <rect x="10" y="8" width="104" height="104" fill="rgba(15,34,51,.04)"/>
               <line x1="10" y1="95" x2="290" y2="95" stroke="rgba(15,34,51,.25)"/>
               <line x1="114" y1="8" x2="114" y2="112" stroke="#0F2233" stroke-dasharray="4 3" stroke-width="1.2"/>
@@ -252,7 +252,7 @@
       <div class="txt">
         <div class="eyebrow">폐쇄망 문서 AI · 챗봇</div>
         <h3>모르면 모른다고 말하는 AI</h3>
-        <p>읽을 수 없는 항목은 추측 대신 ⟦판독불가⟧로 신고하고, 모든 답변에 문서 · 페이지 출처를 붙입니다. 실서비스로 운영 중인 폐쇄망 챗봇 '레비챗'과 같은 구조입니다.</p>
+        <p>읽을 수 없는 항목은 추측 대신 ⟦판독불가⟧로 신고하고, 모든 답변에 문서 · 페이지 출처를 붙입니다. 우리가 개발해 실서비스로 운영 중인 폐쇄망 챗봇 '레비챗'에 그대로 적용한 방식입니다.</p>
       </div>
       <div class="shot"><div class="bar"><i></i><i></i><i></i></div>
         <div class="panel">
@@ -261,9 +261,9 @@
             <div class="box">
               <div class="bt">스캔 서류 전사 · 구조화</div>
               <div class="docv">
-                <div class="f"><span class="n">상병명</span><span class="v">좌측 슬관절 반월상연골 파열 <span class="chip info">KCD M23.2</span></span></div>
-                <div class="f"><span class="n">수술일자</span><span class="v">2019-03-14 <span class="chip ok">정규화 완료</span></span></div>
-                <div class="f"><span class="n">판독</span><span class="v"><span class="chip warn">⟦판독불가⟧</span> 추측하지 않고 검수 큐로</span></div>
+                <div class="f"><span class="n">접수번호</span><span class="v">2024-01732 <span class="chip ok">정규화 완료</span></span></div>
+                <div class="f"><span class="n">처리유형</span><span class="v">변경 신고 <span class="chip info">표준코드 B-102</span></span></div>
+                <div class="f"><span class="n">확인란</span><span class="v"><span class="chip warn">⟦판독불가⟧</span> 추측하지 않고 검수 큐로</span></div>
                 <div class="f"><span class="n">원문 위치</span><span class="v">p.7 / 3행 <span class="chip info">역추적 가능</span></span></div>
               </div>
               <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
@@ -272,11 +272,11 @@
               </div>
             </div>
             <div class="box">
-              <div class="bt">안건 맥락을 아는 질의응답 · 폐쇄망 내부 구동</div>
+              <div class="bt">문서 맥락을 아는 질의응답 · 폐쇄망 내부 구동</div>
               <div class="chat">
-                <div class="q">이 안건과 유사한 과거 인정 사례 있어?</div>
-                <div class="a">동일 상이부위 · 유사 사건경위 인정 사례 <b>4건</b>이 확인됩니다. 공통점은 수술 이후 연속 치료기록이 존재한다는 점입니다.
-                  <div class="src">출처 · 심의의결서 2021-0842 p.3 / 2022-1156 p.5 외 2건 — 원문 발췌 첨부</div>
+                <div class="q">이 신청 건과 유사한 과거 처리 사례 있어?</div>
+                <div class="a">동일 유형 · 유사 조건의 처리 사례 <b>4건</b>이 확인됩니다. 공통점은 첨부 증빙이 기준 요건을 충족한다는 점입니다.
+                  <div class="src">출처 · 내부 결정문 2023-0842 p.3 / 2024-0156 p.5 외 2건 — 원문 발췌 첨부</div>
                 </div>
               </div>
             </div>
