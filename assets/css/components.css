@@ -509,3 +509,18 @@ section.hero{
 .js svg.sweep .cell{opacity:0;transition:opacity .35s ease calc(var(--i,0)*.02s)}
 .js svg.sweep.anim .cell{opacity:1}
 @media(prefers-reduced-motion:reduce){.js svg.sweep .cell{opacity:1;transition:none}}
+
+/* 서비스 축 풀페이지 (텍스트 + 미니 데모) */
+.svc-row{display:grid;grid-template-columns:5fr 6fr;gap:64px;align-items:center}
+@media(max-width:860px){.svc-row{grid-template-columns:1fr;gap:32px}}
+.svc-txt .num{font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--accent)}
+.svc-txt h2{margin-top:12px;font-size:clamp(24px,3vw,34px);font-weight:700;letter-spacing:-.015em;line-height:1.35}
+.svc-txt .when{margin-top:10px;font-size:16px;color:var(--ink-70)}
+.svc-txt ul{margin-top:26px;list-style:none;max-width:460px}
+.svc-txt li{font-size:15px;color:var(--ink-70);padding:11px 0;border-top:1px solid var(--line)}
+.svc-txt li b{color:var(--ink);font-weight:600}
+.svc-txt .ev{margin-top:20px;display:flex;gap:6px;flex-wrap:wrap}
+
+/* 문의 페이지 대형 연락처 */
+.contact-grid.big .val{font-size:clamp(20px,2.6vw,30px)}
+.contact-grid.big .lab{font-size:13px}

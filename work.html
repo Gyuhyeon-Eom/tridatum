@@ -16,27 +16,26 @@
 
 <div data-include="partials/header.html"></div>
 
-<section class="page-hero wrap">
-  <div class="kicker">WORK</div>
-  <h1>목표치가 아닌,<br>측정치로 이야기합니다</h1>
-  <p>공공기관 발주 사업 13건. 모든 수치는 실제 사업의 산출물과 검증 결과에서 나온 값입니다.</p>
-</section>
-
-<section class="wrap">
-  <div class="numbers" data-stagger>
-    <div class="fade"><b>16.5억 건</b><span class="what">조기경보 DW 이관</span><span class="who">병무청 · 2024</span></div>
-    <div class="fade"><b>1.6억 건</b><span class="what">전기사용 시계열 통합</span><span class="who">한국부동산원 · 2025</span></div>
-    <div class="fade"><b>160만<em>p</em></b><span class="what">법령 · 판례 임베딩 구축</span><span class="who">국가보훈부 · 2026</span></div>
-    <div class="fade"><b>60<em>%</em></b><span class="what">부정행위 조사 대상 감축</span><span class="who">야생동물질병관리원 · 2025</span></div>
-    <div class="fade"><b>0.85<em>Recall</em></b><span class="what">ASF 발생 예측 성능</span><span class="who">Precision 0.603 · F1 0.707</span></div>
-    <div class="fade"><b>30<em>/37명</em></b><span class="what">병역면탈 이상징후 탐지</span><span class="who">Recall 86.5%</span></div>
-    <div class="fade"><b>0.83<em>R²</em></b><span class="what">빈집률 예측 앙상블</span><span class="who">1:242 불균형 극복</span></div>
-    <div class="fade"><b>2배</b><span class="what">예측 정밀도 개선</span><span class="who">Precision 0.31 → 0.603</span></div>
+<section class="page">
+  <div class="wrap">
+    <div class="kicker">WORK</div>
+    <h1 style="font-size:clamp(30px,4.4vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.3">목표치가 아닌,<br><em style="font-style:normal;color:var(--accent)">측정치</em>로 이야기합니다</h1>
+    <p style="margin-top:20px;font-size:17px;color:var(--ink-70);max-width:560px">공공기관 발주 사업 13건. 모든 수치는 실제 사업의 산출물과 검증 결과에서 나온 값입니다.</p>
+    <div class="numbers" data-stagger style="margin-top:48px">
+      <div class="fade"><b><span data-count="16.5" data-decimals="1">0</span><em>억 건</em></b><span class="what">조기경보 DW 이관</span><span class="who">병무청 · 2024</span></div>
+      <div class="fade"><b><span data-count="1.6" data-decimals="1">0</span><em>억 건</em></b><span class="what">전기사용 시계열 통합</span><span class="who">한국부동산원 · 2025</span></div>
+      <div class="fade"><b><span data-count="160">0</span><em>만p</em></b><span class="what">법령 · 판례 임베딩 구축</span><span class="who">국가보훈부 · 2026</span></div>
+      <div class="fade"><b><span data-count="60">0</span><em>%</em></b><span class="what">부정행위 조사 대상 감축</span><span class="who">야생동물질병관리원 · 2025</span></div>
+      <div class="fade"><b><span data-count="0.85" data-decimals="2">0</span><em>Recall</em></b><span class="what">ASF 발생 예측 성능</span><span class="who">Precision 0.603 · F1 0.707</span></div>
+      <div class="fade"><b><span data-count="30">0</span><em>/37명</em></b><span class="what">병역면탈 이상징후 탐지</span><span class="who">Recall 86.5%</span></div>
+      <div class="fade"><b><span data-count="0.83" data-decimals="2">0</span><em>R²</em></b><span class="what">빈집률 예측 앙상블</span><span class="who">1:242 불균형 극복</span></div>
+      <div class="fade"><b><span data-count="2">0</span><em>배</em></b><span class="what">예측 정밀도 개선</span><span class="who">Precision 0.31 → 0.603</span></div>
+    </div>
+    <p class="fineprint fade">※ 수치는 맥락과 함께 읽어야 합니다. 불균형 데이터에서 높게 나오는 지표(AUC 등)는 단독으로 쓰지 않고 Precision · Recall과 개선 전후 비교를 함께 제시합니다.</p>
   </div>
-  <p class="fineprint fade">※ 수치는 맥락과 함께 읽어야 합니다. 불균형 데이터에서 높게 나오는 지표(AUC 등)는 단독으로 쓰지 않고 Precision · Recall과 개선 전후 비교를 함께 제시합니다.</p>
 </section>
 
-<section class="soft">
+<section class="page soft">
   <div class="wrap">
     <div class="sec-head fade">
       <div class="kicker">TRACK RECORD</div>
@@ -83,62 +82,61 @@
   </div>
 </section>
 
-<section class="wrap">
-  <div class="sec-head fade">
-    <div class="kicker">PROJECTS</div>
-    <h2>주요 수행 프로젝트</h2>
-  </div>
-  <div class="plist">
-    <div class="prow fade">
-      <div class="org">한국부동산원</div>
-      <div class="name">전국 빈집 예측 파이프라인 + 폐쇄망 AI 챗봇 '레비챗'<span>실서비스 운영 사례 · 빈집률 예측 R² 0.83 · 챗봇 응답 1.4초 · 동시접속 111명</span></div>
-      <div class="tag on">진행 중 · ~2026.02</div>
+<section class="page">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="kicker">PROJECTS</div>
+      <h2>주요 수행 프로젝트</h2>
     </div>
-    <div class="prow fade">
-      <div class="org">병무청</div>
-      <div class="name">병역면탈 이상징후 탐지 → 조기경보시스템 구축<span>연속 수주 · 16.5억 건 DW 이관 · 168개 테이블 · 특사경 직접 분석 체계 전환</span></div>
-      <div class="tag">수행완료</div>
+    <div class="plist">
+      <div class="prow fade">
+        <div class="org">한국부동산원</div>
+        <div class="name">전국 빈집 예측 파이프라인 + 폐쇄망 AI 챗봇 '레비챗'<span>실서비스 운영 사례 · 빈집률 예측 R² 0.83 · 챗봇 응답 1.4초 · 동시접속 111명</span></div>
+        <div class="tag on">진행 중 · ~2026.02</div>
+      </div>
+      <div class="prow fade">
+        <div class="org">병무청</div>
+        <div class="name">병역면탈 이상징후 탐지 → 조기경보시스템 구축<span>연속 수주 · 16.5억 건 DW 이관 · 168개 테이블 · 특사경 직접 분석 체계 전환</span></div>
+        <div class="tag">수행완료</div>
+      </div>
+      <div class="prow fade">
+        <div class="org">야생동물질병관리원</div>
+        <div class="name">ASF 확산 예측 · 방역 지원 → 예측 · 탐지 고도화<span>연속 수주 · Recall 0.85 · 조사 대상 60% 감축 · 이미지 AI 확장</span></div>
+        <div class="tag on">진행 중</div>
+      </div>
+      <div class="prow fade">
+        <div class="org">국가보훈부 · NIA</div>
+        <div class="name">보훈심사 AI 지원 시스템<span>160만 페이지 임베딩 · 폐쇄망 · 환각 차단 · 출처 추적 설계</span></div>
+        <div class="tag on">진행 중</div>
+      </div>
+      <div class="prow fade">
+        <div class="org">한국환경공단</div>
+        <div class="name">굴뚝 자동측정(TMS) 이상탐지<span>측정치 이상징후 탐지 · 모니터링 자동화</span></div>
+        <div class="tag">수행완료</div>
+      </div>
+      <div class="prow fade">
+        <div class="org">사천시</div>
+        <div class="name">사천사랑상품권 빅데이터 분석<span>지자체 정책효과 분석 · 인과추론 기반 효과 검증</span></div>
+        <div class="tag">수행완료</div>
+      </div>
+      <div class="prow fade">
+        <div class="org">부산 KAIA</div>
+        <div class="name">부산 대중교통 노선 최적화<span>공간분석 · O-D 복원 · 격자 분석</span></div>
+        <div class="tag">수행완료</div>
+      </div>
+      <div class="prow fade">
+        <div class="org">도로교통연구원</div>
+        <div class="name">AI 고속도로 교통수요 예측<span>시계열 예측 · 수요 패턴 분석</span></div>
+        <div class="tag on">진행 중</div>
+      </div>
     </div>
-    <div class="prow fade">
-      <div class="org">야생동물질병관리원</div>
-      <div class="name">ASF 확산 예측 · 방역 지원 → 예측 · 탐지 고도화<span>연속 수주 · Recall 0.85 · 조사 대상 60% 감축 · 이미지 AI 확장</span></div>
-      <div class="tag on">진행 중</div>
+    <p class="fineprint fade">이 외 아산시 통합 빅데이터 플랫폼 유지관리, 방송 홍보 효과성 인과분석, 고령자 돌봄 수급 격차 진단, 서울시 택시 운행데이터 분석, 부산 디지털 트윈 교통계획 등을 수행했습니다.</p>
+    <p class="fineprint fade">※ 現 소속사 재직 중 수행한 프로젝트입니다. 기재 수치는 사업 산출물 기준이며, 팀 3인은 분석 · AI 설계 · 모델 개발 영역을 담당했습니다.</p>
+    <div class="band fade" style="margin-top:40px">
+      <b>비슷한 문제를 갖고 계신가요?</b>
+      <p>보유하신 데이터로 무엇이 가능한지, 사전 진단과 가능성 검토는 비용 없이 진행합니다.</p>
+      <a class="btn" href="contact.html">문의하기</a>
     </div>
-    <div class="prow fade">
-      <div class="org">국가보훈부 · NIA</div>
-      <div class="name">보훈심사 AI 지원 시스템<span>160만 페이지 임베딩 · 폐쇄망 · 환각 차단 · 출처 추적 설계</span></div>
-      <div class="tag on">진행 중</div>
-    </div>
-    <div class="prow fade">
-      <div class="org">한국환경공단</div>
-      <div class="name">굴뚝 자동측정(TMS) 이상탐지<span>측정치 이상징후 탐지 · 모니터링 자동화</span></div>
-      <div class="tag">수행완료</div>
-    </div>
-    <div class="prow fade">
-      <div class="org">사천시</div>
-      <div class="name">사천사랑상품권 빅데이터 분석<span>지자체 정책효과 분석 · 인과추론 기반 효과 검증</span></div>
-      <div class="tag">수행완료</div>
-    </div>
-    <div class="prow fade">
-      <div class="org">부산 KAIA</div>
-      <div class="name">부산 대중교통 노선 최적화<span>공간분석 · O-D 복원 · 격자 분석</span></div>
-      <div class="tag">수행완료</div>
-    </div>
-    <div class="prow fade">
-      <div class="org">도로교통연구원</div>
-      <div class="name">AI 고속도로 교통수요 예측<span>시계열 예측 · 수요 패턴 분석</span></div>
-      <div class="tag on">진행 중</div>
-    </div>
-  </div>
-  <p class="fineprint fade">이 외 아산시 통합 빅데이터 플랫폼 유지관리, 방송 홍보 효과성 인과분석, 고령자 돌봄 수급 격차 진단, 서울시 택시 운행데이터 분석, 부산 디지털 트윈 교통계획 등을 수행했습니다.</p>
-  <p class="fineprint fade">※ 現 소속사 재직 중 수행한 프로젝트입니다. 기재 수치는 사업 산출물 기준이며, 팀 3인은 분석 · AI 설계 · 모델 개발 영역을 담당했습니다.</p>
-</section>
-
-<section class="wrap" style="padding-top:0">
-  <div class="band fade">
-    <b>비슷한 문제를 갖고 계신가요?</b>
-    <p>보유하신 데이터로 무엇이 가능한지, 사전 진단과 가능성 검토는 비용 없이 진행합니다.</p>
-    <a class="btn" href="contact.html">문의하기</a>
   </div>
 </section>
 
