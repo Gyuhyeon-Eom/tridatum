@@ -30,21 +30,6 @@
   </div>
 </section>
 
-<!-- 기관 로고: assets/img/orgs/ 에 로고 파일을 넣으면 자동으로 이미지가 뜨고, 없으면 기관명 텍스트로 표시됩니다 -->
-<div class="orgs">
-  <div class="wrap">
-    <span class="lab">함께한 기관</span>
-    <span class="org"><img src="assets/img/orgs/mma.svg" alt="병무청" onerror="this.parentNode.textContent=this.alt"></span>
-    <span class="org"><img src="assets/img/orgs/mpva.svg" alt="국가보훈부" onerror="this.parentNode.textContent=this.alt"></span>
-    <span class="org"><img src="assets/img/orgs/reb.png" alt="한국부동산원" onerror="this.parentNode.textContent=this.alt"></span>
-    <span class="org"><img src="assets/img/orgs/wdca.png" alt="국립야생동물질병관리원" onerror="this.parentNode.textContent=this.alt"></span>
-    <span class="org"><img src="assets/img/orgs/keco.png" alt="한국환경공단" onerror="this.parentNode.textContent=this.alt"></span>
-    <span class="org"><img src="assets/img/orgs/sacheon.png" alt="사천시" onerror="this.parentNode.textContent=this.alt"></span>
-    <span class="org"><img src="assets/img/orgs/asan.png" alt="아산시" onerror="this.parentNode.textContent=this.alt"></span>
-    <span class="org"><img src="assets/img/orgs/kaia.png" alt="KAIA" onerror="this.parentNode.textContent=this.alt"></span>
-  </div>
-</div>
-
 <section class="manifesto wrap">
   <div class="kicker">WHY DATA VISUALIZATION</div>
   <p>데이터는 쌓여 있는데,</p>
@@ -316,6 +301,29 @@
               </div>
             </div>
           </div>
+          <div class="grid3">
+            <div class="box hbar">
+              <div class="bt">유사 사례 Top-K 추천</div>
+              <div class="r"><span>사례 2023-0842</span><span class="bar"><i style="--w:92%;background:#3E7CA6"></i></span><b>.92</b></div>
+              <div class="r"><span>사례 2024-0156</span><span class="bar"><i style="--w:88%;background:#3E7CA6"></i></span><b>.88</b></div>
+              <div class="r"><span>사례 2022-1101</span><span class="bar"><i style="--w:85%;background:#3E7CA6"></i></span><b>.85</b></div>
+              <p style="margin-top:8px;font-size:9.5px;color:var(--ink-45)">유사도 기준 상위 사례 · 원문 링크 제공</p>
+            </div>
+            <div class="box">
+              <div class="bt">자연어 통계 질의 · Text-to-SQL</div>
+              <div style="font-size:10.5px;color:var(--ink-70);margin-bottom:6px">"지난달 처리 건수 알려줘"</div>
+              <div class="code">SELECT count(*) FROM cases
+WHERE month = '2026-07'  → 1,240건</div>
+              <div style="margin-top:8px"><span class="chip ok">AST 검증 통과</span></div>
+            </div>
+            <div class="box">
+              <div class="bt">원문 하이라이트 역추적</div>
+              <div class="snippet">… 등급 산정은 <mark>전기 사용량, 건축물대장, 수도 사용량 등 5개 지표</mark>를 종합하여 판정한다 …
+                <span class="loc">빈집 등급 산정 지침 · p.12 / 7행</span>
+              </div>
+              <p style="margin-top:8px;font-size:9.5px;color:var(--ink-45)">답변의 모든 문장이 원문 위치로 연결됩니다</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -324,23 +332,23 @@
       <div class="txt">
         <div class="eyebrow">LLM 운영 모니터링</div>
         <h3>만들고 끝나는 챗봇이 아니라, 지표로 운영합니다</h3>
-        <p>응답 속도 · 질의량 · 출처 부착률을 운영 지표로 상시 관찰하고, 느려지거나 답을 못 찾는 지점을 데이터로 찾아 개선합니다.</p>
+        <p>Prometheus · Grafana · Langfuse 스택으로 응답 속도 · 질의량 · 검색 품질을 상시 관측하고, 느려지거나 답을 못 찾는 지점을 데이터로 찾아 개선합니다. 실제 레비챗 운영 대시보드도 Grafana로 구성되어 있습니다.</p>
       </div>
       <div class="shot"><div class="bar"><i></i><i></i><i></i></div>
-        <div class="panel">
-          <div class="pt">폐쇄망 챗봇 운영 대시보드 — 레비챗 (한국부동산원) <span>SAMPLE</span></div>
+        <div class="panel gfx">
+          <div class="pt">레비챗 운영 대시보드 · Grafana <span>SAMPLE</span></div>
           <div class="kpis">
             <div class="kpi"><span class="k">평균 응답 <i class="ok">실측</i></span><b>1.4초</b></div>
-            <div class="kpi"><span class="k">최대 동시접속 <i class="ok">실측</i></span><b>111명</b></div>
-            <div class="kpi"><span class="k">답변 출처 부착 <i class="ok">설계 보장</i></span><b>100%</b></div>
-            <div class="kpi"><span class="k">일 평균 질의 <i class="up">+8%</i></span><b>1,240건</b></div>
+            <div class="kpi blue"><span class="k">최대 동시접속 <i class="ok">실측</i></span><b>111명</b></div>
+            <div class="kpi yellow"><span class="k">답변 출처 부착 <i class="ok">설계 보장</i></span><b>100%</b></div>
+            <div class="kpi orange"><span class="k">일 평균 질의 <i class="up">+8%</i></span><b>1,240건</b></div>
           </div>
           <div class="grid2">
             <div class="box">
               <div class="bt">응답 시간 분포 · 중앙값 1.4초</div>
               <svg class="sweep" viewBox="0 0 300 116" role="img" aria-label="응답 시간 분포 히스토그램">
-                <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(15,34,51,.15)"/>
-                <g fill="#3E7CA6">
+                <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(255,255,255,.14)"/>
+                <g fill="#73BF69">
                   <rect x="8" y="95.8" width="20" height="4.2" rx="2"/>
                   <rect x="32" y="87.4" width="20" height="12.6" rx="2"/>
                   <rect x="56" y="70.6" width="20" height="29.4" rx="2"/>
@@ -354,27 +362,33 @@
                   <rect x="248" y="95.8" width="20" height="4.2" rx="2"/>
                   <rect x="272" y="97.9" width="20" height="2.1" rx="2"/>
                 </g>
-                <line x1="126" y1="8" x2="126" y2="100" stroke="#E0703C" stroke-width="1.4" stroke-dasharray="4 3"/>
-                <text x="131" y="15" font-size="8" font-weight="700" fill="#E0703C">중앙값 1.4초</text>
-                <text x="8" y="112" font-size="8" fill="rgba(15,34,51,.4)">0초</text>
-                <text x="150" y="112" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="middle">1.5초</text>
-                <text x="292" y="112" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">3초</text>
+                <line x1="126" y1="8" x2="126" y2="100" stroke="#FF9830" stroke-width="1.4" stroke-dasharray="4 3"/>
+                <text x="131" y="15" font-size="8" font-weight="700" fill="#FF9830">중앙값 1.4초</text>
+                <text x="8" y="112" font-size="8" fill="rgba(255,255,255,.4)">0초</text>
+                <text x="150" y="112" font-size="8" fill="rgba(255,255,255,.4)" text-anchor="middle">1.5초</text>
+                <text x="292" y="112" font-size="8" fill="rgba(255,255,255,.4)" text-anchor="end">3초</text>
               </svg>
             </div>
             <div class="box">
               <div class="bt">시간대별 질의량</div>
               <svg class="sweep" viewBox="0 0 300 116" role="img" aria-label="시간대별 질의량 차트">
-                <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(15,34,51,.15)"/>
-                <line x1="8" y1="56" x2="292" y2="56" stroke="rgba(15,34,51,.06)"/>
-                <path d="M8,70 L39.5,48 L71,32 L102.5,40 L134,52 L165.5,58 L197,45 L228.5,38 L260,56 L291.5,72 L291.5,100 L8,100 Z" fill="rgba(62,124,166,.14)"/>
-                <path d="M8,70 L39.5,48 L71,32 L102.5,40 L134,52 L165.5,58 L197,45 L228.5,38 L260,56 L291.5,72" fill="none" stroke="#3E7CA6" stroke-width="2" stroke-linejoin="round"/>
-                <circle cx="71" cy="32" r="3" fill="#3E7CA6"/>
-                <text x="71" y="24" font-size="8" font-weight="700" fill="#0F2233" text-anchor="middle">오전 11시 피크</text>
-                <text x="8" y="112" font-size="8" fill="rgba(15,34,51,.4)">9시</text>
-                <text x="150" y="112" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="middle">13시</text>
-                <text x="292" y="112" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">18시</text>
+                <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(255,255,255,.14)"/>
+                <line x1="8" y1="56" x2="292" y2="56" stroke="rgba(255,255,255,.07)"/>
+                <path d="M8,70 L39.5,48 L71,32 L102.5,40 L134,52 L165.5,58 L197,45 L228.5,38 L260,56 L291.5,72 L291.5,100 L8,100 Z" fill="rgba(87,148,242,.16)"/>
+                <path d="M8,70 L39.5,48 L71,32 L102.5,40 L134,52 L165.5,58 L197,45 L228.5,38 L260,56 L291.5,72" fill="none" stroke="#5794F2" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="71" cy="32" r="3" fill="#5794F2"/>
+                <text x="71" y="24" font-size="8" font-weight="700" fill="#D8D9DA" text-anchor="middle">오전 11시 피크</text>
+                <text x="8" y="112" font-size="8" fill="rgba(255,255,255,.4)">9시</text>
+                <text x="150" y="112" font-size="8" fill="rgba(255,255,255,.4)" text-anchor="middle">13시</text>
+                <text x="292" y="112" font-size="8" fill="rgba(255,255,255,.4)" text-anchor="end">18시</text>
               </svg>
             </div>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span class="chip">Prometheus</span>
+            <span class="chip">Grafana</span>
+            <span class="chip">Langfuse</span>
+            <span class="chip">폐쇄망 내부 구동</span>
           </div>
         </div>
       </div>
@@ -392,6 +406,64 @@
       <div class="fade"><b><span data-count="2">0</span><span class="u">기관</span></b><span class="what">결과 확인 후 재발주</span></div>
       <div class="fade"><b><span data-count="1.4" data-decimals="1">0</span><span class="u">초</span></b><span class="what">폐쇄망 챗봇 응답 속도</span></div>
     </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="kicker">WHY TRIDATUM</div>
+      <h2>실제 이력으로 뒷받침되는 강점만 적습니다</h2>
+    </div>
+    <div class="bento" data-stagger>
+      <div class="b s3 fade">
+        <h3>같은 발주처가 다시 부릅니다</h3>
+        <div class="big">재발주 <em>2기관</em></div>
+        <div class="rebuy-mini">
+          <div class="r"><b>병무청</b><span class="step">2023 공모 과제</span><span class="a">→</span><span class="step hl">2024 자체예산 4.6억 원</span></div>
+          <div class="r"><b>야생동물질병관리원</b><span class="step">2025 예측 모델</span><span class="a">→</span><span class="step hl">2026 고도화 사업</span></div>
+        </div>
+        <p class="d">1차 결과를 직접 확인한 발주처가 이듬해 별도 사업으로 다시 발주했습니다.</p>
+      </div>
+      <div class="b s3 fade">
+        <h3>억 단위 데이터를 실제로 옮겨봤습니다</h3>
+        <div class="big">규모 <em>검증 완료</em></div>
+        <div class="scale-list">
+          <div class="r"><b>16.5억 건</b><span>조기경보 DW 이관 — 병무청 · 168개 테이블</span></div>
+          <div class="r"><b>1.6억 건</b><span>전기사용 시계열 통합 — 한국부동산원</span></div>
+          <div class="r"><b>160만 페이지</b><span>법령 · 판례 임베딩 — 국가보훈부 · 480만 청크</span></div>
+        </div>
+      </div>
+      <div class="b s2 fade">
+        <h3>폐쇄망에서 실제로 돌려봤습니다</h3>
+        <div class="big">구축 <em>2기관</em></div>
+        <p class="d">외부 API 차단 환경에서 LLM 서빙 · 검색 · 관측 · 배포를 자체 구축. 오프라인 반입 킷도 직접 제작합니다.</p>
+        <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+          <span class="chip info">부동산원 레비챗</span>
+          <span class="chip info">보훈부 심사 AI</span>
+        </div>
+      </div>
+      <div class="b s2 fade">
+        <h3>환각과 오류를 구조로 막습니다</h3>
+        <div class="big">다층 <em>방어 설계</em></div>
+        <div class="stack">
+          <div class="l">사실은 결정적 로직으로 조립</div>
+          <div class="l">LLM은 서술만 담당 · AST 검증</div>
+          <div class="l">모든 답변에 출처 부착</div>
+        </div>
+      </div>
+      <div class="b s2 fade">
+        <h3>실무자가 직접 응대합니다</h3>
+        <div class="big">중간 단계 <em>없음</em></div>
+        <div class="trio">
+          <div class="t"><b>0</b>영업</div>
+          <div class="t"><b>0</b>관리</div>
+          <div class="t hl"><b>3</b>실무</div>
+        </div>
+        <p class="d">기획 · 설계 · 구축 · 검증 · 교육을 3인이 직접 수행합니다.</p>
+      </div>
+    </div>
+    <p class="fineprint fade">※ 現 소속사 재직 중 수행한 프로젝트 기준이며, 기재 수치는 사업 산출물 기준입니다.</p>
   </div>
 </section>
 
@@ -442,6 +514,21 @@
     <a class="btn" href="contact.html">문의하기</a>
   </div>
 </section>
+
+<!-- 기관 로고: assets/img/orgs/ 에 파일이 있으면 로고, 없으면 기관명 텍스트로 표시 -->
+<div class="orgs">
+  <div class="wrap">
+    <span class="lab">함께한 기관</span>
+    <span class="org"><img src="assets/img/orgs/mma.svg" alt="병무청" onerror="this.parentNode.textContent=this.alt"></span>
+    <span class="org"><img src="assets/img/orgs/mpva.svg" alt="국가보훈부" onerror="this.parentNode.textContent=this.alt"></span>
+    <span class="org"><img src="assets/img/orgs/reb.png" alt="한국부동산원" onerror="this.remove()"><span class="nm">한국부동산원</span></span>
+    <span class="org"><img src="assets/img/orgs/wdca.png" alt="국립야생동물질병관리원" onerror="this.parentNode.textContent=this.alt"></span>
+    <span class="org"><img src="assets/img/orgs/keco.png" alt="한국환경공단" onerror="this.parentNode.textContent=this.alt"></span>
+    <span class="org"><img src="assets/img/orgs/sacheon.png" alt="사천시" onerror="this.parentNode.textContent=this.alt"></span>
+    <span class="org"><img src="assets/img/orgs/asan.png" alt="아산시" onerror="this.parentNode.textContent=this.alt"></span>
+    <span class="org"><img src="assets/img/orgs/kaia.png" alt="국토교통과학기술진흥원" onerror="this.parentNode.textContent=this.alt"></span>
+  </div>
+</div>
 
 <div data-include="partials/footer.html"></div>
 
