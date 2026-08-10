@@ -420,3 +420,56 @@ mark{background:rgba(224,112,60,.28);color:inherit;padding:0 2px;border-radius:2
 .paths p{margin-top:6px;font-size:13.5px;color:var(--ink-70)}
 @media(max-width:820px){.paths{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.paths{grid-template-columns:1fr}}
+
+/* ==========================================================================
+   웹앱 룩 오버라이드 — 슬라이드식 1px 모자이크를 여백 있는 라운드 카드로,
+   데모 패널을 실제 대시보드 문법(연회색 캔버스 + 흰 카드 + 필터 컨트롤)으로
+   ========================================================================== */
+
+/* 라운드 카드 전환 */
+.card,.bento .b,.rebuy article,.note-box,.axis,.member,.steps>div,.tech>div,.paths>div,.numbers>div{border-radius:12px}
+.axes,.team,.steps,.tech,.paths,.numbers{background:none;border:none;gap:16px}
+.axis,.member,.steps>div,.tech>div,.paths>div,.numbers>div{border:1px solid var(--line);background:var(--bg)}
+.base-band{border:none;border-radius:12px;margin-top:16px}
+.band{border-radius:14px}
+.btn{border-radius:9px}
+nav.menu a.cta{border-radius:8px}
+.stack .l{border-radius:8px}
+.rebuy-mini .r .step{border-radius:6px}
+
+/* 데모 패널 = 앱 캔버스 */
+.shot{border-radius:14px;overflow:hidden}
+.shot .bar .url{
+  margin-left:10px;flex:0 1 300px;background:#fff;border:1px solid var(--line);
+  border-radius:6px;font-size:9.5px;color:var(--ink-45);padding:3px 11px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.panel{background:#F3F4F6}
+.panel .box,.panel .kpi,.panel .mrow{background:#fff;border-color:rgba(15,34,51,.07);border-radius:10px}
+.panel .docv .f{background:#FAFBFC;border-radius:8px}
+.panel .snippet{border-radius:8px}
+.panel .code{border-radius:8px}
+.panel.gfx{background:#181B1F}
+.panel.gfx .box,.panel.gfx .kpi{background:#212124;border-color:#2C3235}
+
+/* 패널 상단: 제목 + 필터 컨트롤 (실제 대시보드의 조작부) */
+.panel .pt{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.panel .pt .ctrls{margin-left:auto;display:flex;gap:6px}
+.panel .pt .ctrls i{
+  font-style:normal;font-weight:600;font-size:10px;padding:3px 10px;
+  border:1px solid var(--line);border-radius:7px;color:var(--ink-70);background:#fff;
+}
+.panel.gfx .pt .ctrls i{background:#212124;border-color:#2C3235;color:#D8D9DA}
+
+/* 등급 구성 박스 — 빈 공간 없이 세로로 꽉 차게 */
+.grade-box{display:flex;flex-direction:column}
+.grade-box .donut-wrap{flex:1;align-items:center;justify-content:center;gap:24px}
+.grade-box .donut{width:104px;height:104px}
+.grade-box .donut .ring{
+  -webkit-mask:radial-gradient(circle,transparent 33px,#000 34px);
+  mask:radial-gradient(circle,transparent 33px,#000 34px);
+}
+.donut-lg{gap:7px}
+.donut-lg .pct{color:var(--ink-45);font-weight:600;margin-left:5px}
+.grade-sum{border-top:1px solid var(--line);margin-top:12px;padding-top:9px;font-size:10.5px;color:var(--ink-70)}
+.grade-sum b{color:var(--ink)}
