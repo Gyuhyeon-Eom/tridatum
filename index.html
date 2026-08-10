@@ -184,6 +184,12 @@
               <div class="mrow"><span class="top"><span class="lab">Recall</span><b>0.854</b></span><span class="note">누락 최소화 우선</span></div>
               <div class="mrow"><span class="top"><span class="lab">F1</span><b>0.707</b></span><span class="note">이전 대비 +45%</span></div>
               <div class="mrow"><span class="top"><span class="lab">AUC</span><b>0.976</b></span><span class="note">불균형 데이터 참고치</span></div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px">
+                <span class="chip info">PU Learning</span>
+                <span class="chip info">1:242 불균형</span>
+                <span class="chip info">모델 8종 비교</span>
+                <span class="chip ok">SHAP 기여도 제출</span>
+              </div>
             </div>
           </div>
           <div class="grid2">
@@ -246,6 +252,33 @@
             <div class="kpi"><span class="k">사전 추세 <i class="ok">DID 가정 충족</i></span><b>평행</b></div>
           </div>
           </div>
+          <div class="box">
+            <div class="bt">세그먼트별 효과 크기 (%p) — 회색 칸은 유의하지 않은 구간</div>
+            <div class="heat">
+              <span class="rl"></span><span class="hl">20대</span><span class="hl">30대</span><span class="hl">40대</span><span class="hl">50대</span><span class="hl">60대</span><span class="hl">70대+</span>
+              <span class="rl">음식점</span>
+              <span class="c" style="background:#E0703C;color:#fff">+15.2</span>
+              <span class="c" style="background:#E0703C;color:#fff">+13.8</span>
+              <span class="c" style="background:#EC9A6F;color:#fff">+9.4</span>
+              <span class="c" style="background:#F5C8AB;color:#7A3D1E">+5.6</span>
+              <span class="c" style="background:#EFF1F3;color:#9AA3AB">+2.1</span>
+              <span class="c" style="background:#EFF1F3;color:#9AA3AB">-1.4</span>
+              <span class="rl">소매</span>
+              <span class="c" style="background:#E0703C;color:#fff">+12.4</span>
+              <span class="c" style="background:#EC9A6F;color:#fff">+11.0</span>
+              <span class="c" style="background:#EC9A6F;color:#fff">+8.2</span>
+              <span class="c" style="background:#F5C8AB;color:#7A3D1E">+4.9</span>
+              <span class="c" style="background:#EFF1F3;color:#9AA3AB">+1.8</span>
+              <span class="c" style="background:#EFF1F3;color:#9AA3AB">+0.5</span>
+              <span class="rl">문화</span>
+              <span class="c" style="background:#EC9A6F;color:#fff">+11.2</span>
+              <span class="c" style="background:#EC9A6F;color:#fff">+9.4</span>
+              <span class="c" style="background:#F5C8AB;color:#7A3D1E">+4.1</span>
+              <span class="c" style="background:#EFF1F3;color:#9AA3AB">+2.0</span>
+              <span class="c" style="background:#EFF1F3;color:#9AA3AB">+0.6</span>
+              <span class="c" style="background:#EFF1F3;color:#9AA3AB">+0.2</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -287,7 +320,67 @@
       </div>
     </div>
 
-    <p class="fineprint fade">※ 예시 데이터 기반 데모입니다. 실제 납품물은 발주처 데이터와 업무 용어로 구성됩니다.</p>
+    <div class="show-row full fade">
+      <div class="txt">
+        <div class="eyebrow">LLM 운영 모니터링</div>
+        <h3>만들고 끝나는 챗봇이 아니라, 지표로 운영합니다</h3>
+        <p>응답 속도 · 질의량 · 출처 부착률을 운영 지표로 상시 관찰하고, 느려지거나 답을 못 찾는 지점을 데이터로 찾아 개선합니다.</p>
+      </div>
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div>
+        <div class="panel">
+          <div class="pt">폐쇄망 챗봇 운영 대시보드 — 레비챗 (한국부동산원) <span>SAMPLE</span></div>
+          <div class="kpis">
+            <div class="kpi"><span class="k">평균 응답 <i class="ok">실측</i></span><b>1.4초</b></div>
+            <div class="kpi"><span class="k">최대 동시접속 <i class="ok">실측</i></span><b>111명</b></div>
+            <div class="kpi"><span class="k">답변 출처 부착 <i class="ok">설계 보장</i></span><b>100%</b></div>
+            <div class="kpi"><span class="k">일 평균 질의 <i class="up">+8%</i></span><b>1,240건</b></div>
+          </div>
+          <div class="grid2">
+            <div class="box">
+              <div class="bt">응답 시간 분포 · 중앙값 1.4초</div>
+              <svg class="sweep" viewBox="0 0 300 116" role="img" aria-label="응답 시간 분포 히스토그램">
+                <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(15,34,51,.15)"/>
+                <g fill="#3E7CA6">
+                  <rect x="8" y="95.8" width="20" height="4.2" rx="2"/>
+                  <rect x="32" y="87.4" width="20" height="12.6" rx="2"/>
+                  <rect x="56" y="70.6" width="20" height="29.4" rx="2"/>
+                  <rect x="80" y="45.4" width="20" height="54.6" rx="2"/>
+                  <rect x="104" y="20.2" width="20" height="79.8" rx="2"/>
+                  <rect x="128" y="37" width="20" height="63" rx="2"/>
+                  <rect x="152" y="58" width="20" height="42" rx="2"/>
+                  <rect x="176" y="74.8" width="20" height="25.2" rx="2"/>
+                  <rect x="200" y="85.3" width="20" height="14.7" rx="2"/>
+                  <rect x="224" y="91.6" width="20" height="8.4" rx="2"/>
+                  <rect x="248" y="95.8" width="20" height="4.2" rx="2"/>
+                  <rect x="272" y="97.9" width="20" height="2.1" rx="2"/>
+                </g>
+                <line x1="126" y1="8" x2="126" y2="100" stroke="#E0703C" stroke-width="1.4" stroke-dasharray="4 3"/>
+                <text x="131" y="15" font-size="8" font-weight="700" fill="#E0703C">중앙값 1.4초</text>
+                <text x="8" y="112" font-size="8" fill="rgba(15,34,51,.4)">0초</text>
+                <text x="150" y="112" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="middle">1.5초</text>
+                <text x="292" y="112" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">3초</text>
+              </svg>
+            </div>
+            <div class="box">
+              <div class="bt">시간대별 질의량</div>
+              <svg class="sweep" viewBox="0 0 300 116" role="img" aria-label="시간대별 질의량 차트">
+                <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(15,34,51,.15)"/>
+                <line x1="8" y1="56" x2="292" y2="56" stroke="rgba(15,34,51,.06)"/>
+                <path d="M8,70 L39.5,48 L71,32 L102.5,40 L134,52 L165.5,58 L197,45 L228.5,38 L260,56 L291.5,72 L291.5,100 L8,100 Z" fill="rgba(62,124,166,.14)"/>
+                <path d="M8,70 L39.5,48 L71,32 L102.5,40 L134,52 L165.5,58 L197,45 L228.5,38 L260,56 L291.5,72" fill="none" stroke="#3E7CA6" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="71" cy="32" r="3" fill="#3E7CA6"/>
+                <text x="71" y="24" font-size="8" font-weight="700" fill="#0F2233" text-anchor="middle">오전 11시 피크</text>
+                <text x="8" y="112" font-size="8" fill="rgba(15,34,51,.4)">9시</text>
+                <text x="150" y="112" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="middle">13시</text>
+                <text x="292" y="112" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">18시</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="fineprint fade">※ 예시 데이터 기반 데모입니다. 실측 표기 수치 외에는 예시값이며, 실제 납품물은 발주처 데이터와 업무 용어로 구성됩니다.</p>
   </div>
 </section>
 

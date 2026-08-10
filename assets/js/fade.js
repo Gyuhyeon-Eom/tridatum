@@ -22,6 +22,14 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade').forEach(el => io.observe(el));
 
+  /* 패널 안 차트·바·도넛은 각 요소가 화면에 들어올 때 개별 발동 */
+  const aio = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      if (e.isIntersecting) { e.target.classList.add('anim'); aio.unobserve(e.target); }
+    }
+  }, { threshold: 0.35 });
+  document.querySelectorAll('svg.sweep, .hbar, .donut').forEach(el => aio.observe(el));
+
   /* 매니페스토: 줄이 화면 78% 지점에서 45% 지점으로 올라오는 동안 서서히 진해짐 (--p: 0→1) */
   const lines = [...document.querySelectorAll('.manifesto p')];
   if (lines.length && !reduce) {

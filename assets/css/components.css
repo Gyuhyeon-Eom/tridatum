@@ -142,12 +142,12 @@ a.card:hover{border-color:var(--ink-45)}
 .panel .box{border:1px solid var(--line);background:var(--bg);padding:10px 12px;min-width:0}
 .panel .bt{font-size:11px;font-weight:700;margin-bottom:8px}
 .panel svg{display:block;width:100%;height:auto}
-/* 패널 진입 시 차트가 왼쪽에서 오른쪽으로 그려짐 */
-.js .fade .panel svg.sweep{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s cubic-bezier(.25,.6,.3,1) .3s}
-.js .fade.in .panel svg.sweep{clip-path:inset(0 0 0 0)}
+/* 요소별 진입 애니메이션 — fade.js가 각 요소가 화면에 들어올 때 .anim을 부여 */
+.js .panel svg.sweep{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s cubic-bezier(.25,.6,.3,1) .15s}
+.js .panel svg.sweep.anim{clip-path:inset(0 0 0 0)}
 @media(prefers-reduced-motion:reduce){
-  .js .fade .panel svg.sweep{clip-path:none;transition:none}
-  .js .fade .hbar .bar i{width:var(--w,0%);transition:none}
+  .js .panel svg.sweep{clip-path:none;transition:none}
+  .js .hbar .bar i{width:var(--w,0%);transition:none}
 }
 .panel .grid2{display:grid;grid-template-columns:5fr 7fr;gap:10px}
 .panel .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -178,10 +178,10 @@ a.card:hover{border-color:var(--ink-45)}
   content:"";position:absolute;inset:0;border-radius:50%;
   background:conic-gradient(transparent 0 var(--dv,100%),var(--bg) var(--dv,100%));
 }
-.js .fade .donut .ring::after{--dv:0%;transition:--dv 1.1s cubic-bezier(.25,.6,.3,1) .3s}
-.js .fade.in .donut .ring::after{--dv:100%}
+.js .donut .ring::after{--dv:0%;transition:--dv 1.1s cubic-bezier(.25,.6,.3,1) .2s}
+.js .donut.anim .ring::after{--dv:100%}
 @media(prefers-reduced-motion:reduce){
-  .js .fade .donut .ring::after{--dv:100%;transition:none}
+  .js .donut .ring::after{--dv:100%;transition:none}
 }
 .donut .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .donut .c b{font-size:16px;font-weight:700;line-height:1.1}
@@ -193,9 +193,9 @@ a.card:hover{border-color:var(--ink-45)}
 .hbar .r+.r{margin-top:6px}
 .hbar .bar{display:block;height:8px;background:var(--bg-soft);border-radius:4px;overflow:hidden}
 .hbar .bar i{display:block;height:8px;border-radius:4px;width:var(--w,0%)}
-/* 패널 진입 시 바가 0에서 차오름 */
-.js .fade .hbar .bar i{width:0;transition:width 1s cubic-bezier(.25,.6,.3,1) .35s}
-.js .fade.in .hbar .bar i{width:var(--w,0%)}
+/* 진입 시 바가 0에서 차오름 (.anim은 fade.js가 요소 단위로 부여) */
+.js .hbar .bar i{width:0;transition:width 1s cubic-bezier(.25,.6,.3,1) .2s}
+.js .hbar.anim .bar i{width:var(--w,0%)}
 .hbar b{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
 
 .mrows{display:grid;gap:6px}
@@ -221,6 +221,12 @@ a.card:hover{border-color:var(--ink-45)}
 .chip.warn{background:rgba(181,130,43,.14);color:#8a6118}
 .chip.ok{background:rgba(31,122,92,.12);color:#1F7A5C}
 .chip.info{background:rgba(62,124,166,.12);color:#2d6088}
+
+/* 세그먼트 효과 히트맵 */
+.heat{display:grid;grid-template-columns:52px repeat(6,1fr);gap:2px;font-size:9.5px;text-align:center;color:var(--ink-45)}
+.heat .rl{display:flex;align-items:center;color:var(--ink-70);font-weight:600;font-size:10px}
+.heat .hl{padding:2px 0}
+.heat .c{padding:6px 0;font-weight:700;border-radius:2px;font-variant-numeric:tabular-nums}
 
 .chat{display:grid;gap:8px}
 .chat .q,.chat .a{max-width:92%;padding:8px 11px;font-size:10.5px;line-height:1.55;border-radius:10px}
