@@ -7,8 +7,8 @@ header{
   border-bottom:1px solid var(--line);
 }
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-weight:800;font-size:17px;letter-spacing:-.01em}
-.logo em{font-style:normal;color:var(--accent)}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17.5px;letter-spacing:-.01em}
+.logo .mark{width:28px;height:28px;display:block}
 nav.menu{display:flex;gap:28px;align-items:center}
 nav.menu a{font-size:14.5px;color:var(--ink-70);transition:color .15s ease}
 nav.menu a:hover{color:var(--ink)}
@@ -27,8 +27,8 @@ nav.menu a.cta:hover{background:#1d3852}
 
 footer{border-top:1px solid var(--line);margin-top:24px;padding:48px 0 56px}
 footer .cols{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px}
-footer .brand{font-weight:800;font-size:16px}
-footer .brand em{font-style:normal;color:var(--accent)}
+footer .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px}
+footer .brand .mark{width:24px;height:24px;display:block}
 footer .desc{margin-top:8px;font-size:13.5px;color:var(--ink-45);max-width:320px}
 footer nav{display:flex;gap:24px}
 footer nav a{font-size:13.5px;color:var(--ink-70)}

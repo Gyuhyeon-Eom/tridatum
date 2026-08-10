@@ -1,21 +1,63 @@
 /* components.css — 페이지에서 조합해 쓰는 블록들 */
 
-/* ---------- 홈 히어로 ---------- */
-.hero{padding-block:128px 88px}
+/* ---------- 홈 히어로 (다크 · 네트워크 그래픽 배경) ---------- */
+.hero{
+  background:
+    linear-gradient(100deg, rgba(15,34,51,.94) 30%, rgba(15,34,51,.55) 75%, rgba(15,34,51,.35)),
+    var(--ink) url("../img/hero-network.png") center/cover no-repeat;
+  color:#fff;
+  padding-block:140px 120px;
+}
 .hero h1{
-  font-size:clamp(32px,5vw,52px);
+  font-size:clamp(32px,5vw,54px);
   font-weight:700;line-height:1.28;letter-spacing:-.025em;
   max-width:760px;
 }
 .hero h1 em{font-style:normal;color:var(--accent)}
-.hero p.lede{margin-top:24px;max-width:560px;font-size:17.5px;color:var(--ink-70)}
-.hero .btns{margin-top:40px}
+.hero p.lede{margin-top:24px;max-width:540px;font-size:17.5px;color:rgba(255,255,255,.72)}
+.hero .btns{margin-top:44px}
+.hero .btn.primary{background:var(--accent);color:#fff}
+.hero .btn.primary:hover{background:#c95f30}
+.hero .btn.ghost{border-color:rgba(255,255,255,.35);color:#fff}
+.hero .btn.ghost:hover{border-color:rgba(255,255,255,.7)}
 
 /* ---------- 함께한 기관 스트립 ---------- */
-.orgs{padding-block:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.orgs .wrap{display:flex;flex-wrap:wrap;gap:12px 36px;align-items:baseline}
+.orgs{padding-block:32px;border-bottom:1px solid var(--line)}
+.orgs .wrap{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center}
 .orgs .lab{font-size:12.5px;font-weight:700;letter-spacing:.1em;color:var(--ink-45)}
-.orgs span{font-size:14.5px;font-weight:600;color:var(--ink-70)}
+.orgs .org{display:inline-flex;align-items:center;font-size:15px;font-weight:700;color:var(--ink-45)}
+.orgs .org img{height:30px;width:auto;display:block}
+
+/* ---------- 서비스 카드 아이콘 ---------- */
+.card .icon{width:36px;height:36px;color:var(--accent);margin-bottom:18px}
+.card .icon svg{width:100%;height:100%}
+
+/* ---------- 결과물 쇼케이스 ---------- */
+.shot{
+  border:1px solid var(--line);background:#fff;
+  box-shadow:0 24px 48px -32px rgba(15,34,51,.25);
+}
+.shot .bar{
+  display:flex;gap:6px;align-items:center;
+  padding:10px 14px;border-bottom:1px solid var(--line);background:var(--bg-soft);
+}
+.shot .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.shot img{display:block;width:100%}
+.show-row{
+  display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center;
+  padding-block:40px;
+}
+.show-row+.show-row{border-top:1px solid var(--line)}
+.show-row.flip .txt{order:2}
+.show-row.flip .shot{order:1}
+.show-row .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.1em;color:var(--ink-45)}
+.show-row h3{margin-top:10px;font-size:21px;font-weight:700;letter-spacing:-.01em;line-height:1.45}
+.show-row p{margin-top:12px;font-size:15px;color:var(--ink-70)}
+@media(max-width:860px){
+  .show-row{grid-template-columns:1fr;gap:28px}
+  .show-row.flip .txt{order:1}
+  .show-row.flip .shot{order:2}
+}
 
 /* ---------- 카드 그리드 (서비스 · 사례) ---------- */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
