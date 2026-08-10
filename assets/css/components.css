@@ -143,13 +143,30 @@ a.card:hover{border-color:var(--ink-45)}
 .panel .box{border:1px solid var(--line);background:var(--bg);padding:10px 12px;min-width:0}
 .panel .bt{font-size:11px;font-weight:700;margin-bottom:8px}
 .panel svg{display:block;width:100%;height:auto}
-/* 요소별 진입 애니메이션 — fade.js가 각 요소가 화면에 들어올 때 .anim을 부여 */
-.js .panel svg.sweep{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s cubic-bezier(.25,.6,.3,1) .15s}
-.js .panel svg.sweep.anim{clip-path:inset(0 0 0 0)}
+/* 차트 진입 애니메이션 — fade.js가 svg.sweep에 .anim을 부여하면 내부 요소가 순서대로 그려짐.
+   clip-path 대신 SVG 네이티브 속성(stroke-dashoffset · scaleY · opacity)만 사용 — 미지원 브라우저에서도
+   최악의 경우 '애니메이션 없이 보이는' 상태로만 저하됨. 선 그리기는 pathLength="1"과 짝. */
+.js svg.sweep .line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.3s cubic-bezier(.4,0,.2,1) .15s}
+.js svg.sweep.anim .line{stroke-dashoffset:0}
+.js svg.sweep .fill{opacity:0;transition:opacity .7s ease .7s}
+.js svg.sweep.anim .fill{opacity:1}
+.js svg.sweep .late{opacity:0;transition:opacity .6s ease .9s}
+.js svg.sweep.anim .late{opacity:1}
+.js svg.sweep .pop{opacity:0;transition:opacity .45s ease 1.15s}
+.js svg.sweep.anim .pop{opacity:1}
+.js svg.sweep .bar-a{transform:scaleY(0);transform-box:fill-box;transform-origin:center bottom;transition:transform .7s cubic-bezier(.25,.6,.3,1) calc(.1s + var(--i,0)*.05s)}
+.js svg.sweep.anim .bar-a{transform:scaleY(1)}
+.js svg.sweep .es{opacity:0;transform:translateY(6px);transition:opacity .5s ease calc(.1s + var(--i,0)*.06s),transform .5s ease calc(.1s + var(--i,0)*.06s)}
+.js svg.sweep.anim .es{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
-  .js .panel svg.sweep{clip-path:none;transition:none}
+  .js svg.sweep .line{stroke-dasharray:none;stroke-dashoffset:0;transition:none}
+  .js svg.sweep .fill,.js svg.sweep .late,.js svg.sweep .pop,.js svg.sweep .es{opacity:1;transform:none;transition:none}
+  .js svg.sweep .bar-a{transform:none;transition:none}
   .js .hbar .bar i{width:var(--w,0%);transition:none}
 }
+
+/* KPI 스파크라인 */
+.kpi .spark{width:64px;height:20px;margin-top:6px}
 .panel .grid2{display:grid;grid-template-columns:5fr 7fr;gap:10px}
 .panel .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 @media(max-width:560px){.panel .grid2,.panel .grid3{grid-template-columns:1fr}}

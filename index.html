@@ -89,10 +89,14 @@
         <div class="panel">
           <div class="pt">위험도 모니터링 대시보드 <span>SAMPLE</span></div>
           <div class="kpis">
-            <div class="kpi"><span class="k">고위험 지역 <i class="up">+4</i></span><b>27</b></div>
-            <div class="kpi"><span class="k">탐지 재현율 <i class="ok">+2.1%p</i></span><b>85.4%</b></div>
-            <div class="kpi"><span class="k">우선 점검 농가 <i class="up">+12</i></span><b>163</b></div>
-            <div class="kpi"><span class="k">데이터 최신성 <i class="ok">정상</i></span><b>D-1</b></div>
+            <div class="kpi"><span class="k">고위험 지역 <i class="up">+4</i></span><b>27</b>
+              <svg class="spark sweep" viewBox="0 0 64 20"><path class="line" pathLength="1" d="M2,14 L12,15 L22,12 L32,13 L42,9 L52,7 L62,4" fill="none" stroke="#E0703C" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <div class="kpi"><span class="k">탐지 재현율 <i class="ok">+2.1%p</i></span><b>85.4%</b>
+              <svg class="spark sweep" viewBox="0 0 64 20"><path class="line" pathLength="1" d="M2,15 L12,13 L22,14 L32,10 L42,9 L52,6 L62,4" fill="none" stroke="#1F7A5C" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <div class="kpi"><span class="k">우선 점검 농가 <i class="up">+12</i></span><b>163</b>
+              <svg class="spark sweep" viewBox="0 0 64 20"><path class="line" pathLength="1" d="M2,16 L12,14 L22,15 L32,11 L42,12 L52,8 L62,5" fill="none" stroke="#E0703C" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <div class="kpi"><span class="k">데이터 최신성 <i class="ok">정상</i></span><b>D-1</b>
+              <svg class="spark sweep" viewBox="0 0 64 20"><path class="line" pathLength="1" d="M2,10 L12,10 L22,9 L32,10 L42,10 L52,9 L62,10" fill="none" stroke="#3E7CA6" stroke-width="1.6" stroke-linecap="round"/></svg></div>
           </div>
           <div class="grid2">
             <div class="box">
@@ -109,19 +113,23 @@
             </div>
             <div class="box">
               <div class="bt">월별 발생 추이 · 예측 대비 실측</div>
-              <svg class="sweep" viewBox="0 0 300 116" role="img" aria-label="월별 발생 추이 차트">
-                <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(15,34,51,.15)"/>
-                <line x1="8" y1="56" x2="292" y2="56" stroke="rgba(15,34,51,.06)"/>
-                <line x1="8" y1="12" x2="292" y2="12" stroke="rgba(15,34,51,.06)"/>
-                <text x="290" y="97" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">0</text>
-                <text x="290" y="53" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">20</text>
-                <text x="290" y="22" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">40</text>
-                <path d="M8,31.8 L33.8,16.4 L59.6,18.6 L85.5,42.8 L111.3,69.2 L137.1,78 L162.9,84.6 L188.7,82.4 L214.5,71.4 L240.4,58.2 L266.2,42.8 L292,23 L292,100 L8,100 Z" fill="rgba(62,124,166,.14)"/>
-                <path d="M8,31.8 L33.8,16.4 L59.6,18.6 L85.5,42.8 L111.3,69.2 L137.1,78 L162.9,84.6 L188.7,82.4 L214.5,71.4 L240.4,58.2 L266.2,42.8 L292,23" fill="none" stroke="#3E7CA6" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M8,27.4 L33.8,12 L59.6,16.4 L85.5,38.4 L111.3,67 L137.1,75.8 L162.9,82.4 L188.7,82.4 L214.5,69.2 L240.4,56 L266.2,38.4 L292,18.6" fill="none" stroke="#E0703C" stroke-width="2" stroke-dasharray="4 3" stroke-linejoin="round"/>
-                <text x="8" y="113" font-size="8" fill="rgba(15,34,51,.4)">1월</text>
-                <text x="150" y="113" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="middle">6월</text>
-                <text x="292" y="113" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">12월</text>
+              <svg class="sweep" viewBox="0 0 300 118" role="img" aria-label="월별 발생 추이 차트">
+                <line x1="24" y1="100" x2="292" y2="100" stroke="rgba(15,34,51,.15)"/>
+                <line x1="24" y1="56" x2="292" y2="56" stroke="rgba(15,34,51,.07)"/>
+                <line x1="24" y1="12" x2="292" y2="12" stroke="rgba(15,34,51,.07)"/>
+                <text x="18" y="103" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">0</text>
+                <text x="18" y="59" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">20</text>
+                <text x="18" y="15" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">40</text>
+                <path class="fill" d="M26,31.8 L50.2,16.4 L74.4,18.6 L98.5,42.8 L122.7,69.2 L146.9,78 L171.1,84.6 L195.3,82.4 L219.5,71.4 L243.6,58.2 L267.8,42.8 L292,23 L292,100 L26,100 Z" fill="rgba(62,124,166,.14)"/>
+                <path class="line" pathLength="1" d="M26,31.8 L50.2,16.4 L74.4,18.6 L98.5,42.8 L122.7,69.2 L146.9,78 L171.1,84.6 L195.3,82.4 L219.5,71.4 L243.6,58.2 L267.8,42.8 L292,23" fill="none" stroke="#3E7CA6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+                <path class="late" d="M26,27.4 L50.2,12 L74.4,16.4 L98.5,38.4 L122.7,67 L146.9,75.8 L171.1,82.4 L195.3,82.4 L219.5,69.2 L243.6,56 L267.8,38.4 L292,18.6" fill="none" stroke="#E0703C" stroke-width="2" stroke-dasharray="4 3" stroke-linejoin="round"/>
+                <g class="pop">
+                  <circle cx="292" cy="23" r="3" fill="#3E7CA6" stroke="#fff" stroke-width="1.2"/>
+                  <text x="288" y="30" font-size="8" font-weight="700" fill="#0F2233" text-anchor="end">12월 35건</text>
+                </g>
+                <text x="26" y="114" font-size="8" fill="rgba(15,34,51,.4)">1월</text>
+                <text x="158" y="114" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="middle">6월</text>
+                <text x="292" y="114" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">12월</text>
               </svg>
               <div class="legend" style="margin-top:6px">
                 <span><i style="background:#3E7CA6"></i>실측</span>
@@ -157,9 +165,11 @@
                 <line x1="10" y1="110" x2="10" y2="10" stroke="rgba(15,34,51,.15)"/>
                 <line x1="10" y1="108.6" x2="210" y2="108.6" stroke="rgba(15,34,51,.3)" stroke-dasharray="3 3"/>
                 <text x="210" y="105" font-size="7.5" fill="rgba(15,34,51,.4)" text-anchor="end">무작위 기준선 (양성률 1.4%)</text>
-                <path d="M10,13 L50,15 L90,20 L130,28 L160,38 L180.8,49.7 L200,68 L210,80" fill="none" stroke="#E0703C" stroke-width="2" stroke-linejoin="round"/>
-                <circle cx="180.8" cy="49.7" r="4" fill="#0F2233" stroke="#fff" stroke-width="1.5"/>
-                <text x="176" y="42" font-size="8" font-weight="700" fill="#0F2233" text-anchor="end">채택 P .603 / R .854</text>
+                <path class="line" pathLength="1" d="M10,13 C60,14 110,22 150,33 C168,39 172,44 180.8,49.7 C193,58 202,70 210,80" fill="none" stroke="#E0703C" stroke-width="2" stroke-linecap="round"/>
+                <g class="pop">
+                  <circle cx="180.8" cy="49.7" r="4" fill="#0F2233" stroke="#fff" stroke-width="1.5"/>
+                  <text x="176" y="42" font-size="8" font-weight="700" fill="#0F2233" text-anchor="end">채택 P .603 / R .854</text>
+                </g>
                 <text x="110" y="124" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="middle">Recall</text>
                 <text x="6" y="60" font-size="8" fill="rgba(15,34,51,.4)" transform="rotate(-90 6 60)" text-anchor="middle">Precision</text>
               </svg>
@@ -213,19 +223,22 @@
               <line x1="114" y1="8" x2="114" y2="112" stroke="#0F2233" stroke-dasharray="4 3" stroke-width="1.2"/>
               <text x="118" y="16" font-size="8" font-weight="700" fill="#0F2233">정책 시행</text>
               <text x="16" y="16" font-size="7.5" fill="rgba(15,34,51,.45)">사전 추세 — 유의한 차이 없음</text>
-              <g stroke="rgba(15,34,51,.35)" stroke-width="1.2">
-                <line x1="15" y1="84" x2="15" y2="104"/><line x1="33" y1="86" x2="33" y2="106"/><line x1="51" y1="87" x2="51" y2="107"/><line x1="69" y1="92" x2="69" y2="112"/><line x1="87" y1="79" x2="87" y2="99"/><line x1="105" y1="81" x2="105" y2="101"/>
-              </g>
-              <g fill="rgba(15,34,51,.45)">
-                <circle cx="15" cy="94" r="3"/><circle cx="33" cy="96" r="3"/><circle cx="51" cy="97" r="3"/><circle cx="69" cy="102" r="3"/><circle cx="87" cy="89" r="3"/><circle cx="105" cy="91" r="3"/>
-              </g>
-              <g stroke="#E0703C" stroke-width="1.2">
-                <line x1="141" y1="77.5" x2="141" y2="97.5"/><line x1="159" y1="71" x2="159" y2="91"/><line x1="177" y1="64" x2="177" y2="84"/><line x1="195" y1="57" x2="195" y2="77"/><line x1="213" y1="50" x2="213" y2="70"/><line x1="231" y1="42.5" x2="231" y2="62.5"/><line x1="249" y1="36" x2="249" y2="56"/><line x1="267" y1="29" x2="267" y2="49"/><line x1="285" y1="21" x2="285" y2="41"/>
-              </g>
-              <g fill="#E0703C">
-                <circle cx="123" cy="95" r="3" fill="rgba(15,34,51,.45)"/>
-                <circle cx="141" cy="87.5" r="3"/><circle cx="159" cy="81" r="3"/><circle cx="177" cy="74" r="3"/><circle cx="195" cy="67" r="3"/><circle cx="213" cy="60" r="3"/><circle cx="231" cy="52.5" r="3"/><circle cx="249" cy="46" r="3"/><circle cx="267" cy="39" r="3"/><circle cx="285" cy="31" r="3"/>
-              </g>
+              <g class="es" style="--i:0" stroke="rgba(15,34,51,.35)" stroke-width="1.2" fill="rgba(15,34,51,.45)"><line x1="15" y1="84" x2="15" y2="104"/><circle cx="15" cy="94" r="3" stroke="none"/></g>
+              <g class="es" style="--i:1" stroke="rgba(15,34,51,.35)" stroke-width="1.2" fill="rgba(15,34,51,.45)"><line x1="33" y1="86" x2="33" y2="106"/><circle cx="33" cy="96" r="3" stroke="none"/></g>
+              <g class="es" style="--i:2" stroke="rgba(15,34,51,.35)" stroke-width="1.2" fill="rgba(15,34,51,.45)"><line x1="51" y1="87" x2="51" y2="107"/><circle cx="51" cy="97" r="3" stroke="none"/></g>
+              <g class="es" style="--i:3" stroke="rgba(15,34,51,.35)" stroke-width="1.2" fill="rgba(15,34,51,.45)"><line x1="69" y1="92" x2="69" y2="112"/><circle cx="69" cy="102" r="3" stroke="none"/></g>
+              <g class="es" style="--i:4" stroke="rgba(15,34,51,.35)" stroke-width="1.2" fill="rgba(15,34,51,.45)"><line x1="87" y1="79" x2="87" y2="99"/><circle cx="87" cy="89" r="3" stroke="none"/></g>
+              <g class="es" style="--i:5" stroke="rgba(15,34,51,.35)" stroke-width="1.2" fill="rgba(15,34,51,.45)"><line x1="105" y1="81" x2="105" y2="101"/><circle cx="105" cy="91" r="3" stroke="none"/></g>
+              <g class="es" style="--i:6" fill="rgba(15,34,51,.45)"><circle cx="123" cy="95" r="3"/></g>
+              <g class="es" style="--i:7" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="141" y1="77.5" x2="141" y2="97.5"/><circle cx="141" cy="87.5" r="3" stroke="none"/></g>
+              <g class="es" style="--i:8" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="159" y1="71" x2="159" y2="91"/><circle cx="159" cy="81" r="3" stroke="none"/></g>
+              <g class="es" style="--i:9" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="177" y1="64" x2="177" y2="84"/><circle cx="177" cy="74" r="3" stroke="none"/></g>
+              <g class="es" style="--i:10" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="195" y1="57" x2="195" y2="77"/><circle cx="195" cy="67" r="3" stroke="none"/></g>
+              <g class="es" style="--i:11" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="213" y1="50" x2="213" y2="70"/><circle cx="213" cy="60" r="3" stroke="none"/></g>
+              <g class="es" style="--i:12" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="231" y1="42.5" x2="231" y2="62.5"/><circle cx="231" cy="52.5" r="3" stroke="none"/></g>
+              <g class="es" style="--i:13" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="249" y1="36" x2="249" y2="56"/><circle cx="249" cy="46" r="3" stroke="none"/></g>
+              <g class="es" style="--i:14" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="267" y1="29" x2="267" y2="49"/><circle cx="267" cy="39" r="3" stroke="none"/></g>
+              <g class="es" style="--i:15" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="285" y1="21" x2="285" y2="41"/><circle cx="285" cy="31" r="3" stroke="none"/></g>
               <text x="15" y="124" font-size="8" fill="rgba(15,34,51,.4)">-6개월</text>
               <text x="290" y="124" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">+9개월</text>
               <text x="6" y="95" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end" transform="rotate(-90 6 95)">효과(%p)</text>
@@ -349,21 +362,23 @@ WHERE month = '2026-07'  → 1,240건</div>
               <svg class="sweep" viewBox="0 0 300 116" role="img" aria-label="응답 시간 분포 히스토그램">
                 <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(255,255,255,.14)"/>
                 <g fill="#73BF69">
-                  <rect x="8" y="95.8" width="20" height="4.2" rx="2"/>
-                  <rect x="32" y="87.4" width="20" height="12.6" rx="2"/>
-                  <rect x="56" y="70.6" width="20" height="29.4" rx="2"/>
-                  <rect x="80" y="45.4" width="20" height="54.6" rx="2"/>
-                  <rect x="104" y="20.2" width="20" height="79.8" rx="2"/>
-                  <rect x="128" y="37" width="20" height="63" rx="2"/>
-                  <rect x="152" y="58" width="20" height="42" rx="2"/>
-                  <rect x="176" y="74.8" width="20" height="25.2" rx="2"/>
-                  <rect x="200" y="85.3" width="20" height="14.7" rx="2"/>
-                  <rect x="224" y="91.6" width="20" height="8.4" rx="2"/>
-                  <rect x="248" y="95.8" width="20" height="4.2" rx="2"/>
-                  <rect x="272" y="97.9" width="20" height="2.1" rx="2"/>
+                  <rect class="bar-a" style="--i:0" x="8" y="95.8" width="20" height="4.2" rx="2"/>
+                  <rect class="bar-a" style="--i:1" x="32" y="87.4" width="20" height="12.6" rx="2"/>
+                  <rect class="bar-a" style="--i:2" x="56" y="70.6" width="20" height="29.4" rx="2"/>
+                  <rect class="bar-a" style="--i:3" x="80" y="45.4" width="20" height="54.6" rx="2"/>
+                  <rect class="bar-a" style="--i:4" x="104" y="20.2" width="20" height="79.8" rx="2"/>
+                  <rect class="bar-a" style="--i:5" x="128" y="37" width="20" height="63" rx="2"/>
+                  <rect class="bar-a" style="--i:6" x="152" y="58" width="20" height="42" rx="2"/>
+                  <rect class="bar-a" style="--i:7" x="176" y="74.8" width="20" height="25.2" rx="2"/>
+                  <rect class="bar-a" style="--i:8" x="200" y="85.3" width="20" height="14.7" rx="2"/>
+                  <rect class="bar-a" style="--i:9" x="224" y="91.6" width="20" height="8.4" rx="2"/>
+                  <rect class="bar-a" style="--i:10" x="248" y="95.8" width="20" height="4.2" rx="2"/>
+                  <rect class="bar-a" style="--i:11" x="272" y="97.9" width="20" height="2.1" rx="2"/>
                 </g>
-                <line x1="126" y1="8" x2="126" y2="100" stroke="#FF9830" stroke-width="1.4" stroke-dasharray="4 3"/>
-                <text x="131" y="15" font-size="8" font-weight="700" fill="#FF9830">중앙값 1.4초</text>
+                <g class="pop">
+                  <line x1="126" y1="8" x2="126" y2="100" stroke="#FF9830" stroke-width="1.4" stroke-dasharray="4 3"/>
+                  <text x="131" y="15" font-size="8" font-weight="700" fill="#FF9830">중앙값 1.4초</text>
+                </g>
                 <text x="8" y="112" font-size="8" fill="rgba(255,255,255,.4)">0초</text>
                 <text x="150" y="112" font-size="8" fill="rgba(255,255,255,.4)" text-anchor="middle">1.5초</text>
                 <text x="292" y="112" font-size="8" fill="rgba(255,255,255,.4)" text-anchor="end">3초</text>
@@ -374,10 +389,12 @@ WHERE month = '2026-07'  → 1,240건</div>
               <svg class="sweep" viewBox="0 0 300 116" role="img" aria-label="시간대별 질의량 차트">
                 <line x1="8" y1="100" x2="292" y2="100" stroke="rgba(255,255,255,.14)"/>
                 <line x1="8" y1="56" x2="292" y2="56" stroke="rgba(255,255,255,.07)"/>
-                <path d="M8,70 L39.5,48 L71,32 L102.5,40 L134,52 L165.5,58 L197,45 L228.5,38 L260,56 L291.5,72 L291.5,100 L8,100 Z" fill="rgba(87,148,242,.16)"/>
-                <path d="M8,70 L39.5,48 L71,32 L102.5,40 L134,52 L165.5,58 L197,45 L228.5,38 L260,56 L291.5,72" fill="none" stroke="#5794F2" stroke-width="2" stroke-linejoin="round"/>
-                <circle cx="71" cy="32" r="3" fill="#5794F2"/>
-                <text x="71" y="24" font-size="8" font-weight="700" fill="#D8D9DA" text-anchor="middle">오전 11시 피크</text>
+                <path class="fill" d="M8,70 L39.5,48 L71,32 L102.5,40 L134,52 L165.5,58 L197,45 L228.5,38 L260,56 L291.5,72 L291.5,100 L8,100 Z" fill="rgba(87,148,242,.16)"/>
+                <path class="line" pathLength="1" d="M8,70 L39.5,48 L71,32 L102.5,40 L134,52 L165.5,58 L197,45 L228.5,38 L260,56 L291.5,72" fill="none" stroke="#5794F2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+                <g class="pop">
+                  <circle cx="71" cy="32" r="3" fill="#5794F2"/>
+                  <text x="71" y="24" font-size="8" font-weight="700" fill="#D8D9DA" text-anchor="middle">오전 11시 피크</text>
+                </g>
                 <text x="8" y="112" font-size="8" fill="rgba(255,255,255,.4)">9시</text>
                 <text x="150" y="112" font-size="8" fill="rgba(255,255,255,.4)" text-anchor="middle">13시</text>
                 <text x="292" y="112" font-size="8" fill="rgba(255,255,255,.4)" text-anchor="end">18시</text>
