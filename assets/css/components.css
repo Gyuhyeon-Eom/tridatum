@@ -473,3 +473,39 @@ nav.menu a.cta{border-radius:8px}
 .donut-lg .pct{color:var(--ink-45);font-weight:600;margin-left:5px}
 .grade-sum{border-top:1px solid var(--line);margin-top:12px;padding-top:9px;font-size:10.5px;color:var(--ink-70)}
 .grade-sum b{color:var(--ink)}
+
+/* ==========================================================================
+   풀페이지 흐름 — 스크롤을 내리면 섹션이 한 장씩 넘어가는 리듬
+   (proximity 스냅: 화면보다 긴 섹션은 자유 스크롤로 자연 저하)
+   ========================================================================== */
+html{scroll-snap-type:y proximity;scroll-padding-top:64px}
+.page{
+  min-height:100svh;
+  display:grid;align-content:center;
+  scroll-snap-align:start;
+  padding-block:96px;
+  box-sizing:border-box;
+}
+section.hero{
+  min-height:100svh;
+  display:grid;align-content:center;
+  scroll-snap-align:start;
+  padding-block:96px;
+}
+.statband{scroll-snap-align:start}
+.page .sec-head{margin-bottom:40px}
+.page .sec-head h2{font-size:clamp(26px,3.4vw,38px)}
+@media(max-width:860px){
+  .page,section.hero{min-height:auto;padding-block:72px}
+  html{scroll-snap-type:none}
+}
+
+/* 고밀도 대시보드 그리드 (지도 · 도넛 · 추이 / 순위 · 주간) */
+.dash-mid{display:grid;grid-template-columns:3fr 3.6fr 5.4fr;gap:10px}
+.dash-bot{display:grid;grid-template-columns:7fr 5fr;gap:10px}
+@media(max-width:820px){.dash-mid,.dash-bot{grid-template-columns:1fr}}
+.map-box{display:flex;flex-direction:column}
+.map-box svg{flex:1}
+.js svg.sweep .cell{opacity:0;transition:opacity .35s ease calc(var(--i,0)*.02s)}
+.js svg.sweep.anim .cell{opacity:1}
+@media(prefers-reduced-motion:reduce){.js svg.sweep .cell{opacity:1;transition:none}}
