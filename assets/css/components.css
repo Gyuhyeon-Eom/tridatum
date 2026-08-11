@@ -559,3 +559,6 @@ a.card:hover,.bento .b:hover,.member:hover{
   pointer-events:none;
 }
 .page.glow>.wrap{position:relative;z-index:1}
+
+/* 기술 스트립 아이콘 */
+.orgs .org img.ti{height:26px;width:26px;object-fit:contain}
