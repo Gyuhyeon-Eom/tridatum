@@ -560,5 +560,10 @@ a.card:hover,.bento .b:hover,.member:hover{
 }
 .page.glow>.wrap{position:relative;z-index:1}
 
-/* 기술 스트립 아이콘 */
-.orgs .org img.ti{height:26px;width:26px;object-fit:contain}
+/* 기술 스트립 아이콘 — 풀컬러 로고, 큼직하게 */
+.tech-strip{padding-block:52px}
+.tech-strip .wrap{gap:28px 56px;justify-content:space-between}
+.tech-strip .org{gap:12px}
+.orgs .org img.ti{height:38px;width:38px;object-fit:contain}
+.tech-strip .org .nm{font-size:17px;font-weight:700;color:var(--ink)}
+@media(max-width:860px){.tech-strip .wrap{justify-content:flex-start;gap:20px 36px}.orgs .org img.ti{height:30px;width:30px}.tech-strip .org .nm{font-size:15px}}
