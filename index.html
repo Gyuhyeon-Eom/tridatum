@@ -30,15 +30,32 @@
   </div>
 </section>
 
-<!-- 기술 스트립: 큰 기술 카테고리 + 풀컬러 공식 로고 -->
-<div class="orgs tech-strip">
+<!-- 기술 카테고리: 1x4 대분류 카드 -->
+<div class="techgrid-wrap">
   <div class="wrap">
     <span class="lab">다루는 기술</span>
-    <span class="org"><img class="ti" src="assets/img/tech/huggingface-color.svg" alt="Hugging Face"><img class="ti" src="assets/img/tech/elasticsearch-color.svg" alt="Elasticsearch"><span class="nm">LLM · RAG</span></span>
-    <span class="org"><img class="ti" src="assets/img/tech/pytorch-color.svg" alt="PyTorch"><img class="ti" src="assets/img/tech/python-color.svg" alt="Python"><span class="nm">머신러닝</span></span>
-    <span class="org"><img class="ti" src="assets/img/tech/docker-color.svg" alt="Docker"><img class="ti" src="assets/img/tech/grafana-color.svg" alt="Grafana"><span class="nm">MLOps</span></span>
-    <span class="org"><img class="ti" src="assets/img/tech/apacheairflow-color.svg" alt="Airflow"><img class="ti" src="assets/img/tech/postgresql-color.svg" alt="PostgreSQL"><span class="nm">데이터 엔지니어링</span></span>
-    <span class="org"><img class="ti" src="assets/img/tech/qgis-color.svg" alt="QGIS"><span class="nm">공간분석 · GIS</span></span>
+    <div class="techgrid" data-stagger>
+      <div class="tc fade">
+        <div class="tc-icons"><img src="assets/img/tech/python-color.svg" alt="Python"><img src="assets/img/tech/apacheairflow-color.svg" alt="Airflow"><img src="assets/img/tech/postgresql-color.svg" alt="PostgreSQL"></div>
+        <h3>DATA</h3>
+        <p>DW 구축 · 시계열 통합 · 파이프라인 자동화</p>
+      </div>
+      <div class="tc fade">
+        <div class="tc-icons"><img src="assets/img/tech/qgis-color.svg" alt="QGIS"></div>
+        <h3>GIS</h3>
+        <p>공간분석 · 격자 분석 · 이동 패턴 복원</p>
+      </div>
+      <div class="tc fade">
+        <div class="tc-icons"><img src="assets/img/tech/huggingface-color.svg" alt="Hugging Face"><img src="assets/img/tech/elasticsearch-color.svg" alt="Elasticsearch"></div>
+        <h3>LLM</h3>
+        <p>폐쇄망 LLM · RAG · 문서 AI · 출처 추적</p>
+      </div>
+      <div class="tc fade">
+        <div class="tc-icons"><img src="assets/img/tech/docker-color.svg" alt="Docker"><img src="assets/img/tech/grafana-color.svg" alt="Grafana"></div>
+        <h3>MLOps</h3>
+        <p>컨테이너 배포 · 상시 모니터링 · 운영 자동화</p>
+      </div>
+    </div>
   </div>
 </div>
 
