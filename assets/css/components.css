@@ -688,17 +688,29 @@ a.card:hover,.bento .b:hover,.member:hover,.tc:hover{
 .dash-tip.show{opacity:1}
 .trend-box{position:relative}
 
-/* 데모 탭 쇼케이스 — 대표 화면 + 탭 전환 */
-.demo-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.dt{
-  border:none;background:#F4F2EE;border-radius:999px;padding:10px 20px;
-  font-family:inherit;font-size:14.5px;font-weight:600;color:var(--ink-70);
-  cursor:pointer;transition:background .18s ease,color .18s ease,transform .18s ease;
+/* 데모 탭 쇼케이스 — 세그먼트 컨트롤 + 탭 전환 */
+.demo-tabs{
+  display:inline-flex;flex-wrap:wrap;gap:2px;
+  background:#EFEBE3;border-radius:999px;padding:5px;
+  margin-bottom:28px;
 }
-.dt:hover{background:#ECE9E3;transform:translateY(-1px)}
-.dt.on{background:var(--ink);color:#fff}
-.demo-title{margin:0 0 18px;font-size:15.5px;color:var(--ink-45)}
-.demo-title b{font-size:19px;font-weight:700;color:var(--ink);letter-spacing:-.01em;margin-right:10px}
+.dt{
+  border:none;background:transparent;border-radius:999px;padding:9px 18px;
+  font-family:inherit;font-size:14px;font-weight:600;color:var(--ink-70);
+  cursor:pointer;transition:background .18s ease,color .18s ease,box-shadow .18s ease;
+}
+.dt:hover{background:rgba(255,255,255,.55);color:var(--ink)}
+.dt.on{
+  background:#fff;color:var(--ink);
+  box-shadow:0 1px 2px rgba(15,34,51,.10),0 5px 14px -8px rgba(15,34,51,.25);
+}
+@media(max-width:720px){
+  .demo-tabs{background:none;padding:0;gap:6px}
+  .dt{background:#F4F2EE}
+  .dt.on{background:var(--ink);color:#fff;box-shadow:none}
+}
+.demo-title{margin:0 0 16px;font-size:15.5px;color:var(--ink-45)}
+.demo-title b{font-size:21px;font-weight:700;color:var(--ink);letter-spacing:-.02em;margin-right:10px}
 .demo-slide{display:none}
 .demo-slide.on{display:block;animation:demoin .4s ease}
 @keyframes demoin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
