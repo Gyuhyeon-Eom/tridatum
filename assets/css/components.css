@@ -729,3 +729,34 @@ a.card:hover,.bento .b:hover,.member:hover,.tc:hover{
 .var-thumb svg{display:block;width:100%;height:auto}
 .var-card b{display:block;font-size:14.5px;font-weight:700}
 .var-card span{display:block;margin-top:3px;font-size:12.5px;color:var(--ink-70)}
+
+/* ==========================================================================
+   컴팩트 리듬 레이어 — 섹션 높이는 화면이 아니라 내용이 정한다
+   (풀페이지 스냅 제거 · 일정한 세로 리듬 · 넓은 컨테이너 · 촘촘한 그리드)
+   ========================================================================== */
+html{scroll-snap-type:none}
+.wrap{max-width:1200px}
+section{padding-block:clamp(60px,7vw,92px)}
+.page,section.hero{min-height:0;display:block;scroll-snap-align:none;padding-block:clamp(60px,7vw,92px)}
+section.hero{padding-block:clamp(88px,10vw,128px) clamp(72px,8.5vw,104px)}
+.hero p.lede{margin-top:20px}
+.hero .btns{margin-top:32px}
+.marquee{padding-block:20px}
+
+.manifesto{padding-block:clamp(60px,7vw,92px)}
+.manifesto .kicker{margin-bottom:20px}
+.manifesto p{font-size:clamp(19px,2.3vw,26px);margin-bottom:8px;max-width:740px}
+
+.sec-head,.page .sec-head{margin-bottom:34px}
+.sec-head h2,.page .sec-head h2{font-size:clamp(25px,3.1vw,36px)}
+.sec-head .more{margin-top:12px}
+
+.cards{gap:16px}
+.bento{gap:16px}
+.bento .b{padding:24px}
+.statband{padding-block:52px}
+.principles{padding-block:clamp(56px,6.5vw,80px)}
+.principles .grid{margin-top:38px;gap:32px}
+.show-row{padding-block:30px}
+.techgrid-wrap{padding-block:40px 48px}
+.tech-strip{padding-block:40px}
