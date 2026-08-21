@@ -642,3 +642,48 @@ a.card:hover,.bento .b:hover,.member:hover,.tc:hover{
 
 /* 8) 데모 패널 내부 보더 완화 */
 .panel .box,.panel .kpi,.panel .mrow{border-color:rgba(15,34,51,.05)}
+
+/* ==========================================================================
+   기술 마퀴 + 계층형 기술 벤토 + 대시보드 인터랙션
+   ========================================================================== */
+
+/* 로고 마퀴 — 옆으로 흐르는 무한 스트립 */
+.marquee{overflow:hidden;padding-block:34px;border-bottom:1px solid rgba(15,34,51,.06);
+  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;align-items:center;gap:64px;width:max-content;animation:mq 36s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mi{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;color:var(--ink-70);white-space:nowrap}
+.mi img{height:30px;width:30px;object-fit:contain}
+.mi.txt{color:var(--ink-45)}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+/* 계층형 기술 벤토 — 퍼즐 배치 */
+.tbento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.tb{background:#fff;border-radius:18px;padding:24px 24px 20px;min-width:0;
+  box-shadow:0 1px 2px rgba(15,34,51,.04),0 12px 32px -24px rgba(15,34,51,.14);
+  transition:transform .25s ease,box-shadow .25s ease,opacity .65s ease var(--d,0s)}
+.tb:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(15,34,51,.05),0 16px 40px -24px rgba(15,34,51,.18)}
+.js .tb.fade.in:hover{transform:translateY(-2px)}
+.tb.s4{grid-column:span 4}
+.tb.s3{grid-column:span 3}
+.tb.s2{grid-column:span 2}
+.tb.tall{grid-row:span 2}
+@media(max-width:860px){.tb.s4,.tb.s3,.tb.s2{grid-column:span 6}.tb.tall{grid-row:auto}}
+.tb h3{font-size:17.5px;font-weight:700;letter-spacing:-.01em}
+.tb-rows{margin-top:14px;display:grid;gap:0}
+.tb-r{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;padding:8px 0;border-top:1px solid rgba(15,34,51,.06);font-size:13.5px}
+.tb-r b{font-weight:600;color:var(--ink)}
+.tb-r span{color:var(--ink-45);font-size:12.5px}
+.tb-tools{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.tb-tools img{height:22px;width:22px;object-fit:contain}
+.tb-tools span{font-size:12px;font-weight:600;color:var(--ink-45);background:#F4F2EE;border-radius:999px;padding:3px 10px}
+
+/* 대시보드 인터랙션 */
+.panel .pt .ctrls i[role="button"]{cursor:pointer;user-select:none;transition:background .15s ease,color .15s ease}
+.panel .pt .ctrls i[role="button"]:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dash-tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:11px;font-weight:600;
+  padding:5px 9px;border-radius:7px;transform:translate(-50%,-130%);white-space:nowrap;opacity:0;transition:opacity .12s ease;z-index:5}
+.dash-tip.show{opacity:1}
+.trend-box{position:relative}
