@@ -586,3 +586,59 @@ a.card:hover,.bento .b:hover,.member:hover{
 .tc .tc-icons img{height:34px;width:34px;object-fit:contain}
 .tc h3{font-size:23px;font-weight:800;letter-spacing:-.01em}
 .tc p{margin-top:8px;font-size:13.5px;color:var(--ink-70)}
+
+/* ==========================================================================
+   리파인 레이어 — 상용 프로덕트 사이트 문법으로
+   (조용한 킥커 · 테두리 대신 면과 그림자 · 타이트한 타이포 · 필 버튼)
+   ========================================================================== */
+
+/* 1) 킥커: 사각 마커 · 대문자 자간 제거 → 조용한 라벨 */
+.kicker{font-size:14px;font-weight:600;letter-spacing:0;color:var(--ink-45);gap:0}
+.kicker::before{display:none}
+.techgrid-wrap .lab,.orgs .lab{letter-spacing:0;font-size:13.5px;font-weight:600}
+.show-row .eyebrow{letter-spacing:0;font-size:13.5px;font-weight:600}
+.svc-txt .num{letter-spacing:0;font-size:14px;font-weight:600;color:var(--ink-45)}
+.card .tag{letter-spacing:0;font-size:13px;font-weight:600}
+.panel .pt span{letter-spacing:.04em}
+
+/* 2) 타이포: 더 크고 타이트하게 */
+.hero h1{letter-spacing:-.035em}
+.sec-head h2,.page .sec-head h2{letter-spacing:-.03em}
+.svc-txt h2{letter-spacing:-.03em}
+.manifesto p{letter-spacing:-.02em}
+
+/* 3) 테두리 카드 → 면(틴트/화이트) + 부드러운 그림자, 큰 라운드 */
+.card,.bento .b,.tc,.numbers>div,.axis,.member,.steps>div,.tech>div,.paths>div,.rebuy article,.note-box{
+  border:none;border-radius:18px;background:#F4F2EE;box-shadow:none;
+}
+.soft .card,.soft .bento .b,.soft .tc,.soft .numbers>div,.soft .axis,.soft .member,.soft .steps>div,.soft .tech>div,.soft .paths>div,.soft .rebuy article,.soft .note-box,
+.techgrid-wrap .tc{
+  background:#fff;box-shadow:0 1px 2px rgba(15,34,51,.04),0 12px 32px -24px rgba(15,34,51,.14);
+}
+.axis li,.member li,.svc-txt li{border-top-color:rgba(15,34,51,.07)}
+.card .metric{border-top-color:rgba(15,34,51,.08)}
+
+/* 4) 버튼 · 칩: 필 형태 */
+.btn{border-radius:999px;padding:13px 28px}
+nav.menu a.cta{border-radius:999px;padding:9px 18px}
+.chip{border-radius:999px;padding:3px 11px}
+.panel .pt .ctrls i{border-radius:999px}
+
+/* 5) 호버: 과한 리프트 대신 미세한 반응 */
+a.card:hover,.bento .b:hover,.member:hover,.tc:hover{
+  transform:translateY(-2px);
+  box-shadow:0 2px 4px rgba(15,34,51,.05),0 16px 40px -24px rgba(15,34,51,.18);
+  border-color:transparent;
+}
+.js a.card.fade.in:hover,.js .bento .b.fade.in:hover,.js .member.fade.in:hover{transform:translateY(-2px)}
+.shot:hover{transform:translateY(-3px)}
+
+/* 6) 액센트 절제: 글로우 낮추기 */
+.page.glow::before{background:radial-gradient(closest-side,rgba(224,112,60,.07),transparent 70%)}
+.page.glow::after{background:radial-gradient(closest-side,rgba(62,124,166,.06),transparent 70%)}
+
+/* 7) 쇼케이스 프레임: 테두리 대신 큰 그림자 */
+.shot{border:none;box-shadow:0 1px 3px rgba(15,34,51,.08),0 32px 64px -36px rgba(15,34,51,.3)}
+
+/* 8) 데모 패널 내부 보더 완화 */
+.panel .box,.panel .kpi,.panel .mrow{border-color:rgba(15,34,51,.05)}
