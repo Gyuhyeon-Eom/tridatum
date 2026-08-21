@@ -687,3 +687,19 @@ a.card:hover,.bento .b:hover,.member:hover,.tc:hover{
   padding:5px 9px;border-radius:7px;transform:translate(-50%,-130%);white-space:nowrap;opacity:0;transition:opacity .12s ease;z-index:5}
 .dash-tip.show{opacity:1}
 .trend-box{position:relative}
+
+/* 데모 탭 쇼케이스 — 대표 화면 + 탭 전환 */
+.demo-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.dt{
+  border:none;background:#F4F2EE;border-radius:999px;padding:10px 20px;
+  font-family:inherit;font-size:14.5px;font-weight:600;color:var(--ink-70);
+  cursor:pointer;transition:background .18s ease,color .18s ease,transform .18s ease;
+}
+.dt:hover{background:#ECE9E3;transform:translateY(-1px)}
+.dt.on{background:var(--ink);color:#fff}
+.demo-title{margin:0 0 18px;font-size:15.5px;color:var(--ink-45)}
+.demo-title b{font-size:19px;font-weight:700;color:var(--ink);letter-spacing:-.01em;margin-right:10px}
+.demo-slide{display:none}
+.demo-slide.on{display:block;animation:demoin .4s ease}
+@keyframes demoin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.demo-slide.on{animation:none}}

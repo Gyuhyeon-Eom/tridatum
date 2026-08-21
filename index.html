@@ -171,14 +171,17 @@
       <div class="kicker">결과물</div>
       <h2>말 대신, 화면으로 보여드립니다</h2>
     </div>
-
-    <div class="show-row full fade">
-      <div class="txt">
-        <div class="eyebrow">운영 대시보드</div>
-        <h3>담당자가 매일 여는 화면</h3>
-        <p style="margin-top:8px;font-size:14px;color:var(--ink-45)">위 필터를 눌러보세요 — 데이터가 바뀌며 다시 그려집니다.</p>
-      </div>
-      <div class="shot"><div class="bar"><i></i><i></i><i></i><span class="url">https://risk-dashboard.internal · 폐쇄망</span></div>
+    <div class="demo-tabs fade">
+      <button class="dt on" data-i="0" data-title="담당자가 매일 여는 화면" data-hint="필터를 눌러보세요 — 데이터가 바뀌며 다시 그려집니다">운영 대시보드</button>
+      <button class="dt" data-i="1" data-title="판단 과정까지 제출합니다" data-hint="">모델 검증 리포트</button>
+      <button class="dt" data-i="2" data-title=""효과가 있었다"로 끝내지 않습니다" data-hint="">정책효과 리포트</button>
+      <button class="dt" data-i="3" data-title="모르면 모른다고 말하는 AI" data-hint="">문서 AI · 챗봇</button>
+      <button class="dt" data-i="4" data-title="만들고 끝이 아니라, 지표로 운영합니다" data-hint="">운영 모니터링</button>
+    </div>
+    <p class="demo-title fade"><b id="demo-title">담당자가 매일 여는 화면</b> <span id="demo-hint">필터를 눌러보세요 — 데이터가 바뀌며 다시 그려집니다</span></p>
+    <div class="demo-stage fade">
+      <div class="demo-slide on">
+<div class="shot"><div class="bar"><i></i><i></i><i></i><span class="url">https://risk-dashboard.internal · 폐쇄망</span></div>
         <div class="panel">
           <div class="pt">운영 현황 대시보드 <span>SAMPLE</span><span class="ctrls"><i id="d-period" role="button" tabindex="0">최근 12개월 ▾</i><i id="d-region" role="button" tabindex="0">전체 지역 ▾</i></span></div>
           <div class="kpis">
@@ -266,18 +269,9 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="page soft">
-  <div class="wrap">
-    <div class="show-row full fade">
-      <div class="txt">
-        <div class="eyebrow">모델 검증 리포트</div>
-        <h3>판단 과정까지 제출합니다</h3>
       </div>
-      <div class="shot"><div class="bar"><i></i><i></i><i></i><span class="url">https://model-report.internal · 폐쇄망</span></div>
+      <div class="demo-slide">
+<div class="shot"><div class="bar"><i></i><i></i><i></i><span class="url">https://model-report.internal · 폐쇄망</span></div>
         <div class="panel">
           <div class="pt">예측 모델 검증 리포트 <span>SAMPLE</span></div>
           <div class="grid2" style="grid-template-columns:7fr 5fr">
@@ -326,18 +320,9 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="page">
-  <div class="wrap">
-    <div class="show-row full fade">
-      <div class="txt">
-        <div class="eyebrow">정책효과 리포트</div>
-        <h3>"효과가 있었다"로 끝내지 않습니다</h3>
       </div>
-      <div class="shot"><div class="bar"><i></i><i></i><i></i><span class="url">https://policy-report.internal · 폐쇄망</span></div>
+      <div class="demo-slide">
+<div class="shot"><div class="bar"><i></i><i></i><i></i><span class="url">https://policy-report.internal · 폐쇄망</span></div>
         <div class="panel">
           <div class="pt">정책효과 분석 리포트 <span>SAMPLE</span></div>
           <div class="grid2" style="grid-template-columns:8fr 4fr">
@@ -405,18 +390,9 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="page soft">
-  <div class="wrap">
-    <div class="show-row full fade">
-      <div class="txt">
-        <div class="eyebrow">폐쇄망 문서 AI · 챗봇</div>
-        <h3>모르면 모른다고 말하는 AI</h3>
       </div>
-      <div class="shot"><div class="bar"><i></i><i></i><i></i><span class="url">https://doc-ai.internal · 폐쇄망</span></div>
+      <div class="demo-slide">
+<div class="shot"><div class="bar"><i></i><i></i><i></i><span class="url">https://doc-ai.internal · 폐쇄망</span></div>
         <div class="panel">
           <div class="pt">문서 AI + 폐쇄망 챗봇 <span>SAMPLE</span></div>
           <div class="grid2" style="grid-template-columns:1.15fr 1fr">
@@ -468,19 +444,9 @@ WHERE month = '2026-07'  → 1,240건</div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="page">
-  <div class="wrap">
-    <div class="show-row full fade">
-      <div class="txt">
-        <div class="eyebrow">LLM 운영 모니터링</div>
-        <h3>만들고 끝이 아니라, 지표로 운영합니다</h3>
-        <p>Grafana · Prometheus · Langfuse로 상시 관측하며 운영합니다.</p>
       </div>
-      <div class="shot"><div class="bar"><i></i><i></i><i></i><span class="url">https://grafana.internal · 폐쇄망</span></div>
+      <div class="demo-slide">
+<div class="shot"><div class="bar"><i></i><i></i><i></i><span class="url">https://grafana.internal · 폐쇄망</span></div>
         <div class="panel gfx">
           <div class="pt">폐쇄망 챗봇 운영 대시보드 · Grafana <span>SAMPLE</span><span class="ctrls"><i>Last 24h ▾</i><i>⟳ 30s</i></span></div>
           <div class="kpis">
@@ -542,8 +508,8 @@ WHERE month = '2026-07'  → 1,240건</div>
           </div>
         </div>
       </div>
+      </div>
     </div>
-
     <p class="fineprint fade">※ 모든 화면과 수치는 예시 데이터 기반 데모입니다. 실제 납품물은 발주처 데이터와 업무 용어로 구성됩니다.</p>
   </div>
 </section>
@@ -621,5 +587,6 @@ WHERE month = '2026-07'  → 1,240건</div>
 <script src="assets/js/include.js"></script>
 <script src="assets/js/fade.js"></script>
 <script src="assets/js/dash.js"></script>
+<script src="assets/js/demos.js"></script>
 </body>
 </html>
