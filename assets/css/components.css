@@ -772,3 +772,14 @@ section.hero{padding-block:clamp(88px,10vw,128px) clamp(72px,8.5vw,104px)}
 .show-row{padding-block:30px}
 .techgrid-wrap{padding-block:40px 48px}
 .tech-strip{padding-block:40px}
+
+/* 모델 검증 리포트 슬라이드 — KPI 스트립 · 방법 칩 행 · 미채택 대안 */
+.kpi .note{display:block;font-size:9.5px;color:var(--ink-45);margin-top:3px}
+.chip{display:inline-flex;align-items:center}
+.panel .tagrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.panel .tagrow .lab{font-size:10px;font-weight:600;color:var(--ink-45);margin-right:4px}
+.alt-rows{display:grid}
+.alt{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:6.5px 0;font-size:10.5px;border-top:1px solid rgba(15,34,51,.06)}
+.alt:first-child{border-top:none}
+.alt b{font-weight:600;color:var(--ink)}
+.alt span{color:var(--ink-45);font-size:10px}
