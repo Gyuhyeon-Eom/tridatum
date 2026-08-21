@@ -22,4 +22,9 @@
     });
   }
   tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
+
+  /* 변형 펼침 토글 */
+  document.querySelectorAll('.var-toggle').forEach(btn => {
+    btn.addEventListener('click', () => btn.closest('.variants').classList.toggle('open'));
+  });
 })();
