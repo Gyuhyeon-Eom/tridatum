@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" href="../assets/img/logo-mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/base.css?v=20260827a">
 <style>
 /* 관리자 전용 화면 — 사이트 토큰(base.css)만 빌려 쓰는 독립 레이아웃 */
 body{background:var(--bg)}
@@ -73,7 +73,7 @@ body{background:var(--bg)}
   </div>
 
   <div class="pane on" id="pane-news">
-    <p class="hint">저장하면 홈페이지 소식 페이지에 반영됩니다. 반영까지 1~2분 걸립니다.</p>
+    <p class="hint">저장하면 GitHub에 기록되고, 다음 배포 때 홈페이지 소식 페이지에 반영됩니다.</p>
     <div id="news-editor"></div>
     <div class="abar">
       <button class="abtn sub" id="news-add" type="button">+ 새 소식</button>
@@ -82,7 +82,7 @@ body{background:var(--bg)}
   </div>
 
   <div class="pane" id="pane-copy">
-    <p class="hint">홈페이지에 노출되는 주요 문구입니다. 저장하면 1~2분 뒤 반영됩니다.</p>
+    <p class="hint">홈페이지에 노출되는 주요 문구입니다. 저장하면 GitHub에 기록되고, 다음 배포 때 반영됩니다.</p>
     <div id="copy-editor"></div>
     <div class="abar">
       <button class="abtn" id="copy-save" type="button">문구 저장</button>
@@ -96,6 +96,6 @@ body{background:var(--bg)}
 
   <div class="abar"><span id="adm-status" role="status"></span></div>
 </div>
-<script src="admin.js"></script>
+<script src="admin.js?v=20260827a"></script>
 </body>
 </html>
