@@ -8,4 +8,5 @@
   }));
   const page = document.body.dataset.page;
   if (page) document.querySelector(`[data-nav="${page}"]`)?.classList.add('active');
+  document.dispatchEvent(new CustomEvent('includes:done'));
 })();

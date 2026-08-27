@@ -1,0 +1,25 @@
+# 관리자 API 워커 — 배포: worker 폴더에서 `npx wrangler deploy`
+# 최초 1회: `npx wrangler kv namespace create INQUIRIES` 실행 후 아래 id를 채울 것
+name = "tridatum-admin-api"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+
+routes = [
+  { pattern = "tridatum.co/api/*", zone_name = "tridatum.co" }
+]
+
+[[kv_namespaces]]
+binding = "INQUIRIES"
+id = "KV_NAMESPACE_ID_여기에_입력"
+
+[vars]
+# Cloudflare Zero Trust 팀 도메인 (예: tridatum.cloudflareaccess.com)
+ACCESS_TEAM_DOMAIN = "여기에_입력.cloudflareaccess.com"
+# Access 애플리케이션의 Application Audience(AUD) 태그
+ACCESS_AUD = "여기에_입력"
+GH_OWNER = "Gyuhyeon-Eom"
+GH_REPO = "tridatum"
+GH_BRANCH = "main"
+
+# 비밀값은 vars가 아니라 secret으로 등록:
+#   npx wrangler secret put GITHUB_TOKEN
