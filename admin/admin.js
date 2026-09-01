@@ -14,8 +14,7 @@
     { key: 'footer.desc', label: '푸터 소개 문구', long: true },
   ];
 
-  let newsSha = null, copySha = null;
-  let newsData = [], copyData = {};
+  let copyData = {};
 
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => (
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
@@ -38,56 +37,6 @@
     });
   });
 
-  /* ---------- 소식 ---------- */
-  function renderNews() {
-    $('#news-editor').innerHTML = newsData.map((n, i) => `
-      <div class="acard" data-i="${i}">
-        <div class="arow">
-          <label>제목 <input data-f="title" value="${esc(n.title)}" maxlength="120"></label>
-          <label>날짜 <input data-f="date" type="date" value="${esc(n.date)}"></label>
-        </div>
-        <label style="margin-bottom:0">내용 <textarea data-f="body" rows="3" maxlength="2000">${esc(n.body)}</textarea></label>
-        <div class="abar" style="margin-top:10px"><button class="abtn danger" data-del="${i}" type="button">이 소식 삭제</button></div>
-      </div>`).join('') || '<p class="empty">등록된 소식이 없습니다. "+ 새 소식"으로 추가하세요.</p>';
-  }
-  function collectNews() {
-    document.querySelectorAll('#news-editor .acard').forEach(card => {
-      const n = newsData[+card.dataset.i];
-      card.querySelectorAll('[data-f]').forEach(el => { n[el.dataset.f] = el.value.trim(); });
-    });
-  }
-  $('#news-editor').addEventListener('click', (e) => {
-    const del = e.target.dataset.del;
-    if (del === undefined) return;
-    collectNews();
-    newsData.splice(+del, 1);
-    renderNews();
-  });
-  $('#news-add').addEventListener('click', () => {
-    collectNews();
-    newsData.unshift({
-      id: `n-${Date.now()}`,
-      date: new Date().toISOString().slice(0, 10),
-      title: '', body: '',
-    });
-    renderNews();
-  });
-  $('#news-save').addEventListener('click', async () => {
-    collectNews();
-    const bad = newsData.find(n => !n.title || !n.date);
-    if (bad) return say('제목과 날짜가 비어 있는 소식이 있습니다.');
-    try {
-      $('#news-save').disabled = true;
-      say('저장 중…');
-      await api('/api/admin/content', {
-        method: 'PUT',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ file: 'news', data: newsData }),
-      });
-      say('저장되었습니다. 1~2분 뒤 홈페이지에 반영됩니다.');
-    } catch (err) { say(err.message); } finally { $('#news-save').disabled = false; }
-  });
-
   /* ---------- 문구 ---------- */
   function renderCopy() {
     $('#copy-editor').innerHTML = `<div class="acard">${COPY_FIELDS.map(f => `
@@ -107,7 +56,7 @@
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ file: 'site', data: copyData }),
       });
-      say('저장되었습니다. 1~2분 뒤 홈페이지에 반영됩니다.');
+      say('저장되었습니다. 다음 배포 때 홈페이지에 반영됩니다.');
     } catch (err) { say(err.message); } finally { $('#copy-save').disabled = false; }
   });
 
@@ -140,14 +89,12 @@
     try {
       const me = await api('/api/admin/me');
       $('#adm-who').textContent = me.email;
-      const [site, news, inq] = await Promise.all([
+      const [site, inq] = await Promise.all([
         api('/api/admin/content?file=site'),
-        api('/api/admin/content?file=news'),
         api('/api/admin/inquiries'),
       ]);
-      copySha = site.sha; copyData = site.data;
-      newsSha = news.sha; newsData = news.data;
-      renderCopy(); renderNews(); renderInq(inq.items);
+      copyData = site.data;
+      renderCopy(); renderInq(inq.items);
     } catch (err) {
       const box = $('#adm-error');
       box.style.display = 'block';

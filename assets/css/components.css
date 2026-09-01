@@ -813,3 +813,15 @@ section.hero{padding-block:clamp(88px,10vw,128px) clamp(72px,8.5vw,104px)}
 .iform .btn.primary:disabled{opacity:.55;cursor:default}
 #iform-status{font-size:13.5px;color:var(--ink-70)}
 @media(max-width:560px){.if-grid{grid-template-columns:1fr}.iform{padding:22px}}
+
+/* 문의 폼 동의 */
+.if-agree{display:flex;gap:9px;align-items:flex-start;margin-top:16px;font-size:12.5px;color:var(--ink-70);line-height:1.6;cursor:pointer}
+.if-agree input{margin-top:3px;accent-color:var(--accent);width:15px;height:15px;flex:none}
+.if-agree a{text-decoration:underline;text-underline-offset:2px}
+
+/* 개인정보처리방침 */
+.legal{max-width:720px}
+.legal h2{font-size:17px;font-weight:700;margin-top:36px}
+.legal p,.legal li{margin-top:10px;font-size:14.5px;color:var(--ink-70)}
+.legal ul{padding-left:18px;list-style:disc}
+.legal .date{margin-top:44px;font-size:13px;color:var(--ink-45)}
