@@ -825,3 +825,10 @@ section.hero{padding-block:clamp(88px,10vw,128px) clamp(72px,8.5vw,104px)}
 .legal p,.legal li{margin-top:10px;font-size:14.5px;color:var(--ink-70)}
 .legal ul{padding-left:18px;list-style:disc}
 .legal .date{margin-top:44px;font-size:13px;color:var(--ink-45)}
+
+/* 데모별 사용 기술 행 */
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.demo-tech{margin-top:16px}
+.demo-tech .lab{font-size:12.5px;font-weight:600;color:var(--ink-45);margin-right:6px}
+.demo-tech .chip{background:#fff;color:var(--ink-70);font-size:12px;font-weight:600;padding:5px 13px;box-shadow:0 1px 2px rgba(15,34,51,.06)}
+.soft .demo-tabs{background:#E8E3D9}
