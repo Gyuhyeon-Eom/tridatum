@@ -8,9 +8,9 @@ import {
 } from "../assets/js/analytics-view.mjs";
 const root = new URL("../", import.meta.url);
 const tech = [
-  ["Tableau", "웹 대시보드", "PostgreSQL", "Airflow"],
-  ["Python", "scikit-learn", "PyTorch", "SHAP"],
-  ["Python", "statsmodels", "GeoPandas", "QGIS"],
+  ["Python", "pandas", "SQL", "데이터 시각화"],
+  ["Python", "scikit-learn", "모델 검증", "변수 기여도"],
+  ["Python", "통계 추정", "Bootstrap", "GeoPandas"],
   ["RAG", "Elasticsearch", "문서 파싱", "오픈소스 LLM"],
   ["Grafana", "Prometheus", "Langfuse", "Docker"],
 ];

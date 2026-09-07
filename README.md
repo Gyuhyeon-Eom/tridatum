@@ -22,10 +22,14 @@
 - `assets/css/base.css`: 기본 리셋. 관리자 화면에서도 사용하므로 공통 변경에 주의
 - `assets/js/motion.js`: 스크롤 목차, 헤더 색 전환, 장식의 이동, 섹션 등장
 - `assets/js/demos.js`: 데모 탭, 방향키 탐색, 추가 화면 펼치기
-- `assets/js/analytics-view.mjs`: 공통 화면 렌더러와 가상 데이터
-- `assets/js/dash.js`: 권역·기간·모델·임계값·질문·요청 필터
+- `assets/js/analysis-samples.mjs`: 재현 가능한 합성 원자료와 실제 학습 모델의 검증 점수
+- `assets/js/analytics-data.mjs`: 필터·집계·평가 지표·bootstrap 추정
+- `assets/js/analytics-charts.mjs`: 축·범례·구간·툴팁을 공유하는 SVG 차트
+- `assets/js/analytics-view.mjs`: 대표 화면·세부 분석·서비스 미리보기 렌더러
+- `assets/js/dash.js`: 필터·임계값·문서 출처·요청 선택·상세 분석 대화상자
 - `scripts/render-demos.mjs`: 같은 렌더러로 정적 HTML 미리보기 생성
-- `assets/img/logo-*.svg`: 새 심볼과 밝은/어두운 배경용 로고
+- `assets/img/logo-*.svg`, `assets/js/brand.mjs`: 공용 워드마크와 td 모노그램
+- `scripts/render-brand.py`: 로고 SVG·공용 헤더·푸터·브랜드 모듈 생성
 - `assets/js/include.js`: 공용 헤더/푸터와 모바일 메뉴
 - `assets/js/content.js`: `assets/content/site.json`의 관리자 수정 문구 반영
 
@@ -51,13 +55,36 @@ python3 -m http.server 8934 --bind 127.0.0.1
 
 ## 데모 편집
 
-샘플 데이터와 화면 구조는 `assets/js/analytics-view.mjs`, 스타일은 `assets/css/analytics.css`에서 수정합니다. 정적 첫 화면과 조작 후 화면이 같도록 수정 후 아래 명령으로 HTML을 갱신합니다. 배포·실행 시 빌드 과정은 필요 없습니다.
+집계 로직은 `analytics-data.mjs`, 차트는 `analytics-charts.mjs`, 화면 구성은 `analytics-view.mjs`, 스타일은 `assets/css/analytics.css`에서 수정합니다. 정적 첫 화면과 조작 후 화면이 같도록 HTML을 다시 생성합니다. 배포·실행 시에는 빌드 과정이 필요 없습니다.
 
 ```sh
 node scripts/render-demos.mjs
 node --test scripts/analytics.test.mjs
 ```
 
-생성된 `index.html`과 `services.html`도 함께 커밋합니다. 스크립트를 변경하면 `dash.js`의 모듈 import 버전과 HTML의 정적 리소스 버전도 함께 갱신합니다. 검증 테스트는 집계값, 기간 필터, 혼동 행렬과 지표의 일치, 집단별 변화 차이, 요청 로그 합계를 확인합니다.
+생성된 `index.html`과 `services.html`도 함께 커밋합니다. 모듈 변경 시 해당 import와 HTML의 리소스 버전을 갱신합니다. 상세 화면 15종은 선택한 권역·기간·모델·분석 집단을 전달받습니다. 문서 AI는 사전 작성한 예시 문서와 답변을 보여주며 실제 모델 호출을 하지 않습니다.
 
-Wanted Sans 원본은 [공식 저장소](https://github.com/wanteddev/wanted-sans)에서 제공하며 라이선스를 `assets/fonts/OFL-WantedSans.txt`에 포함했습니다. 로고·공유 이미지의 SVG 텍스트는 경로로 저장해 외부 폰트가 없어도 같은 형태로 표시됩니다.
+## 합성 데이터와 분석 방법
+
+`analysis-samples.mjs`에 포함된 원자료에서 모든 지표를 계산합니다. 공개 화면의 SAMPLE 표기와 분석 조건을 유지합니다.
+
+- 데이터 진단: 2,400개 고유 레코드와 중복 24개. 중복 키를 제외한 뒤 결측 비율, 중앙값, 사분위 범위, IQR 상한 초과 건수를 계산합니다.
+- 모델 검증: scikit-learn 합성 이진 분류 데이터 4,000건을 층화 분할합니다. 3,000건으로 세 모델을 실제 학습하고 독립 검증 1,000건의 점수로 PR·AP·혼동 행렬·보정 구간을 계산합니다. 변수 기여도는 permutation ΔAP 5회 평균입니다. 모델 데이터와 분할의 난수 시드는 42입니다.
+- 정책효과: 80개 개체 × 12개월의 합성 패널입니다. 집단별 전후 평균 차이의 차이를 계산하고 개체 단위 percentile bootstrap 800회로 구간을 구합니다. 시점별 비교는 시행 직전 월을 기준으로 합니다. 회귀나 공변량 보정 결과를 표시한 화면은 아닙니다.
+- 운영 분석: 합성 요청 로그 420건에서 기간별 집계와 지연 분위수, 오류율, 토큰 수를 계산합니다. 정상 요청의 단계별 시간 합은 전체 지연과 같습니다. 오류 필터는 요청 표에 적용합니다.
+
+원자료를 변경할 때만 아래 명령을 실행합니다. NumPy·SciPy·scikit-learn이 필요하며 사용한 scikit-learn 버전은 생성 파일의 `meta.sklearn`에 기록합니다. 관측·패널·요청 생성 시드는 20260907입니다.
+
+```sh
+python3 scripts/generate-analysis-data.py
+node scripts/render-demos.mjs
+node --test scripts/analytics.test.mjs
+```
+
+테스트는 원자료 보존, PR·AP 기준값, 혼동 행렬, 보정 구간 집계, bootstrap 기준 시점, 요청 집계와 화면의 유효 수치를 확인합니다. 지표 정의는 [scikit-learn 평가 문서](https://scikit-learn.org/stable/modules/model_evaluation.html)를 참고합니다.
+
+## 브랜드와 서체
+
+소문자 워드마크와 td 모노그램은 직접 구성한 SVG 경로입니다. `python3 scripts/render-brand.py`로 관련 에셋과 공용 로고를 재생성합니다. `assets/img/brand-study.svg`에서 밝은 배경과 어두운 배경의 조합을 확인할 수 있습니다.
+
+Wanted Sans 원본은 [공식 저장소](https://github.com/wanteddev/wanted-sans)에서 제공하며 라이선스를 `assets/fonts/OFL-WantedSans.txt`에 포함했습니다. 공유 이미지의 글자는 SVG 경로로 저장되어 외부 폰트 없이 표시됩니다.
