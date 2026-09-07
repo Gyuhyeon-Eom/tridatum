@@ -5,7 +5,7 @@ import {
   sum,
   monitorData,
   policyData,
-} from "./analytics-data.mjs?v=20260907u2";
+} from "./analytics-data.mjs?v=20260907v1";
 export { mean, sum, monitorData, policyData };
 export const DEFINITIONS = [
   ["market", "상권 종합 분석", "시장별 매출과 방문 흐름", "상권·정책"],

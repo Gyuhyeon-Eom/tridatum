@@ -17,21 +17,22 @@ import {
   mean,
   sum,
   monitorData,
-} from "./solutions-data.mjs?v=20260907u2";
+} from "./solutions-data.mjs?v=20260907v1";
 import {
   lineFigure,
   histogramFigure,
   heatFigure,
   esc,
   COLORS,
-} from "./analytics-charts.mjs?v=20260907u2";
-import { WORDMARK } from "./brand.mjs?v=20260907u2";
-import { GROUPS, qualityBreakdown } from "./operations-models.mjs?v=20260907u2";
+} from "./analytics-charts.mjs?v=20260907v1";
+import { WORDMARK } from "./brand.mjs?v=20260907v1";
+import { GROUPS, qualityBreakdown } from "./operations-models.mjs?v=20260907v1";
 import {
   workflowTabs,
+  detailNavigation,
   renderOperational,
   renderCaseQueue,
-} from "./operations-view.mjs?v=20260907u2";
+} from "./operations-view.mjs?v=20260907v1";
 const n = (v) => Math.round(v).toLocaleString("ko-KR"),
   pct = (v) => `${v.toFixed(1)}%`,
   change = (a, b) => `${a >= b ? "+" : ""}${((a / b - 1) * 100).toFixed(1)}%`;
@@ -770,6 +771,35 @@ const renderers = {
 export function solutionModel(id, state = {}) {
   return renderers[id](state);
 }
+const OVERVIEW_PAGES = {
+  market: ["매출 추이", "공간 비교", "시장별 원자료"],
+  vacancy: ["조사 후보", "조사 우선순위"],
+  emission: ["설비 상태", "채널 추이", "중단 예측"],
+  broadcast: ["노출 전후", "장소별 비교", "해석 기준"],
+  care: ["생활권 수요", "공급 조정", "배분 기준"],
+  mobility: ["이동 흐름", "시간대별 승하차"],
+  wildlife: ["예찰 분포", "점검 계획"],
+  voucher: ["소비 추이", "업종별 비교"],
+  risk: ["점검 목록"],
+  documents: ["원문 대조"],
+  warehouse: ["배치 흐름", "적재 상태", "품질 점검"],
+  llm: ["응답 추이", "최근 요청"],
+};
+function overviewNavigation(id, state) {
+  const pages = OVERVIEW_PAGES[id];
+  const page = Math.min(
+    pages.length - 1,
+    Math.max(0, Number(state.overviewPage || 0)),
+  );
+  return `<div class="ops-detail-nav" role="group" aria-label="현황 분석 페이지">${pages.map((label, i) => `<button data-overview-page="${i}" aria-pressed="${page === i}">${label}</button>`).join("")}</div>`;
+}
+function renderOverview(id, state, d) {
+  const page = Math.min(
+    OVERVIEW_PAGES[id].length - 1,
+    Math.max(0, Number(state.overviewPage || 0)),
+  );
+  return `<div class="ops-metrics">${d.metrics.join("")}</div><div class="ops-overview-pages" data-overview-current="${page}">${d.body}</div>`;
+}
 export function renderSolution(id = "market", state = {}) {
   if (!state.selected) {
     const rows =
@@ -785,10 +815,10 @@ export function renderSolution(id = "market", state = {}) {
   }
   const def = DEFINITIONS.find((r) => r.id === id) || DEFINITIONS[0],
     d = solutionModel(def.id, state);
-  return `<div class="ops-workspace analytics" data-ops-id="${def.id}"><div class="ops-chrome"><div>${WORDMARK}<span>${def.group}</span></div><span class="ops-sample">SAMPLE · 2026.08</span></div><div class="ops-body"><header class="ops-heading"><div><p>${def.desc}</p><h3>${def.title}</h3></div><div class="ops-controls">${id === "vacancy" && (!state.view || state.view === "evidence") ? "" : d.filters}<button class="ops-export" data-ops-export>CSV 내보내기 <span aria-hidden="true">↓</span></button></div></header>${workflowTabs(id, state)}<div id="ops-view-panel" role="tabpanel" aria-labelledby="ops-view-${state.view || "evidence"}">${state.view === "overview" ? `<div class="ops-metrics">${d.metrics.join("")}</div>${d.body}` : state.view === "tasks" ? renderCaseQueue(id, state, d) : renderOperational(id, state, d)}</div><p class="ops-footnote">${id === "vacancy" && (!state.view || state.view === "evidence") ? "합성 지역·변수로 학습한 예측 모델과 군집 분석입니다. 실제 지역·기관의 수행 성과가 아닙니다." : d.note}</p></div></div>`;
+  return `<div class="ops-workspace analytics" data-ops-id="${def.id}" data-view="${state.view || "evidence"}" data-detail-current="${state.detailPage || "analysis"}"><div class="ops-chrome"><div>${WORDMARK}<span>${def.group}</span></div><span class="ops-sample">SAMPLE · 2026.08</span></div><div class="ops-body"><header class="ops-heading"><div><p>${def.desc}</p><h3>${def.title}</h3></div><div class="ops-controls">${id === "vacancy" && (!state.view || state.view === "evidence") ? "" : d.filters}<button class="ops-export" data-ops-export>CSV 내보내기 <span aria-hidden="true">↓</span></button></div></header><div class="ops-navigation">${workflowTabs(id, state)}${state.view === "tasks" ? "" : state.view === "overview" ? overviewNavigation(id, state) : detailNavigation(state)}</div><div id="ops-view-panel" role="tabpanel" aria-labelledby="ops-view-${state.view || "evidence"}">${state.view === "overview" ? renderOverview(id, state, d) : state.view === "tasks" ? renderCaseQueue(id, state, d) : renderOperational(id, state, d)}</div><p class="ops-footnote">${id === "vacancy" && (!state.view || state.view === "evidence") ? "합성 지역·변수로 학습한 예측 모델과 군집 분석입니다. 실제 지역·기관의 수행 성과가 아닙니다." : d.note}</p></div></div>`;
 }
 export function renderShowcase() {
-  return `<div class="solution-groups" role="group" aria-label="대시보드 유형">${GROUPS.map((g, i) => `<button data-solution-group="${g.id}" aria-pressed="${i === 0}"><span>0${i + 1}<small>${g.members.length}개 분야</small></span><b>${g.name}</b><p>${g.desc}</p></button>`).join("")}</div><div class="solution-tools"><span>분야별 분석 기준과 검토 과정을 살펴보세요.</span><div class="solution-appearance" role="group" aria-label="업무 화면 테마"><button type="button" data-workspace-theme="light" aria-pressed="true">밝게</button><button type="button" data-workspace-theme="dark" aria-pressed="false">어둡게</button></div></div><div class="solution-shell" data-theme="light"><aside class="solution-catalog"><p class="catalog-label"><b data-catalog-group>상권·정책</b><span>03</span></p><div class="solution-tabs" role="tablist" aria-orientation="vertical" aria-label="업무 분야">${DEFINITIONS.map((d, i) => `<button id="solution-tab-${d.id}" role="tab" aria-selected="${i === 0}" aria-controls="solution-screen" tabindex="${i === 0 ? 0 : -1}" data-solution="${d.id}" ${GROUPS[0].members.includes(d.id) ? "" : "hidden"}><span>${String(GROUPS.find((g) => g.members.includes(d.id)).members.indexOf(d.id) + 1).padStart(2, "0")}</span>${d.title}</button>`).join("")}</div><label class="solution-select">업무 분야<select aria-label="업무 분야 선택">${DEFINITIONS.map((d) => `<option value="${d.id}" ${GROUPS[0].members.includes(d.id) ? "" : "hidden disabled"}>${d.title}</option>`).join("")}</select></label><p class="catalog-foot">ANALYTICS<br/>WORKSPACE</p></aside><div id="solution-screen" role="tabpanel" aria-labelledby="solution-tab-market">${renderSolution()}</div></div><p class="a-sr" id="solution-status" role="status"></p>`;
+  return `<div class="workspace-toolbar"><div class="solution-groups" role="group" aria-label="대시보드 유형">${GROUPS.map((g, i) => `<button data-solution-group="${g.id}" aria-pressed="${i === 0}" title="${esc(g.desc)}"><span>0${i + 1}</span><b>${g.name}</b></button>`).join("")}</div><div class="solution-appearance" role="group" aria-label="업무 화면 테마"><button type="button" data-workspace-theme="light" aria-pressed="true">밝게</button><button type="button" data-workspace-theme="dark" aria-pressed="false">어둡게</button></div></div><div class="solution-shell" data-theme="light"><aside class="solution-catalog"><p class="catalog-label"><b data-catalog-group>상권·정책</b><span>03</span></p><div class="solution-tabs" role="tablist" aria-orientation="vertical" aria-label="업무 분야">${DEFINITIONS.map((d, i) => `<button id="solution-tab-${d.id}" role="tab" aria-selected="${i === 0}" aria-controls="solution-screen" tabindex="${i === 0 ? 0 : -1}" data-solution="${d.id}" ${GROUPS[0].members.includes(d.id) ? "" : "hidden"}><span>${String(GROUPS.find((g) => g.members.includes(d.id)).members.indexOf(d.id) + 1).padStart(2, "0")}</span>${d.title}</button>`).join("")}</div><label class="solution-select">업무 분야<select aria-label="업무 분야 선택">${DEFINITIONS.map((d) => `<option value="${d.id}" ${GROUPS[0].members.includes(d.id) ? "" : "hidden disabled"}>${d.title}</option>`).join("")}</select></label><p class="catalog-foot">ANALYTICS<br/>WORKSPACE</p></aside><div id="solution-screen" role="tabpanel" aria-labelledby="solution-tab-market">${renderSolution()}</div></div><p class="a-sr" id="solution-status" role="status"></p>`;
 }
 
 export function renderServicePreview(index) {

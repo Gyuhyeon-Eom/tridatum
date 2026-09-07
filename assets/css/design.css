@@ -225,7 +225,7 @@ body.editorial {
   width: 220px;
   height: 220px;
   border: 40px solid #ddd;
-  border-radius: 48px;
+  border-radius: 24px;
   transform: rotateX(56deg) rotateZ(-30deg) translateZ(50px);
   box-shadow: 8px 16px 0 #aaa;
 }
@@ -638,7 +638,7 @@ body.editorial {
 }
 .contact-sheet {
   background: #fff;
-  border-radius: 64px 64px 0 0;
+  border-radius: var(--radius-panel) var(--radius-panel) 0 0;
 }
 .contact-layout {
   display: grid;
@@ -903,13 +903,13 @@ body.editorial {
   }
   100% {
     transform: translateY(-105%);
-    border-radius: 0 0 64px 64px;
+    border-radius: 0 0 var(--radius-panel) var(--radius-panel);
   }
 }
 @keyframes curtain-leave {
   from {
     transform: translateY(105%);
-    border-radius: 64px 64px 0 0;
+    border-radius: var(--radius-panel) var(--radius-panel) 0 0;
   }
   to {
     transform: translateY(0);
@@ -937,7 +937,7 @@ body.editorial {
   }
   .hero-visual {
     left: 55%;
-    right: -3%;
+    right: 0;
   }
   .hero-actions .btn {
     font-size: 16px;
@@ -968,8 +968,8 @@ body.editorial {
 }
 @media (max-width: 767px) {
   body.editorial {
-    --radius-panel: 32px;
-    --radius-card: 24px;
+    --radius-panel: 20px;
+    --radius-card: 12px;
     --space-panel: 24px;
     --space-section: 53.3333px;
     --type-body: 17px;
@@ -1156,7 +1156,7 @@ body.editorial {
     margin-top: 16px;
   }
   .contact-sheet {
-    border-radius: 32px 32px 0 0;
+    border-radius: var(--radius-panel) var(--radius-panel) 0 0;
   }
   .contact-layout {
     grid-template-columns: 1fr;

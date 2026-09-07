@@ -1,0 +1,867 @@
+/* A bounded application viewport. Long records stay inside their selected page. */
+.showcase.chapter {
+  padding: 16px 24px;
+  scroll-margin-top: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px 24px;
+}
+.showcase .chapter-head {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+}
+.showcase .eyebrow {
+  display: none;
+}
+.showcase .chapter-head h2 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+.workspace-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+}
+.workspace-toolbar .solution-groups {
+  display: flex;
+  gap: 6px;
+  margin: 0;
+}
+.workspace-toolbar .solution-groups button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 14px;
+  border-radius: 6px;
+  min-height: 36px;
+}
+.workspace-toolbar .solution-groups button span {
+  font-size: 10px;
+}
+.workspace-toolbar .solution-groups button b {
+  font-size: 13px;
+  margin: 0;
+}
+.workspace-toolbar .solution-appearance {
+  padding: 3px;
+  border-radius: 6px;
+}
+.workspace-toolbar .solution-appearance button {
+  min-height: 30px;
+  padding: 5px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+.showcase .solution-shell {
+  height: calc(100svh - 184px);
+  min-height: 480px;
+  grid-column: 1 / -1;
+  max-height: 940px;
+  grid-template-columns: 170px minmax(0, 1fr);
+  border-radius: 10px;
+}
+.solution-shell .solution-catalog {
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.solution-shell .catalog-label {
+  padding: 0 10px 16px;
+  margin: 0;
+  font-size: 12px;
+}
+.solution-shell .solution-tabs button {
+  border-radius: 5px;
+  padding: 12px 8px;
+  font-size: 12px;
+}
+.solution-shell .catalog-foot {
+  position: static;
+  margin: auto 10px 0;
+  padding-top: 24px;
+  font-size: 10px;
+}
+#solution-screen {
+  height: 100%;
+  min-height: 0;
+}
+.solution-shell .ops-workspace {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.solution-shell .ops-chrome {
+  display: none;
+}
+.solution-shell .ops-chrome .brand-wordmark {
+  width: 68px;
+}
+.solution-shell .ops-chrome > div > span {
+  font-size: 10px;
+  padding-left: 12px;
+}
+.solution-shell .ops-sample {
+  font-size: 10px;
+}
+.solution-shell .ops-body {
+  padding: 12px 18px 8px;
+  overflow: hidden;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+.solution-shell .ops-heading {
+  margin: 0;
+  gap: 12px;
+  align-items: center;
+  flex: none;
+}
+.solution-shell .ops-heading p {
+  display: none;
+}
+.solution-shell .ops-heading h3 {
+  font-size: 21px;
+  line-height: 1.3;
+}
+.solution-shell .ops-controls {
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+.solution-shell .ops-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+.solution-shell .ops-control select,
+.solution-shell .ops-export {
+  min-height: 32px;
+  font-size: 11px;
+  padding-inline: 8px;
+  border-radius: 5px;
+}
+.ops-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--tone-200);
+  margin-top: 6px;
+  gap: 12px;
+}
+.solution-shell .ops-view-tabs {
+  flex: none;
+  border-bottom: 0;
+  min-height: 36px;
+  margin: 0;
+  gap: 22px;
+}
+.solution-shell .ops-view-tabs button {
+  min-height: 36px;
+  padding: 8px 0;
+  font-size: 12px;
+}
+#ops-view-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding-top: 8px;
+  gap: 8px;
+}
+.ops-detail-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 28px;
+  flex: none;
+  overflow-x: auto;
+}
+.ops-detail-nav button {
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--tone-600);
+  font: 500 11px/1.3 var(--font-body);
+  padding: 6px 10px;
+  min-height: 28px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ops-detail-nav button[aria-pressed="true"] {
+  color: var(--tone-950);
+  background: var(--tone-100);
+  font-weight: 650;
+}
+.solution-shell .ops-detail-heading {
+  margin: 0;
+  gap: 12px;
+  flex: none;
+  min-height: 30px;
+  flex-direction: row;
+}
+.solution-shell .ops-detail-heading h4 {
+  font-size: 14px;
+}
+.solution-shell .ops-detail-picker {
+  gap: 6px;
+  font-size: 10px;
+}
+.solution-shell
+  :is(.ops-detail-picker, .ops-queue-bar, .ops-region-picker)
+  select {
+  min-height: 30px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+.solution-shell .ops-metrics {
+  flex: none;
+  margin: 0;
+  padding: 7px 0;
+  gap: 0;
+}
+.solution-shell .ops-metrics > .ops-metric {
+  padding-inline: 12px;
+  gap: 2px;
+}
+.solution-shell .ops-metrics > .ops-metric:first-child {
+  padding-left: 0;
+}
+.solution-shell .ops-metric > span,
+.solution-shell .ops-metric small {
+  font-size: 11px;
+  line-height: 1.3;
+}
+.solution-shell .ops-metric strong {
+  font-size: 22px;
+  line-height: 1.2;
+}
+.ops-analysis-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+.solution-shell .ops-panel {
+  padding: 12px;
+  border-radius: 6px;
+  margin: 0;
+}
+.ops-analysis-grid > .ops-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: auto;
+}
+.solution-shell .ops-panel-head {
+  flex: none;
+  gap: 4px 10px;
+  margin-bottom: 10px;
+}
+.solution-shell .ops-panel-head h4 {
+  font-size: 13px;
+  line-height: 1.3;
+}
+.solution-shell .ops-panel-head > span {
+  font-size: 10px;
+  line-height: 1.4;
+}
+.ops-analysis-grid .a-chart {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.ops-analysis-grid .a-chart svg {
+  flex: 1;
+  width: 100%;
+  min-height: 100px;
+  height: 0;
+}
+.ops-analysis-grid .a-chart .a-plot-mobile {
+  display: none;
+}
+.ops-analysis-grid .a-chart .a-legend {
+  flex: none;
+  margin: 0 0 8px;
+}
+.solution-shell .ops-facts {
+  margin: 0;
+}
+.solution-shell .ops-facts > div {
+  padding: 10px 0;
+}
+.solution-shell .ops-facts dt,
+.solution-shell .ops-facts dd {
+  font-size: 12px;
+}
+.solution-shell .ops-footnote::before {
+  content: "SAMPLE · ";
+  font-weight: 600;
+}
+.solution-shell .ops-footnote {
+  flex: none;
+  font-size: 10px;
+  line-height: 1.4;
+  padding-top: 7px;
+  margin: 8px 0 0;
+}
+.ops-detail-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+.ops-detail-scroll > .ops-panel + .ops-panel {
+  margin-top: 10px;
+}
+.ops-detail-scroll .ops-lineage {
+  margin: 0 0 12px;
+  padding: 6px 0 12px;
+}
+.ops-detail-scroll .ops-lens-list {
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+}
+.ops-detail-scroll .ops-lens-list > div {
+  grid-template-columns: 1fr;
+  gap: 5px;
+  padding-block: 12px;
+}
+.ops-detail-scroll .ops-lens-list > div:first-child {
+  padding-top: 12px;
+}
+.solution-shell .ops-table th,
+.solution-shell .ops-table td {
+  padding: 11px 10px;
+  font-size: 11px;
+}
+.solution-shell .ops-table thead {
+  position: sticky;
+  top: 0;
+  background: var(--tone-50);
+  z-index: 1;
+}
+.solution-shell .ops-queue-bar {
+  flex: none;
+  margin: 0;
+  min-height: 30px;
+}
+.solution-shell .ops-queue-layout {
+  flex: 1;
+  min-height: 0;
+  gap: 10px;
+  align-items: stretch;
+}
+.solution-shell .ops-case-list {
+  min-height: 0;
+  max-height: none;
+  grid-template-columns: 1fr;
+  align-content: start;
+}
+.solution-shell .ops-case-list button {
+  padding: 12px;
+  border-radius: 5px;
+}
+.solution-shell .ops-case-list button > b {
+  margin: 8px 0;
+  font-size: 12px;
+}
+.solution-shell .ops-case-detail {
+  position: static;
+  overflow: auto;
+  min-height: 0;
+}
+.solution-shell .ops-case-evidence {
+  margin: 0 0 12px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.solution-shell .ops-next-action {
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+.solution-shell .ops-next-action p {
+  font-size: 12px;
+}
+.solution-shell .ops-checklist {
+  margin-bottom: 12px;
+}
+.solution-shell .ops-checklist label {
+  min-height: 32px;
+  padding: 6px 0;
+}
+.solution-shell .ops-waterfall {
+  margin-block: auto;
+}
+.solution-shell .ops-waterfall > div {
+  margin-bottom: 12px;
+  grid-template-columns: 90px 1fr 64px;
+  gap: 8px;
+}
+.solution-shell .ops-excerpt {
+  font-size: 13px;
+  margin-block: auto;
+}
+/* Vacancy: a selected variable replaces the plot beside its ranking. */
+.solution-shell .ops-clusters {
+  flex: none;
+  gap: 6px;
+}
+.solution-shell .ops-clusters button {
+  padding: 8px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.solution-shell .ops-clusters button > span {
+  font-size: 9px;
+  flex: none;
+}
+.solution-shell .ops-clusters button b,
+.solution-shell .ops-clusters button small {
+  display: none;
+}
+.solution-shell .ops-clusters strong {
+  margin: 0;
+  font-size: 11px;
+}
+.solution-shell .ops-cluster-main {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+}
+.ops-vacancy-plot {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+.ops-vacancy-plot > svg {
+  margin: 0;
+  height: 100%;
+  min-height: 100px;
+  width: 100%;
+}
+.ops-vacancy-plot > .a-chart {
+  width: 100%;
+}
+.ops-feature-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: none;
+  padding-top: 8px;
+  border-top: 1px solid var(--tone-200);
+}
+.ops-feature-caption b {
+  font-size: 11px;
+}
+.ops-feature-caption span,
+.ops-feature-caption small {
+  font-size: 10px;
+  color: var(--tone-600);
+  line-height: 1.4;
+}
+.ops-feature-caption button {
+  align-self: flex-start;
+  padding: 3px 0;
+  border: 0;
+  background: none;
+  font: 500 11px var(--font-body);
+  color: var(--tone-900);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.solution-shell .ops-rank-panel {
+  padding: 10px;
+}
+.solution-shell .ops-rank-panel .ops-panel-head {
+  margin-bottom: 8px;
+}
+.solution-shell .ops-importance {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 204px;
+}
+.solution-shell .ops-importance-label {
+  flex: none;
+  font-size: 9px;
+  margin-bottom: 4px;
+}
+.solution-shell .ops-importance button {
+  flex: 1;
+  min-height: 19px;
+  padding: 2px 5px;
+  gap: 8px;
+}
+.solution-shell .ops-importance button > div {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 8px;
+  align-items: center;
+}
+.solution-shell .ops-importance button b {
+  margin: 0;
+  font-size: 11px;
+}
+.solution-shell .ops-importance button i {
+  height: 5px;
+}
+.solution-shell .ops-importance button strong {
+  font-size: 10px;
+}
+.solution-shell .ops-rank-panel > .ops-note {
+  margin: 4px 0 0;
+  font-size: 9px;
+  line-height: 1.4;
+}
+/* Existing overview panels are pages, never appended below one another. */
+.ops-overview-pages {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.ops-overview-pages > * {
+  display: none;
+}
+.ops-overview-pages[data-overview-current="0"] > :nth-child(1),
+.ops-overview-pages[data-overview-current="1"] > :nth-child(2),
+.ops-overview-pages[data-overview-current="2"] > :nth-child(3) {
+  display: grid;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+}
+.ops-overview-pages > .ops-panel {
+  display: none;
+}
+.ops-overview-pages
+  > .ops-panel:is(:nth-child(1), :nth-child(2), :nth-child(3)) {
+  min-height: 0;
+}
+.ops-overview-pages[data-overview-current="0"] > .ops-panel:nth-child(1),
+.ops-overview-pages[data-overview-current="1"] > .ops-panel:nth-child(2),
+.ops-overview-pages[data-overview-current="2"] > .ops-panel:nth-child(3) {
+  display: flex;
+  flex-direction: column;
+}
+.ops-overview-pages .ops-panel,
+.ops-overview-pages .ops-document-list {
+  min-height: 0;
+  overflow: auto;
+}
+.ops-overview-pages .ops-grid {
+  gap: 10px;
+}
+.ops-overview-pages .ops-panel > .a-chart {
+  min-height: 150px;
+}
+.ops-overview-pages .ops-table-scroll {
+  flex: 1;
+  min-height: 0;
+}
+.ops-overview-pages .ops-map {
+  flex: 1;
+  min-height: 0;
+}
+.ops-overview-pages .ops-map svg {
+  height: 100%;
+  min-height: 220px;
+  max-height: 100%;
+}
+.ops-overview-pages .ops-doc-layout {
+  grid-template-columns: 150px 1.2fr 1fr;
+  gap: 10px;
+}
+.ops-overview-pages .ops-doc-layout > * {
+  min-height: 0;
+  overflow: auto;
+}
+.ops-overview-pages .ops-paper {
+  padding: 16px;
+}
+@media (min-width: 768px) and (max-width: 1000px) {
+  .showcase.chapter {
+    display: block;
+  }
+  .showcase .chapter-head {
+    margin-bottom: 12px;
+  }
+  .workspace-toolbar {
+    margin-bottom: 12px;
+  }
+  .showcase .solution-shell {
+    height: calc(100svh - 226px);
+  }
+}
+@media (max-width: 1100px) {
+  .showcase.chapter {
+    padding-inline: 16px;
+  }
+  .showcase .solution-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px minmax(0, 1fr);
+  }
+  .solution-shell .solution-catalog {
+    padding: 4px 12px;
+    display: block;
+  }
+  .solution-shell .catalog-label,
+  .solution-shell .catalog-foot,
+  .solution-shell .solution-tabs {
+    display: none;
+  }
+  .solution-shell .solution-select {
+    font-size: 11px;
+    height: 100%;
+  }
+  .solution-shell .solution-select select {
+    min-height: 30px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .solution-shell .ops-chrome {
+    display: none;
+  }
+  .solution-shell .ops-footnote::before {
+    content: "SAMPLE · ";
+    font-weight: 600;
+  }
+}
+@media (max-width: 767px) {
+  .showcase.chapter {
+    display: block;
+    padding: 20px 12px;
+    scroll-margin-top: 0;
+  }
+  .showcase .chapter-head {
+    padding: 0;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .showcase .eyebrow {
+    display: block;
+    margin-bottom: 7px;
+  }
+  .showcase .chapter-head h2 {
+    font-size: 24px;
+  }
+  .workspace-toolbar {
+    margin-bottom: 8px;
+    align-items: stretch;
+    gap: 8px;
+    flex-direction: column;
+  }
+  .workspace-toolbar .solution-groups {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .workspace-toolbar .solution-groups button {
+    justify-content: center;
+    padding: 10px 3px;
+    min-height: 40px;
+  }
+  .workspace-toolbar .solution-groups button span {
+    display: none;
+  }
+  .workspace-toolbar .solution-groups button b {
+    font-size: 11px;
+  }
+  .workspace-toolbar .solution-appearance {
+    align-self: flex-end;
+  }
+  .workspace-toolbar .solution-appearance button {
+    padding: 5px 12px;
+    min-height: 32px;
+  }
+  .showcase .solution-shell {
+    height: calc(100svh - 120px);
+    min-height: 580px;
+    max-height: 900px;
+    border-radius: 8px;
+  }
+  .solution-shell .ops-body {
+    padding: 10px;
+  }
+  .solution-shell .ops-heading {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .solution-shell .ops-heading h3 {
+    font-size: 18px;
+  }
+  .solution-shell .ops-controls {
+    justify-content: space-between;
+    gap: 4px;
+  }
+  .solution-shell .ops-control {
+    display: grid;
+    font-size: 10px;
+  }
+  .solution-shell .ops-control select,
+  .solution-shell .ops-export {
+    min-height: 34px;
+    font-size: 10px;
+    padding: 5px;
+  }
+  .solution-shell .ops-export {
+    align-self: end;
+    gap: 4px;
+  }
+  .ops-navigation {
+    display: block;
+  }
+  .solution-shell .ops-view-tabs {
+    gap: 18px;
+  }
+  .solution-shell .ops-view-tabs button {
+    font-size: 11px;
+  }
+  .ops-detail-nav button {
+    font-size: 11px;
+    min-height: 32px;
+    padding-inline: 8px;
+  }
+  .solution-shell .ops-detail-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .solution-shell .ops-detail-heading h4 {
+    font-size: 12px;
+  }
+  .solution-shell .ops-detail-picker {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .solution-shell .ops-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 9px 0;
+  }
+  .solution-shell .ops-metrics > .ops-metric {
+    padding: 0;
+    border: 0;
+  }
+  .solution-shell .ops-metric strong {
+    font-size: 22px;
+  }
+  .solution-shell .ops-metric > span,
+  .solution-shell .ops-metric small {
+    font-size: 10px;
+  }
+  .ops-analysis-grid {
+    grid-template-columns: 1fr;
+    overflow: auto;
+    min-height: 170px;
+    align-content: start;
+  }
+  .ops-analysis-grid > .ops-panel {
+    min-height: 220px;
+    overflow: visible;
+  }
+  .ops-analysis-grid .a-chart svg {
+    height: 180px;
+    flex: auto;
+  }
+  .ops-analysis-grid .a-chart .a-plot-desktop {
+    display: none;
+  }
+  .ops-analysis-grid .a-chart .a-plot-mobile {
+    display: block;
+  }
+  .solution-shell .ops-clusters {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .solution-shell .ops-clusters button {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+    padding: 7px;
+  }
+  .solution-shell .ops-clusters strong {
+    font-size: 10px;
+  }
+  .solution-shell .ops-cluster-main {
+    grid-template-columns: 1fr;
+  }
+  .ops-vacancy-plot {
+    min-height: 210px;
+  }
+  .ops-vacancy-plot > svg {
+    height: 210px;
+  }
+  .solution-shell .ops-rank-panel {
+    min-height: 310px;
+  }
+  .solution-shell .ops-importance {
+    min-height: 240px;
+  }
+  .solution-shell .ops-importance button {
+    min-height: 24px;
+  }
+  .solution-shell .ops-importance button b {
+    font-size: 12px;
+  }
+  .ops-detail-scroll .ops-lens-list {
+    grid-template-columns: 1fr;
+  }
+  .solution-shell .ops-queue-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 145px minmax(220px, 1fr);
+    overflow: auto;
+  }
+  .solution-shell .ops-case-list {
+    display: flex;
+    overflow: auto;
+  }
+  .solution-shell .ops-case-list button {
+    flex: 0 0 220px;
+  }
+  .solution-shell .ops-case-detail {
+    overflow: visible;
+  }
+  .ops-overview-pages {
+    overflow: auto;
+  }
+  .ops-overview-pages[data-overview-current] > .ops-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .ops-overview-pages .ops-grid > .ops-panel {
+    min-height: 230px;
+  }
+  .ops-overview-pages[data-overview-current] > .ops-doc-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .ops-overview-pages .ops-doc-layout > * {
+    overflow: visible;
+  }
+  .ops-overview-pages .ops-document-list {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+  }
+  .ops-overview-pages .ops-document-list > span {
+    display: none;
+  }
+  .ops-overview-pages .ops-document-list button {
+    flex: 0 0 160px;
+  }
+}

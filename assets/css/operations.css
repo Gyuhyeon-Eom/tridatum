@@ -9,7 +9,7 @@
   text-align: left;
   padding: 20px;
   border: 1px solid #38383b;
-  border-radius: 16px;
+  border-radius: 8px;
   color: #fff;
   background: #141416;
   cursor: pointer;
@@ -135,7 +135,7 @@
   min-height: 40px;
   border: 1px solid var(--tone-200);
   background: var(--tone-50);
-  border-radius: 10px;
+  border-radius: 6px;
   color: var(--tone-950);
   padding: 8px 12px;
   font: 12px var(--font-body);
@@ -303,7 +303,7 @@
 }
 .ops-case-list button {
   border: 1px solid var(--tone-200);
-  border-radius: 12px;
+  border-radius: 6px;
   background: var(--tone-50);
   color: var(--tone-950);
   text-align: left;
@@ -355,7 +355,7 @@
 .ops-next-action {
   background: var(--tone-100);
   padding: 18px;
-  border-radius: 10px;
+  border-radius: 6px;
   margin-bottom: 24px;
 }
 .ops-next-action > span {
@@ -440,7 +440,7 @@
   border: 1px solid var(--tone-200);
   background: var(--tone-50);
   color: var(--tone-950);
-  border-radius: 12px;
+  border-radius: 6px;
   text-align: left;
   cursor: pointer;
 }

@@ -10,9 +10,9 @@ body.editorial {
   --muted: #444444;
   --faint: #737373;
   --hairline: #e5e7eb;
-  --radius-control: 13.3333px;
-  --radius-card: 32px;
-  --radius-panel: 64px;
+  --radius-control: 8px;
+  --radius-card: 16px;
+  --radius-panel: 28px;
   --space-xs: 5.3333px;
   --space-sm: 10.6667px;
   --space-md: 16px;

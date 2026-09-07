@@ -19,13 +19,13 @@
     <meta property="og:url" content="https://tridatum.co/" />
     <meta
       property="og:image"
-      content="https://tridatum.co/assets/img/og.png?v=20260907u2"
+      content="https://tridatum.co/assets/img/og.png?v=20260907v1"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://tridatum.co/" />
     <link
       rel="icon"
-      href="assets/img/logo-mark.svg?v=20260907u2"
+      href="assets/img/logo-mark.svg?v=20260907v1"
       type="image/svg+xml"
     />
     <link
@@ -35,17 +35,18 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="assets/css/fonts.css?v=20260907u2" />
-    <link rel="stylesheet" href="assets/css/base.css?v=20260907u2" />
-    <link rel="stylesheet" href="assets/css/design-tokens.css?v=20260907u2" />
-    <link rel="stylesheet" href="assets/css/site.css?v=20260907u2" />
-    <link rel="stylesheet" href="assets/css/design.css?v=20260907u2" />
-    <link rel="stylesheet" href="assets/css/analytics.css?v=20260907u2" />
+    <link rel="stylesheet" href="assets/css/fonts.css?v=20260907v1" />
+    <link rel="stylesheet" href="assets/css/base.css?v=20260907v1" />
+    <link rel="stylesheet" href="assets/css/design-tokens.css?v=20260907v1" />
+    <link rel="stylesheet" href="assets/css/site.css?v=20260907v1" />
+    <link rel="stylesheet" href="assets/css/design.css?v=20260907v1" />
+    <link rel="stylesheet" href="assets/css/analytics.css?v=20260907v1" />
     <script>
       document.documentElement.classList.add("motion-active");
     </script>
-    <link rel="stylesheet" href="assets/css/solutions.css?v=20260907u2" />
-    <link rel="stylesheet" href="assets/css/operations.css?v=20260907u2" />
+    <link rel="stylesheet" href="assets/css/solutions.css?v=20260907v1" />
+    <link rel="stylesheet" href="assets/css/operations.css?v=20260907v1" />
+    <link rel="stylesheet" href="assets/css/workspace.css?v=20260907v1" />
   </head>
   <body data-page="home" class="editorial">
     <div class="page-transition" aria-hidden="true">
@@ -204,36 +205,39 @@
                 <p class="eyebrow">업무별 활용</p>
                 <h2 class="reveal">분야별 분석·운영 화면.</h2>
               </div>
-              <p class="intro-copy reveal">
-                상권·주거·환경·돌봄 등 실제 업무에 필요한 지표와 작업 흐름을
-                확인할 수 있습니다.
-              </p>
               <!-- ANALYTICS:START -->
-              <div
-                class="solution-groups"
-                role="group"
-                aria-label="대시보드 유형"
-              >
-                <button data-solution-group="commerce" aria-pressed="true">
-                  <span>01<small>3개 분야</small></span
-                  ><b>상권·정책</b>
-                  <p>매출 구조 · 노출 변화 · 소비 흐름</p></button
-                ><button data-solution-group="city" aria-pressed="false">
-                  <span>02<small>3개 분야</small></span
-                  ><b>도시·생활</b>
-                  <p>조사 후보 · 서비스 공백 · 이동 경로</p></button
-                ><button data-solution-group="environment" aria-pressed="false">
-                  <span>03<small>3개 분야</small></span
-                  ><b>환경·안전</b>
-                  <p>설비 수집 · 예찰 계획 · 위험 검토</p></button
-                ><button data-solution-group="systems" aria-pressed="false">
-                  <span>04<small>3개 분야</small></span
-                  ><b>데이터·AI</b>
-                  <p>원문 대조 · 적재 품질 · 요청 추적</p>
-                </button>
-              </div>
-              <div class="solution-tools">
-                <span>분야별 분석 기준과 검토 과정을 살펴보세요.</span>
+              <div class="workspace-toolbar">
+                <div
+                  class="solution-groups"
+                  role="group"
+                  aria-label="대시보드 유형"
+                >
+                  <button
+                    data-solution-group="commerce"
+                    aria-pressed="true"
+                    title="매출 구조 · 노출 변화 · 소비 흐름"
+                  >
+                    <span>01</span><b>상권·정책</b></button
+                  ><button
+                    data-solution-group="city"
+                    aria-pressed="false"
+                    title="조사 후보 · 서비스 공백 · 이동 경로"
+                  >
+                    <span>02</span><b>도시·생활</b></button
+                  ><button
+                    data-solution-group="environment"
+                    aria-pressed="false"
+                    title="설비 수집 · 예찰 계획 · 위험 검토"
+                  >
+                    <span>03</span><b>환경·안전</b></button
+                  ><button
+                    data-solution-group="systems"
+                    aria-pressed="false"
+                    title="원문 대조 · 적재 품질 · 요청 추적"
+                  >
+                    <span>04</span><b>데이터·AI</b>
+                  </button>
+                </div>
                 <div
                   class="solution-appearance"
                   role="group"
@@ -423,7 +427,12 @@
                   role="tabpanel"
                   aria-labelledby="solution-tab-market"
                 >
-                  <div class="ops-workspace analytics" data-ops-id="market">
+                  <div
+                    class="ops-workspace analytics"
+                    data-ops-id="market"
+                    data-view="evidence"
+                    data-detail-current="analysis"
+                  >
                     <div class="ops-chrome">
                       <div>
                         <svg
@@ -495,56 +504,71 @@
                           </button>
                         </div>
                       </header>
-                      <div
-                        class="ops-view-tabs"
-                        role="tablist"
-                        aria-label="상권 분석 담당 작업 화면"
-                      >
-                        <button
-                          id="ops-view-evidence"
-                          role="tab"
-                          aria-selected="true"
-                          aria-controls="ops-view-panel"
-                          tabindex="0"
-                          data-ops-view="evidence"
+                      <div class="ops-navigation">
+                        <div
+                          class="ops-view-tabs"
+                          role="tablist"
+                          aria-label="상권 분석 담당 작업 화면"
                         >
-                          매출 정합성</button
-                        ><button
-                          id="ops-view-overview"
-                          role="tab"
-                          aria-selected="false"
-                          aria-controls="ops-view-panel"
-                          tabindex="-1"
-                          data-ops-view="overview"
+                          <button
+                            id="ops-view-evidence"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="ops-view-panel"
+                            tabindex="0"
+                            data-ops-view="evidence"
+                          >
+                            매출 정합성</button
+                          ><button
+                            id="ops-view-overview"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="ops-view-panel"
+                            tabindex="-1"
+                            data-ops-view="overview"
+                          >
+                            상권 현황</button
+                          ><button
+                            id="ops-view-tasks"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="ops-view-panel"
+                            tabindex="-1"
+                            data-ops-view="tasks"
+                          >
+                            상권 검토함
+                          </button>
+                        </div>
+                        <div
+                          class="ops-detail-nav"
+                          role="group"
+                          aria-label="상세 분석 페이지"
                         >
-                          상권 현황</button
-                        ><button
-                          id="ops-view-tasks"
-                          role="tab"
-                          aria-selected="false"
-                          aria-controls="ops-view-panel"
-                          tabindex="-1"
-                          data-ops-view="tasks"
-                        >
-                          상권 검토함
-                        </button>
+                          <button
+                            data-detail-page="analysis"
+                            aria-pressed="true"
+                          >
+                            주요 분석</button
+                          ><button
+                            data-detail-page="records"
+                            aria-pressed="false"
+                          >
+                            원자료</button
+                          ><button
+                            data-detail-page="rules"
+                            aria-pressed="false"
+                          >
+                            지표 정의
+                          </button>
+                        </div>
                       </div>
                       <div
                         id="ops-view-panel"
                         role="tabpanel"
                         aria-labelledby="ops-view-evidence"
                       >
-                        <div class="ops-lineage" aria-label="분석 자료 연결">
-                          <span><b>01</b>승인·취소 원장</span
-                          ><span><b>02</b>점포 이력 연결</span
-                          ><span><b>03</b>동일점포 집계</span
-                          ><span><b>04</b>상권 비교</span>
-                        </div>
                         <div class="ops-detail-heading">
-                          <div>
-                            <p>상권 분석 담당 · 시장 × 기준 월</p>
-                            <h4>중앙시장 · 월 마감 정합성</h4>
-                          </div>
+                          <h4>중앙시장 · 월 마감 정합성</h4>
                           <label class="ops-detail-picker"
                             >분석 대상<select
                               data-detail-select
@@ -579,8 +603,8 @@
                             ><small>대장과 거래 점포 연결</small>
                           </div>
                         </div>
-                        <div class="ops-grid wide-left">
-                          <section class="a-panel ops-panel">
+                        <div class="ops-analysis-grid">
+                          <section class="a-panel ops-panel ops-primary-panel">
                             <header class="ops-panel-head">
                               <h4>동일점포와 전체 점포의 변화</h4>
                               <span
@@ -1309,7 +1333,7 @@
                               <div class="a-tooltip" hidden></div>
                             </div>
                           </section>
-                          <section class="a-panel ops-panel">
+                          <section class="a-panel ops-panel ops-primary-panel">
                             <header class="ops-panel-head">
                               <h4>분석 기준과 자료 이력</h4>
                               <span>sales-cohort v2.3</span>
@@ -1334,209 +1358,6 @@
                             </dl>
                           </section>
                         </div>
-                        <section class="a-panel ops-panel">
-                          <header class="ops-panel-head">
-                            <h4>시장별 원장 대조</h4>
-                            <span>금액 만원 · 취소 차감 전후를 대조</span>
-                          </header>
-                          <div
-                            class="ops-table-scroll"
-                            tabindex="0"
-                            role="region"
-                            aria-label="시장별 원장 대조"
-                          >
-                            <table class="ops-table">
-                              <caption class="a-sr">
-                                시장별 원장 대조
-                              </caption>
-                              <thead>
-                                <tr>
-                                  <th scope="col">시장</th>
-                                  <th scope="col">승인</th>
-                                  <th scope="col">취소</th>
-                                  <th scope="col">순매출</th>
-                                  <th scope="col">동일점포</th>
-                                  <th scope="col">점포 연결</th>
-                                  <th scope="col">영업일</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <th scope="row">중앙시장</th>
-                                  <td>28,314</td>
-                                  <td>691</td>
-                                  <td>27,623</td>
-                                  <td>66/71</td>
-                                  <td>84.5%</td>
-                                  <td>26일</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">동부시장</th>
-                                  <td>32,929</td>
-                                  <td>928</td>
-                                  <td>32,001</td>
-                                  <td>100/106</td>
-                                  <td>84.9%</td>
-                                  <td>25일</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">서부시장</th>
-                                  <td>42,529</td>
-                                  <td>1,359</td>
-                                  <td>41,170</td>
-                                  <td>73/80</td>
-                                  <td>86.3%</td>
-                                  <td>24일</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">수변시장</th>
-                                  <td>53,923</td>
-                                  <td>1,924</td>
-                                  <td>51,999</td>
-                                  <td>49/54</td>
-                                  <td>87.0%</td>
-                                  <td>26일</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">북문시장</th>
-                                  <td>61,128</td>
-                                  <td>2,408</td>
-                                  <td>58,720</td>
-                                  <td>107/113</td>
-                                  <td>87.6%</td>
-                                  <td>25일</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">역전시장</th>
-                                  <td>61,304</td>
-                                  <td>2,640</td>
-                                  <td>58,664</td>
-                                  <td>90/97</td>
-                                  <td>88.7%</td>
-                                  <td>24일</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">남문시장</th>
-                                  <td>58,504</td>
-                                  <td>2,733</td>
-                                  <td>55,771</td>
-                                  <td>66/71</td>
-                                  <td>90.1%</td>
-                                  <td>26일</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">생활시장</th>
-                                  <td>60,732</td>
-                                  <td>3,057</td>
-                                  <td>57,675</td>
-                                  <td>88/94</td>
-                                  <td>91.5%</td>
-                                  <td>25일</td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </section>
-                        <section class="a-panel ops-panel">
-                          <header class="ops-panel-head">
-                            <h4>상권 비교에 사용하는 분모와 보정</h4>
-                            <span>입력값 · 계산 기준 · 해석</span>
-                          </header>
-                          <div class="ops-lens-list">
-                            <div>
-                              <h5>동일점포 포착</h5>
-                              <strong>66개</strong>
-                              <p>전체 71개 중 양 기간 관측</p>
-                              <span
-                                >신규·폐업 효과와 기존 점포의 변화를 분리</span
-                              >
-                            </div>
-                            <div>
-                              <h5>영업일 보정 순매출</h5>
-                              <strong>1,062만원/일</strong>
-                              <p>27,623만원 ÷ 26일</p>
-                              <span>달력 일수와 실제 영업일의 차이 구분</span>
-                            </div>
-                            <div>
-                              <h5>취소 반영률</h5>
-                              <strong>2.44%</strong>
-                              <p>취소 / 승인 × 100</p>
-                              <span>월 마감 이후 취소의 원승인 귀속 확인</span>
-                            </div>
-                            <div>
-                              <h5>전월 비교</h5>
-                              <strong>-4.9%</strong>
-                              <p>7월 → 8월</p>
-                              <span>동일 유형·모집단을 고정한 뒤 해석</span>
-                            </div>
-                            <div>
-                              <h5>주말 매출 비중</h5>
-                              <strong>23%</strong>
-                              <p>토·일 순매출 / 월 순매출</p>
-                              <span
-                                >도매 거래 시간대와 소매 방문 시간대 구분</span
-                              >
-                            </div>
-                            <div>
-                              <h5>점포당 월 순매출</h5>
-                              <strong>389만원/점포</strong>
-                              <p>연결 대상 점포 수 기준</p>
-                              <span>면적·업종·표본 포착률을 함께 비교</span>
-                            </div>
-                            <div>
-                              <h5>거래 유형</h5>
-                              <strong>도매</strong>
-                              <p>도매·소매 별도 집계</p>
-                              <span
-                                >도매 물류 거래를 방문객 구매 전환으로 해석하지
-                                않음</span
-                              >
-                            </div>
-                            <div>
-                              <h5>생활인구 연결</h5>
-                              <strong>거주·직장·방문 구분</strong>
-                              <p>서로 다른 관측 모집단</p>
-                              <span
-                                >방문 추정 인원과 구매자 수를 직접 나누지
-                                않음</span
-                              >
-                            </div>
-                          </div>
-                        </section>
-                        <details class="ops-method">
-                          <summary>
-                            분석 단위·지표 정의
-                            <span>시장 × 기준 월 · sales-cohort v2.3</span
-                            ><b aria-hidden="true">+</b>
-                          </summary>
-                          <div>
-                            <section>
-                              <h5>매출 기준</h5>
-                              <p>
-                                승인 금액에서 취소를 차감한 순매출입니다. 원장
-                                금액은 만원 단위이며 월 마감 이후 취소는 별도
-                                조정합니다.
-                              </p>
-                            </section>
-                            <section>
-                              <h5>비교 모집단</h5>
-                              <p>
-                                현재 점포 전체와 두 기간에 모두 관측된
-                                동일점포를 분리합니다. 신규·폐업 점포의 구성
-                                변화가 기존 점포의 성장률로 섞이지 않도록
-                                합니다.
-                              </p>
-                            </section>
-                            <section>
-                              <h5>해석 단위</h5>
-                              <p>
-                                영업일 보정은 매출 ÷ 해당 기간 영업일로
-                                계산합니다. 도매·소매와 표본 포착률이 다른
-                                시장은 절대 규모만으로 비교하지 않습니다.
-                              </p>
-                            </section>
-                          </div>
-                        </details>
                       </div>
                       <p class="ops-footnote">
                         합성 카드매출·방문 집계 · 매출은 표본 기반 추정값을
@@ -1592,12 +1413,12 @@
       </section>
     </main>
     <div data-include="partials/footer.html"></div>
-    <script src="assets/js/include.js?v=20260907u2"></script>
-    <script src="assets/js/fade.js?v=20260907u2"></script>
-    <script src="assets/js/motion.js?v=20260907u2"></script>
-    <script src="assets/js/content.js?v=20260907u2"></script>
-    <script type="module" src="assets/js/solutions.mjs?v=20260907u2"></script>
+    <script src="assets/js/include.js?v=20260907v1"></script>
+    <script src="assets/js/fade.js?v=20260907v1"></script>
+    <script src="assets/js/motion.js?v=20260907v1"></script>
+    <script src="assets/js/content.js?v=20260907v1"></script>
+    <script type="module" src="assets/js/solutions.mjs?v=20260907v1"></script>
 
-    <script type="module" src="assets/js/sculpture.mjs?v=20260907u2"></script>
+    <script type="module" src="assets/js/sculpture.mjs?v=20260907v1"></script>
   </body>
 </html>

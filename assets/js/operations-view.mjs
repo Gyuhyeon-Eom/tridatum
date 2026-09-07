@@ -1,10 +1,10 @@
-import { esc, lineFigure, COLORS } from "./analytics-charts.mjs?v=20260907u2";
+import { esc, lineFigure, COLORS } from "./analytics-charts.mjs?v=20260907v1";
 import {
   operationalDetail,
   WORKFLOWS,
-} from "./operations-models.mjs?v=20260907u2";
-import { domainLens } from "./operations-lenses.mjs?v=20260907u2";
-import { VACANCY } from "./vacancy-regions.mjs?v=20260907u2";
+} from "./operations-models.mjs?v=20260907v1";
+import { domainLens } from "./operations-lenses.mjs?v=20260907v1";
+import { VACANCY } from "./vacancy-regions.mjs?v=20260907v1";
 const n = (v) =>
   Number(v).toLocaleString("ko-KR", { maximumFractionDigits: 2 });
 const box = (title, sub, body, cls = "") =>
@@ -42,12 +42,25 @@ export function workflowTabs(id, state) {
 function lineage(w) {
   return `<div class="ops-lineage" aria-label="분석 자료 연결">${w.lineage.map((label, i) => `<span><b>${String(i + 1).padStart(2, "0")}</b>${esc(label)}</span>`).join("")}</div>`;
 }
-function methodology(w) {
-  return `<details class="ops-method"><summary>분석 단위·지표 정의 <span>${esc(w.unit)} · ${esc(w.version)}</span><b aria-hidden="true">+</b></summary><div>${w.methods.map(([title, body]) => `<section><h5>${esc(title)}</h5><p>${esc(body)}</p></section>`).join("")}</div></details>`;
+function methodology(w, open = false) {
+  return `<details class="ops-method" ${open ? "open" : ""}><summary>분석 단위·지표 정의 <span>${esc(w.unit)} · ${esc(w.version)}</span><b aria-hidden="true">+</b></summary><div>${w.methods.map(([title, body]) => `<section><h5>${esc(title)}</h5><p>${esc(body)}</p></section>`).join("")}</div></details>`;
 }
 function waterfall(spans) {
   const total = spans.at(-1).start + spans.at(-1).duration;
   return `<div class="ops-waterfall">${spans.map((x, i) => `<div><span>${esc(x.name)}</span><div><i style="margin-left:${(x.start / total) * 100}%;width:${(x.duration / total) * 100}%;background:${COLORS[i % 3]}"></i></div><b>${n(x.duration)}ms</b></div>`).join("")}<footer>0ms <span>${n(total)}ms · 단계별 누적 시간</span></footer></div>`;
+}
+export function detailNavigation(state) {
+  const page = state.detailPage || "analysis";
+  return `<div class="ops-detail-nav" role="group" aria-label="상세 분석 페이지">${[
+    ["analysis", "주요 분석"],
+    ["records", "원자료"],
+    ["rules", "지표 정의"],
+  ]
+    .map(
+      ([key, label]) =>
+        `<button data-detail-page="${key}" aria-pressed="${page === key}">${label}</button>`,
+    )
+    .join("")}</div>`;
 }
 export function renderOperational(id, state, base) {
   if (id === "vacancy") return renderVacancy(state);
@@ -59,21 +72,71 @@ export function renderOperational(id, state, base) {
     choices.length > 1
       ? `<label class="ops-detail-picker">분석 대상<select data-detail-select aria-label="분석 대상 선택">${choices.map((r) => `<option value="${esc(r.id)}" ${r.id === state.selected ? "selected" : ""}>${esc(r.name || r.id)}</option>`).join("")}</select></label>`
       : "";
-  return `${lineage(w)}<div class="ops-detail-heading"><div><p>${esc(w.role)} · ${esc(w.unit)}</p><h4>${esc(model.title)}</h4></div>${picker}</div>${metrics(model.kpis)}${model.chart ? `<div class="ops-grid wide-left">${box(model.chart.title, model.chart.sub, figure(model.chart))}${box("분석 기준과 자료 이력", w.version, facts(model.facts))}</div>` : box("분석 기준과 자료 이력", w.version, facts(model.facts))}${model.spans ? box("요청 단계별 시간", "직렬 실행 예시 · 요청 시작 기준", waterfall(model.spans)) : ""}${model.excerpt ? box("원문 근거", "직접 작성한 합성 문서", `<blockquote class="ops-excerpt">${esc(model.excerpt)}</blockquote>`) : ""}${box(model.tableTitle, model.tableSub, table(model.columns, model.records, model.tableTitle))}${
-    model.breakdown
+  const heading = `<div class="ops-detail-heading"><h4>${esc(model.title)}</h4>${picker}</div>`;
+  let content;
+  if (state.detailPage === "records") {
+    content = `<div class="ops-detail-scroll" tabindex="0" role="region" aria-label="분석 원자료">${box(model.tableTitle, model.tableSub, table(model.columns, model.records, model.tableTitle))}${
+      model.breakdown
+        ? box(
+            "격리 사유와 원천 연결",
+            "현재 필터 범위",
+            table(
+              ["원천 ID", "격리 사유", "건수"],
+              model.breakdown.map((x) => ({
+                cells: [x.source, x.reason, x.count],
+              })),
+              "격리 사유별 건수",
+            ),
+          )
+        : ""
+    }</div>`;
+  } else if (state.detailPage === "rules") {
+    content = `<div class="ops-detail-scroll" tabindex="0" role="region" aria-label="분석 기준과 지표 정의">${lineage(w)}${box("자료 이력", w.version, facts(model.facts))}${lens ? box(lens.title, "입력값 · 계산 기준 · 해석", `<div class="ops-lens-list">${lens.rows.map((x) => `<div><h5>${esc(x.name)}</h5><strong>${esc(x.value)}</strong><p>${esc(x.basis)}</p><span>${esc(x.interpretation)}</span></div>`).join("")}</div>`) : ""}${methodology(w, true)}</div>`;
+  } else {
+    const primary = model.spans
       ? box(
-          "격리 사유와 원천 연결",
-          "현재 필터 범위",
-          table(
-            ["원천 ID", "격리 사유", "건수"],
-            model.breakdown.map((x) => ({
-              cells: [x.source, x.reason, x.count],
-            })),
-            "격리 사유별 건수",
-          ),
+          "요청 단계별 시간",
+          "요청 시작 기준 · ms",
+          waterfall(model.spans),
+          "ops-primary-panel",
         )
-      : ""
-  }${lens ? box(lens.title, "입력값 · 계산 기준 · 해석", `<div class="ops-lens-list">${lens.rows.map((x) => `<div><h5>${esc(x.name)}</h5><strong>${esc(x.value)}</strong><p>${esc(x.basis)}</p><span>${esc(x.interpretation)}</span></div>`).join("")}</div>`) : ""}${methodology(w)}`;
+      : model.excerpt
+        ? box(
+            "원문 근거",
+            "직접 작성한 합성 문서",
+            `<blockquote class="ops-excerpt">${esc(model.excerpt)}</blockquote>`,
+            "ops-primary-panel",
+          )
+        : model.chart
+          ? box(
+              model.chart.title,
+              model.chart.sub,
+              figure(model.chart),
+              "ops-primary-panel",
+            )
+          : box(
+              model.tableTitle,
+              model.tableSub,
+              table(model.columns, model.records, model.tableTitle),
+              "ops-primary-panel",
+            );
+    const companion =
+      model.spans && model.chart
+        ? box(
+            model.chart.title,
+            model.chart.sub,
+            figure(model.chart),
+            "ops-primary-panel",
+          )
+        : box(
+            "분석 기준과 자료 이력",
+            w.version,
+            facts(model.facts),
+            "ops-primary-panel",
+          );
+    content = `${metrics(model.kpis)}<div class="ops-analysis-grid">${primary}${companion}</div>`;
+  }
+  return `${heading}${content}`;
 }
 export function renderCaseQueue(id, state, base) {
   const model = operationalDetail(id, state, base.rows),
@@ -116,7 +179,7 @@ export function renderCaseQueue(id, state, base) {
     )
     .join(
       "",
-    )}</select></label></div><div class="ops-queue-layout"><div class="ops-case-list" role="group" aria-label="검토 작업 목록">${tasks.length ? tasks.map((t) => `<button data-ops-case="${esc(t.key)}" aria-pressed="${current.key === t.key}"><span><i>${done.has(t.key) ? "완료" : esc(t.priority)}</i><small>${esc(t.target)}</small></span><b>${esc(t.issue)}</b><span><small>${esc(t.owner)}</small><small>${esc(t.due)}</small></span></button>`).join("") : '<div class="ops-empty"><b>해당 상태의 작업이 없습니다.</b><p>상태 필터를 바꾸면 전체 작업을 볼 수 있습니다.</p></div>'}</div>${current ? box(current.issue, current.target, `<p class="ops-case-evidence">${esc(current.evidence)}</p><div class="ops-next-action"><span>확인 후 진행할 작업</span><p>${esc(current.next)}</p></div><fieldset class="ops-checklist"><legend>확인 항목</legend>${current.checks.map((text, i) => `<label><input type="checkbox" data-case-check="${i}" data-case-key="${esc(current.key)}" ${checks[current.key]?.includes(i) ? "checked" : ""} ${done.has(current.key) ? "disabled" : ""}/><span>${esc(text)}</span></label>`).join("")}</fieldset><button class="ops-action" data-case-complete="${esc(current.key)}" ${!done.has(current.key) && !current.checks.every((_, i) => checks[current.key]?.includes(i)) ? "disabled" : ""}>${done.has(current.key) ? "검토 다시 열기" : "확인 완료 기록"}</button><p class="ops-note">확인 항목을 모두 대조하면 완료를 기록할 수 있습니다. 기록은 이 화면에서만 유지됩니다.</p>`, "ops-case-detail") : ""}</div>${methodology(model.workflow)}`;
+    )}</select></label></div><div class="ops-queue-layout"><div class="ops-case-list" role="group" aria-label="검토 작업 목록">${tasks.length ? tasks.map((t) => `<button data-ops-case="${esc(t.key)}" aria-pressed="${current.key === t.key}"><span><i>${done.has(t.key) ? "완료" : esc(t.priority)}</i><small>${esc(t.target)}</small></span><b>${esc(t.issue)}</b><span><small>${esc(t.owner)}</small><small>${esc(t.due)}</small></span></button>`).join("") : '<div class="ops-empty"><b>해당 상태의 작업이 없습니다.</b><p>상태 필터를 바꾸면 전체 작업을 볼 수 있습니다.</p></div>'}</div>${current ? box(current.issue, current.target, `<p class="ops-case-evidence">${esc(current.evidence)}</p><div class="ops-next-action"><span>확인 후 진행할 작업</span><p>${esc(current.next)}</p></div><fieldset class="ops-checklist"><legend>확인 항목</legend>${current.checks.map((text, i) => `<label><input type="checkbox" data-case-check="${i}" data-case-key="${esc(current.key)}" ${checks[current.key]?.includes(i) ? "checked" : ""} ${done.has(current.key) ? "disabled" : ""}/><span>${esc(text)}</span></label>`).join("")}</fieldset><button class="ops-action" data-case-complete="${esc(current.key)}" ${!done.has(current.key) && !current.checks.every((_, i) => checks[current.key]?.includes(i)) ? "disabled" : ""}>${done.has(current.key) ? "검토 다시 열기" : "확인 완료 기록"}</button><p class="ops-note">확인 항목을 모두 대조하면 완료를 기록할 수 있습니다. 기록은 이 화면에서만 유지됩니다.</p>`, "ops-case-detail") : ""}</div>`;
 }
 export function operationalExport(id, state, base) {
   if ((state.view || "evidence") === "overview") return base.rows;
@@ -164,10 +227,10 @@ function regionScatter(cluster, region) {
   const X = 48,
     Y = 20,
     W = 450,
-    H = 265,
+    H = 195,
     xmax = 700,
     ymax = 100;
-  let s = `<svg viewBox="0 0 540 350" role="img" aria-label="지역별 노령화지수와 노후 건물 비율 분포"><text x="48" y="13" class="a-axis">노후 건물 비율 %</text>`;
+  let s = `<svg viewBox="0 0 540 265" role="img" aria-label="지역별 노령화지수와 노후 건물 비율 분포"><text x="48" y="13" class="a-axis">노후 건물 비율 %</text>`;
   [0, 25, 50, 75, 100].forEach((v) => {
     const y = Y + H - (v / 100) * H;
     s += `<line x1="${X}" x2="${X + W}" y1="${y}" y2="${y}" class="a-gridline"/><text x="${X - 8}" y="${y + 4}" text-anchor="end" class="a-axis">${v}</text>`;
@@ -176,7 +239,7 @@ function regionScatter(cluster, region) {
     s += `<text x="${X + (v / xmax) * W}" y="${Y + H + 22}" text-anchor="middle" class="a-axis">${v}</text>`;
   });
   s +=
-    '<text x="498" y="337" text-anchor="end" class="a-axis">노령화지수 · 유소년 100명당 고령인구</text>';
+    '<text x="498" y="257" text-anchor="end" class="a-axis">노령화지수 · 유소년 100명당 고령인구</text>';
   for (const r of VACANCY.regions) {
     const x = X + (Math.min(xmax, r.values[3]) / xmax) * W,
       y = Y + H - (r.values[5] / ymax) * H,
@@ -200,8 +263,7 @@ function renderVacancy(state) {
       0.001,
     );
   const cards = `<div class="ops-clusters" role="group" aria-label="지역 군집 선택">${VACANCY.clusters.map((c) => `<button data-vacancy-cluster="${c.id}" aria-pressed="${c.id === cluster.id}"><span>CLUSTER 0${c.id + 1}<b>${c.n}개 구역</b></span><strong>${esc(c.name)}</strong><small>${esc(c.desc)}</small></button>`).join("")}</div>`;
-  const ranks = `<div class="ops-importance"><div class="ops-importance-label"><span>변수</span><span>검증 MAE 증가 · %p</span></div>${cluster.importance.map((f, i) => `<button data-vacancy-feature="${f.feature}" aria-pressed="${f.feature === featureIndex}" title="${esc(VACANCY.features[f.feature].name)} · 평균 ${f.mean.toFixed(3)}%p, 반복 표준편차 ${f.std.toFixed(3)}%p"><span>${String(i + 1).padStart(2, "0")}</span><div><b>${esc(VACANCY.features[f.feature].name)}</b><i style="width:${(Math.abs(f.mean) / maxImportance) * 100}%"></i></div><strong>${f.mean.toFixed(3)}</strong></button>`).join("")}</div><p class="ops-note">검증 자료에서 변수를 섞었을 때의 오차 증가입니다. 영향 방향이나 인과관계를 의미하지 않습니다.</p>`;
-  const importance = cluster.importance.find((x) => x.feature === featureIndex);
+  const ranks = `<div class="ops-importance"><div class="ops-importance-label"><span>변수</span><span>검증 MAE 증가 · %p</span></div>${cluster.importance.map((f, i) => `<button data-vacancy-feature="${f.feature}" aria-pressed="${state.feature != null && f.feature === featureIndex}" title="${esc(VACANCY.features[f.feature].name)} · 평균 ${f.mean.toFixed(3)}%p, 반복 표준편차 ${f.std.toFixed(3)}%p"><span>${String(i + 1).padStart(2, "0")}</span><div><b>${esc(VACANCY.features[f.feature].name)}</b><i style="width:${(Math.abs(f.mean) / maxImportance) * 100}%"></i></div><strong>${f.mean.toFixed(3)}</strong></button>`).join("")}</div><p class="ops-note">순열 중요도 · 인과효과를 의미하지 않음</p>`;
   const method = {
     unit: "합성 소지역 × 기준 연도",
     version: "regional-vacancy v1.0",
@@ -224,40 +286,7 @@ function renderVacancy(state) {
       ],
     ],
   };
-  return `<div class="ops-model-intro"><p>지역 군집 → 변수 기여 → 조사 후보</p><h4>같은 빈집이라도 지역 유형에 따라 설명하는 변수가 다릅니다.</h4><span>합성 소지역 600개 · 입력 변수 20개 · 학습과 검증 구간 분리</span></div>${cards}${metrics(
-    [
-      ["지역 유형", `군집 0${cluster.id + 1}`, cluster.name],
-      ["군집 내 구역", `${cluster.n}개`, `검증 ${cluster.testN}개 포함`],
-      ["관측 빈집률", `${cluster.rate.toFixed(2)}%`, "합성 구역 평균"],
-      ["검증 오차", `${cluster.mae.toFixed(2)}%p`, "군집별 holdout MAE"],
-    ],
-  )}<div class="ops-grid ops-cluster-main">${box("지역 특성 분포", "선택 군집을 진하게 표시", regionScatter(cluster.id, region) + `<p class="ops-note">600개 합성 구역 · 지리적 위치가 아닌 변수 공간입니다.</p>`)}${box("빈집 예측 영향 변수 TOP 10", "변수를 선택하면 아래 분포가 바뀝니다", ranks)}</div><div class="ops-feature-heading"><div><p>선택 변수 · ${esc(feature.unit)}</p><h4>${esc(feature.name)}</h4></div><span>${importance ? `순열 중요도 ${importance.mean.toFixed(3)} ± ${importance.std.toFixed(3)}%p` : "변수 분포"}</span></div><div class="ops-grid wide-left">${box(
-    "변수 구간별 빈집률",
-    "선택 군집의 구역을 변수값 5개 구간으로 나눔",
-    figure({
-      title: feature.name,
-      labels: bins.map((b) => `${n(b.lo)}~${n(b.hi)}`),
-      series: [
-        { name: "관측 평균", values: bins.map((b) => b.observed ?? 0) },
-        {
-          name: "예측 평균",
-          values: bins.map((b) => b.predicted ?? 0),
-          dashed: true,
-        },
-      ],
-      unit: "%",
-    }),
-  )}${box(
-    "변수 정의와 비교",
-    "단위·분모·선택 구역을 함께 확인",
-    facts([
-      ["정의", feature.definition],
-      ["산식", feature.formula],
-      ["전체 중앙값", `${n(VACANCY.allMedians[featureIndex])} ${feature.unit}`],
-      ["군집 중앙값", `${n(cluster.medians[featureIndex])} ${feature.unit}`],
-      ["선택 구역", `${n(region.values[featureIndex])} ${feature.unit}`],
-    ]),
-  )}</div>${box(
+  const regionTable = box(
     "구역별 예측과 조사 우선순위",
     "같은 군집 안에서 비교 · 예측 빈집률 내림차순",
     `<label class="ops-region-picker">구역 선택<select data-vacancy-region aria-label="구역 선택">${[
@@ -287,5 +316,45 @@ function renderVacancy(state) {
       })),
       "군집별 구역 비교",
     )}`,
-  )}${methodology(method)}`;
+  );
+  const definitions = facts([
+    ["정의", feature.definition],
+    ["산식", feature.formula],
+    ["전체 중앙값", `${n(VACANCY.allMedians[featureIndex])} ${feature.unit}`],
+    ["군집 중앙값", `${n(cluster.medians[featureIndex])} ${feature.unit}`],
+    ["선택 구역", `${n(region.values[featureIndex])} ${feature.unit}`],
+  ]);
+  let content;
+  if (state.detailPage === "records") {
+    content = `<div class="ops-detail-scroll" tabindex="0" role="region" aria-label="군집별 구역 원자료">${regionTable}</div>`;
+  } else if (state.detailPage === "rules") {
+    content = `<div class="ops-detail-scroll" tabindex="0" role="region" aria-label="빈집 예측 지표 정의">${box(feature.name, feature.unit, definitions)}${methodology(method, true)}</div>`;
+  } else {
+    const selected = state.feature != null;
+    const plot = selected
+      ? figure({
+          title: feature.name,
+          labels: bins.map((b) => `${n(b.lo)}~${n(b.hi)}`),
+          series: [
+            { name: "관측 평균", values: bins.map((b) => b.observed ?? 0) },
+            {
+              name: "예측 평균",
+              values: bins.map((b) => b.predicted ?? 0),
+              dashed: true,
+            },
+          ],
+          unit: "%",
+        })
+      : regionScatter(cluster.id, region);
+    const caption = selected
+      ? `<div class="ops-feature-caption"><b>${esc(feature.name)} · ${esc(feature.unit)}</b><span>${esc(feature.definition)}</span><small>${esc(feature.formula)}</small><button data-vacancy-reset>지역 분포로 돌아가기 ↗</button></div>`
+      : `<p class="ops-note">노령화지수 × 노후 건물 비율 · 600개 합성 구역</p>`;
+    content = `${metrics([
+      ["군집 내 구역", `${cluster.n}개`, `검증 ${cluster.testN}개 포함`],
+      ["관측 빈집률", `${cluster.rate.toFixed(2)}%`, "합성 구역 평균"],
+      ["검증 오차", `${cluster.mae.toFixed(2)}%p`, "군집별 holdout MAE"],
+      ["입력 변수", "20개", "인구 · 토지 · 주거 · 접근성"],
+    ])}<div class="ops-analysis-grid ops-cluster-main">${box(selected ? `${feature.name} · 구간별 빈집률` : "지역 특성 분포", selected ? "선택 군집 · 5개 변수 구간" : "선택 군집을 진하게 표시", `<div class="ops-vacancy-plot">${plot}</div>${caption}`, "ops-primary-panel")}${box("빈집 예측 영향 변수 TOP 10", "변수를 선택해 분포 확인", ranks, "ops-primary-panel ops-rank-panel")}</div>`;
+  }
+  return `${cards}${content}`;
 }

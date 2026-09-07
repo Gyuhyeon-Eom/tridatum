@@ -1,13 +1,13 @@
 import {
   GROUPS,
   operationalDetail,
-} from "./operations-models.mjs?v=20260907u2";
-import { operationalExport } from "./operations-view.mjs?v=20260907u2";
-import { DEFINITIONS, csv } from "./solutions-data.mjs?v=20260907u2";
+} from "./operations-models.mjs?v=20260907v1";
+import { operationalExport } from "./operations-view.mjs?v=20260907v1";
+import { DEFINITIONS, csv } from "./solutions-data.mjs?v=20260907v1";
 import {
   renderSolution,
   solutionModel,
-} from "./solutions-view.mjs?v=20260907u2";
+} from "./solutions-view.mjs?v=20260907v1";
 const screen = document.getElementById("solution-screen");
 if (screen) {
   const tabs = [...document.querySelectorAll("[data-solution]")],
@@ -168,6 +168,21 @@ if (screen) {
     }
   });
   screen.addEventListener("click", (e) => {
+    const page = e.target.closest("[data-detail-page], [data-overview-page]");
+    if (page) {
+      const detail = page.hasAttribute("data-detail-page"),
+        key = detail ? "detailPage" : "overviewPage",
+        attr = detail ? "data-detail-page" : "data-overview-page";
+      states.set(current, { ...state(), [key]: page.getAttribute(attr) });
+      render(`[${attr}="${page.getAttribute(attr)}"]`);
+      return;
+    }
+    if (e.target.closest("[data-vacancy-reset]")) {
+      states.set(current, { ...state(), feature: undefined });
+      render("[data-vacancy-feature]");
+      return;
+    }
+
     const view = e.target.closest("[data-ops-view]"),
       item = e.target.closest("[data-ops-case]"),
       complete = e.target.closest("[data-case-complete]"),

@@ -13,7 +13,7 @@ import {
   mobilityData,
   sum,
   mean,
-} from "./solutions-data.mjs?v=20260907u2";
+} from "./solutions-data.mjs?v=20260907v1";
 const number = (v) => Math.round(v).toLocaleString("ko-KR");
 const round = (v, digits = 1) => +v.toFixed(digits);
 const percent = (a, b) => (b ? `${((a / b) * 100).toFixed(1)}%` : "집계 없음");

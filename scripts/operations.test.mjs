@@ -40,11 +40,17 @@ test("four groups cover each domain once and all views handle every filter", () 
   assert.deepEqual(ids.slice().sort(), DEFINITIONS.map((d) => d.id).sort());
   for (const d of DEFINITIONS)
     for (const scope of scopes[d.id])
-      for (const view of ["overview", "evidence", "tasks"]) {
-        const html = renderSolution(d.id, { scope, view });
+      for (const mode of [
+        { view: "overview" },
+        { view: "evidence" },
+        { view: "evidence", detailPage: "records" },
+        { view: "evidence", detailPage: "rules" },
+        { view: "tasks" },
+      ]) {
+        const html = renderSolution(d.id, { scope, ...mode });
         assert(
           !/NaN|undefined|Infinity/.test(html),
-          `${d.id}/${scope}/${view}`,
+          `${d.id}/${scope}/${mode.view}/${mode.detailPage || "analysis"}`,
         );
         assert(html.includes('role="tabpanel"'));
         assert(html.includes("SAMPLE"));

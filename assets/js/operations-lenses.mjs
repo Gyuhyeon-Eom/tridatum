@@ -1,5 +1,5 @@
 // Calculation definitions and synthetic domain-specific input checks.
-import { sum, mean, buildings } from "./solutions-data.mjs?v=20260907u2";
+import { sum, mean, buildings } from "./solutions-data.mjs?v=20260907v1";
 const n = (v) => Math.round(v).toLocaleString("ko-KR");
 const f = (name, value, basis, interpretation) => ({
   name,
