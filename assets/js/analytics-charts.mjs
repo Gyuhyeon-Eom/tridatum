@@ -1,4 +1,4 @@
-export const COLORS = ["#456781", "#b3876e", "#7e9195", "#a4b1bf"];
+export const COLORS = ["#2d624e", "#81b6a3", "#579e84", "#aacbbf"];
 export const esc = (s) =>
   String(s).replace(
     /[&<>"']/g,
@@ -55,6 +55,7 @@ export function lineFigure({
   unit = "",
   band = null,
   eventAt = null,
+  eventLabel = "시행 이후",
   title = "추이 분석",
 }) {
   return chart(
@@ -65,7 +66,7 @@ export function lineFigure({
         y = (v) => Y + H - ((v - min) / (max - min)) * H;
       let s = grid(o, min, max, unit);
       if (eventAt !== null)
-        s += `<rect x="${x(eventAt)}" y="${Y}" width="${X + W - x(eventAt)}" height="${H}" fill="#456781" opacity=".045"/><line x1="${x(eventAt)}" x2="${x(eventAt)}" y1="${Y}" y2="${Y + H}" stroke="#9aabb6" stroke-dasharray="4 4"/>${tx(x(eventAt) + 7, Y + 16, "시행 이후")}`;
+        s += `<rect x="${x(eventAt)}" y="${Y}" width="${X + W - x(eventAt)}" height="${H}" fill="#2d624e" opacity=".045"/><line x1="${x(eventAt)}" x2="${x(eventAt)}" y1="${Y}" y2="${Y + H}" stroke="#81b6a3" stroke-dasharray="4 4"/>${tx(x(eventAt) + 7, Y + 16, eventLabel)}`;
       if (band)
         s += `<polygon points="${band.high
           .map((v, i) => `${x(i)},${y(v)}`)
@@ -83,7 +84,7 @@ export function lineFigure({
           s += tx(x(i), Y + H + 24, l, "middle");
         const detail = `${l} · ${series.map((r) => `${r.name} ${round(r.values[i])}${unit}`).join(" / ")}`;
         s += interactive(
-          `<rect x="${Math.max(X, x(i) - W / (labels.length - 1) / 2)}" y="${Y + 18}" width="${W / (labels.length - 1)}" height="${H - 18}" fill="transparent"/><circle class="a-data-point" cx="${x(i)}" cy="${y(series[0].values[i])}" r="4" fill="${COLORS[0]}" stroke="#fff" stroke-width="2"/>`,
+          `<rect x="${Math.max(X, x(i) - W / (labels.length - 1) / 2)}" y="${Y + 18}" width="${W / (labels.length - 1)}" height="${H - 18}" fill="transparent"/><circle class="a-data-point" cx="${x(i)}" cy="${y(series[0].values[i])}" r="4" fill="${COLORS[0]}" stroke="#f6f9f8" stroke-width="2"/>`,
           detail,
         );
       });
@@ -92,7 +93,7 @@ export function lineFigure({
     series
       .map((r) => ({ name: r.name, color: r.color }))
       .concat(
-        band ? [{ name: band.name || "사분위 범위", color: "#c2d0d9" }] : [],
+        band ? [{ name: band.name || "사분위 범위", color: "#cbdcd6" }] : [],
       ),
   );
 }
@@ -141,14 +142,14 @@ export function prFigure(curves, current, baseline) {
         x = (v) => X + v * W,
         y = (v) => Y + H - v * H;
       let s = grid(o, 0, 1, "Precision");
-      s += `<path d="M${X} ${y(baseline)}H${X + W}" stroke="#a8adb2" stroke-dasharray="4 4"/>`;
+      s += `<path d="M${X} ${y(baseline)}H${X + W}" stroke="#aacbbf" stroke-dasharray="4 4"/>`;
       curves.forEach((c, i) => {
         const points = c.curve.filter(
           (_, j, a) => j % 5 === 0 || j === a.length - 1,
         );
         s += `<polyline points="${points.map((p) => `${x(p.x)},${y(p.y)}`).join(" ")}" fill="none" stroke="${COLORS[i]}" stroke-width="${i === current.model ? 2.5 : 1.4}" opacity="${i === current.model ? 1 : 0.6}"/>`;
       });
-      s += `<path d="M${X} ${y(current.precision)}H${x(current.recall)}V${Y + H}" fill="none" stroke="#8d9faa" stroke-dasharray="3 4"/><circle cx="${x(current.recall)}" cy="${y(current.precision)}" r="5" fill="${COLORS[current.model]}" stroke="#fff" stroke-width="2"/>`;
+      s += `<path d="M${X} ${y(current.precision)}H${x(current.recall)}V${Y + H}" fill="none" stroke="#81b6a3" stroke-dasharray="3 4"/><circle cx="${x(current.recall)}" cy="${y(current.precision)}" r="5" fill="${COLORS[current.model]}" stroke="#f6f9f8" stroke-width="2"/>`;
       [0, 0.25, 0.5, 0.75, 1].forEach(
         (v) => (s += tx(x(v), Y + H + 23, v, "middle")),
       );
@@ -162,7 +163,7 @@ export function prFigure(curves, current, baseline) {
       .concat([
         {
           name: `기준선 ${(baseline * 100).toFixed(1)}%`,
-          color: "#a8adb2",
+          color: "#aacbbf",
           dashed: true,
         },
       ]),
@@ -178,10 +179,10 @@ export function eventFigure(events, level = 95) {
         x = (i) => X + (i * W) / (events.length - 1),
         y = (v) => Y + H - ((v - lo) / (hi - lo)) * H;
       let s = grid(o, lo, hi, "지수 p");
-      s += `<line x1="${X}" x2="${X + W}" y1="${y(0)}" y2="${y(0)}" stroke="#9aabb4" stroke-dasharray="4 4"/><line x1="${x(5.5)}" x2="${x(5.5)}" y1="${Y}" y2="${Y + H}" stroke="#c3cbd0"/>`;
+      s += `<line x1="${X}" x2="${X + W}" y1="${y(0)}" y2="${y(0)}" stroke="#81b6a3" stroke-dasharray="4 4"/><line x1="${x(5.5)}" x2="${x(5.5)}" y1="${Y}" y2="${Y + H}" stroke="#cbdcd6"/>`;
       events.forEach((e, i) => {
         s += interactive(
-          `<path d="M${x(i)} ${y(e.lo)}V${y(e.hi)}m-4 0h8m-8 ${y(e.lo) - y(e.hi)}h8" fill="none" stroke="${i < 6 ? "#a9b8c1" : COLORS[0]}" stroke-width="1.3"/><circle cx="${x(i)}" cy="${y(e.value)}" r="3.4" fill="${i < 6 ? "#91a1ac" : COLORS[0]}"/>`,
+          `<path d="M${x(i)} ${y(e.lo)}V${y(e.hi)}m-4 0h8m-8 ${y(e.lo) - y(e.hi)}h8" fill="none" stroke="${i < 6 ? "#aacbbf" : COLORS[0]}" stroke-width="1.3"/><circle cx="${x(i)}" cy="${y(e.value)}" r="3.4" fill="${i < 6 ? "#81b6a3" : COLORS[0]}"/>`,
           `${e.label}개월 · 추정치 ${e.value.toFixed(2)} · ${level}% 구간 [${e.lo.toFixed(2)}, ${e.hi.toFixed(2)}]`,
         );
         if (i % 2 === 0 || i === events.length - 1)
@@ -191,7 +192,7 @@ export function eventFigure(events, level = 95) {
     },
     [
       { name: "시점별 변화 차이" },
-      { name: `${level}% 부트스트랩 구간`, color: "#a9b8c1" },
+      { name: `${level}% 부트스트랩 구간`, color: "#aacbbf" },
     ],
   );
 }
@@ -232,11 +233,11 @@ export function calibrationFigure(points) {
       x = (v) => X + v * W,
       y = (v) => Y + H - v * H;
     let s = grid(o, 0, 1, "실제 양성 비율");
-    s += `<path d="M${X} ${Y + H} ${X + W} ${Y}" stroke="#aebcc5" stroke-dasharray="4 4"/><polyline points="${points.map((p) => `${x(p.x)},${y(p.y)}`).join(" ")}" fill="none" stroke="${COLORS[0]}" stroke-width="1.7"/>`;
+    s += `<path d="M${X} ${Y + H} ${X + W} ${Y}" stroke="#aacbbf" stroke-dasharray="4 4"/><polyline points="${points.map((p) => `${x(p.x)},${y(p.y)}`).join(" ")}" fill="none" stroke="${COLORS[0]}" stroke-width="1.7"/>`;
     points.forEach(
       (p) =>
         (s += interactive(
-          `<circle cx="${x(p.x)}" cy="${y(p.y)}" r="${Math.min(7, 3 + Math.sqrt(p.n) / 8)}" fill="${COLORS[0]}" stroke="#fff"/>`,
+          `<circle cx="${x(p.x)}" cy="${y(p.y)}" r="${Math.min(7, 3 + Math.sqrt(p.n) / 8)}" fill="${COLORS[0]}" stroke="#f6f9f8"/>`,
           `구간 ${p.bin} · ${p.n}건 · 실제 비율 ${(p.y * 100).toFixed(1)}%`,
         )),
     );
@@ -271,7 +272,7 @@ export function heatFigure(
         );
       });
       labels.forEach((l, i) => {
-        if (i % 2 === 0 || i === labels.length - 1)
+        if (labels.length <= 6 || i % 2 === 0 || i === labels.length - 1)
           s += tx(X + (i + 0.5) * cw, Y + H + 13, l, "middle");
       });
       return s;

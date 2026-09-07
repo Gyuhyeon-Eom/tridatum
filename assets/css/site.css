@@ -3,8 +3,8 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 50;
-  color: #edf0e8;
-  background: rgba(36, 43, 41, 0.94);
+  color: var(--tone-100);
+  background: rgb(16 37 29 / 0.94);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   transition:
@@ -38,7 +38,7 @@ nav.menu {
   display: flex;
   align-items: center;
   padding: 6px;
-  background: #303936;
+  background: var(--tone-800);
   border-radius: 999px;
   gap: 3px;
 }
@@ -46,7 +46,7 @@ nav.menu a {
   font-size: 13px;
   padding: 9px 25px;
   border-radius: 999px;
-  color: #b4b5ad;
+  color: var(--tone-300);
   white-space: nowrap;
   transition:
     color 0.2s,
@@ -54,16 +54,16 @@ nav.menu a {
 }
 nav.menu a:hover,
 nav.menu a.active {
-  background: #414c46;
-  color: #fff;
+  background: var(--tone-700);
+  color: var(--tone-50);
 }
 .nav-cta {
   display: inline-flex;
   gap: 24px;
   align-items: center;
   justify-content: space-between;
-  background: #adc5b7;
-  color: #29372f;
+  background: var(--tone-300);
+  color: var(--tone-800);
   padding: 12px 18px;
   border-radius: 9px;
   font-size: 13px;
@@ -75,7 +75,7 @@ nav.menu a.active {
   transition: transform 0.2s;
 }
 .nav-cta:hover {
-  background: #fff;
+  background: var(--tone-50);
 }
 .nav-cta:hover span {
   transform: translate(2px, -2px);
@@ -84,30 +84,30 @@ nav.menu a.active {
   display: none;
 }
 .site-header.on-light {
-  color: #29372f;
-  background: rgba(240, 241, 235, 0.94);
+  color: var(--tone-800);
+  background: rgb(233 241 236 / 0.94);
 }
 .site-header.on-light nav.menu {
-  background: #e7e7df;
+  background: var(--tone-150);
 }
 .site-header.on-light nav.menu a {
-  color: #62635c;
+  color: var(--tone-600);
 }
 .site-header.on-light nav.menu a:hover,
 .site-header.on-light nav.menu a.active {
-  background: #fff;
-  color: #29372f;
+  background: var(--tone-50);
+  color: var(--tone-800);
 }
 .site-header.on-light .nav-cta {
-  background: #29372f;
-  color: #fff;
+  background: var(--tone-800);
+  color: var(--tone-50);
 }
 .site-header.on-light .nav-cta:hover {
-  background: #35362e;
+  background: var(--tone-800);
 }
 .site-footer {
-  background: #242b29;
-  color: #f5f5ed;
+  background: var(--tone-900);
+  color: var(--tone-100);
   padding: 64px max(5vw, 24px) 28px;
   margin: 0;
   border: 0;
@@ -128,7 +128,7 @@ nav.menu a.active {
   gap: 0.32em;
 }
 .footer-brand span {
-  color: #adc5b7;
+  color: var(--tone-300);
   font-weight: 350;
   font-size: 0.64em;
   transition: transform 0.3s;
@@ -137,7 +137,7 @@ nav.menu a.active {
   transform: translate(8px, -8px);
 }
 .back-top {
-  border: 1px solid #45463e;
+  border: 1px solid var(--tone-700);
   border-radius: 999px;
   min-width: 106px;
   padding: 12px 16px;
@@ -155,12 +155,12 @@ nav.menu a.active {
   display: grid;
   grid-template-columns: 1.1fr 1fr 1fr;
   gap: 40px;
-  border-top: 1px solid #35362f;
+  border-top: 1px solid var(--tone-800);
 }
 .footer-middle p {
   font-size: 13px;
   line-height: 1.7;
-  color: #a1a298;
+  color: var(--tone-400);
   max-width: 300px;
 }
 .footer-middle nav {
@@ -183,10 +183,10 @@ nav.menu a.active {
   display: flex;
   gap: 20px;
   justify-content: space-between;
-  font-size: 11px;
-  color: #96988d;
+  font-size: 12px;
+  color: var(--tone-400);
   padding-top: 22px;
-  border-top: 1px solid #35362f;
+  border-top: 1px solid var(--tone-800);
 }
 @media (max-width: 800px) {
   .nav-shell {
@@ -205,7 +205,7 @@ nav.menu a.active {
   .nav-cta {
     margin-left: auto;
     padding: 10px 12px;
-    font-size: 11px;
+    font-size: 12px;
     gap: 12px;
   }
   .nav-toggle {
@@ -234,7 +234,7 @@ nav.menu a.active {
     right: 12px;
     top: 76px;
     border-radius: 18px;
-    background: #23241e;
+    background: var(--tone-900);
     padding: 14px;
     box-shadow: 0 20px 30px #0002;
   }
@@ -264,7 +264,7 @@ nav.menu a.active {
   }
   .footer-bottom {
     flex-wrap: wrap;
-    font-size: 10px;
+    font-size: 12px;
   }
   .footer-bottom span:nth-child(2) {
     display: none;
@@ -296,7 +296,7 @@ nav.menu a.active {
   width: 0.7em;
   height: 0.7em;
   align-self: center;
-  color: #adc5b7;
+  color: var(--tone-300);
 }
 .logo .mark {
   width: 34px;

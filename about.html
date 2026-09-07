@@ -8,7 +8,7 @@
       name="description"
       content="공공 데이터 현장에서 쌓은 경험을 바탕으로 분석부터 AI 구축, 운영 이관까지 직접 수행합니다."
     />
-    <meta name="theme-color" content="#242b29" />
+    <meta name="theme-color" content="#17352a" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Tridatum" />
     <meta property="og:title" content="회사소개 · Tridatum" />
@@ -19,13 +19,13 @@
     <meta property="og:url" content="https://tridatum.co/about.html" />
     <meta
       property="og:image"
-      content="https://tridatum.co/assets/img/og.png?v=20260907r4"
+      content="https://tridatum.co/assets/img/og.png?v=20260907s3"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://tridatum.co/about.html" />
     <link
       rel="icon"
-      href="assets/img/logo-mark.svg?v=20260907r4"
+      href="assets/img/logo-mark.svg?v=20260907s3"
       type="image/svg+xml"
     />
     <link
@@ -35,13 +35,30 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="assets/css/fonts.css?v=20260907r4" />
-    <link rel="stylesheet" href="assets/css/base.css?v=20260907r4" />
-    <link rel="stylesheet" href="assets/css/components.css?v=20260907r4" />
-    <link rel="stylesheet" href="assets/css/site.css?v=20260907r4" />
-    <link rel="stylesheet" href="assets/css/design.css?v=20260907r4" />
+    <link rel="stylesheet" href="assets/css/fonts.css?v=20260907s3" />
+    <link rel="stylesheet" href="assets/css/base.css?v=20260907s3" />
+    <link rel="stylesheet" href="assets/css/components.css?v=20260907s3" />
+    <link rel="stylesheet" href="assets/css/site.css?v=20260907s3" />
+    <link rel="stylesheet" href="assets/css/design.css?v=20260907s3" />
+    <script>
+      document.documentElement.classList.add("motion-active");
+    </script>
   </head>
   <body data-page="about" class="editorial">
+    <div class="page-transition" aria-hidden="true">
+      <svg viewBox="0 0 68 68">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="6.8"
+          stroke-linecap="square"
+          stroke-linejoin="round"
+        >
+          <path d="M17 14v30q0 11 10 11h2M9 28h23" />
+          <path d="M56 14v41m0-15c0-19-26-19-26 0s26 19 26 0" />
+        </g>
+      </svg>
+    </div>
     <a class="skip-link" href="#main">본문 바로가기</a>
     <div data-include="partials/header.html"></div>
     <main id="main" tabindex="-1">
@@ -57,7 +74,9 @@
             팀입니다.
           </p>
         </div>
-        <div class="hero-index" aria-hidden="true">T<span>↗</span></div>
+        <div class="sculpture-stage" data-sculpture aria-hidden="true">
+          <div class="sculpture-fallback"><i></i><i></i><i></i></div>
+        </div>
         <div class="hero-bottom">
           <span>분석부터 운영까지.</span
           ><a href="#overview" class="scroll-link"
@@ -191,9 +210,10 @@
       </section>
     </main>
     <div data-include="partials/footer.html"></div>
-    <script src="assets/js/include.js?v=20260907r4"></script>
-    <script src="assets/js/fade.js?v=20260907r4"></script>
-    <script src="assets/js/motion.js?v=20260907r4"></script>
-    <script src="assets/js/content.js?v=20260907r4"></script>
+    <script src="assets/js/include.js?v=20260907s3"></script>
+    <script src="assets/js/fade.js?v=20260907s3"></script>
+    <script src="assets/js/motion.js?v=20260907s3"></script>
+    <script src="assets/js/content.js?v=20260907s3"></script>
+    <script type="module" src="assets/js/sculpture.mjs?v=20260907s3"></script>
   </body>
 </html>

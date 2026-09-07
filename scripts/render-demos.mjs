@@ -1,20 +1,10 @@
 // Run after editing analytics-view.mjs. The committed HTML needs no build server.
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import {
-  renderDemo,
-  renderVariants,
-  renderService,
-} from "../assets/js/analytics-view.mjs";
+
+import { renderShowcase, renderServicePreview } from "../assets/js/solutions-view.mjs";
 const root = new URL("../", import.meta.url);
-const tech = [
-  ["Python", "pandas", "SQL", "데이터 시각화"],
-  ["Python", "scikit-learn", "모델 검증", "변수 기여도"],
-  ["Python", "통계 추정", "Bootstrap", "GeoPandas"],
-  ["RAG", "Elasticsearch", "문서 파싱", "오픈소스 LLM"],
-  ["Grafana", "Prometheus", "Langfuse", "Docker"],
-];
-const stage = `<div class="demo-stage">${tech.map((tools, i) => `<div class="demo-slide ${i === 0 ? "on" : ""}"><div class="analytics" data-demo="${i}">${renderDemo(i)}</div><p class="a-sr demo-status" role="status"></p><div class="tagrow demo-tech"><span class="lab">구현에 활용하는 기술</span>${tools.map((t) => `<span class="chip">${t}</span>`).join("")}</div>${renderVariants(i)}</div>`).join("")}</div>`;
+const stage = renderShowcase();
 let file = new URL("index.html", root),
   text = readFileSync(file, "utf8");
 text = text.replace(
@@ -29,9 +19,9 @@ for (const i of [2, 1, 3])
     new RegExp(
       `<!-- SERVICE:${i}:START -->[\\s\\S]*?<!-- SERVICE:${i}:END -->`,
     ),
-    `<!-- SERVICE:${i}:START -->\n${renderService(i)}\n<!-- SERVICE:${i}:END -->`,
+    `<!-- SERVICE:${i}:START -->\n${renderServicePreview(i)}\n<!-- SERVICE:${i}:END -->`,
   );
 writeFileSync(file, text);
 console.log(
-  "Rendered five dashboards, fifteen variations and three service previews.",
+  "Rendered twelve operational workspaces and three service previews.",
 );

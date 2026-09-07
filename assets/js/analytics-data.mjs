@@ -1,4 +1,4 @@
-import SAMPLE from "./analysis-samples.mjs?v=20260907r4";
+import SAMPLE from "./analysis-samples.mjs?v=20260907s3";
 export { SAMPLE };
 export const sum = (values) => values.reduce((s, v) => s + v, 0);
 export const mean = (values) => sum(values) / values.length;
