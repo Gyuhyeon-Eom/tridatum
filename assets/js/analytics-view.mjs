@@ -1,4 +1,4 @@
-import { WORDMARK } from "./brand.mjs?v=20260907t2";
+import { WORDMARK } from "./brand.mjs?v=20260907u2";
 import {
   SAMPLE,
   REGIONS,
@@ -13,7 +13,7 @@ import {
   scoreDistribution,
   policyData,
   monitorData,
-} from "./analytics-data.mjs?v=20260907t2";
+} from "./analytics-data.mjs?v=20260907u2";
 import {
   COLORS,
   esc,
@@ -25,7 +25,7 @@ import {
   horizontalFigure,
   calibrationFigure,
   heatFigure,
-} from "./analytics-charts.mjs?v=20260907t2";
+} from "./analytics-charts.mjs?v=20260907u2";
 export { operationData, modelMetrics, policyData, monitorData, MODELS };
 const fmt = (n) => Number(n).toLocaleString("en-US");
 const fixed = (n, d = 1) => Number(n).toFixed(d);

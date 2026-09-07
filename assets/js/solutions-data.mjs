@@ -5,11 +5,11 @@ import {
   sum,
   monitorData,
   policyData,
-} from "./analytics-data.mjs?v=20260907t2";
+} from "./analytics-data.mjs?v=20260907u2";
 export { mean, sum, monitorData, policyData };
 export const DEFINITIONS = [
   ["market", "상권 종합 분석", "시장별 매출과 방문 흐름", "상권·정책"],
-  ["vacancy", "빈집 예측", "현장 조사 후보와 건물별 근거", "도시·생활"],
+  ["vacancy", "빈집 예측", "지역 유형과 빈집 예측 변수", "도시·생활"],
   ["emission", "굴뚝 모니터링", "설비 상태와 가동 중단 예측", "환경·안전"],
   ["broadcast", "방송 홍보 분석", "방송 전후 방문·검색 변화", "상권·정책"],
   ["care", "돌봄 수요 분석", "미충족 수요와 서비스 공급", "도시·생활"],

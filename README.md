@@ -4,7 +4,7 @@
 
 ## 구성
 
-- `index.html`: 3D 첫 화면, 서비스 소개, 업무 대시보드 12종, 작업 원칙, 문의
+- `index.html`: 3D 첫 화면, 서비스 소개, 4개 유형·12개 분야·36개 업무 화면, 작업 원칙, 문의
 - `services.html`: 상권·빈집·문서 검토 예시와 서비스 설명
 - `work.html`, `about.html`: 익명화한 수행 역량과 팀 소개
 - `contact.html`, `privacy.html`: 문의 폼과 개인정보처리방침
@@ -43,10 +43,16 @@
 
 ```sh
 node scripts/render-demos.mjs
-node --test scripts/solutions.test.mjs scripts/analytics.test.mjs
+node --test scripts/solutions.test.mjs scripts/analytics.test.mjs scripts/operations.test.mjs
 ```
 
 생성된 `index.html`, `services.html`을 함께 커밋합니다. 모듈과 정적 에셋을 수정한 뒤 HTML 및 모듈 import의 버전 쿼리를 같이 갱신합니다.
+
+## 분야별 상세 분석
+
+`docs/domain-workspaces.md`에 분야별 지표·집계·작업 흐름을 정리했습니다. `operations-models.mjs`, `operations-lenses.mjs`, `operations-view.mjs`가 기존 현황 화면에 상세 분석·검토함을 연결합니다. 군집·변수 분석은 `scripts/generate-vacancy-data.py`가 만든 합성 지역 자료를 사용합니다.
+
+표제는 **DATA INTO ACTION.**입니다. 공용 헤더는 사용자가 선택한 td 심볼을 노란색 바탕에 표시하고 워드마크와 함께 사용합니다.
 
 ## 공통 분석 모듈
 

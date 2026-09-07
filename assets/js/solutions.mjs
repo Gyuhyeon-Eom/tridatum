@@ -1,8 +1,13 @@
-import { DEFINITIONS, csv } from "./solutions-data.mjs?v=20260907t2";
+import {
+  GROUPS,
+  operationalDetail,
+} from "./operations-models.mjs?v=20260907u2";
+import { operationalExport } from "./operations-view.mjs?v=20260907u2";
+import { DEFINITIONS, csv } from "./solutions-data.mjs?v=20260907u2";
 import {
   renderSolution,
   solutionModel,
-} from "./solutions-view.mjs?v=20260907t2";
+} from "./solutions-view.mjs?v=20260907u2";
 const screen = document.getElementById("solution-screen");
 if (screen) {
   const tabs = [...document.querySelectorAll("[data-solution]")],
@@ -27,9 +32,39 @@ if (screen) {
     screen.setAttribute("aria-labelledby", `solution-tab-${current}`);
     if (focus) screen.querySelector(focus)?.focus({ preventScroll: true });
   }
+  function setGroup(groupId) {
+    const group = GROUPS.find((g) => g.id === groupId);
+    if (!group) return;
+    document
+      .querySelectorAll("[data-solution-group]")
+      .forEach((b) =>
+        b.setAttribute(
+          "aria-pressed",
+          String(b.dataset.solutionGroup === groupId),
+        ),
+      );
+    tabs.forEach(
+      (t) => (t.hidden = !group.members.includes(t.dataset.solution)),
+    );
+    [...mobile.options].forEach((o) => {
+      o.hidden = !group.members.includes(o.value);
+      o.disabled = o.hidden;
+    });
+    document.querySelector("[data-catalog-group]").textContent = group.name;
+  }
+  document.querySelectorAll("[data-solution-group]").forEach((button) =>
+    button.addEventListener("click", () => {
+      const group = GROUPS.find((g) => g.id === button.dataset.solutionGroup);
+      const active = group.members.includes(current)
+        ? current
+        : group.members[0];
+      show(active);
+    }),
+  );
   function show(id, keyboard = false) {
     if (!DEFINITIONS.some((d) => d.id === id)) return;
     current = id;
+    setGroup(GROUPS.find((g) => g.members.includes(id)).id);
     tabs.forEach((t) => {
       const active = t.dataset.solution === id;
       t.setAttribute("aria-selected", String(active));
@@ -44,20 +79,53 @@ if (screen) {
   tabs.forEach((tab, i) => {
     tab.addEventListener("click", () => show(tab.dataset.solution));
     tab.addEventListener("keydown", (e) => {
+      const visible = tabs.filter((t) => !t.hidden),
+        index = visible.indexOf(tab);
       let j;
       if (e.key === "ArrowRight" || e.key === "ArrowDown")
-        j = (i + 1) % tabs.length;
+        j = (index + 1) % visible.length;
       else if (e.key === "ArrowLeft" || e.key === "ArrowUp")
-        j = (i + tabs.length - 1) % tabs.length;
+        j = (index + visible.length - 1) % visible.length;
       else if (e.key === "Home") j = 0;
-      else if (e.key === "End") j = tabs.length - 1;
+      else if (e.key === "End") j = visible.length - 1;
       else return;
       e.preventDefault();
-      show(tabs[j].dataset.solution, true);
+      show(visible[j].dataset.solution, true);
     });
   });
   mobile.addEventListener("change", () => show(mobile.value));
   screen.addEventListener("change", (e) => {
+    if (e.target.matches("[data-detail-select]")) {
+      states.set(current, { ...state(), selected: e.target.value });
+      render("[data-detail-select]");
+      return;
+    }
+    if (e.target.matches("[data-case-filter]")) {
+      states.set(current, {
+        ...state(),
+        caseFilter: e.target.value,
+        caseId: undefined,
+      });
+      render("[data-case-filter]");
+      return;
+    }
+    if (e.target.matches("[data-vacancy-region]")) {
+      states.set(current, { ...state(), region: e.target.value });
+      render("[data-vacancy-region]");
+      return;
+    }
+    if (e.target.matches("[data-case-check]")) {
+      const key = e.target.dataset.caseKey,
+        index = Number(e.target.dataset.caseCheck),
+        map = { ...(state().caseChecks || {}) },
+        checked = new Set(map[key] || []);
+      if (e.target.checked) checked.add(index);
+      else checked.delete(index);
+      map[key] = [...checked];
+      states.set(current, { ...state(), caseChecks: map });
+      render(`[data-case-key="${key}"][data-case-check="${index}"]`);
+      return;
+    }
     const input = e.target.closest("[data-ops-filter]");
     if (!input) return;
     states.set(current, {
@@ -78,6 +146,21 @@ if (screen) {
     );
   }
   screen.addEventListener("keydown", (e) => {
+    const tab = e.target.closest("[data-ops-view]");
+    if (tab && ["ArrowRight", "ArrowLeft", "Home", "End"].includes(e.key)) {
+      e.preventDefault();
+      const all = [...screen.querySelectorAll("[data-ops-view]")],
+        i = all.indexOf(tab);
+      const next =
+        e.key === "Home"
+          ? 0
+          : e.key === "End"
+            ? all.length - 1
+            : (i + (e.key === "ArrowRight" ? 1 : all.length - 1)) % all.length;
+      states.set(current, { ...state(), view: all[next].dataset.opsView });
+      render(`[data-ops-view="${all[next].dataset.opsView}"]`);
+      return;
+    }
     const el = e.target.closest(".ops-map-point");
     if (el && (e.key === "Enter" || e.key === " ")) {
       e.preventDefault();
@@ -85,6 +168,62 @@ if (screen) {
     }
   });
   screen.addEventListener("click", (e) => {
+    const view = e.target.closest("[data-ops-view]"),
+      item = e.target.closest("[data-ops-case]"),
+      complete = e.target.closest("[data-case-complete]"),
+      cluster = e.target.closest("[data-vacancy-cluster]"),
+      feature = e.target.closest("[data-vacancy-feature]");
+    if (view) {
+      states.set(current, { ...state(), view: view.dataset.opsView });
+      render(`[data-ops-view="${view.dataset.opsView}"]`);
+      return;
+    }
+    if (cluster) {
+      states.set(current, {
+        ...state(),
+        cluster: cluster.dataset.vacancyCluster,
+        feature: undefined,
+        region: undefined,
+      });
+      render(`[data-vacancy-cluster="${cluster.dataset.vacancyCluster}"]`);
+      return;
+    }
+    if (feature) {
+      states.set(current, {
+        ...state(),
+        feature: feature.dataset.vacancyFeature,
+      });
+      render(`[data-vacancy-feature="${feature.dataset.vacancyFeature}"]`);
+      return;
+    }
+    if (item) {
+      states.set(current, { ...state(), caseId: item.dataset.opsCase });
+      render(`[data-ops-case="${item.dataset.opsCase}"]`);
+      return;
+    }
+    if (complete) {
+      const key = complete.dataset.caseComplete,
+        done = new Set(state().completedCases || []);
+      const model = operationalDetail(
+          current,
+          state(),
+          solutionModel(current, state()).rows,
+        ),
+        task = model.tasks.find((t) => t.key === key);
+      if (!task) return;
+      if (done.has(key)) done.delete(key);
+      else if (
+        task.checks.every((_, i) => state().caseChecks?.[key]?.includes(i))
+      )
+        done.add(key);
+      else return;
+      states.set(current, { ...state(), completedCases: [...done] });
+      render(`[data-case-complete="${key}"]`);
+      document.getElementById("solution-status").textContent = done.has(key)
+        ? "화면 내 검토 기록을 완료했습니다."
+        : "검토 작업을 다시 열었습니다.";
+      return;
+    }
     const record = e.target.closest("[data-ops-record]"),
       review = e.target.closest("[data-ops-review]"),
       source = e.target.closest("[data-ops-source]");
@@ -113,13 +252,24 @@ if (screen) {
       });
     }
     if (e.target.closest("[data-ops-export]")) {
-      const blob = new Blob([csv(solutionModel(current, state()).rows)], {
-          type: "text/csv;charset=utf-8",
-        }),
+      const blob = new Blob(
+          [
+            csv(
+              operationalExport(
+                current,
+                state(),
+                solutionModel(current, state()),
+              ),
+            ),
+          ],
+          {
+            type: "text/csv;charset=utf-8",
+          },
+        ),
         url = URL.createObjectURL(blob),
         a = document.createElement("a");
       a.href = url;
-      a.download = `tridatum-${current}-sample.csv`;
+      a.download = `tridatum-${current}-${state().view || "evidence"}-sample.csv`;
       a.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       document.getElementById("solution-status").textContent =

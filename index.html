@@ -19,13 +19,13 @@
     <meta property="og:url" content="https://tridatum.co/" />
     <meta
       property="og:image"
-      content="https://tridatum.co/assets/img/og.png?v=20260907t2"
+      content="https://tridatum.co/assets/img/og.png?v=20260907u2"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://tridatum.co/" />
     <link
       rel="icon"
-      href="assets/img/logo-mark.svg?v=20260907t2"
+      href="assets/img/logo-mark.svg?v=20260907u2"
       type="image/svg+xml"
     />
     <link
@@ -35,16 +35,17 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="assets/css/fonts.css?v=20260907t2" />
-    <link rel="stylesheet" href="assets/css/base.css?v=20260907t2" />
-    <link rel="stylesheet" href="assets/css/design-tokens.css?v=20260907t2" />
-    <link rel="stylesheet" href="assets/css/site.css?v=20260907t2" />
-    <link rel="stylesheet" href="assets/css/design.css?v=20260907t2" />
-    <link rel="stylesheet" href="assets/css/analytics.css?v=20260907t2" />
+    <link rel="stylesheet" href="assets/css/fonts.css?v=20260907u2" />
+    <link rel="stylesheet" href="assets/css/base.css?v=20260907u2" />
+    <link rel="stylesheet" href="assets/css/design-tokens.css?v=20260907u2" />
+    <link rel="stylesheet" href="assets/css/site.css?v=20260907u2" />
+    <link rel="stylesheet" href="assets/css/design.css?v=20260907u2" />
+    <link rel="stylesheet" href="assets/css/analytics.css?v=20260907u2" />
     <script>
       document.documentElement.classList.add("motion-active");
     </script>
-    <link rel="stylesheet" href="assets/css/solutions.css?v=20260907t2" />
+    <link rel="stylesheet" href="assets/css/solutions.css?v=20260907u2" />
+    <link rel="stylesheet" href="assets/css/operations.css?v=20260907u2" />
   </head>
   <body data-page="home" class="editorial">
     <div class="page-transition" aria-hidden="true">
@@ -69,7 +70,7 @@
           <p class="eyebrow">공공 데이터 분석 · AI</p>
           <h1 lang="en">
             <span class="reveal-line"><span>DATA INTO</span></span
-            ><span class="reveal-line"><span>PRACTICE.</span></span>
+            ><span class="reveal-line"><span>ACTION.</span></span>
           </h1>
           <p class="hero-caption" data-c="hero.lede">
             정책 분석, 예측 모델링, 문서 AI를 설계하고 구현합니다.
@@ -208,8 +209,31 @@
                 확인할 수 있습니다.
               </p>
               <!-- ANALYTICS:START -->
+              <div
+                class="solution-groups"
+                role="group"
+                aria-label="대시보드 유형"
+              >
+                <button data-solution-group="commerce" aria-pressed="true">
+                  <span>01<small>3개 분야</small></span
+                  ><b>상권·정책</b>
+                  <p>매출 구조 · 노출 변화 · 소비 흐름</p></button
+                ><button data-solution-group="city" aria-pressed="false">
+                  <span>02<small>3개 분야</small></span
+                  ><b>도시·생활</b>
+                  <p>조사 후보 · 서비스 공백 · 이동 경로</p></button
+                ><button data-solution-group="environment" aria-pressed="false">
+                  <span>03<small>3개 분야</small></span
+                  ><b>환경·안전</b>
+                  <p>설비 수집 · 예찰 계획 · 위험 검토</p></button
+                ><button data-solution-group="systems" aria-pressed="false">
+                  <span>04<small>3개 분야</small></span
+                  ><b>데이터·AI</b>
+                  <p>원문 대조 · 적재 품질 · 요청 추적</p>
+                </button>
+              </div>
               <div class="solution-tools">
-                <span>분야를 선택해 화면을 살펴보세요.</span>
+                <span>분야별 분석 기준과 검토 과정을 살펴보세요.</span>
                 <div
                   class="solution-appearance"
                   role="group"
@@ -232,7 +256,9 @@
               </div>
               <div class="solution-shell" data-theme="light">
                 <aside class="solution-catalog">
-                  <p class="catalog-label">업무 분야 <span>12</span></p>
+                  <p class="catalog-label">
+                    <b data-catalog-group>상권·정책</b><span>03</span>
+                  </p>
                   <div
                     class="solution-tabs"
                     role="tablist"
@@ -255,8 +281,9 @@
                       aria-controls="solution-screen"
                       tabindex="-1"
                       data-solution="vacancy"
+                      hidden
                     >
-                      <span>02</span>빈집 예측</button
+                      <span>01</span>빈집 예측</button
                     ><button
                       id="solution-tab-emission"
                       role="tab"
@@ -264,8 +291,9 @@
                       aria-controls="solution-screen"
                       tabindex="-1"
                       data-solution="emission"
+                      hidden
                     >
-                      <span>03</span>굴뚝 모니터링</button
+                      <span>01</span>굴뚝 모니터링</button
                     ><button
                       id="solution-tab-broadcast"
                       role="tab"
@@ -274,7 +302,7 @@
                       tabindex="-1"
                       data-solution="broadcast"
                     >
-                      <span>04</span>방송 홍보 분석</button
+                      <span>02</span>방송 홍보 분석</button
                     ><button
                       id="solution-tab-care"
                       role="tab"
@@ -282,8 +310,9 @@
                       aria-controls="solution-screen"
                       tabindex="-1"
                       data-solution="care"
+                      hidden
                     >
-                      <span>05</span>돌봄 수요 분석</button
+                      <span>02</span>돌봄 수요 분석</button
                     ><button
                       id="solution-tab-mobility"
                       role="tab"
@@ -291,8 +320,9 @@
                       aria-controls="solution-screen"
                       tabindex="-1"
                       data-solution="mobility"
+                      hidden
                     >
-                      <span>06</span>교통·이동 분석</button
+                      <span>03</span>교통·이동 분석</button
                     ><button
                       id="solution-tab-wildlife"
                       role="tab"
@@ -300,8 +330,9 @@
                       aria-controls="solution-screen"
                       tabindex="-1"
                       data-solution="wildlife"
+                      hidden
                     >
-                      <span>07</span>환경·예찰 분석</button
+                      <span>02</span>환경·예찰 분석</button
                     ><button
                       id="solution-tab-voucher"
                       role="tab"
@@ -310,7 +341,7 @@
                       tabindex="-1"
                       data-solution="voucher"
                     >
-                      <span>08</span>지역 소비 분석</button
+                      <span>03</span>지역 소비 분석</button
                     ><button
                       id="solution-tab-risk"
                       role="tab"
@@ -318,8 +349,9 @@
                       aria-controls="solution-screen"
                       tabindex="-1"
                       data-solution="risk"
+                      hidden
                     >
-                      <span>09</span>위험징후 탐지</button
+                      <span>03</span>위험징후 탐지</button
                     ><button
                       id="solution-tab-documents"
                       role="tab"
@@ -327,8 +359,9 @@
                       aria-controls="solution-screen"
                       tabindex="-1"
                       data-solution="documents"
+                      hidden
                     >
-                      <span>10</span>문서 검토 AI</button
+                      <span>01</span>문서 검토 AI</button
                     ><button
                       id="solution-tab-warehouse"
                       role="tab"
@@ -336,8 +369,9 @@
                       aria-controls="solution-screen"
                       tabindex="-1"
                       data-solution="warehouse"
+                      hidden
                     >
-                      <span>11</span>데이터 운영</button
+                      <span>02</span>데이터 운영</button
                     ><button
                       id="solution-tab-llm"
                       role="tab"
@@ -345,24 +379,41 @@
                       aria-controls="solution-screen"
                       tabindex="-1"
                       data-solution="llm"
+                      hidden
                     >
-                      <span>12</span>AI 운영 모니터링
+                      <span>03</span>AI 운영 모니터링
                     </button>
                   </div>
                   <label class="solution-select"
                     >업무 분야<select aria-label="업무 분야 선택">
                       <option value="market">상권 종합 분석</option>
-                      <option value="vacancy">빈집 예측</option>
-                      <option value="emission">굴뚝 모니터링</option>
+                      <option value="vacancy" hidden disabled>빈집 예측</option>
+                      <option value="emission" hidden disabled>
+                        굴뚝 모니터링
+                      </option>
                       <option value="broadcast">방송 홍보 분석</option>
-                      <option value="care">돌봄 수요 분석</option>
-                      <option value="mobility">교통·이동 분석</option>
-                      <option value="wildlife">환경·예찰 분석</option>
+                      <option value="care" hidden disabled>
+                        돌봄 수요 분석
+                      </option>
+                      <option value="mobility" hidden disabled>
+                        교통·이동 분석
+                      </option>
+                      <option value="wildlife" hidden disabled>
+                        환경·예찰 분석
+                      </option>
                       <option value="voucher">지역 소비 분석</option>
-                      <option value="risk">위험징후 탐지</option>
-                      <option value="documents">문서 검토 AI</option>
-                      <option value="warehouse">데이터 운영</option>
-                      <option value="llm">AI 운영 모니터링</option>
+                      <option value="risk" hidden disabled>
+                        위험징후 탐지
+                      </option>
+                      <option value="documents" hidden disabled>
+                        문서 검토 AI
+                      </option>
+                      <option value="warehouse" hidden disabled>
+                        데이터 운영
+                      </option>
+                      <option value="llm" hidden disabled>
+                        AI 운영 모니터링
+                      </option>
                     </select></label
                   >
                   <p class="catalog-foot">ANALYTICS<br />WORKSPACE</p>
@@ -444,1731 +495,1049 @@
                           </button>
                         </div>
                       </header>
-                      <div class="ops-metrics">
-                        <div class="ops-metric">
-                          <span>추정 카드매출</span><strong>38.36억 원</strong
-                          ><small>8월 · 전월 +0.5%</small>
-                        </div>
-                        <div class="ops-metric">
-                          <span>분석 점포</span><strong>686개</strong
-                          ><small>8개 시장</small>
-                        </div>
-                        <div class="ops-metric">
-                          <span>월 방문 추정</span><strong>220,720명</strong
-                          ><small>동일 생활권 집계</small>
-                        </div>
-                        <div class="ops-metric">
-                          <span>주말 매출 비중</span><strong>34.2%</strong
-                          ><small>토·일 거래 기준</small>
-                        </div>
+                      <div
+                        class="ops-view-tabs"
+                        role="tablist"
+                        aria-label="상권 분석 담당 작업 화면"
+                      >
+                        <button
+                          id="ops-view-evidence"
+                          role="tab"
+                          aria-selected="true"
+                          aria-controls="ops-view-panel"
+                          tabindex="0"
+                          data-ops-view="evidence"
+                        >
+                          매출 정합성</button
+                        ><button
+                          id="ops-view-overview"
+                          role="tab"
+                          aria-selected="false"
+                          aria-controls="ops-view-panel"
+                          tabindex="-1"
+                          data-ops-view="overview"
+                        >
+                          상권 현황</button
+                        ><button
+                          id="ops-view-tasks"
+                          role="tab"
+                          aria-selected="false"
+                          aria-controls="ops-view-panel"
+                          tabindex="-1"
+                          data-ops-view="tasks"
+                        >
+                          상권 검토함
+                        </button>
                       </div>
-                      <div class="ops-grid wide-left">
-                        <section class="a-panel ops-panel">
-                          <header class="ops-panel-head">
-                            <h4>시장별 거래 흐름</h4>
-                            <span>카드매출 · 억원</span>
-                          </header>
-                          <div class="a-chart">
-                            <div class="a-legend">
+                      <div
+                        id="ops-view-panel"
+                        role="tabpanel"
+                        aria-labelledby="ops-view-evidence"
+                      >
+                        <div class="ops-lineage" aria-label="분석 자료 연결">
+                          <span><b>01</b>승인·취소 원장</span
+                          ><span><b>02</b>점포 이력 연결</span
+                          ><span><b>03</b>동일점포 집계</span
+                          ><span><b>04</b>상권 비교</span>
+                        </div>
+                        <div class="ops-detail-heading">
+                          <div>
+                            <p>상권 분석 담당 · 시장 × 기준 월</p>
+                            <h4>중앙시장 · 월 마감 정합성</h4>
+                          </div>
+                          <label class="ops-detail-picker"
+                            >분석 대상<select
+                              data-detail-select
+                              aria-label="분석 대상 선택"
+                            >
+                              <option value="M-101" selected>중앙시장</option>
+                              <option value="M-102">동부시장</option>
+                              <option value="M-103">서부시장</option>
+                              <option value="M-104">수변시장</option>
+                              <option value="M-105">북문시장</option>
+                              <option value="M-106">역전시장</option>
+                              <option value="M-107">남문시장</option>
+                              <option value="M-108">생활시장</option>
+                            </select></label
+                          >
+                        </div>
+                        <div class="ops-metrics">
+                          <div class="ops-metric">
+                            <span>순매출</span><strong>27,623만원</strong
+                            ><small>승인 − 취소</small>
+                          </div>
+                          <div class="ops-metric">
+                            <span>동일점포</span><strong>66 / 71</strong
+                            ><small>두 기간 모두 관측</small>
+                          </div>
+                          <div class="ops-metric">
+                            <span>일평균 매출</span><strong>1,062만원</strong
+                            ><small>26영업일 기준</small>
+                          </div>
+                          <div class="ops-metric">
+                            <span>점포 연결률</span><strong>84.5%</strong
+                            ><small>대장과 거래 점포 연결</small>
+                          </div>
+                        </div>
+                        <div class="ops-grid wide-left">
+                          <section class="a-panel ops-panel">
+                            <header class="ops-panel-head">
+                              <h4>동일점포와 전체 점포의 변화</h4>
                               <span
-                                ><i style="--series: var(--chart-1)"></i>전체
-                                매출</span
+                                >각 계열 1월 = 100 · 합성 동일점포 집계</span
                               >
-                            </div>
-                            <svg
-                              class="a-plot-desktop"
-                              viewBox="0 0 560 278"
-                              role="group"
-                              aria-label="추이 분석"
-                            >
-                              <text
-                                class="a-axis"
-                                x="47"
-                                y="12"
-                                text-anchor="start"
+                            </header>
+                            <div class="a-chart">
+                              <div class="a-legend">
+                                <span
+                                  ><i style="--series: var(--chart-1)"></i>전체
+                                  점포</span
+                                ><span
+                                  ><i
+                                    style="
+                                      --series: var(--chart-2);
+                                      border-top: 1px dashed currentColor;
+                                      background: none;
+                                    "
+                                  ></i
+                                  >동일점포</span
+                                >
+                              </div>
+                              <svg
+                                class="a-plot-desktop"
+                                viewBox="0 0 560 278"
+                                role="group"
+                                aria-label="동일점포와 전체 점포의 변화"
                               >
-                                억원
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="541"
-                                y1="227"
-                                y2="227"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="231"
-                                text-anchor="end"
-                              >
-                                0
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="541"
-                                y1="186.4"
-                                y2="186.4"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="190.4"
-                                text-anchor="end"
-                              >
-                                10
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="541"
-                                y1="145.8"
-                                y2="145.8"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="149.8"
-                                text-anchor="end"
-                              >
-                                20
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="541"
-                                y1="105.2"
-                                y2="105.2"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="109.2"
-                                text-anchor="end"
-                              >
-                                30
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="541"
-                                y1="64.6"
-                                y2="64.6"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="68.6"
-                                text-anchor="end"
-                              >
-                                40
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="541"
-                                y1="24"
-                                y2="24"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="28"
-                                text-anchor="end"
-                              >
-                                50
-                              </text>
-                              <polyline
-                                class="a-line"
-                                pathLength="1"
-                                points="47,84.42335599999998 117.57142857142857,79.34429599999999 188.14285714285714,75.31271599999997 258.7142857142857,72.843424 329.2857142857143,71.904346 399.85714285714283,71.93154799999999 470.42857142857144,72.02086800000001 541,71.24906200000001"
-                                fill="none"
-                                stroke="var(--chart-1)"
-                                stroke-width="2"
-                                stroke-linejoin="round"
-                              />
-                              <text
-                                class="a-axis"
-                                x="47"
-                                y="251"
-                                text-anchor="middle"
-                              >
-                                1월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="1월 · 전체 매출 35.1억원"
-                                data-tip="1월 · 전체 매출 35.1억원"
-                              >
-                                <rect
+                                <text
+                                  class="a-axis"
                                   x="47"
-                                  y="42"
-                                  width="70.57142857142857"
-                                  height="185"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="47"
-                                  cy="84.42335599999998"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <text
-                                class="a-axis"
-                                x="117.57142857142857"
-                                y="251"
-                                text-anchor="middle"
-                              >
-                                2월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="2월 · 전체 매출 36.4억원"
-                                data-tip="2월 · 전체 매출 36.4억원"
-                              >
-                                <rect
-                                  x="82.28571428571428"
-                                  y="42"
-                                  width="70.57142857142857"
-                                  height="185"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="117.57142857142857"
-                                  cy="79.34429599999999"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <text
-                                class="a-axis"
-                                x="188.14285714285714"
-                                y="251"
-                                text-anchor="middle"
-                              >
-                                3월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="3월 · 전체 매출 37.4억원"
-                                data-tip="3월 · 전체 매출 37.4억원"
-                              >
-                                <rect
-                                  x="152.85714285714286"
-                                  y="42"
-                                  width="70.57142857142857"
-                                  height="185"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="188.14285714285714"
-                                  cy="75.31271599999997"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <text
-                                class="a-axis"
-                                x="258.7142857142857"
-                                y="251"
-                                text-anchor="middle"
-                              >
-                                4월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="4월 · 전체 매출 38억원"
-                                data-tip="4월 · 전체 매출 38억원"
-                              >
-                                <rect
-                                  x="223.42857142857144"
-                                  y="42"
-                                  width="70.57142857142857"
-                                  height="185"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="258.7142857142857"
-                                  cy="72.843424"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <text
-                                class="a-axis"
-                                x="329.2857142857143"
-                                y="251"
-                                text-anchor="middle"
-                              >
-                                5월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="5월 · 전체 매출 38.2억원"
-                                data-tip="5월 · 전체 매출 38.2억원"
-                              >
-                                <rect
-                                  x="294"
-                                  y="42"
-                                  width="70.57142857142857"
-                                  height="185"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="329.2857142857143"
-                                  cy="71.904346"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <text
-                                class="a-axis"
-                                x="399.85714285714283"
-                                y="251"
-                                text-anchor="middle"
-                              >
-                                6월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="6월 · 전체 매출 38.2억원"
-                                data-tip="6월 · 전체 매출 38.2억원"
-                              >
-                                <rect
-                                  x="364.57142857142856"
-                                  y="42"
-                                  width="70.57142857142857"
-                                  height="185"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="399.85714285714283"
-                                  cy="71.93154799999999"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="7월 · 전체 매출 38.2억원"
-                                data-tip="7월 · 전체 매출 38.2억원"
-                              >
-                                <rect
-                                  x="435.14285714285717"
-                                  y="42"
-                                  width="70.57142857142857"
-                                  height="185"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="470.42857142857144"
-                                  cy="72.02086800000001"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <text
-                                class="a-axis"
-                                x="541"
-                                y="251"
-                                text-anchor="middle"
-                              >
-                                8월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="8월 · 전체 매출 38.4억원"
-                                data-tip="8월 · 전체 매출 38.4억원"
-                              >
-                                <rect
-                                  x="505.7142857142857"
-                                  y="42"
-                                  width="70.57142857142857"
-                                  height="185"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="541"
-                                  cy="71.24906200000001"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g></svg
-                            ><svg
-                              class="a-plot-mobile"
-                              viewBox="0 0 360 274"
-                              role="group"
-                              aria-label="추이 분석"
-                            >
-                              <text
-                                class="a-axis"
-                                x="47"
-                                y="12"
-                                text-anchor="start"
-                              >
-                                억원
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="341"
-                                y1="223"
-                                y2="223"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="227"
-                                text-anchor="end"
-                              >
-                                0
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="341"
-                                y1="183.2"
-                                y2="183.2"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="187.2"
-                                text-anchor="end"
-                              >
-                                10
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="341"
-                                y1="143.39999999999998"
-                                y2="143.39999999999998"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="147.39999999999998"
-                                text-anchor="end"
-                              >
-                                20
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="341"
-                                y1="103.60000000000001"
-                                y2="103.60000000000001"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="107.60000000000001"
-                                text-anchor="end"
-                              >
-                                30
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="341"
-                                y1="63.79999999999998"
-                                y2="63.79999999999998"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="67.79999999999998"
-                                text-anchor="end"
-                              >
-                                40
-                              </text>
-                              <line
-                                class="a-gridline"
-                                x1="47"
-                                x2="341"
-                                y1="24"
-                                y2="24"
-                              />
-                              <text
-                                class="a-axis"
-                                x="38"
-                                y="28"
-                                text-anchor="end"
-                              >
-                                50
-                              </text>
-                              <polyline
-                                class="a-line"
-                                pathLength="1"
-                                points="47,83.23274799999999 89,78.25376800000001 131,74.30162799999997 173,71.88099200000002 215,70.960418 257,70.98708400000001 299,71.074644 341,70.31804600000001"
-                                fill="none"
-                                stroke="var(--chart-1)"
-                                stroke-width="2"
-                                stroke-linejoin="round"
-                              />
-                              <text
-                                class="a-axis"
-                                x="47"
-                                y="247"
-                                text-anchor="middle"
-                              >
-                                1월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="1월 · 전체 매출 35.1억원"
-                                data-tip="1월 · 전체 매출 35.1억원"
-                              >
-                                <rect
-                                  x="47"
-                                  y="42"
-                                  width="42"
-                                  height="181"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="47"
-                                  cy="83.23274799999999"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="2월 · 전체 매출 36.4억원"
-                                data-tip="2월 · 전체 매출 36.4억원"
-                              >
-                                <rect
-                                  x="68"
-                                  y="42"
-                                  width="42"
-                                  height="181"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="89"
-                                  cy="78.25376800000001"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <text
-                                class="a-axis"
-                                x="131"
-                                y="247"
-                                text-anchor="middle"
-                              >
-                                3월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="3월 · 전체 매출 37.4억원"
-                                data-tip="3월 · 전체 매출 37.4억원"
-                              >
-                                <rect
-                                  x="110"
-                                  y="42"
-                                  width="42"
-                                  height="181"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="131"
-                                  cy="74.30162799999997"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="4월 · 전체 매출 38억원"
-                                data-tip="4월 · 전체 매출 38억원"
-                              >
-                                <rect
-                                  x="152"
-                                  y="42"
-                                  width="42"
-                                  height="181"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="173"
-                                  cy="71.88099200000002"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <text
-                                class="a-axis"
-                                x="215"
-                                y="247"
-                                text-anchor="middle"
-                              >
-                                5월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="5월 · 전체 매출 38.2억원"
-                                data-tip="5월 · 전체 매출 38.2억원"
-                              >
-                                <rect
-                                  x="194"
-                                  y="42"
-                                  width="42"
-                                  height="181"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="215"
-                                  cy="70.960418"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="6월 · 전체 매출 38.2억원"
-                                data-tip="6월 · 전체 매출 38.2억원"
-                              >
-                                <rect
-                                  x="236"
-                                  y="42"
-                                  width="42"
-                                  height="181"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="257"
-                                  cy="70.98708400000001"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="7월 · 전체 매출 38.2억원"
-                                data-tip="7월 · 전체 매출 38.2억원"
-                              >
-                                <rect
-                                  x="278"
-                                  y="42"
-                                  width="42"
-                                  height="181"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="299"
-                                  cy="71.074644"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                              <text
-                                class="a-axis"
-                                x="341"
-                                y="247"
-                                text-anchor="middle"
-                              >
-                                8월
-                              </text>
-                              <g
-                                tabindex="0"
-                                role="img"
-                                aria-label="8월 · 전체 매출 38.4억원"
-                                data-tip="8월 · 전체 매출 38.4억원"
-                              >
-                                <rect
-                                  x="320"
-                                  y="42"
-                                  width="42"
-                                  height="181"
-                                  fill="transparent"
-                                />
-                                <circle
-                                  class="a-data-point"
-                                  cx="341"
-                                  cy="70.31804600000001"
-                                  r="4"
-                                  fill="var(--chart-1)"
-                                  stroke="#f6f9f8"
-                                  stroke-width="2"
-                                />
-                              </g>
-                            </svg>
-                            <div class="a-tooltip" hidden></div>
-                          </div>
-                        </section>
-                        <section class="a-panel ops-panel">
-                          <header class="ops-panel-head">
-                            <h4>시장별 매출 구성</h4>
-                            <span>8월 · 만원</span>
-                          </header>
-                          <div class="ops-bars">
-                            <div>
-                              <span>중앙시장</span>
-                              <div>
-                                <i
-                                  style="
-                                    width: 47.041893732970024%;
-                                    --bar: var(--chart-1);
-                                  "
-                                ></i>
-                              </div>
-                              <b>27,623</b>
-                            </div>
-                            <div>
-                              <span>동부시장</span>
-                              <div>
-                                <i
-                                  style="
-                                    width: 54.49761580381471%;
-                                    --bar: var(--chart-2);
-                                  "
-                                ></i>
-                              </div>
-                              <b>32,001</b>
-                            </div>
-                            <div>
-                              <span>서부시장</span>
-                              <div>
-                                <i
-                                  style="
-                                    width: 70.11239782016348%;
-                                    --bar: var(--chart-3);
-                                  "
-                                ></i>
-                              </div>
-                              <b>41,170</b>
-                            </div>
-                            <div>
-                              <span>수변시장</span>
-                              <div>
-                                <i
-                                  style="
-                                    width: 88.5541553133515%;
-                                    --bar: var(--chart-1);
-                                  "
-                                ></i>
-                              </div>
-                              <b>51,999</b>
-                            </div>
-                            <div>
-                              <span>북문시장</span>
-                              <div>
-                                <i
-                                  style="width: 100%; --bar: var(--chart-2)"
-                                ></i>
-                              </div>
-                              <b>58,720</b>
-                            </div>
-                            <div>
-                              <span>역전시장</span>
-                              <div>
-                                <i
-                                  style="
-                                    width: 99.90463215258856%;
-                                    --bar: var(--chart-3);
-                                  "
-                                ></i>
-                              </div>
-                              <b>58,664</b>
-                            </div>
-                            <div>
-                              <span>남문시장</span>
-                              <div>
-                                <i
-                                  style="
-                                    width: 94.97786103542234%;
-                                    --bar: var(--chart-1);
-                                  "
-                                ></i>
-                              </div>
-                              <b>55,771</b>
-                            </div>
-                            <div>
-                              <span>생활시장</span>
-                              <div>
-                                <i
-                                  style="
-                                    width: 98.22036784741145%;
-                                    --bar: var(--chart-2);
-                                  "
-                                ></i>
-                              </div>
-                              <b>57,675</b>
-                            </div>
-                          </div>
-                        </section>
-                      </div>
-                      <div class="ops-grid wide-left">
-                        <section class="a-panel ops-panel">
-                          <header class="ops-panel-head">
-                            <h4>상권 공간 분포</h4>
-                            <span>시장을 선택해 비교</span>
-                          </header>
-                          <div class="ops-map">
-                            <svg
-                              viewBox="0 0 640 360"
-                              role="group"
-                              aria-label="가상 생활권의 분석 구역 배치"
-                            >
-                              <rect
-                                width="640"
-                                height="360"
-                                fill="var(--map-bg)"
-                              />
-                              <rect
-                                x="24"
-                                y="28"
-                                width="44"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="91"
-                                y="28"
-                                width="47"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="158"
-                                y="28"
-                                width="50"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="225"
-                                y="28"
-                                width="44"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="292"
-                                y="28"
-                                width="47"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="359"
-                                y="28"
-                                width="50"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="426"
-                                y="28"
-                                width="44"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="493"
-                                y="28"
-                                width="47"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="24"
-                                y="79"
-                                width="44"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="91"
-                                y="79"
-                                width="47"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="158"
-                                y="79"
-                                width="50"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="225"
-                                y="79"
-                                width="44"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="292"
-                                y="79"
-                                width="47"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="359"
-                                y="79"
-                                width="50"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="426"
-                                y="79"
-                                width="44"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="493"
-                                y="79"
-                                width="47"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="24"
-                                y="130"
-                                width="44"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="91"
-                                y="130"
-                                width="47"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="158"
-                                y="130"
-                                width="50"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="225"
-                                y="130"
-                                width="44"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="292"
-                                y="130"
-                                width="47"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="359"
-                                y="130"
-                                width="50"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="426"
-                                y="130"
-                                width="44"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="493"
-                                y="130"
-                                width="47"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="24"
-                                y="181"
-                                width="44"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="91"
-                                y="181"
-                                width="47"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="158"
-                                y="181"
-                                width="50"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="225"
-                                y="181"
-                                width="44"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="292"
-                                y="181"
-                                width="47"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="359"
-                                y="181"
-                                width="50"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="426"
-                                y="181"
-                                width="44"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="493"
-                                y="181"
-                                width="47"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="24"
-                                y="232"
-                                width="44"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="91"
-                                y="232"
-                                width="47"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="158"
-                                y="232"
-                                width="50"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="225"
-                                y="232"
-                                width="44"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="292"
-                                y="232"
-                                width="47"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="359"
-                                y="232"
-                                width="50"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="426"
-                                y="232"
-                                width="44"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="493"
-                                y="232"
-                                width="47"
-                                height="31"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="24"
-                                y="283"
-                                width="44"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="91"
-                                y="283"
-                                width="47"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="158"
-                                y="283"
-                                width="50"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="225"
-                                y="283"
-                                width="44"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="292"
-                                y="283"
-                                width="47"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="359"
-                                y="283"
-                                width="50"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <rect
-                                x="426"
-                                y="283"
-                                width="44"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-water)"
-                              />
-                              <rect
-                                x="493"
-                                y="283"
-                                width="47"
-                                height="36"
-                                rx="3"
-                                fill="var(--map-block)"
-                              />
-                              <path
-                                d="M609 -20C521 110 657 169 562 390"
-                                stroke="var(--map-water)"
-                                stroke-width="65"
-                                fill="none"
-                              />
-                              <path
-                                d="M0 181H640M273 0V360"
-                                stroke="var(--map-road)"
-                                stroke-width="16"
-                              />
-                              <path
-                                d="M0 181H640M273 0V360"
-                                stroke="var(--map-block)"
-                                stroke-width="1"
-                                stroke-dasharray="4 7"
-                              />
-                              <path
-                                d="M40 348C170 269 377 285 567 61"
-                                fill="none"
-                                stroke="var(--map-road)"
-                                stroke-width="11"
-                              />
-                              <text
-                                x="23"
-                                y="18"
-                                fill="var(--map-ink)"
-                                font-size="12"
-                              >
-                                가상 생활권
-                              </text>
-                              <text
-                                x="600"
-                                y="38"
-                                fill="var(--map-ink)"
-                                font-size="12"
-                              >
-                                N ↑
-                              </text>
-                              <g
-                                class="ops-map-point selected"
-                                data-ops-record="M-101"
-                                role="button"
-                                tabindex="0"
-                                aria-label="중앙시장 상세 보기"
-                                aria-pressed="true"
-                              >
-                                <circle
-                                  cx="95"
-                                  cy="95"
-                                  r="34"
-                                  fill="var(--map-road)"
-                                  opacity="1"
-                                />
-                                <circle
-                                  cx="95"
-                                  cy="95"
-                                  r="29"
-                                  fill="var(--chart-3)"
-                                  stroke="var(--map-selection)"
-                                  stroke-width="3"
+                                  y="12"
+                                  text-anchor="start"
+                                >
+                                  지수
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="541"
+                                  y1="227"
+                                  y2="227"
                                 />
                                 <text
-                                  x="95"
-                                  y="99"
-                                  text-anchor="middle"
-                                  fill="var(--map-number-high)"
-                                  font-size="13"
+                                  class="a-axis"
+                                  x="38"
+                                  y="231"
+                                  text-anchor="end"
                                 >
-                                  1
+                                  0
                                 </text>
-                                <g>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="541"
+                                  y1="190.5285662953647"
+                                  y2="190.5285662953647"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="194.5285662953647"
+                                  text-anchor="end"
+                                >
+                                  25
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="541"
+                                  y1="154.0571325907294"
+                                  y2="154.0571325907294"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="158.0571325907294"
+                                  text-anchor="end"
+                                >
+                                  50
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="541"
+                                  y1="117.58569888609412"
+                                  y2="117.58569888609412"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="121.58569888609412"
+                                  text-anchor="end"
+                                >
+                                  75
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="541"
+                                  y1="81.11426518145882"
+                                  y2="81.11426518145882"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="85.11426518145882"
+                                  text-anchor="end"
+                                >
+                                  100
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="541"
+                                  y1="44.642831476823545"
+                                  y2="44.642831476823545"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="48.642831476823545"
+                                  text-anchor="end"
+                                >
+                                  125
+                                </text>
+                                <polyline
+                                  class="a-line"
+                                  pathLength="1"
+                                  points="47,81.11426518145882 117.57142857142857,65.35860582105641 188.14285714285714,54.1254042400287 258.7142857142857,50.47826086956519 329.2857142857143,54.85483291412143 399.85714285714283,64.62917714696368 470.42857142857144,75.7164929931728 541,83.01077973409986"
+                                  fill="none"
+                                  stroke="var(--chart-1)"
+                                  stroke-width="2"
+                                  stroke-linejoin="round"
+                                />
+                                <polyline
+                                  class="a-line"
+                                  pathLength="1"
+                                  points="47,81.11426518145882 117.57142857142857,66.52569169960472 188.14285714285714,56.45957599712537 258.7142857142857,53.979518505210194 329.2857142857143,59.52317642831477 399.85714285714283,70.46460653970533 470.42857142857144,82.71900826446276 541,91.18038088393817"
+                                  fill="none"
+                                  stroke="var(--chart-2)"
+                                  stroke-width="2"
+                                  stroke-linejoin="round"
+                                  stroke-dasharray="4 3"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="47"
+                                  y="251"
+                                  text-anchor="middle"
+                                >
+                                  1월
+                                </text>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="1월 · 전체 점포 100지수 / 동일점포 100지수"
+                                  data-tip="1월 · 전체 점포 100지수 / 동일점포 100지수"
+                                >
+                                  <rect
+                                    x="47"
+                                    y="42"
+                                    width="70.57142857142857"
+                                    height="185"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="47"
+                                    cy="81.11426518145882"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <text
+                                  class="a-axis"
+                                  x="117.57142857142857"
+                                  y="251"
+                                  text-anchor="middle"
+                                >
+                                  2월
+                                </text>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="2월 · 전체 점포 110.8지수 / 동일점포 110지수"
+                                  data-tip="2월 · 전체 점포 110.8지수 / 동일점포 110지수"
+                                >
+                                  <rect
+                                    x="82.28571428571428"
+                                    y="42"
+                                    width="70.57142857142857"
+                                    height="185"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="117.57142857142857"
+                                    cy="65.35860582105641"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <text
+                                  class="a-axis"
+                                  x="188.14285714285714"
+                                  y="251"
+                                  text-anchor="middle"
+                                >
+                                  3월
+                                </text>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="3월 · 전체 점포 118.5지수 / 동일점포 116.9지수"
+                                  data-tip="3월 · 전체 점포 118.5지수 / 동일점포 116.9지수"
+                                >
+                                  <rect
+                                    x="152.85714285714286"
+                                    y="42"
+                                    width="70.57142857142857"
+                                    height="185"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="188.14285714285714"
+                                    cy="54.1254042400287"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <text
+                                  class="a-axis"
+                                  x="258.7142857142857"
+                                  y="251"
+                                  text-anchor="middle"
+                                >
+                                  4월
+                                </text>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="4월 · 전체 점포 121지수 / 동일점포 118.6지수"
+                                  data-tip="4월 · 전체 점포 121지수 / 동일점포 118.6지수"
+                                >
+                                  <rect
+                                    x="223.42857142857144"
+                                    y="42"
+                                    width="70.57142857142857"
+                                    height="185"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="258.7142857142857"
+                                    cy="50.47826086956519"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <text
+                                  class="a-axis"
+                                  x="329.2857142857143"
+                                  y="251"
+                                  text-anchor="middle"
+                                >
+                                  5월
+                                </text>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="5월 · 전체 점포 118지수 / 동일점포 114.8지수"
+                                  data-tip="5월 · 전체 점포 118지수 / 동일점포 114.8지수"
+                                >
+                                  <rect
+                                    x="294"
+                                    y="42"
+                                    width="70.57142857142857"
+                                    height="185"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="329.2857142857143"
+                                    cy="54.85483291412143"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <text
+                                  class="a-axis"
+                                  x="399.85714285714283"
+                                  y="251"
+                                  text-anchor="middle"
+                                >
+                                  6월
+                                </text>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="6월 · 전체 점포 111.3지수 / 동일점포 107.3지수"
+                                  data-tip="6월 · 전체 점포 111.3지수 / 동일점포 107.3지수"
+                                >
+                                  <rect
+                                    x="364.57142857142856"
+                                    y="42"
+                                    width="70.57142857142857"
+                                    height="185"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="399.85714285714283"
+                                    cy="64.62917714696368"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="7월 · 전체 점포 103.7지수 / 동일점포 98.9지수"
+                                  data-tip="7월 · 전체 점포 103.7지수 / 동일점포 98.9지수"
+                                >
+                                  <rect
+                                    x="435.14285714285717"
+                                    y="42"
+                                    width="70.57142857142857"
+                                    height="185"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="470.42857142857144"
+                                    cy="75.7164929931728"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <text
+                                  class="a-axis"
+                                  x="541"
+                                  y="251"
+                                  text-anchor="middle"
+                                >
+                                  8월
+                                </text>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="8월 · 전체 점포 98.7지수 / 동일점포 93.1지수"
+                                  data-tip="8월 · 전체 점포 98.7지수 / 동일점포 93.1지수"
+                                >
+                                  <rect
+                                    x="505.7142857142857"
+                                    y="42"
+                                    width="70.57142857142857"
+                                    height="185"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="541"
+                                    cy="83.01077973409986"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g></svg
+                              ><svg
+                                class="a-plot-mobile"
+                                viewBox="0 0 360 274"
+                                role="group"
+                                aria-label="동일점포와 전체 점포의 변화"
+                              >
+                                <text
+                                  class="a-axis"
+                                  x="47"
+                                  y="12"
+                                  text-anchor="start"
+                                >
+                                  지수
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="341"
+                                  y1="223"
+                                  y2="223"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="227"
+                                  text-anchor="end"
+                                >
+                                  0
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="341"
+                                  y1="187.24721523535752"
+                                  y2="187.24721523535752"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="191.24721523535752"
+                                  text-anchor="end"
+                                >
+                                  25
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="341"
+                                  y1="151.49443047071503"
+                                  y2="151.49443047071503"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="155.49443047071503"
+                                  text-anchor="end"
+                                >
+                                  50
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="341"
+                                  y1="115.74164570607257"
+                                  y2="115.74164570607257"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="119.74164570607257"
+                                  text-anchor="end"
+                                >
+                                  75
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="341"
+                                  y1="79.98886094143009"
+                                  y2="79.98886094143009"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="83.98886094143009"
+                                  text-anchor="end"
+                                >
+                                  100
+                                </text>
+                                <line
+                                  class="a-gridline"
+                                  x1="47"
+                                  x2="341"
+                                  y1="44.236076176787634"
+                                  y2="44.236076176787634"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="38"
+                                  y="48.236076176787634"
+                                  text-anchor="end"
+                                >
+                                  125
+                                </text>
+                                <polyline
+                                  class="a-line"
+                                  pathLength="1"
+                                  points="47,79.98886094143009 89,64.54365792310455 131,53.53180021559464 173,49.95652173913041 215,54.24685591088752 257,63.8286022278117 299,74.69744879626299 341,81.84800574919149"
+                                  fill="none"
+                                  stroke="var(--chart-1)"
+                                  stroke-width="2"
+                                  stroke-linejoin="round"
+                                />
+                                <polyline
+                                  class="a-line"
+                                  pathLength="1"
+                                  points="47,79.98886094143009 89,65.6877470355731 131,55.81997844053177 173,53.388789076536085 215,58.823212360761744 257,69.54904779015448 299,81.56198347107434 341,89.85662953647142"
+                                  fill="none"
+                                  stroke="var(--chart-2)"
+                                  stroke-width="2"
+                                  stroke-linejoin="round"
+                                  stroke-dasharray="4 3"
+                                />
+                                <text
+                                  class="a-axis"
+                                  x="47"
+                                  y="247"
+                                  text-anchor="middle"
+                                >
+                                  1월
+                                </text>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="1월 · 전체 점포 100지수 / 동일점포 100지수"
+                                  data-tip="1월 · 전체 점포 100지수 / 동일점포 100지수"
+                                >
+                                  <rect
+                                    x="47"
+                                    y="42"
+                                    width="42"
+                                    height="181"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="47"
+                                    cy="79.98886094143009"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="2월 · 전체 점포 110.8지수 / 동일점포 110지수"
+                                  data-tip="2월 · 전체 점포 110.8지수 / 동일점포 110지수"
+                                >
+                                  <rect
+                                    x="68"
+                                    y="42"
+                                    width="42"
+                                    height="181"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="89"
+                                    cy="64.54365792310455"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <text
+                                  class="a-axis"
+                                  x="131"
+                                  y="247"
+                                  text-anchor="middle"
+                                >
+                                  3월
+                                </text>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="3월 · 전체 점포 118.5지수 / 동일점포 116.9지수"
+                                  data-tip="3월 · 전체 점포 118.5지수 / 동일점포 116.9지수"
+                                >
                                   <rect
                                     x="110"
-                                    y="65"
-                                    width="124"
-                                    height="25"
-                                    rx="4"
-                                    fill="var(--map-selection)"
+                                    y="42"
+                                    width="42"
+                                    height="181"
+                                    fill="transparent"
                                   />
-                                  <text
-                                    x="118"
-                                    y="82"
-                                    fill="var(--map-on-selection)"
-                                    font-size="12"
-                                  >
-                                    중앙시장
-                                  </text>
+                                  <circle
+                                    class="a-data-point"
+                                    cx="131"
+                                    cy="53.53180021559464"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
                                 </g>
-                              </g>
-                              <g
-                                class="ops-map-point"
-                                data-ops-record="M-102"
-                                role="button"
-                                tabindex="0"
-                                aria-label="동부시장 상세 보기"
-                                aria-pressed="false"
-                              >
-                                <circle
-                                  cx="215"
-                                  cy="95"
-                                  r="34"
-                                  fill="var(--map-road)"
-                                  opacity="0.5"
-                                />
-                                <circle
-                                  cx="215"
-                                  cy="95"
-                                  r="29"
-                                  fill="var(--chart-3)"
-                                  stroke="var(--map-road)"
-                                  stroke-width="1.5"
-                                />
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="4월 · 전체 점포 121지수 / 동일점포 118.6지수"
+                                  data-tip="4월 · 전체 점포 121지수 / 동일점포 118.6지수"
+                                >
+                                  <rect
+                                    x="152"
+                                    y="42"
+                                    width="42"
+                                    height="181"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="173"
+                                    cy="49.95652173913041"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
                                 <text
+                                  class="a-axis"
                                   x="215"
-                                  y="99"
+                                  y="247"
                                   text-anchor="middle"
-                                  fill="var(--map-number-high)"
-                                  font-size="13"
                                 >
-                                  2
+                                  5월
                                 </text>
-                              </g>
-                              <g
-                                class="ops-map-point"
-                                data-ops-record="M-103"
-                                role="button"
-                                tabindex="0"
-                                aria-label="서부시장 상세 보기"
-                                aria-pressed="false"
-                              >
-                                <circle
-                                  cx="335"
-                                  cy="95"
-                                  r="34"
-                                  fill="var(--map-road)"
-                                  opacity="0.5"
-                                />
-                                <circle
-                                  cx="335"
-                                  cy="95"
-                                  r="29"
-                                  fill="var(--chart-1)"
-                                  stroke="var(--map-road)"
-                                  stroke-width="1.5"
-                                />
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="5월 · 전체 점포 118지수 / 동일점포 114.8지수"
+                                  data-tip="5월 · 전체 점포 118지수 / 동일점포 114.8지수"
+                                >
+                                  <rect
+                                    x="194"
+                                    y="42"
+                                    width="42"
+                                    height="181"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="215"
+                                    cy="54.24685591088752"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="6월 · 전체 점포 111.3지수 / 동일점포 107.3지수"
+                                  data-tip="6월 · 전체 점포 111.3지수 / 동일점포 107.3지수"
+                                >
+                                  <rect
+                                    x="236"
+                                    y="42"
+                                    width="42"
+                                    height="181"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="257"
+                                    cy="63.8286022278117"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="7월 · 전체 점포 103.7지수 / 동일점포 98.9지수"
+                                  data-tip="7월 · 전체 점포 103.7지수 / 동일점포 98.9지수"
+                                >
+                                  <rect
+                                    x="278"
+                                    y="42"
+                                    width="42"
+                                    height="181"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="299"
+                                    cy="74.69744879626299"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
                                 <text
-                                  x="335"
-                                  y="99"
+                                  class="a-axis"
+                                  x="341"
+                                  y="247"
                                   text-anchor="middle"
-                                  fill="var(--map-number-high)"
-                                  font-size="13"
                                 >
-                                  3
+                                  8월
                                 </text>
-                              </g>
-                              <g
-                                class="ops-map-point"
-                                data-ops-record="M-104"
-                                role="button"
-                                tabindex="0"
-                                aria-label="수변시장 상세 보기"
-                                aria-pressed="false"
-                              >
-                                <circle
-                                  cx="455"
-                                  cy="95"
-                                  r="34"
-                                  fill="var(--map-road)"
-                                  opacity="0.5"
-                                />
-                                <circle
-                                  cx="455"
-                                  cy="95"
-                                  r="29"
-                                  fill="var(--chart-1)"
-                                  stroke="var(--map-road)"
-                                  stroke-width="1.5"
-                                />
-                                <text
-                                  x="455"
-                                  y="99"
-                                  text-anchor="middle"
-                                  fill="var(--map-number-high)"
-                                  font-size="13"
+                                <g
+                                  tabindex="0"
+                                  role="img"
+                                  aria-label="8월 · 전체 점포 98.7지수 / 동일점포 93.1지수"
+                                  data-tip="8월 · 전체 점포 98.7지수 / 동일점포 93.1지수"
                                 >
-                                  4
-                                </text>
-                              </g>
-                              <g
-                                class="ops-map-point"
-                                data-ops-record="M-105"
-                                role="button"
-                                tabindex="0"
-                                aria-label="북문시장 상세 보기"
-                                aria-pressed="false"
-                              >
-                                <circle
-                                  cx="95"
-                                  cy="225"
-                                  r="34"
-                                  fill="var(--map-road)"
-                                  opacity="0.5"
-                                />
-                                <circle
-                                  cx="95"
-                                  cy="225"
-                                  r="29"
-                                  fill="var(--chart-1)"
-                                  stroke="var(--map-road)"
-                                  stroke-width="1.5"
-                                />
-                                <text
-                                  x="95"
-                                  y="229"
-                                  text-anchor="middle"
-                                  fill="var(--map-number-high)"
-                                  font-size="13"
-                                >
-                                  5
-                                </text>
-                              </g>
-                              <g
-                                class="ops-map-point"
-                                data-ops-record="M-106"
-                                role="button"
-                                tabindex="0"
-                                aria-label="역전시장 상세 보기"
-                                aria-pressed="false"
-                              >
-                                <circle
-                                  cx="215"
-                                  cy="225"
-                                  r="34"
-                                  fill="var(--map-road)"
-                                  opacity="0.5"
-                                />
-                                <circle
-                                  cx="215"
-                                  cy="225"
-                                  r="29"
-                                  fill="var(--chart-1)"
-                                  stroke="var(--map-road)"
-                                  stroke-width="1.5"
-                                />
-                                <text
-                                  x="215"
-                                  y="229"
-                                  text-anchor="middle"
-                                  fill="var(--map-number-high)"
-                                  font-size="13"
-                                >
-                                  6
-                                </text>
-                              </g>
-                              <g
-                                class="ops-map-point"
-                                data-ops-record="M-107"
-                                role="button"
-                                tabindex="0"
-                                aria-label="남문시장 상세 보기"
-                                aria-pressed="false"
-                              >
-                                <circle
-                                  cx="335"
-                                  cy="225"
-                                  r="34"
-                                  fill="var(--map-road)"
-                                  opacity="0.5"
-                                />
-                                <circle
-                                  cx="335"
-                                  cy="225"
-                                  r="29"
-                                  fill="var(--chart-1)"
-                                  stroke="var(--map-road)"
-                                  stroke-width="1.5"
-                                />
-                                <text
-                                  x="335"
-                                  y="229"
-                                  text-anchor="middle"
-                                  fill="var(--map-number-high)"
-                                  font-size="13"
-                                >
-                                  7
-                                </text>
-                              </g>
-                              <g
-                                class="ops-map-point"
-                                data-ops-record="M-108"
-                                role="button"
-                                tabindex="0"
-                                aria-label="생활시장 상세 보기"
-                                aria-pressed="false"
-                              >
-                                <circle
-                                  cx="455"
-                                  cy="225"
-                                  r="34"
-                                  fill="var(--map-road)"
-                                  opacity="0.5"
-                                />
-                                <circle
-                                  cx="455"
-                                  cy="225"
-                                  r="29"
-                                  fill="var(--chart-1)"
-                                  stroke="var(--map-road)"
-                                  stroke-width="1.5"
-                                />
-                                <text
-                                  x="455"
-                                  y="229"
-                                  text-anchor="middle"
-                                  fill="var(--map-number-high)"
-                                  font-size="13"
-                                >
-                                  8
-                                </text>
-                              </g>
-                              <text
-                                x="18"
-                                y="345"
-                                fill="var(--map-ink)"
-                                font-size="12"
-                              >
-                                공간 배치 예시 · 지점을 선택해 상세 확인
-                              </text>
-                            </svg>
+                                  <rect
+                                    x="320"
+                                    y="42"
+                                    width="42"
+                                    height="181"
+                                    fill="transparent"
+                                  />
+                                  <circle
+                                    class="a-data-point"
+                                    cx="341"
+                                    cy="81.84800574919149"
+                                    r="4"
+                                    fill="var(--chart-1)"
+                                    stroke="#f6f9f8"
+                                    stroke-width="2"
+                                  />
+                                </g>
+                              </svg>
+                              <div class="a-tooltip" hidden></div>
+                            </div>
+                          </section>
+                          <section class="a-panel ops-panel">
+                            <header class="ops-panel-head">
+                              <h4>분석 기준과 자료 이력</h4>
+                              <span>sales-cohort v2.3</span>
+                            </header>
+                            <dl class="ops-facts">
+                              <div>
+                                <dt>선택 시장</dt>
+                                <dd>M-101</dd>
+                              </div>
+                              <div>
+                                <dt>집계 키</dt>
+                                <dd>market_id / 2026-08</dd>
+                              </div>
+                              <div>
+                                <dt>월 마감</dt>
+                                <dd>다음 달 3일 06:00 KST</dd>
+                              </div>
+                              <div>
+                                <dt>표본 포착</dt>
+                                <dd>60개 연결 · 11개 별도 확인</dd>
+                              </div>
+                            </dl>
+                          </section>
+                        </div>
+                        <section class="a-panel ops-panel">
+                          <header class="ops-panel-head">
+                            <h4>시장별 원장 대조</h4>
+                            <span>금액 만원 · 취소 차감 전후를 대조</span>
+                          </header>
+                          <div
+                            class="ops-table-scroll"
+                            tabindex="0"
+                            role="region"
+                            aria-label="시장별 원장 대조"
+                          >
+                            <table class="ops-table">
+                              <caption class="a-sr">
+                                시장별 원장 대조
+                              </caption>
+                              <thead>
+                                <tr>
+                                  <th scope="col">시장</th>
+                                  <th scope="col">승인</th>
+                                  <th scope="col">취소</th>
+                                  <th scope="col">순매출</th>
+                                  <th scope="col">동일점포</th>
+                                  <th scope="col">점포 연결</th>
+                                  <th scope="col">영업일</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">중앙시장</th>
+                                  <td>28,314</td>
+                                  <td>691</td>
+                                  <td>27,623</td>
+                                  <td>66/71</td>
+                                  <td>84.5%</td>
+                                  <td>26일</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">동부시장</th>
+                                  <td>32,929</td>
+                                  <td>928</td>
+                                  <td>32,001</td>
+                                  <td>100/106</td>
+                                  <td>84.9%</td>
+                                  <td>25일</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">서부시장</th>
+                                  <td>42,529</td>
+                                  <td>1,359</td>
+                                  <td>41,170</td>
+                                  <td>73/80</td>
+                                  <td>86.3%</td>
+                                  <td>24일</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">수변시장</th>
+                                  <td>53,923</td>
+                                  <td>1,924</td>
+                                  <td>51,999</td>
+                                  <td>49/54</td>
+                                  <td>87.0%</td>
+                                  <td>26일</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">북문시장</th>
+                                  <td>61,128</td>
+                                  <td>2,408</td>
+                                  <td>58,720</td>
+                                  <td>107/113</td>
+                                  <td>87.6%</td>
+                                  <td>25일</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">역전시장</th>
+                                  <td>61,304</td>
+                                  <td>2,640</td>
+                                  <td>58,664</td>
+                                  <td>90/97</td>
+                                  <td>88.7%</td>
+                                  <td>24일</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">남문시장</th>
+                                  <td>58,504</td>
+                                  <td>2,733</td>
+                                  <td>55,771</td>
+                                  <td>66/71</td>
+                                  <td>90.1%</td>
+                                  <td>26일</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">생활시장</th>
+                                  <td>60,732</td>
+                                  <td>3,057</td>
+                                  <td>57,675</td>
+                                  <td>88/94</td>
+                                  <td>91.5%</td>
+                                  <td>25일</td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </div>
                         </section>
                         <section class="a-panel ops-panel">
                           <header class="ops-panel-head">
-                            <h4>중앙시장</h4>
-                            <span>도매 중심</span>
+                            <h4>상권 비교에 사용하는 분모와 보정</h4>
+                            <span>입력값 · 계산 기준 · 해석</span>
                           </header>
-                          <div class="ops-detail-values">
-                            <div class="ops-metric">
-                              <span>점포 수</span><strong>71개</strong
-                              ><small>분석 대상</small>
+                          <div class="ops-lens-list">
+                            <div>
+                              <h5>동일점포 포착</h5>
+                              <strong>66개</strong>
+                              <p>전체 71개 중 양 기간 관측</p>
+                              <span
+                                >신규·폐업 효과와 기존 점포의 변화를 분리</span
+                              >
                             </div>
-                            <div class="ops-metric">
-                              <span>방문 추정</span><strong>27,097명</strong
-                              ><small>월 단위</small>
+                            <div>
+                              <h5>영업일 보정 순매출</h5>
+                              <strong>1,062만원/일</strong>
+                              <p>27,623만원 ÷ 26일</p>
+                              <span>달력 일수와 실제 영업일의 차이 구분</span>
                             </div>
-                          </div>
-                          <div class="ops-insight">
-                            <span>거래 패턴</span>
-                            <p>
-                              평일 거래 비중이 높습니다. 도매 거래 시간대와 물류
-                              동선을 먼저 검토합니다.
-                            </p>
+                            <div>
+                              <h5>취소 반영률</h5>
+                              <strong>2.44%</strong>
+                              <p>취소 / 승인 × 100</p>
+                              <span>월 마감 이후 취소의 원승인 귀속 확인</span>
+                            </div>
+                            <div>
+                              <h5>전월 비교</h5>
+                              <strong>-4.9%</strong>
+                              <p>7월 → 8월</p>
+                              <span>동일 유형·모집단을 고정한 뒤 해석</span>
+                            </div>
+                            <div>
+                              <h5>주말 매출 비중</h5>
+                              <strong>23%</strong>
+                              <p>토·일 순매출 / 월 순매출</p>
+                              <span
+                                >도매 거래 시간대와 소매 방문 시간대 구분</span
+                              >
+                            </div>
+                            <div>
+                              <h5>점포당 월 순매출</h5>
+                              <strong>389만원/점포</strong>
+                              <p>연결 대상 점포 수 기준</p>
+                              <span>면적·업종·표본 포착률을 함께 비교</span>
+                            </div>
+                            <div>
+                              <h5>거래 유형</h5>
+                              <strong>도매</strong>
+                              <p>도매·소매 별도 집계</p>
+                              <span
+                                >도매 물류 거래를 방문객 구매 전환으로 해석하지
+                                않음</span
+                              >
+                            </div>
+                            <div>
+                              <h5>생활인구 연결</h5>
+                              <strong>거주·직장·방문 구분</strong>
+                              <p>서로 다른 관측 모집단</p>
+                              <span
+                                >방문 추정 인원과 구매자 수를 직접 나누지
+                                않음</span
+                              >
+                            </div>
                           </div>
                         </section>
+                        <details class="ops-method">
+                          <summary>
+                            분석 단위·지표 정의
+                            <span>시장 × 기준 월 · sales-cohort v2.3</span
+                            ><b aria-hidden="true">+</b>
+                          </summary>
+                          <div>
+                            <section>
+                              <h5>매출 기준</h5>
+                              <p>
+                                승인 금액에서 취소를 차감한 순매출입니다. 원장
+                                금액은 만원 단위이며 월 마감 이후 취소는 별도
+                                조정합니다.
+                              </p>
+                            </section>
+                            <section>
+                              <h5>비교 모집단</h5>
+                              <p>
+                                현재 점포 전체와 두 기간에 모두 관측된
+                                동일점포를 분리합니다. 신규·폐업 점포의 구성
+                                변화가 기존 점포의 성장률로 섞이지 않도록
+                                합니다.
+                              </p>
+                            </section>
+                            <section>
+                              <h5>해석 단위</h5>
+                              <p>
+                                영업일 보정은 매출 ÷ 해당 기간 영업일로
+                                계산합니다. 도매·소매와 표본 포착률이 다른
+                                시장은 절대 규모만으로 비교하지 않습니다.
+                              </p>
+                            </section>
+                          </div>
+                        </details>
                       </div>
-                      <section class="a-panel ops-panel">
-                        <header class="ops-panel-head">
-                          <h4>시장별 비교</h4>
-                          <span>행을 선택해 상세 보기</span>
-                        </header>
-                        <div
-                          class="ops-table-scroll"
-                          tabindex="0"
-                          role="region"
-                          aria-label="시장별 매출 비교"
-                        >
-                          <table class="ops-table">
-                            <caption class="a-sr">
-                              시장별 매출 비교
-                            </caption>
-                            <thead>
-                              <tr>
-                                <th scope="col">시장</th>
-                                <th scope="col">거래 유형</th>
-                                <th scope="col">점포</th>
-                                <th scope="col">카드매출</th>
-                                <th scope="col">주말 비중</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">
-                                  <button
-                                    class="ops-record selected"
-                                    data-ops-record="M-101"
-                                    aria-pressed="true"
-                                  >
-                                    중앙시장<span aria-hidden="true">↗</span>
-                                  </button>
-                                </th>
-                                <td>도매</td>
-                                <td>71</td>
-                                <td>27,623만원</td>
-                                <td>23%</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <button
-                                    class="ops-record"
-                                    data-ops-record="M-102"
-                                    aria-pressed="false"
-                                  >
-                                    동부시장<span aria-hidden="true">↗</span>
-                                  </button>
-                                </th>
-                                <td>소매</td>
-                                <td>106</td>
-                                <td>32,001만원</td>
-                                <td>47%</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <button
-                                    class="ops-record"
-                                    data-ops-record="M-103"
-                                    aria-pressed="false"
-                                  >
-                                    서부시장<span aria-hidden="true">↗</span>
-                                  </button>
-                                </th>
-                                <td>소매</td>
-                                <td>80</td>
-                                <td>41,170만원</td>
-                                <td>21%</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <button
-                                    class="ops-record"
-                                    data-ops-record="M-104"
-                                    aria-pressed="false"
-                                  >
-                                    수변시장<span aria-hidden="true">↗</span>
-                                  </button>
-                                </th>
-                                <td>도매</td>
-                                <td>54</td>
-                                <td>51,999만원</td>
-                                <td>26%</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <button
-                                    class="ops-record"
-                                    data-ops-record="M-105"
-                                    aria-pressed="false"
-                                  >
-                                    북문시장<span aria-hidden="true">↗</span>
-                                  </button>
-                                </th>
-                                <td>소매</td>
-                                <td>113</td>
-                                <td>58,720만원</td>
-                                <td>38%</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <button
-                                    class="ops-record"
-                                    data-ops-record="M-106"
-                                    aria-pressed="false"
-                                  >
-                                    역전시장<span aria-hidden="true">↗</span>
-                                  </button>
-                                </th>
-                                <td>소매</td>
-                                <td>97</td>
-                                <td>58,664만원</td>
-                                <td>27%</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <button
-                                    class="ops-record"
-                                    data-ops-record="M-107"
-                                    aria-pressed="false"
-                                  >
-                                    남문시장<span aria-hidden="true">↗</span>
-                                  </button>
-                                </th>
-                                <td>도매</td>
-                                <td>71</td>
-                                <td>55,771만원</td>
-                                <td>42%</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <button
-                                    class="ops-record"
-                                    data-ops-record="M-108"
-                                    aria-pressed="false"
-                                  >
-                                    생활시장<span aria-hidden="true">↗</span>
-                                  </button>
-                                </th>
-                                <td>소매</td>
-                                <td>94</td>
-                                <td>57,675만원</td>
-                                <td>45%</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </section>
                       <p class="ops-footnote">
                         합성 카드매출·방문 집계 · 매출은 표본 기반 추정값을
                         표현한 예시입니다.
@@ -2223,12 +1592,12 @@
       </section>
     </main>
     <div data-include="partials/footer.html"></div>
-    <script src="assets/js/include.js?v=20260907t2"></script>
-    <script src="assets/js/fade.js?v=20260907t2"></script>
-    <script src="assets/js/motion.js?v=20260907t2"></script>
-    <script src="assets/js/content.js?v=20260907t2"></script>
-    <script type="module" src="assets/js/solutions.mjs?v=20260907t2"></script>
+    <script src="assets/js/include.js?v=20260907u2"></script>
+    <script src="assets/js/fade.js?v=20260907u2"></script>
+    <script src="assets/js/motion.js?v=20260907u2"></script>
+    <script src="assets/js/content.js?v=20260907u2"></script>
+    <script type="module" src="assets/js/solutions.mjs?v=20260907u2"></script>
 
-    <script type="module" src="assets/js/sculpture.mjs?v=20260907t2"></script>
+    <script type="module" src="assets/js/sculpture.mjs?v=20260907u2"></script>
   </body>
 </html>

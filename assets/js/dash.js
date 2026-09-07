@@ -1,4 +1,4 @@
-import { renderDemo, renderDetail } from "./analytics-view.mjs?v=20260907t2";
+import { renderDemo, renderDetail } from "./analytics-view.mjs?v=20260907u2";
 const states = new WeakMap();
 function render(host, state, focus) {
   host.innerHTML = renderDemo(Number(host.dataset.demo), state);

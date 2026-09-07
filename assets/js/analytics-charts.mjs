@@ -67,11 +67,12 @@ export function lineFigure({
     title,
     (o) => {
       const { compact, X, Y, W, H, h } = o,
-        x = (i) => X + (i * W) / (labels.length - 1),
+        x = (i) =>
+          labels.length === 1 ? X + W / 2 : X + (i * W) / (labels.length - 1),
         y = (v) => Y + H - ((v - min) / (max - min)) * H;
       let s = grid(o, min, max, unit);
       if (eventAt !== null)
-        s += `<rect x="${x(eventAt)}" y="${Y}" width="${X + W - x(eventAt)}" height="${H}" fill="#2d624e" opacity=".045"/><line x1="${x(eventAt)}" x2="${x(eventAt)}" y1="${Y}" y2="${Y + H}" stroke="#81b6a3" stroke-dasharray="4 4"/>${tx(x(eventAt) + 7, Y + 16, eventLabel)}`;
+        s += `<rect x="${x(eventAt)}" y="${Y}" width="${X + W - x(eventAt)}" height="${H}" fill="var(--tone-950)" opacity=".045"/><line x1="${x(eventAt)}" x2="${x(eventAt)}" y1="${Y}" y2="${Y + H}" stroke="var(--tone-500)" stroke-dasharray="4 4"/>${tx(x(eventAt) + 7, Y + 16, eventLabel)}`;
       if (band)
         s += `<polygon points="${band.high
           .map((v, i) => `${x(i)},${y(v)}`)
@@ -89,14 +90,14 @@ export function lineFigure({
           s += tx(x(i), Y + H + 24, l, "middle");
         const detail = `${l} · ${series.map((r) => `${r.name} ${round(r.values[i])}${unit}`).join(" / ")}`;
         s += interactive(
-          `<rect x="${Math.max(X, x(i) - W / (labels.length - 1) / 2)}" y="${Y + 18}" width="${W / (labels.length - 1)}" height="${H - 18}" fill="transparent"/><circle class="a-data-point" cx="${x(i)}" cy="${y(series[0].values[i])}" r="4" fill="${COLORS[0]}" stroke="#f6f9f8" stroke-width="2"/>`,
+          `<rect x="${Math.max(X, x(i) - W / Math.max(1, labels.length - 1) / 2)}" y="${Y + 18}" width="${W / Math.max(1, labels.length - 1)}" height="${H - 18}" fill="transparent"/><circle class="a-data-point" cx="${x(i)}" cy="${y(series[0].values[i])}" r="4" fill="${COLORS[0]}" stroke="#f6f9f8" stroke-width="2"/>`,
           detail,
         );
       });
       return s;
     },
     series
-      .map((r) => ({ name: r.name, color: r.color }))
+      .map((r) => ({ name: r.name, color: r.color, dashed: r.dashed }))
       .concat(
         band ? [{ name: band.name || "사분위 범위", color: "#cbdcd6" }] : [],
       ),
@@ -184,7 +185,7 @@ export function eventFigure(events, level = 95) {
         x = (i) => X + (i * W) / (events.length - 1),
         y = (v) => Y + H - ((v - lo) / (hi - lo)) * H;
       let s = grid(o, lo, hi, "지수 p");
-      s += `<line x1="${X}" x2="${X + W}" y1="${y(0)}" y2="${y(0)}" stroke="#81b6a3" stroke-dasharray="4 4"/><line x1="${x(5.5)}" x2="${x(5.5)}" y1="${Y}" y2="${Y + H}" stroke="#cbdcd6"/>`;
+      s += `<line x1="${X}" x2="${X + W}" y1="${y(0)}" y2="${y(0)}" stroke="var(--tone-500)" stroke-dasharray="4 4"/><line x1="${x(5.5)}" x2="${x(5.5)}" y1="${Y}" y2="${Y + H}" stroke="#cbdcd6"/>`;
       events.forEach((e, i) => {
         s += interactive(
           `<path d="M${x(i)} ${y(e.lo)}V${y(e.hi)}m-4 0h8m-8 ${y(e.lo) - y(e.hi)}h8" fill="none" stroke="${i < 6 ? "#aacbbf" : COLORS[0]}" stroke-width="1.3"/><circle cx="${x(i)}" cy="${y(e.value)}" r="3.4" fill="${i < 6 ? "#81b6a3" : COLORS[0]}"/>`,

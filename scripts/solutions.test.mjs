@@ -35,7 +35,7 @@ test("all twelve workspaces render every filter choice without invalid values", 
     for (const scope of choices[id]) {
       const state = { scope },
         model = solutionModel(id, state),
-        markup = renderSolution(id, state);
+        markup = renderSolution(id, { ...state, view: "overview" });
       assert(model.rows.length > 0, `${id}: empty records`);
       assert(!/NaN|undefined|Infinity/.test(markup), id);
       assert(markup.includes("SAMPLE"), id);
@@ -49,7 +49,7 @@ test("market period and type filters retain the selected source records", () => 
       const m = period - 1,
         total = sum(rows.map((r) => r.monthly[m]));
       assert(
-        renderSolution("market", { scope, period }).includes(
+        renderSolution("market", { scope, period, view: "overview" }).includes(
           `${(total / 10000).toFixed(2)}억 원`,
         ),
       );
@@ -63,7 +63,10 @@ test("market period and type filters retain the selected source records", () => 
 });
 test("property and equipment selections keep the detail attached to its record", () => {
   for (const r of [buildings[0], buildings[20]]) {
-    const html = renderSolution("vacancy", { selected: r.id });
+    const html = renderSolution("vacancy", {
+      selected: r.id,
+      view: "overview",
+    });
     assert(html.includes(`${r.id} · ${r.name}`));
     assert(html.includes(r.score.toFixed(2)));
   }
@@ -71,6 +74,7 @@ test("property and equipment selections keep the detail attached to its record",
     const html = renderSolution("emission", {
       selected: r.id,
       channel: "oxygen",
+      view: "overview",
     });
     assert(html.includes(`${r.id} · 산소 농도`));
     assert.equal(r.forecast.length, 48);
@@ -97,6 +101,7 @@ test("care allocation, OD counts and warehouse reconciliation remain consistent"
 test("document review and CSV export are deterministic and scoped", () => {
   const markup = renderSolution("documents", {
     selected: "DOC-042",
+    view: "overview",
     reviewed: ["DOC-042"],
   });
   assert(markup.includes("일정표 미첨부"));

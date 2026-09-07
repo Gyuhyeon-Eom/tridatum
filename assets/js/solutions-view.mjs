@@ -17,15 +17,21 @@ import {
   mean,
   sum,
   monitorData,
-} from "./solutions-data.mjs?v=20260907t2";
+} from "./solutions-data.mjs?v=20260907u2";
 import {
   lineFigure,
   histogramFigure,
   heatFigure,
   esc,
   COLORS,
-} from "./analytics-charts.mjs?v=20260907t2";
-import { WORDMARK } from "./brand.mjs?v=20260907t2";
+} from "./analytics-charts.mjs?v=20260907u2";
+import { WORDMARK } from "./brand.mjs?v=20260907u2";
+import { GROUPS, qualityBreakdown } from "./operations-models.mjs?v=20260907u2";
+import {
+  workflowTabs,
+  renderOperational,
+  renderCaseQueue,
+} from "./operations-view.mjs?v=20260907u2";
 const n = (v) => Math.round(v).toLocaleString("ko-KR"),
   pct = (v) => `${v.toFixed(1)}%`,
   change = (a, b) => `${a >= b ? "+" : ""}${((a / b - 1) * 100).toFixed(1)}%`;
@@ -672,11 +678,9 @@ function warehouseView(state) {
     )}<div class="ops-grid">${panel(
       "품질 점검",
       "격리 사유",
-      bars([
-        { name: "좌표 형식", value: 47 },
-        { name: "중복 키", value: 83 },
-        { name: "측정값 결측", value: 45 },
-      ]),
+      bars(
+        qualityBreakdown(rows).map((x) => ({ name: x.reason, value: x.count })),
+      ),
     )}${panel("재처리 기준", "운영 확인", `<div class="ops-insight"><span>격리 후 검토</span><p>원천 키와 적재 시점을 남겨 오류 레코드를 추적합니다. 수정된 기록만 다시 검증해 적재합니다.</p></div>`)}</div>`,
     note: "합성 배치 로그 · 운영 DB와 연결되지 않은 예시입니다.",
     rows,
@@ -781,10 +785,10 @@ export function renderSolution(id = "market", state = {}) {
   }
   const def = DEFINITIONS.find((r) => r.id === id) || DEFINITIONS[0],
     d = solutionModel(def.id, state);
-  return `<div class="ops-workspace analytics" data-ops-id="${def.id}"><div class="ops-chrome"><div>${WORDMARK}<span>${def.group}</span></div><span class="ops-sample">SAMPLE · 2026.08</span></div><div class="ops-body"><header class="ops-heading"><div><p>${def.desc}</p><h3>${def.title}</h3></div><div class="ops-controls">${d.filters}<button class="ops-export" data-ops-export>CSV 내보내기 <span aria-hidden="true">↓</span></button></div></header><div class="ops-metrics">${d.metrics.join("")}</div>${d.body}<p class="ops-footnote">${d.note}</p></div></div>`;
+  return `<div class="ops-workspace analytics" data-ops-id="${def.id}"><div class="ops-chrome"><div>${WORDMARK}<span>${def.group}</span></div><span class="ops-sample">SAMPLE · 2026.08</span></div><div class="ops-body"><header class="ops-heading"><div><p>${def.desc}</p><h3>${def.title}</h3></div><div class="ops-controls">${id === "vacancy" && (!state.view || state.view === "evidence") ? "" : d.filters}<button class="ops-export" data-ops-export>CSV 내보내기 <span aria-hidden="true">↓</span></button></div></header>${workflowTabs(id, state)}<div id="ops-view-panel" role="tabpanel" aria-labelledby="ops-view-${state.view || "evidence"}">${state.view === "overview" ? `<div class="ops-metrics">${d.metrics.join("")}</div>${d.body}` : state.view === "tasks" ? renderCaseQueue(id, state, d) : renderOperational(id, state, d)}</div><p class="ops-footnote">${id === "vacancy" && (!state.view || state.view === "evidence") ? "합성 지역·변수로 학습한 예측 모델과 군집 분석입니다. 실제 지역·기관의 수행 성과가 아닙니다." : d.note}</p></div></div>`;
 }
 export function renderShowcase() {
-  return `<div class="solution-tools"><span>분야를 선택해 화면을 살펴보세요.</span><div class="solution-appearance" role="group" aria-label="업무 화면 테마"><button type="button" data-workspace-theme="light" aria-pressed="true">밝게</button><button type="button" data-workspace-theme="dark" aria-pressed="false">어둡게</button></div></div><div class="solution-shell" data-theme="light"><aside class="solution-catalog"><p class="catalog-label">업무 분야 <span>12</span></p><div class="solution-tabs" role="tablist" aria-orientation="vertical" aria-label="업무 분야">${DEFINITIONS.map((d, i) => `<button id="solution-tab-${d.id}" role="tab" aria-selected="${i === 0}" aria-controls="solution-screen" tabindex="${i === 0 ? 0 : -1}" data-solution="${d.id}"><span>${String(i + 1).padStart(2, "0")}</span>${d.title}</button>`).join("")}</div><label class="solution-select">업무 분야<select aria-label="업무 분야 선택">${DEFINITIONS.map((d) => `<option value="${d.id}">${d.title}</option>`).join("")}</select></label><p class="catalog-foot">ANALYTICS<br/>WORKSPACE</p></aside><div id="solution-screen" role="tabpanel" aria-labelledby="solution-tab-market">${renderSolution()}</div></div><p class="a-sr" id="solution-status" role="status"></p>`;
+  return `<div class="solution-groups" role="group" aria-label="대시보드 유형">${GROUPS.map((g, i) => `<button data-solution-group="${g.id}" aria-pressed="${i === 0}"><span>0${i + 1}<small>${g.members.length}개 분야</small></span><b>${g.name}</b><p>${g.desc}</p></button>`).join("")}</div><div class="solution-tools"><span>분야별 분석 기준과 검토 과정을 살펴보세요.</span><div class="solution-appearance" role="group" aria-label="업무 화면 테마"><button type="button" data-workspace-theme="light" aria-pressed="true">밝게</button><button type="button" data-workspace-theme="dark" aria-pressed="false">어둡게</button></div></div><div class="solution-shell" data-theme="light"><aside class="solution-catalog"><p class="catalog-label"><b data-catalog-group>상권·정책</b><span>03</span></p><div class="solution-tabs" role="tablist" aria-orientation="vertical" aria-label="업무 분야">${DEFINITIONS.map((d, i) => `<button id="solution-tab-${d.id}" role="tab" aria-selected="${i === 0}" aria-controls="solution-screen" tabindex="${i === 0 ? 0 : -1}" data-solution="${d.id}" ${GROUPS[0].members.includes(d.id) ? "" : "hidden"}><span>${String(GROUPS.find((g) => g.members.includes(d.id)).members.indexOf(d.id) + 1).padStart(2, "0")}</span>${d.title}</button>`).join("")}</div><label class="solution-select">업무 분야<select aria-label="업무 분야 선택">${DEFINITIONS.map((d) => `<option value="${d.id}" ${GROUPS[0].members.includes(d.id) ? "" : "hidden disabled"}>${d.title}</option>`).join("")}</select></label><p class="catalog-foot">ANALYTICS<br/>WORKSPACE</p></aside><div id="solution-screen" role="tabpanel" aria-labelledby="solution-tab-market">${renderSolution()}</div></div><p class="a-sr" id="solution-status" role="status"></p>`;
 }
 
 export function renderServicePreview(index) {
