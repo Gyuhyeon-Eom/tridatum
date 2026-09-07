@@ -23,11 +23,11 @@ if (host) {
     camera.lookAt(0, 0, 0);
     const group = new THREE.Group();
     scene.add(group);
-    scene.add(new THREE.HemisphereLight(0xf6fff9, 0x294438, 3));
-    const key = new THREE.DirectionalLight(0xf4fff9, 5);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x333333, 3));
+    const key = new THREE.DirectionalLight(0xffffff, 5);
     key.position.set(-3, 6, 5);
     scene.add(key);
-    const rim = new THREE.DirectionalLight(0xb9e4d2, 4);
+    const rim = new THREE.DirectionalLight(0xffffff, 4);
     rim.position.set(4, 2, -4);
     scene.add(rim);
     const front = new THREE.DirectionalLight(0xffffff, 1.4);
@@ -35,7 +35,7 @@ if (host) {
     scene.add(front);
     // A procedural studio environment gives the curved bevels broad reflected highlights.
     const envScene = new THREE.Scene();
-    envScene.background = new THREE.Color("#406957");
+    envScene.background = new THREE.Color("#555555");
     [
       [-4, 4, 2, 8, 4],
       [3, 2, 0, 3, 6],
@@ -83,12 +83,12 @@ if (host) {
     });
     geometry.center();
     geometry.rotateX(-Math.PI / 2);
-    const colors = ["#c1dfd0", "#559d7e", "#194b36"];
+    const colors = ["#eeeeee", "#8d8d8d", "#161616"];
     const layers = colors.map((color, i) => {
       const material = new THREE.MeshPhysicalMaterial({
         color,
-        metalness: 0.4,
-        roughness: 0.23,
+        metalness: 0.25,
+        roughness: 0.32,
         clearcoat: 0.6,
         clearcoatRoughness: 0.2,
         envMapIntensity: 1.1,
@@ -105,7 +105,7 @@ if (host) {
         const mark = new THREE.Mesh(
           new THREE.BoxGeometry(0.035, 0.012, 0.14 + j * 0.028),
           new THREE.MeshStandardMaterial({
-            color: i === 2 ? "#81b6a3" : "#2d624e",
+            color: i === 2 ? "#c5c5c5" : "#333333",
             metalness: 0.3,
             roughness: 0.45,
           }),
@@ -114,10 +114,34 @@ if (host) {
         layer.add(mark);
       }
     });
+    // Printed labels remain part of the original 3D object, not HTML decoration.
+    layers.forEach((layer, i) => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 512;
+      canvas.height = 128;
+      const ctx = canvas.getContext("2d");
+      ctx.font = "500 66px monospace";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = i === 2 ? "#ffffff" : "#111111";
+      ctx.fillText(["DATA", "MODEL", "SYSTEM"][i], 256, 64);
+      const map = new THREE.CanvasTexture(canvas);
+      map.colorSpace = THREE.SRGBColorSpace;
+      const label = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.78, 0.195),
+        new THREE.MeshBasicMaterial({
+          map,
+          transparent: true,
+          depthWrite: false,
+        }),
+      );
+      label.position.set(0, 0, 1.541);
+      layer.add(label);
+    });
     const core = new THREE.Mesh(
       new THREE.IcosahedronGeometry(0.36, 1),
       new THREE.MeshPhysicalMaterial({
-        color: "#a5d4be",
+        color: "#fff100",
         metalness: 0.65,
         roughness: 0.18,
       }),

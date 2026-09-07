@@ -1,13 +1,25 @@
-import { DEFINITIONS, csv } from "./solutions-data.mjs?v=20260907s3";
+import { DEFINITIONS, csv } from "./solutions-data.mjs?v=20260907t2";
 import {
   renderSolution,
   solutionModel,
-} from "./solutions-view.mjs?v=20260907s3";
+} from "./solutions-view.mjs?v=20260907t2";
 const screen = document.getElementById("solution-screen");
 if (screen) {
   const tabs = [...document.querySelectorAll("[data-solution]")],
     mobile = document.querySelector(".solution-select select"),
     states = new Map();
+  const shell = document.querySelector(".solution-shell");
+  const themeButtons = [...document.querySelectorAll("[data-workspace-theme]")];
+  themeButtons.forEach((button) =>
+    button.addEventListener("click", () => {
+      shell.dataset.theme = button.dataset.workspaceTheme;
+      themeButtons.forEach((b) =>
+        b.setAttribute("aria-pressed", String(b === button)),
+      );
+      document.getElementById("solution-status").textContent =
+        `${shell.dataset.theme === "dark" ? "어두운" : "밝은"} 업무 화면으로 전환했습니다.`;
+    }),
+  );
   let current = "market";
   const state = () => states.get(current) || {};
   function render(focus) {

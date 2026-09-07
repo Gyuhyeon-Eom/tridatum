@@ -12,7 +12,8 @@
 
 ## 화면과 모션
 
-- `assets/css/design.css`: 녹색 명도 토큰, 제목·본문 크기, 레이아웃, 진입·전환·스크롤 스타일
+- `assets/css/design-tokens.css`: 흑백·회색·노란색, 간격, 모서리, 타이포그래피 규칙
+- `assets/css/design.css`: 밝고 어두운 섹션, 아코디언, 진입·전환 모션과 반응형 구성
 - `assets/css/site.css`: 공용 헤더와 푸터
 - `assets/css/solutions.css`: 업무 화면·필터·지도·목록·문서 검토의 반응형 스타일
 - `assets/css/analytics.css`: 공통 SVG 차트와 분석 컴포넌트
@@ -22,7 +23,9 @@
 
 첫 화면의 WebGL은 화면을 벗어나거나 탭이 숨겨지면 멈춥니다. 모션 감소 설정에서는 정지된 형태로 표시하고 페이지 전환 애니메이션을 생략합니다. WebGL을 사용할 수 없으면 CSS 입체 도형을 표시합니다. JavaScript가 없어도 기본 내용과 첫 업무 화면을 읽을 수 있습니다.
 
-서체는 자체 제공하는 Wanted Sans입니다. 제목은 최대 68px, 섹션 제목은 최대 44px, 주요 본문은 16–18px를 기준으로 합니다. 페이지·로고·차트는 녹색 계열의 밝기 차이로 구성하며, 상태 표시는 글자와 도형을 함께 사용합니다.
+영문 첫 화면은 Archivo 가변 서체의 75% 폭, 한글과 본문은 Wanted Sans를 자체 제공합니다. 한글 첫 화면 85px, 섹션 제목 64px, 중간 제목 53px, 리드 27px, 본문 19px를 데스크톱 기준으로 사용합니다. 영문 표제는 화면 폭에 따라 최대 144px까지 커집니다.
+
+메인은 회색 첫 화면·흰 섹션·검은 업무 화면·검은 푸터로 구성합니다. 섹션 모서리는 64px, 카드 32px, 버튼·입력은 약 13px입니다. 노란색은 어두운 배경의 CTA와 선택 상태에 사용합니다. 12개 업무 화면은 동일한 자료를 밝게·어둡게 전환해 볼 수 있습니다. 스타일 상세는 `docs/design-system.md`에 정리했습니다.
 
 ## 업무 대시보드 편집
 
@@ -59,7 +62,7 @@ node --test scripts/solutions.test.mjs scripts/analytics.test.mjs
 
 ## 브랜드·콘텐츠
 
-`python3 scripts/render-brand.py`로 워드마크·td 모노그램·공용 로고를 재생성합니다. 로고는 직접 구성한 SVG 경로입니다. Wanted Sans의 [공식 저장소](https://github.com/wanteddev/wanted-sans)와 SIL 라이선스는 `assets/fonts/OFL-WantedSans.txt`에 기록했습니다.
+`python3 scripts/render-brand.py`로 워드마크·td 모노그램·공용 로고를 재생성합니다. 로고는 직접 구성한 SVG 경로입니다. Archivo는 [공식 배포](https://github.com/google/fonts/tree/main/ofl/archivo), Wanted Sans는 [공식 저장소](https://github.com/wanteddev/wanted-sans)를 사용합니다. 각 SIL OFL 라이선스는 `assets/fonts/OFL-Archivo.txt`, `assets/fonts/OFL-WantedSans.txt`에 포함했습니다.
 
 `assets/content/site.json`과 HTML의 `data-c` 키가 관리자 편집 문구를 연결합니다. 기존 키와 문의 폼의 ID·필드 이름을 유지합니다. `base.css`는 관리자에서도 사용하므로 공개 페이지 변경은 별도 스타일에서 처리합니다.
 

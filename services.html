@@ -8,7 +8,7 @@
       name="description"
       content="데이터·정책 분석, 위험 예측과 모델 검증, 문서 검색과 AI 개발. 현장의 문제를 데이터로 해결합니다."
     />
-    <meta name="theme-color" content="#17352a" />
+    <meta name="theme-color" content="#000000" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Tridatum" />
     <meta property="og:title" content="서비스 · Tridatum" />
@@ -19,13 +19,13 @@
     <meta property="og:url" content="https://tridatum.co/services.html" />
     <meta
       property="og:image"
-      content="https://tridatum.co/assets/img/og.png?v=20260907s3"
+      content="https://tridatum.co/assets/img/og.png?v=20260907t2"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://tridatum.co/services.html" />
     <link
       rel="icon"
-      href="assets/img/logo-mark.svg?v=20260907s3"
+      href="assets/img/logo-mark.svg?v=20260907t2"
       type="image/svg+xml"
     />
     <link
@@ -35,16 +35,16 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="assets/css/fonts.css?v=20260907s3" />
-    <link rel="stylesheet" href="assets/css/base.css?v=20260907s3" />
-    <link rel="stylesheet" href="assets/css/components.css?v=20260907s3" />
-    <link rel="stylesheet" href="assets/css/site.css?v=20260907s3" />
-    <link rel="stylesheet" href="assets/css/design.css?v=20260907s3" />
-    <link rel="stylesheet" href="assets/css/analytics.css?v=20260907s3" />
+    <link rel="stylesheet" href="assets/css/fonts.css?v=20260907t2" />
+    <link rel="stylesheet" href="assets/css/base.css?v=20260907t2" />
+    <link rel="stylesheet" href="assets/css/design-tokens.css?v=20260907t2" />
+    <link rel="stylesheet" href="assets/css/site.css?v=20260907t2" />
+    <link rel="stylesheet" href="assets/css/design.css?v=20260907t2" />
+    <link rel="stylesheet" href="assets/css/analytics.css?v=20260907t2" />
     <script>
       document.documentElement.classList.add("motion-active");
     </script>
-    <link rel="stylesheet" href="assets/css/solutions.css?v=20260907s3" />
+    <link rel="stylesheet" href="assets/css/solutions.css?v=20260907t2" />
   </head>
   <body data-page="services" class="editorial">
     <div class="page-transition" aria-hidden="true">
@@ -64,7 +64,7 @@
     <a class="skip-link" href="#main">본문 바로가기</a>
     <div data-include="partials/header.html"></div>
     <main id="main" tabindex="-1">
-      <section class="masthead">
+      <section class="masthead theme-dark">
         <div class="hero-copy">
           <p class="eyebrow">서비스</p>
           <h1>
@@ -75,11 +75,9 @@
             분석·예측·문서 AI를 업무 흐름에 맞춰 설계합니다.
           </p>
         </div>
-        <div class="sculpture-stage" data-sculpture aria-hidden="true">
-          <div class="sculpture-fallback"><i></i><i></i><i></i></div>
-        </div>
+
         <div class="hero-bottom">
-          <span>분석부터 운영까지.</span
+          <span>TRIDATUM / DATA &amp; AI</span
           ><a href="#overview" class="scroll-link"
             >아래로 살펴보기 <span aria-hidden="true">↓</span></a
           >
@@ -87,16 +85,6 @@
       </section>
       <div class="sheet">
         <div class="sheet-layout">
-          <aside class="section-rail">
-            <nav aria-label="페이지 목차">
-              <a href="#overview" class="active" aria-current="location"
-                ><span>01</span>서비스</a
-              ><a href="#analysis"><span>02</span>데이터 분석</a
-              ><a href="#prediction"><span>03</span>예측 모델</a
-              ><a href="#document-ai"><span>04</span>문서 AI</a>
-            </nav>
-            <span class="rail-sign">Tridatum<br />Data into practice.</span>
-          </aside>
           <div class="sheet-body">
             <section class="chapter" id="overview" data-chapter>
               <div class="chapter-head">
@@ -108,7 +96,11 @@
                 함께 정하고 직접 구현합니다.
               </p>
             </section>
-            <section class="chapter service-detail" id="analysis" data-chapter>
+            <section
+              class="chapter service-detail theme-dark"
+              id="analysis"
+              data-chapter
+            >
               <div class="svc-row">
                 <div class="svc-txt fade">
                   <div class="num">01 · 분석</div>
@@ -144,7 +136,10 @@
                         <span>중앙시장</span>
                         <div>
                           <i
-                            style="width: 47.041893732970024%; --bar: #2d624e"
+                            style="
+                              width: 47.041893732970024%;
+                              --bar: var(--chart-1);
+                            "
                           ></i>
                         </div>
                         <b>27,623만원</b>
@@ -153,7 +148,10 @@
                         <span>동부시장</span>
                         <div>
                           <i
-                            style="width: 54.49761580381471%; --bar: #81b6a3"
+                            style="
+                              width: 54.49761580381471%;
+                              --bar: var(--chart-2);
+                            "
                           ></i>
                         </div>
                         <b>32,001만원</b>
@@ -162,7 +160,10 @@
                         <span>서부시장</span>
                         <div>
                           <i
-                            style="width: 70.11239782016348%; --bar: #579e84"
+                            style="
+                              width: 70.11239782016348%;
+                              --bar: var(--chart-3);
+                            "
                           ></i>
                         </div>
                         <b>41,170만원</b>
@@ -171,14 +172,19 @@
                         <span>수변시장</span>
                         <div>
                           <i
-                            style="width: 88.5541553133515%; --bar: #2d624e"
+                            style="
+                              width: 88.5541553133515%;
+                              --bar: var(--chart-1);
+                            "
                           ></i>
                         </div>
                         <b>51,999만원</b>
                       </div>
                       <div>
                         <span>북문시장</span>
-                        <div><i style="width: 100%; --bar: #81b6a3"></i></div>
+                        <div>
+                          <i style="width: 100%; --bar: var(--chart-2)"></i>
+                        </div>
                         <b>58,720만원</b>
                       </div>
                     </div>
@@ -240,14 +246,14 @@
                         role="group"
                         aria-label="가상 생활권의 조사 대상 배치"
                       >
-                        <rect width="640" height="360" fill="#edf3f0" />
+                        <rect width="640" height="360" fill="var(--map-bg)" />
                         <rect
                           x="24"
                           y="28"
                           width="44"
                           height="31"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="91"
@@ -255,7 +261,7 @@
                           width="47"
                           height="31"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="158"
@@ -263,7 +269,7 @@
                           width="50"
                           height="31"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="225"
@@ -271,7 +277,7 @@
                           width="44"
                           height="31"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="292"
@@ -279,7 +285,7 @@
                           width="47"
                           height="31"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="359"
@@ -287,7 +293,7 @@
                           width="50"
                           height="31"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="426"
@@ -295,7 +301,7 @@
                           width="44"
                           height="31"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="493"
@@ -303,7 +309,7 @@
                           width="47"
                           height="31"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="24"
@@ -311,7 +317,7 @@
                           width="44"
                           height="36"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="91"
@@ -319,7 +325,7 @@
                           width="47"
                           height="36"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="158"
@@ -327,7 +333,7 @@
                           width="50"
                           height="36"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="225"
@@ -335,7 +341,7 @@
                           width="44"
                           height="36"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="292"
@@ -343,7 +349,7 @@
                           width="47"
                           height="36"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="359"
@@ -351,7 +357,7 @@
                           width="50"
                           height="36"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="426"
@@ -359,7 +365,7 @@
                           width="44"
                           height="36"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="493"
@@ -367,7 +373,7 @@
                           width="47"
                           height="36"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="24"
@@ -375,7 +381,7 @@
                           width="44"
                           height="31"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="91"
@@ -383,7 +389,7 @@
                           width="47"
                           height="31"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="158"
@@ -391,7 +397,7 @@
                           width="50"
                           height="31"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="225"
@@ -399,7 +405,7 @@
                           width="44"
                           height="31"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="292"
@@ -407,7 +413,7 @@
                           width="47"
                           height="31"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="359"
@@ -415,7 +421,7 @@
                           width="50"
                           height="31"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="426"
@@ -423,7 +429,7 @@
                           width="44"
                           height="31"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="493"
@@ -431,7 +437,7 @@
                           width="47"
                           height="31"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="24"
@@ -439,7 +445,7 @@
                           width="44"
                           height="36"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="91"
@@ -447,7 +453,7 @@
                           width="47"
                           height="36"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="158"
@@ -455,7 +461,7 @@
                           width="50"
                           height="36"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="225"
@@ -463,7 +469,7 @@
                           width="44"
                           height="36"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="292"
@@ -471,7 +477,7 @@
                           width="47"
                           height="36"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="359"
@@ -479,7 +485,7 @@
                           width="50"
                           height="36"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="426"
@@ -487,7 +493,7 @@
                           width="44"
                           height="36"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="493"
@@ -495,7 +501,7 @@
                           width="47"
                           height="36"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="24"
@@ -503,7 +509,7 @@
                           width="44"
                           height="31"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="91"
@@ -511,7 +517,7 @@
                           width="47"
                           height="31"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="158"
@@ -519,7 +525,7 @@
                           width="50"
                           height="31"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="225"
@@ -527,7 +533,7 @@
                           width="44"
                           height="31"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="292"
@@ -535,7 +541,7 @@
                           width="47"
                           height="31"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="359"
@@ -543,7 +549,7 @@
                           width="50"
                           height="31"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="426"
@@ -551,7 +557,7 @@
                           width="44"
                           height="31"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="493"
@@ -559,7 +565,7 @@
                           width="47"
                           height="31"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="24"
@@ -567,7 +573,7 @@
                           width="44"
                           height="36"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="91"
@@ -575,7 +581,7 @@
                           width="47"
                           height="36"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="158"
@@ -583,7 +589,7 @@
                           width="50"
                           height="36"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="225"
@@ -591,7 +597,7 @@
                           width="44"
                           height="36"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="292"
@@ -599,7 +605,7 @@
                           width="47"
                           height="36"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="359"
@@ -607,7 +613,7 @@
                           width="50"
                           height="36"
                           rx="3"
-                          fill="#e3ece7"
+                          fill="var(--map-block)"
                         />
                         <rect
                           x="426"
@@ -615,7 +621,7 @@
                           width="44"
                           height="36"
                           rx="3"
-                          fill="#d5e3dc"
+                          fill="var(--map-water)"
                         />
                         <rect
                           x="493"
@@ -623,35 +629,45 @@
                           width="47"
                           height="36"
                           rx="3"
-                          fill="#dee8e4"
+                          fill="var(--map-block)"
                         />
                         <path
                           d="M609 -20C521 110 657 169 562 390"
-                          stroke="#c0d9cd"
+                          stroke="var(--map-water)"
                           stroke-width="65"
                           fill="none"
                         />
                         <path
                           d="M0 181H640M273 0V360"
-                          stroke="#f6f9f8"
+                          stroke="var(--map-road)"
                           stroke-width="16"
                         />
                         <path
                           d="M0 181H640M273 0V360"
-                          stroke="#c6d9cf"
+                          stroke="var(--map-block)"
                           stroke-width="1"
                           stroke-dasharray="4 7"
                         />
                         <path
                           d="M40 348C170 269 377 285 567 61"
                           fill="none"
-                          stroke="#f6f9f8"
+                          stroke="var(--map-road)"
                           stroke-width="11"
                         />
-                        <text x="23" y="18" fill="#578371" font-size="12">
+                        <text
+                          x="23"
+                          y="18"
+                          fill="var(--map-ink)"
+                          font-size="12"
+                        >
                           가상 생활권
                         </text>
-                        <text x="600" y="38" fill="#578371" font-size="12">
+                        <text
+                          x="600"
+                          y="38"
+                          fill="var(--map-ink)"
+                          font-size="12"
+                        >
                           N ↑
                         </text>
                         <g
@@ -663,15 +679,15 @@
                             cx="60"
                             cy="65"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="60"
                             cy="65"
                             r="7"
-                            fill="#2d624e"
-                            stroke="#fff"
+                            fill="var(--chart-1)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -684,15 +700,15 @@
                             cx="138"
                             cy="65"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="138"
                             cy="65"
                             r="7"
-                            fill="#81b6a3"
-                            stroke="#fff"
+                            fill="var(--chart-3)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -705,15 +721,15 @@
                             cx="216"
                             cy="65"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="1"
                           />
                           <circle
                             cx="216"
                             cy="65"
                             r="7"
-                            fill="#2d624e"
-                            stroke="#17352a"
+                            fill="var(--chart-1)"
+                            stroke="var(--map-selection)"
                             stroke-width="3"
                           />
                           <g>
@@ -723,9 +739,14 @@
                               width="124"
                               height="25"
                               rx="4"
-                              fill="#17352a"
+                              fill="var(--map-selection)"
                             />
-                            <text x="239" y="52" fill="#f6f9f8" font-size="12">
+                            <text
+                              x="239"
+                              y="52"
+                              fill="var(--map-on-selection)"
+                              font-size="12"
+                            >
                               수변 1구역
                             </text>
                           </g>
@@ -739,15 +760,15 @@
                             cx="276"
                             cy="65"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="276"
                             cy="65"
                             r="7"
-                            fill="#579e84"
-                            stroke="#fff"
+                            fill="var(--chart-2)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -760,15 +781,15 @@
                             cx="354"
                             cy="65"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="354"
                             cy="65"
                             r="7"
-                            fill="#81b6a3"
-                            stroke="#fff"
+                            fill="var(--chart-3)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -781,15 +802,15 @@
                             cx="432"
                             cy="65"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="432"
                             cy="65"
                             r="7"
-                            fill="#81b6a3"
-                            stroke="#fff"
+                            fill="var(--chart-3)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -802,15 +823,15 @@
                             cx="492"
                             cy="65"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="492"
                             cy="65"
                             r="7"
-                            fill="#81b6a3"
-                            stroke="#fff"
+                            fill="var(--chart-3)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -823,15 +844,15 @@
                             cx="66"
                             cy="110"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="66"
                             cy="110"
                             r="7"
-                            fill="#81b6a3"
-                            stroke="#fff"
+                            fill="var(--chart-3)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -844,15 +865,15 @@
                             cx="144"
                             cy="110"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="144"
                             cy="110"
                             r="7"
-                            fill="#81b6a3"
-                            stroke="#fff"
+                            fill="var(--chart-3)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -865,15 +886,15 @@
                             cx="204"
                             cy="110"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="204"
                             cy="110"
                             r="7"
-                            fill="#2d624e"
-                            stroke="#fff"
+                            fill="var(--chart-1)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -886,15 +907,15 @@
                             cx="282"
                             cy="110"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="282"
                             cy="110"
                             r="7"
-                            fill="#2d624e"
-                            stroke="#fff"
+                            fill="var(--chart-1)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -907,15 +928,15 @@
                             cx="360"
                             cy="110"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="360"
                             cy="110"
                             r="7"
-                            fill="#579e84"
-                            stroke="#fff"
+                            fill="var(--chart-2)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -928,15 +949,15 @@
                             cx="420"
                             cy="110"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="420"
                             cy="110"
                             r="7"
-                            fill="#579e84"
-                            stroke="#fff"
+                            fill="var(--chart-2)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -949,15 +970,15 @@
                             cx="498"
                             cy="110"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="498"
                             cy="110"
                             r="7"
-                            fill="#81b6a3"
-                            stroke="#fff"
+                            fill="var(--chart-3)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -970,15 +991,15 @@
                             cx="72"
                             cy="155"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="72"
                             cy="155"
                             r="7"
-                            fill="#579e84"
-                            stroke="#fff"
+                            fill="var(--chart-2)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -991,15 +1012,15 @@
                             cx="132"
                             cy="155"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="132"
                             cy="155"
                             r="7"
-                            fill="#2d624e"
-                            stroke="#fff"
+                            fill="var(--chart-1)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -1012,15 +1033,15 @@
                             cx="210"
                             cy="155"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="210"
                             cy="155"
                             r="7"
-                            fill="#81b6a3"
-                            stroke="#fff"
+                            fill="var(--chart-3)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -1033,15 +1054,15 @@
                             cx="288"
                             cy="155"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="288"
                             cy="155"
                             r="7"
-                            fill="#2d624e"
-                            stroke="#fff"
+                            fill="var(--chart-1)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -1054,15 +1075,15 @@
                             cx="348"
                             cy="155"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="348"
                             cy="155"
                             r="7"
-                            fill="#81b6a3"
-                            stroke="#fff"
+                            fill="var(--chart-3)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -1075,15 +1096,15 @@
                             cx="426"
                             cy="155"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="426"
                             cy="155"
                             r="7"
-                            fill="#2d624e"
-                            stroke="#fff"
+                            fill="var(--chart-1)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
@@ -1096,19 +1117,24 @@
                             cx="504"
                             cy="155"
                             r="12"
-                            fill="#fff"
+                            fill="var(--map-road)"
                             opacity="0.5"
                           />
                           <circle
                             cx="504"
                             cy="155"
                             r="7"
-                            fill="#579e84"
-                            stroke="#fff"
+                            fill="var(--chart-2)"
+                            stroke="var(--map-road)"
                             stroke-width="1.5"
                           />
                         </g>
-                        <text x="18" y="345" fill="#578371" font-size="12">
+                        <text
+                          x="18"
+                          y="345"
+                          fill="var(--map-ink)"
+                          font-size="12"
+                        >
                           공간 배치 예시 · 지점을 선택해 상세 확인
                         </text>
                       </svg>
@@ -1131,7 +1157,7 @@
               >
             </section>
             <section
-              class="chapter service-detail"
+              class="chapter service-detail theme-dark"
               id="document-ai"
               data-chapter
             >
@@ -1201,7 +1227,7 @@
           </div>
         </div>
       </div>
-      <section class="contact-banner">
+      <section class="contact-banner theme-dark">
         <div>
           <p class="eyebrow">프로젝트 문의</p>
           <h2 class="reveal" data-c="cta.title">데이터 분석·AI 개발 문의</h2>
@@ -1215,10 +1241,9 @@
       </section>
     </main>
     <div data-include="partials/footer.html"></div>
-    <script src="assets/js/include.js?v=20260907s3"></script>
-    <script src="assets/js/fade.js?v=20260907s3"></script>
-    <script src="assets/js/motion.js?v=20260907s3"></script>
-    <script src="assets/js/content.js?v=20260907s3"></script>
-    <script type="module" src="assets/js/sculpture.mjs?v=20260907s3"></script>
+    <script src="assets/js/include.js?v=20260907t2"></script>
+    <script src="assets/js/fade.js?v=20260907t2"></script>
+    <script src="assets/js/motion.js?v=20260907t2"></script>
+    <script src="assets/js/content.js?v=20260907t2"></script>
   </body>
 </html>

@@ -1,8 +1,10 @@
-// Run after editing analytics-view.mjs. The committed HTML needs no build server.
+// Run after editing solutions-view.mjs. The committed HTML needs no build server.
 import { readFileSync, writeFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 
-import { renderShowcase, renderServicePreview } from "../assets/js/solutions-view.mjs";
+import {
+  renderShowcase,
+  renderServicePreview,
+} from "../assets/js/solutions-view.mjs";
 const root = new URL("../", import.meta.url);
 const stage = renderShowcase();
 let file = new URL("index.html", root),

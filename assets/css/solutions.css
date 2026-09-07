@@ -1,52 +1,10 @@
 /* Domain workspaces share one brand hue; hierarchy comes from type, surface and density. */
-.solution-tabs {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 30px 0 24px;
-  border-top: 1px solid var(--tone-200);
-}
-.solution-tabs button {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-align: left;
-  padding: 15px 12px;
-  font: inherit;
-  font-size: 14px;
-  color: var(--tone-700);
-  border: 0;
-  border-bottom: 1px solid var(--tone-200);
-  background: transparent;
-  cursor: pointer;
-  transition:
-    color 0.2s,
-    background 0.2s;
-}
-.solution-tabs button > span {
-  font-size: 11px;
-  color: var(--tone-700);
-  font-variant-numeric: tabular-nums;
-}
-.solution-tabs button[aria-selected="true"] {
-  background: var(--tone-800);
-  color: var(--tone-50);
-  border-radius: 5px;
-}
-.solution-tabs button[aria-selected="true"] > span {
-  color: var(--tone-300);
-}
-.solution-tabs button:hover:not([aria-selected="true"]) {
-  background: var(--tone-100);
-}
-.solution-select {
-  display: none;
-}
 .ops-workspace {
   border: 1px solid var(--tone-200);
   border-radius: 12px;
   background: var(--tone-100);
   overflow: hidden;
-  box-shadow: 0 20px 55px rgb(16 37 30 / 0.06);
+  box-shadow: none;
   container: workspace / inline-size;
   --a-paper: var(--tone-50);
   --a-line: var(--tone-200);
@@ -116,9 +74,9 @@
 }
 .ops-control select,
 .ops-export {
-  height: 36px;
+  min-height: 44px;
   border: 1px solid var(--tone-200);
-  border-radius: 5px;
+  border-radius: var(--radius-control);
   background: var(--tone-50);
   padding: 0 11px;
   font: inherit;
@@ -180,7 +138,7 @@
   min-width: 0;
   background: var(--tone-50);
   border: 1px solid var(--tone-200);
-  border-radius: 6px;
+  border-radius: 16px;
   margin-bottom: 16px;
 }
 .ops-grid > .ops-panel {
@@ -374,7 +332,7 @@
 .ops-insight {
   padding: 16px 18px;
   background: var(--tone-150);
-  border-radius: 5px;
+  border-radius: var(--radius-control);
   margin-top: auto;
   color: var(--tone-700);
 }
@@ -461,7 +419,7 @@
   padding: 13px 11px;
   border: 1px solid var(--tone-200);
   background: var(--tone-100);
-  border-radius: 5px;
+  border-radius: var(--radius-control);
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -525,7 +483,7 @@
   text-align: left;
   padding: 15px 12px;
   border: 1px solid var(--tone-200);
-  border-radius: 5px;
+  border-radius: var(--radius-control);
   background: var(--tone-50);
   font: inherit;
   cursor: pointer;
@@ -546,7 +504,7 @@
 .ops-paper {
   padding: 22px 20px;
   background: #fff;
-  box-shadow: 0 2px 10px #10251e08;
+  box-shadow: none;
   border: 1px solid var(--tone-150);
   color: var(--tone-800);
   font-size: 13px;
@@ -597,7 +555,7 @@
   background: var(--tone-800);
   color: var(--tone-50);
   border: 0;
-  border-radius: 5px;
+  border-radius: var(--radius-control);
   font: inherit;
   font-size: 13px;
   cursor: pointer;
@@ -615,7 +573,7 @@
 .ops-pipeline > div {
   position: relative;
   border: 1px solid var(--tone-200);
-  border-radius: 5px;
+  border-radius: var(--radius-control);
   padding: 18px;
   display: grid;
   gap: 12px;
@@ -763,41 +721,7 @@
     height: 25px;
   }
 }
-@media (max-width: 800px) {
-  .solution-tabs {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .solution-tabs button {
-    font-size: 13px;
-    padding: 13px 9px;
-    gap: 8px;
-  }
-  .solution-tabs button > span {
-    font-size: 10px;
-  }
-}
 @media (max-width: 520px) {
-  .solution-tabs {
-    display: none;
-  }
-  .solution-select {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    align-items: center;
-    margin: 25px 0 18px;
-    font-size: 14px;
-    color: var(--tone-700);
-  }
-  .solution-select select {
-    padding: 12px 14px;
-    background: var(--tone-100);
-    border: 1px solid var(--tone-200);
-    border-radius: 6px;
-    font: inherit;
-    color: var(--tone-900);
-    max-width: 70%;
-  }
   .ops-workspace {
     border-radius: 8px;
   }
@@ -855,4 +779,371 @@
 }
 .ops-service-preview .ops-map-point {
   pointer-events: none;
+}
+
+/* Application shell: a quiet sidebar, flat content surface and scoped dark palette. */
+.solution-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin: 40px 0 20px;
+}
+.solution-tools > span {
+  font-size: 15px;
+  color: var(--muted);
+}
+.solution-appearance {
+  display: inline-flex;
+  padding: 4px;
+  background: #222;
+  border-radius: 13.3333px;
+  gap: 4px;
+}
+.solution-appearance button {
+  min-height: 44px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10.6667px;
+  background: transparent;
+  color: #b0b0b0;
+  font-size: 14px;
+  cursor: pointer;
+}
+.solution-appearance button[aria-pressed="true"] {
+  background: #fff100;
+  color: #000;
+}
+.solution-shell {
+  display: grid;
+  grid-template-columns: 194px minmax(0, 1fr);
+  background: var(--tone-50);
+  color: var(--tone-900);
+  border: 1px solid var(--tone-200);
+  border-radius: 32px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.solution-catalog {
+  position: relative;
+  padding: 24px 12px;
+  background: var(--tone-100);
+  border-right: 1px solid var(--tone-200);
+}
+.catalog-label {
+  padding: 0 12px 22px;
+  font-size: 13px;
+  color: var(--tone-700);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.catalog-label span {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--tone-500);
+}
+.solution-tabs {
+  display: grid;
+  gap: 5px;
+}
+.solution-tabs button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+  padding: 12px 10px;
+  width: 100%;
+  font: 500 13px/1.3 var(--font-body);
+  text-align: left;
+  color: var(--tone-700);
+  border: 0;
+  background: transparent;
+  border-radius: 10.6667px;
+  cursor: pointer;
+}
+.solution-tabs button > span {
+  flex: none;
+  font: 11px var(--font-mono);
+  color: var(--tone-500);
+}
+.solution-tabs button[aria-selected="true"] {
+  background: var(--tone-950);
+  color: var(--tone-50);
+}
+.solution-tabs button[aria-selected="true"] > span {
+  color: #fff100;
+}
+.solution-tabs button:hover:not([aria-selected="true"]) {
+  background: var(--tone-200);
+}
+.catalog-foot {
+  position: sticky;
+  top: calc(100vh - 100px);
+  margin: 70px 12px 0;
+  color: var(--tone-500);
+  font: 11px/1.5 var(--font-mono);
+}
+.solution-select {
+  display: none;
+}
+#solution-screen {
+  min-width: 0;
+}
+.solution-shell .ops-workspace {
+  border: none;
+  border-radius: 0;
+  background: var(--tone-50);
+  box-shadow: none;
+  min-height: 100%;
+}
+.solution-shell .ops-chrome {
+  background: var(--tone-50);
+  padding-block: 19px;
+}
+.solution-shell .ops-chrome .brand-wordmark {
+  width: 86px;
+}
+.solution-shell .ops-body {
+  padding: 28px;
+}
+.solution-shell .ops-metrics {
+  background: var(--tone-50);
+  gap: 0;
+  padding: 24px 0;
+}
+.solution-shell .ops-metrics > .ops-metric {
+  padding-inline: 18px;
+  border-right: 1px solid var(--tone-200);
+}
+.solution-shell .ops-metrics > .ops-metric:first-child {
+  padding-left: 0;
+}
+.solution-shell .ops-metrics > .ops-metric:last-child {
+  border: 0;
+  padding-right: 0;
+}
+.solution-shell .ops-metric strong {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+.solution-shell .ops-control select,
+.solution-shell .ops-export {
+  background: var(--tone-50);
+  font-size: 12px;
+}
+.solution-shell .ops-table tbody tr:hover {
+  background: var(--tone-100);
+}
+.solution-shell .ops-table tbody tr:has([aria-pressed="true"]) {
+  background: var(--tone-100);
+}
+.solution-shell .ops-record.selected {
+  color: var(--tone-950);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.solution-shell .ops-panel {
+  border-radius: 16px;
+}
+.solution-shell .ops-status i {
+  background: currentColor;
+}
+.solution-shell .ops-footnote {
+  padding-top: 16px;
+  border-top: 1px solid var(--tone-200);
+}
+.solution-shell [data-ops-review] {
+  min-height: 44px;
+  border-radius: 13.3333px;
+}
+.solution-shell .a-tooltip {
+  background: var(--tone-950);
+  color: var(--tone-50);
+  border-color: var(--tone-700);
+}
+.solution-shell .ops-map svg {
+  border-radius: 10.6667px;
+}
+.solution-shell .ops-map-point.selected > circle:nth-child(2) {
+  stroke: var(--map-selection);
+}
+.ops-service-preview {
+  padding: 24px;
+  border-radius: 32px;
+  background: #f3f3f3;
+  color: #000;
+  border: 1px solid #e5e7eb;
+  box-shadow: none;
+}
+.ops-service-preview .ops-panel {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  margin-bottom: 0;
+}
+.ops-service-preview .ops-note {
+  color: #555;
+  margin-top: 20px;
+  font-size: 12px;
+}
+.ops-service-preview .ops-bars {
+  min-height: 240px;
+}
+.ops-service-preview .ops-map svg {
+  border-radius: 16px;
+}
+.solution-shell[data-theme="dark"] {
+  --tone-50: #141416;
+  --tone-100: #050506;
+  --tone-150: #222224;
+  --tone-200: #2a2a2c;
+  --tone-300: #444444;
+  --tone-400: #808080;
+  --tone-500: #979797;
+  --tone-600: #aaaaaa;
+  --tone-700: #b0b0b0;
+  --tone-800: #dddddd;
+  --tone-900: #f3f3f3;
+  --tone-950: #ffffff;
+  --chart-1: #f3f3f3;
+  --chart-2: #808080;
+  --chart-3: #b0b0b0;
+  --chart-4: #444444;
+  --map-bg: #141416;
+  --map-block: #29292c;
+  --map-road: #050506;
+  --map-water: #3b3b3f;
+  --map-ink: #b0b0b0;
+  --map-number-high: #000000;
+  --map-selection: #fff100;
+  --map-on-selection: #000000;
+}
+.solution-shell[data-theme="dark"] .solution-tabs button[aria-selected="true"] {
+  background: #fff100;
+  color: #000;
+}
+.solution-shell[data-theme="dark"]
+  .solution-tabs
+  button[aria-selected="true"]
+  > span {
+  color: #444;
+}
+.solution-shell[data-theme="dark"] .ops-paper {
+  background: #222224;
+  color: #fff;
+}
+.solution-shell[data-theme="dark"] .ops-paper mark {
+  background: #fff100;
+  color: #000;
+}
+.solution-shell[data-theme="dark"] .ops-record.selected {
+  color: #fff100;
+}
+.solution-shell[data-theme="dark"] [data-ops-review] {
+  background: #fff100;
+  color: #000;
+}
+@media (max-width: 1100px) {
+  .solution-shell {
+    grid-template-columns: 1fr;
+  }
+  .solution-catalog {
+    border-right: 0;
+    border-bottom: 1px solid var(--tone-200);
+    padding: 16px;
+  }
+  .catalog-label,
+  .catalog-foot,
+  .solution-tabs {
+    display: none;
+  }
+  .solution-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    font-size: 14px;
+    margin: 0;
+  }
+  .solution-select select {
+    background: var(--tone-50);
+    color: var(--tone-950);
+    border: 1px solid var(--tone-200);
+    border-radius: 13.3333px;
+    padding: 12px 16px;
+    min-height: 44px;
+    font: inherit;
+    min-width: 190px;
+  }
+}
+@media (max-width: 767px) {
+  .showcase.chapter {
+    padding-inline: 16px;
+  }
+  .showcase .chapter-head,
+  .showcase > .intro-copy {
+    padding-inline: 8px;
+  }
+  .solution-tools {
+    margin-top: 28px;
+    gap: 14px;
+  }
+  .solution-tools > span {
+    max-width: 160px;
+    font-size: 13px;
+  }
+  .solution-appearance button {
+    padding-inline: 13px;
+    font-size: 13px;
+  }
+  .solution-shell {
+    border-radius: 24px;
+  }
+  .solution-shell .ops-body {
+    padding: 16px;
+  }
+  .solution-shell .ops-chrome {
+    padding: 16px;
+  }
+  .solution-shell .ops-heading h3 {
+    font-size: 24px;
+  }
+  .solution-shell .ops-metrics {
+    gap: 20px 14px;
+  }
+  .solution-shell .ops-metrics > .ops-metric {
+    padding: 0;
+    border: 0;
+  }
+  .solution-shell .ops-metric strong {
+    font-size: 25px;
+  }
+  .solution-select {
+    gap: 12px;
+    font-size: 13px;
+  }
+  .solution-select select {
+    min-width: 0;
+    max-width: 75%;
+  }
+  .solution-shell .ops-panel {
+    padding: 14px;
+  }
+  .solution-shell .ops-control select,
+  .solution-shell .ops-export {
+    font-size: 12px;
+  }
+  .solution-shell .ops-paper {
+    padding: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .solution-appearance button,
+  .solution-tabs button {
+    transition: none;
+  }
 }

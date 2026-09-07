@@ -3,9 +3,6 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
   const root = document.documentElement;
   const curtain = document.querySelector(".page-transition");
-  const sheet = document.querySelector(".sheet");
-  const chapters = [...document.querySelectorAll("[data-chapter]")];
-  const links = [...document.querySelectorAll(".section-rail a")];
   let header = document.querySelector(".site-header"),
     pending = false,
     navigating = false;
@@ -34,35 +31,22 @@
   if (io && !reduce.matches) root.classList.add("motion-ready");
   function update() {
     pending = false;
-    const rect = sheet?.getBoundingClientRect();
-    const light =
-      document.body.dataset.page === "home" ||
-      document.body.dataset.page === "privacy" ||
-      (rect && rect.top < 74 && rect.bottom > 74);
-    header?.classList.toggle("on-light", Boolean(light));
-    if (sheet && !reduce.matches) {
-      const p = Math.max(
-        0,
-        Math.min(1, (innerHeight - (rect?.top || 0)) / innerHeight),
-      );
-      sheet.style.setProperty("--sheet-radius", `${48 - p * 24}px`);
-    }
+    const section = [
+      ...document.querySelectorAll(
+        ".masthead, .chapter, .contact-banner, .contact-sheet, .legal-page, .site-footer",
+      ),
+    ].find((el) => {
+      const r = el.getBoundingClientRect();
+      return r.top <= 100 && r.bottom > 100;
+    });
+    const light = !section?.matches(".theme-dark, .site-footer");
+    header?.classList.toggle("on-light", light);
     const hero = document.querySelector(".hero-copy");
     if (hero && !reduce.matches)
       hero.style.setProperty(
         "--hero-drift",
         `${Math.min(scrollY * 0.13, 65)}px`,
       );
-    let current = chapters[0]?.id;
-    for (const c of chapters)
-      if (c.getBoundingClientRect().top <= Math.min(innerHeight * 0.32, 240))
-        current = c.id;
-    links.forEach((a) => {
-      const active = a.hash === `#${current}`;
-      a.classList.toggle("active", active);
-      if (active) a.setAttribute("aria-current", "location");
-      else a.removeAttribute("aria-current");
-    });
   }
   function schedule() {
     if (!pending) {
@@ -117,15 +101,6 @@
     root.classList.add("is-leaving");
     setTimeout(() => location.assign(url.href), 390);
   });
-  links.forEach((a) =>
-    a.addEventListener("click", () => {
-      const target = document.getElementById(a.hash.slice(1));
-      if (target) {
-        target.tabIndex = -1;
-        target.focus({ preventScroll: true });
-      }
-    }),
-  );
   document.querySelectorAll("[data-open-demo]").forEach((a) =>
     a.addEventListener("click", () => {
       try {
@@ -137,12 +112,19 @@
     if (reduce.matches) {
       revealed.forEach((el) => el.classList.add("is-visible"));
       root.classList.add("entry-complete");
-      sheet?.style.removeProperty("--sheet-radius");
       document
         .querySelector(".hero-copy")
         ?.style.removeProperty("--hero-drift");
     }
     update();
+  });
+  document.querySelectorAll(".service-accordion").forEach((detail) => {
+    detail.addEventListener("toggle", () => {
+      if (detail.open)
+        document.querySelectorAll(".service-accordion").forEach((other) => {
+          if (other !== detail) other.open = false;
+        });
+    });
   });
   update();
 })();

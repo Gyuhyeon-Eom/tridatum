@@ -1,4 +1,9 @@
-export const COLORS = ["#2d624e", "#81b6a3", "#579e84", "#aacbbf"];
+export const COLORS = [
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+  "var(--chart-4)",
+];
 export const esc = (s) =>
   String(s).replace(
     /[&<>"']/g,

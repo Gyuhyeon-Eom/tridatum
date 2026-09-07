@@ -17,15 +17,15 @@ import {
   mean,
   sum,
   monitorData,
-} from "./solutions-data.mjs?v=20260907s3";
+} from "./solutions-data.mjs?v=20260907t2";
 import {
   lineFigure,
   histogramFigure,
   heatFigure,
   esc,
   COLORS,
-} from "./analytics-charts.mjs?v=20260907s3";
-import { WORDMARK } from "./brand.mjs?v=20260907s3";
+} from "./analytics-charts.mjs?v=20260907t2";
+import { WORDMARK } from "./brand.mjs?v=20260907t2";
 const n = (v) => Math.round(v).toLocaleString("ko-KR"),
   pct = (v) => `${v.toFixed(1)}%`,
   change = (a, b) => `${a >= b ? "+" : ""}${((a / b - 1) * 100).toFixed(1)}%`;
@@ -56,18 +56,18 @@ function cityMap(
   let blocks = "";
   for (let row = 0; row < 6; row++)
     for (let col = 0; col < 8; col++)
-      blocks += `<rect x="${24 + col * 67}" y="${28 + row * 51}" width="${44 + (col % 3) * 3}" height="${31 + (row % 2) * 5}" rx="3" fill="${["#dee8e4", "#e3ece7", "#d5e3dc"][(row + col) % 3]}"/>`;
-  const paths = `<path d="M609 -20C521 110 657 169 562 390" stroke="#c0d9cd" stroke-width="65" fill="none"/><path d="M0 181H640M273 0V360" stroke="#f6f9f8" stroke-width="16"/><path d="M0 181H640M273 0V360" stroke="#c6d9cf" stroke-width="1" stroke-dasharray="4 7"/><path d="M40 348C170 269 377 285 567 61" fill="none" stroke="#f6f9f8" stroke-width="11"/>`;
+      blocks += `<rect x="${24 + col * 67}" y="${28 + row * 51}" width="${44 + (col % 3) * 3}" height="${31 + (row % 2) * 5}" rx="3" fill="${["var(--map-block)", "var(--map-block)", "var(--map-water)"][(row + col) % 3]}"/>`;
+  const paths = `<path d="M609 -20C521 110 657 169 562 390" stroke="var(--map-water)" stroke-width="65" fill="none"/><path d="M0 181H640M273 0V360" stroke="var(--map-road)" stroke-width="16"/><path d="M0 181H640M273 0V360" stroke="var(--map-block)" stroke-width="1" stroke-dasharray="4 7"/><path d="M40 348C170 269 377 285 567 61" fill="none" stroke="var(--map-road)" stroke-width="11"/>`;
   const marks = rows
     .map((r, i) => {
       const active = r.id === selected;
       const v = Math.max(0.1, Math.min(1, value(r) || 0.5));
       const radius =
         mode === "capacity" ? 14 + v * 17 : mode === "areas" ? 29 : 7;
-      return `<g class="ops-map-point ${active ? "selected" : ""}" data-ops-record="${r.id}" role="button" tabindex="0" aria-label="${esc(r.name || r.id)} 상세 보기" aria-pressed="${active}"><circle cx="${r.x}" cy="${r.y}" r="${radius + 5}" fill="#fff" opacity="${active ? 1 : 0.5}"/><circle cx="${r.x}" cy="${r.y}" r="${radius}" fill="${v > 0.7 ? COLORS[0] : v > 0.4 ? COLORS[1] : COLORS[2]}" stroke="${active ? "#17352a" : "#fff"}" stroke-width="${active ? 3 : 1.5}"/>${mode !== "points" ? `<text x="${r.x}" y="${r.y + 4}" text-anchor="middle" fill="${v > 0.7 ? "#f6f9f8" : "#17352a"}" font-size="13">${i + 1}</text>` : ""}${active ? `<g><rect x="${Math.min(r.x + 15, 450)}" y="${r.y - 30}" width="124" height="25" rx="4" fill="#17352a"/><text x="${Math.min(r.x + 23, 458)}" y="${r.y - 13}" fill="#f6f9f8" font-size="12">${esc(r.name || r.id)}</text></g>` : ""}</g>`;
+      return `<g class="ops-map-point ${active ? "selected" : ""}" data-ops-record="${r.id}" role="button" tabindex="0" aria-label="${esc(r.name || r.id)} 상세 보기" aria-pressed="${active}"><circle cx="${r.x}" cy="${r.y}" r="${radius + 5}" fill="var(--map-road)" opacity="${active ? 1 : 0.5}"/><circle cx="${r.x}" cy="${r.y}" r="${radius}" fill="${v > 0.7 ? COLORS[0] : v > 0.4 ? COLORS[2] : COLORS[1]}" stroke="${active ? "var(--map-selection)" : "var(--map-road)"}" stroke-width="${active ? 3 : 1.5}"/>${mode !== "points" ? `<text x="${r.x}" y="${r.y + 4}" text-anchor="middle" fill="${v > 0.4 ? "var(--map-number-high)" : "var(--map-number-low)"}" font-size="13">${i + 1}</text>` : ""}${active ? `<g><rect x="${Math.min(r.x + 15, 450)}" y="${r.y - 30}" width="124" height="25" rx="4" fill="var(--map-selection)"/><text x="${Math.min(r.x + 23, 458)}" y="${r.y - 13}" fill="var(--map-on-selection)" font-size="12">${esc(r.name || r.id)}</text></g>` : ""}</g>`;
     })
     .join("");
-  return `<div class="ops-map"><svg viewBox="0 0 640 360" role="group" aria-label="가상 생활권의 ${mode === "points" ? "조사 대상" : "분석 구역"} 배치"><rect width="640" height="360" fill="#edf3f0"/>${blocks}${paths}<text x="23" y="18" fill="#578371" font-size="12">가상 생활권</text><text x="600" y="38" fill="#578371" font-size="12">N ↑</text>${marks}<text x="18" y="345" fill="#578371" font-size="12">공간 배치 예시 · 지점을 선택해 상세 확인</text></svg></div>`;
+  return `<div class="ops-map"><svg viewBox="0 0 640 360" role="group" aria-label="가상 생활권의 ${mode === "points" ? "조사 대상" : "분석 구역"} 배치"><rect width="640" height="360" fill="var(--map-bg)"/>${blocks}${paths}<text x="23" y="18" fill="var(--map-ink)" font-size="12">가상 생활권</text><text x="600" y="38" fill="var(--map-ink)" font-size="12">N ↑</text>${marks}<text x="18" y="345" fill="var(--map-ink)" font-size="12">공간 배치 예시 · 지점을 선택해 상세 확인</text></svg></div>`;
 }
 function trend(labels, series, unit = "", options = {}) {
   const vals = series.flatMap((r) => r.values);
@@ -610,7 +610,7 @@ function documentsView(state) {
       metric("확인 표시", `${done.size}건`, "현재 검토 화면"),
       metric("검토 대기", `${documents.length - done.size}건`, "원문 대조"),
     ],
-    body: `<div class="ops-doc-layout"><aside class="ops-document-list"><span>검토 문서</span>${documents.map((d) => `<button data-ops-record="${d.id}" class="${d.id === r.id ? "selected" : ""}"><small>${d.id} · ${d.pages}p</small><b>${d.name}</b>${status(done.has(d.id) ? "확인 표시" : d.type)}</button>`).join("")}</aside>${panel("원문 확인", `${r.name} · p.${r.page}`, `<article class="ops-paper"><header><span>${r.id}</span><b>${r.name}</b></header><h5>검토 대상 및 기록</h5><p>본 문서는 업무 검토를 위해 접수한 자료의 해당 구간입니다.</p><mark id="ops-source">${r.excerpt}</mark><p>추출한 항목은 원문과 대조하고, 불일치하거나 누락된 내용은 별도 확인합니다.</p><footer>예시 문서 · ${r.page} / ${r.pages}</footer></article>`)}${panel("추출 항목 대조", "원문 근거와 함께 검토", `<dl class="ops-facts">${r.fields.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl><a class="ops-source-link" href="#ops-source" data-ops-source>인용 구간 확인 ↗</a><button class="ops-action" data-ops-review="${r.id}">${done.has(r.id) ? "확인 표시 해제" : "원문 대조 · 확인 표시"}</button>`)}</div>`,
+    body: `<div class="ops-doc-layout"><aside class="ops-document-list"><span>검토 문서</span>${documents.map((d) => `<button data-ops-record="${d.id}" aria-pressed="${d.id === r.id}" class="${d.id === r.id ? "selected" : ""}"><small>${d.id} · ${d.pages}p</small><b>${d.name}</b>${status(done.has(d.id) ? "확인 표시" : d.type)}</button>`).join("")}</aside>${panel("원문 확인", `${r.name} · p.${r.page}`, `<article class="ops-paper"><header><span>${r.id}</span><b>${r.name}</b></header><h5>검토 대상 및 기록</h5><p>본 문서는 업무 검토를 위해 접수한 자료의 해당 구간입니다.</p><mark id="ops-source">${r.excerpt}</mark><p>추출한 항목은 원문과 대조하고, 불일치하거나 누락된 내용은 별도 확인합니다.</p><footer>예시 문서 · ${r.page} / ${r.pages}</footer></article>`)}${panel("추출 항목 대조", "원문 근거와 함께 검토", `<dl class="ops-facts">${r.fields.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl><a class="ops-source-link" href="#ops-source" data-ops-source>인용 구간 확인 ↗</a><button class="ops-action" data-ops-review="${r.id}">${done.has(r.id) ? "확인 표시 해제" : "원문 대조 · 확인 표시"}</button>`)}</div>`,
     note: "직접 작성한 예시 문서와 추출값 · 확인 표시는 현재 화면에서만 유지됩니다.",
     rows: documents.map((r) => ({
       문서번호: r.id,
@@ -784,7 +784,7 @@ export function renderSolution(id = "market", state = {}) {
   return `<div class="ops-workspace analytics" data-ops-id="${def.id}"><div class="ops-chrome"><div>${WORDMARK}<span>${def.group}</span></div><span class="ops-sample">SAMPLE · 2026.08</span></div><div class="ops-body"><header class="ops-heading"><div><p>${def.desc}</p><h3>${def.title}</h3></div><div class="ops-controls">${d.filters}<button class="ops-export" data-ops-export>CSV 내보내기 <span aria-hidden="true">↓</span></button></div></header><div class="ops-metrics">${d.metrics.join("")}</div>${d.body}<p class="ops-footnote">${d.note}</p></div></div>`;
 }
 export function renderShowcase() {
-  return `<div class="solution-catalog"><div class="solution-tabs" role="tablist" aria-label="업무 분야">${DEFINITIONS.map((d, i) => `<button id="solution-tab-${d.id}" role="tab" aria-selected="${i === 0}" aria-controls="solution-screen" tabindex="${i === 0 ? 0 : -1}" data-solution="${d.id}"><span>${String(i + 1).padStart(2, "0")}</span>${d.title}</button>`).join("")}</div><label class="solution-select">업무 분야<select aria-label="업무 분야 선택">${DEFINITIONS.map((d) => `<option value="${d.id}">${d.title}</option>`).join("")}</select></label></div><div id="solution-screen" role="tabpanel" aria-labelledby="solution-tab-market">${renderSolution()}</div><p class="a-sr" id="solution-status" role="status"></p>`;
+  return `<div class="solution-tools"><span>분야를 선택해 화면을 살펴보세요.</span><div class="solution-appearance" role="group" aria-label="업무 화면 테마"><button type="button" data-workspace-theme="light" aria-pressed="true">밝게</button><button type="button" data-workspace-theme="dark" aria-pressed="false">어둡게</button></div></div><div class="solution-shell" data-theme="light"><aside class="solution-catalog"><p class="catalog-label">업무 분야 <span>12</span></p><div class="solution-tabs" role="tablist" aria-orientation="vertical" aria-label="업무 분야">${DEFINITIONS.map((d, i) => `<button id="solution-tab-${d.id}" role="tab" aria-selected="${i === 0}" aria-controls="solution-screen" tabindex="${i === 0 ? 0 : -1}" data-solution="${d.id}"><span>${String(i + 1).padStart(2, "0")}</span>${d.title}</button>`).join("")}</div><label class="solution-select">업무 분야<select aria-label="업무 분야 선택">${DEFINITIONS.map((d) => `<option value="${d.id}">${d.title}</option>`).join("")}</select></label><p class="catalog-foot">ANALYTICS<br/>WORKSPACE</p></aside><div id="solution-screen" role="tabpanel" aria-labelledby="solution-tab-market">${renderSolution()}</div></div><p class="a-sr" id="solution-status" role="status"></p>`;
 }
 
 export function renderServicePreview(index) {

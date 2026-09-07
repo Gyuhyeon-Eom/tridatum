@@ -6,3 +6,13 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Archivo · Omnibus-Type · SIL OFL 1.1. Local Latin variable subset. */
+@font-face {
+  font-family: "Archivo";
+  src: url("../fonts/ArchivoVariable.woff2") format("woff2");
+  font-weight: 400 900;
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-display: swap;
+}

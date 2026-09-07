@@ -35,7 +35,7 @@
     document.addEventListener("click", (e) => {
       if (!header.contains(e.target)) close();
     });
-    matchMedia("(min-width: 801px)").addEventListener("change", () => close());
+    matchMedia("(min-width: 851px)").addEventListener("change", () => close());
   }
   document.querySelector(".back-top")?.addEventListener("click", () => {
     window.scrollTo({
