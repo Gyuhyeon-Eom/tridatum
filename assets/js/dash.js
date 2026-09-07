@@ -17,6 +17,7 @@
   /* 추이 차트 요소 */
   const trendBox = [...panel.querySelectorAll('.box')]
     .find(b => b.querySelector('.bt') && b.querySelector('.bt').textContent.includes('월별'));
+  if (!trendBox) return;
   trendBox.classList.add('trend-box');
   const svg = trendBox.querySelector('svg');
   const elLine = svg.querySelector('.line');

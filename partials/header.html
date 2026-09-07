@@ -1,21 +1,30 @@
-<header>
-  <div class="wrap nav">
-    <a class="logo" href="index.html">
+<header class="site-header">
+  <div class="nav-shell">
+    <a class="logo" href="index.html" aria-label="Tridatum 홈">
       <svg class="mark" viewBox="0 0 48 48" aria-hidden="true">
-        <rect width="48" height="48" rx="13" fill="#1B1A17"/>
-        <rect x="13" y="19" width="5.5" height="16" rx="2.75" fill="#FDFCFA"/>
-        <rect x="21.25" y="12.5" width="5.5" height="22.5" rx="2.75" fill="#FDFCFA"/>
-        <rect x="29.5" y="24.5" width="5.5" height="10.5" rx="2.75" fill="#B05C33"/>
+        <rect x="7" y="21" width="8" height="21" rx="4" fill="currentColor" />
+        <rect x="20" y="7" width="8" height="35" rx="4" fill="currentColor" />
+        <rect x="33" y="28" width="8" height="14" rx="4" fill="currentColor" />
       </svg>
       <span>Tridatum</span>
     </a>
-    <button class="nav-toggle" type="button" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="menu">
+    <nav class="menu" id="primary-menu" aria-label="주 메뉴">
       <a data-nav="services" href="services.html">서비스</a>
       <a data-nav="work" href="work.html">수행 경험</a>
       <a data-nav="about" href="about.html">회사소개</a>
       <a data-nav="contact" href="contact.html">문의</a>
-      <a class="cta" href="contact.html">프로젝트 상담</a>
     </nav>
+    <a class="nav-cta" href="contact.html"
+      >프로젝트 문의 <span aria-hidden="true">↗</span></a
+    >
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-label="메뉴 열기"
+      aria-controls="primary-menu"
+      aria-expanded="false"
+    >
+      <span></span><span></span>
+    </button>
   </div>
 </header>

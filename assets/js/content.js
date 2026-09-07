@@ -4,7 +4,7 @@
 // - [data-c-href="mailto|tel"] 이면 href도 함께 갱신
 (async () => {
   // 헤더 · 푸터 주입(include.js)이 끝난 뒤에 실행 — 푸터 문구도 대상이므로
-  if (document.querySelector('[data-include]')) {
+  if (document.documentElement.dataset.includesReady !== 'true' && document.querySelector('[data-include]')) {
     await new Promise(res => document.addEventListener('includes:done', res, { once: true }));
   }
 

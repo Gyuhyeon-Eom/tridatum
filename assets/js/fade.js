@@ -1,6 +1,7 @@
 // 통합 리빌 엔진 — IntersectionObserver + 스크롤 이벤트 + 폴백 인터벌.
 // 어느 하나가 동작하지 않는 환경에서도 나머지가 위치를 검사해 애니메이션을 발동시킨다.
 (() => {
+  document.documentElement.classList.add('js');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* 히어로 텍스트 리빌 (로드 직후 1회) */

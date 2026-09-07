@@ -1,97 +1,179 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>문의 · Tridatum</title>
-<meta name="description" content="데이터가 있는데 어디서부터 손대야 할지 모르겠다면, 그 상태 그대로 연락 주셔도 됩니다. 사전 진단은 비용 없이 진행합니다.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Tridatum">
-<meta property="og:title" content="문의 · Tridatum">
-<meta property="og:description" content="데이터가 있는데 어디서부터 손대야 할지 모르겠다면, 그 상태 그대로 연락 주셔도 됩니다. 사전 진단은 비용 없이 진행합니다.">
-<meta property="og:url" content="https://tridatum.co/contact.html">
-<meta property="og:image" content="https://tridatum.co/assets/img/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<script>document.documentElement.classList.add('js')</script>
-<link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="assets/css/base.css?v=20260827c">
-<link rel="stylesheet" href="assets/css/site.css?v=20260827c">
-<link rel="stylesheet" href="assets/css/components.css?v=20260827c">
-</head>
-<body data-page="contact">
-
-<div data-include="partials/header.html"></div>
-
-<section class="page glow">
-  <div class="wrap">
-    <div class="kicker">문의</div>
-    <h1 style="font-size:clamp(30px,4.4vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.3">먼저 <em style="font-style:normal;color:var(--accent)">"이 데이터로 뭐가 되나요"</em>만<br>물어보셔도 됩니다</h1>
-    <p style="margin-top:20px;font-size:17px;color:var(--ink-70);max-width:580px">데이터가 있는데 어디서부터 손대야 할지 모르겠다면, 그 상태 그대로 연락 주셔도 됩니다. 무엇이 가능하고 무엇이 어려운지부터 정리해 드리겠습니다. 사전 진단과 가능성 검토는 비용 없이 진행합니다.</p>
-    <div class="contact-grid big fade" style="margin-top:52px">
-      <div><div class="lab">담당</div><div class="val" data-c="contact.person">권지윤 · Project Lead</div></div>
-      <div><div class="lab">연락처</div><div class="val"><a href="tel:01033523534" data-c="contact.phone" data-c-href="tel">010-3352-3534</a></div></div>
-      <div><div class="lab">이메일</div><div class="val"><a href="mailto:contact@tridatum.co" data-c="contact.email" data-c-href="mailto">contact@tridatum.co</a></div></div>
-    </div>
-    <p class="fineprint fade" style="margin-top:36px">※ 법인 설립 준비 중 · 법인 설립 후 대표 연락처와 이메일이 변경될 예정입니다.</p>
-
-    <form id="iform" class="iform fade" style="margin-top:44px">
-      <div class="if-head">문의 남기기</div>
-      <div class="if-grid">
-        <label>이름 <input name="name" required maxlength="80" autocomplete="name"></label>
-        <label>소속 <input name="org" maxlength="120" autocomplete="organization" placeholder="기관 · 부서 (선택)"></label>
-        <label class="full">이메일 <input name="email" type="email" required maxlength="120" autocomplete="email"></label>
-        <label class="full">내용 <textarea name="msg" required maxlength="4000" rows="5" placeholder="보유 데이터와 지금 상황을 편하게 적어 주세요"></textarea></label>
-        <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문의 · Tridatum</title>
+    <meta
+      name="description"
+      content="데이터와 지금의 고민을 들려주세요. contact@tridatum.co에서 프로젝트 상담을 시작합니다."
+    />
+    <meta name="theme-color" content="#10110f" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tridatum" />
+    <meta property="og:title" content="문의 · Tridatum" />
+    <meta
+      property="og:description"
+      content="데이터와 지금의 고민을 들려주세요. contact@tridatum.co에서 프로젝트 상담을 시작합니다."
+    />
+    <meta property="og:url" content="https://tridatum.co/contact.html" />
+    <meta property="og:image" content="https://tridatum.co/assets/img/og.png?v=20260907a" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://tridatum.co/contact.html" />
+    <link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/base.css?v=20260907a" />
+    <link rel="stylesheet" href="assets/css/components.css?v=20260907a" />
+    <link rel="stylesheet" href="assets/css/site.css?v=20260907a" />
+    <link rel="stylesheet" href="assets/css/design.css?v=20260907a" />
+  </head>
+  <body data-page="contact" class="editorial">
+    <a class="skip-link" href="#main">본문 바로가기</a>
+    <div data-include="partials/header.html"></div>
+    <main id="main" tabindex="-1">
+      <section class="masthead">
+        <div class="hero-copy">
+          <p class="eyebrow">프로젝트 문의</p>
+          <h1>
+            <span class="reveal-line"><span>좋은 질문에서,</span></span
+            ><span class="reveal-line"
+              ><span>다음 변화가 시작됩니다.</span></span
+            >
+          </h1>
+          <p class="hero-caption">
+            정리된 계획이 없어도 괜찮습니다. 보유 데이터와 지금의 고민부터
+            들려주세요.
+          </p>
+        </div>
+        <div class="hero-index" aria-hidden="true">T<span>↗</span></div>
+        <div class="hero-bottom">
+          <span>분석부터 운영까지.</span
+          ><a href="#overview" class="scroll-link"
+            >아래로 살펴보기 <span aria-hidden="true">↓</span></a
+          >
+        </div>
+      </section>
+      <div class="sheet contact-sheet" id="overview">
+        <div class="contact-layout">
+          <div class="contact-info">
+            <p class="eyebrow">이야기를 시작해 보세요</p>
+            <h2>함께 찾는<br />첫 번째 해답.</h2>
+            <a
+              class="contact-email"
+              data-c="contact.email"
+              data-c-href="mailto"
+              href="mailto:contact@tridatum.co"
+              >contact@tridatum.co</a
+            >
+            <dl>
+              <div>
+                <dt>담당</dt>
+                <dd data-c="contact.person">권지윤 · Project Lead</dd>
+              </div>
+              <div>
+                <dt>연락처</dt>
+                <dd>
+                  <a
+                    href="tel:01033523534"
+                    data-c="contact.phone"
+                    data-c-href="tel"
+                    >010-3352-3534</a
+                  >
+                </dd>
+              </div>
+            </dl>
+            <p class="body-copy">
+              사전 진단과 가능성 검토는<br />비용 없이 진행합니다.
+            </p>
+          </div>
+          <form aria-labelledby="inquiry-title" id="iform" class="iform">
+            <div class="if-head" id="inquiry-title">
+              어떤 고민을 하고 계신가요?
+            </div>
+            <div class="if-grid">
+              <label
+                >이름
+                <input name="name" required maxlength="80" autocomplete="name"
+              /></label>
+              <label
+                >소속
+                <input
+                  name="org"
+                  maxlength="120"
+                  autocomplete="organization"
+                  placeholder="기관 · 부서 (선택)"
+              /></label>
+              <label class="full"
+                >이메일
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  maxlength="120"
+                  autocomplete="email"
+              /></label>
+              <label class="full"
+                >내용
+                <textarea
+                  name="msg"
+                  required
+                  maxlength="4000"
+                  rows="5"
+                  placeholder="보유 데이터와 지금 상황을 편하게 적어 주세요"
+                ></textarea>
+              </label>
+              <input
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+                style="position: absolute; left: -9999px"
+                aria-hidden="true"
+              />
+            </div>
+            <label class="if-agree">
+              <input type="checkbox" name="agree" required />
+              <span
+                >개인정보 수집 · 이용에 동의합니다. 이름 · 이메일 · 문의 내용은
+                문의 응대 목적으로만 사용하고, 처리 후 파기합니다.
+                <a href="privacy.html">개인정보처리방침</a></span
+              >
+            </label>
+            <div class="if-foot">
+              <button class="btn primary" type="submit">문의 보내기 ↗</button>
+              <span id="iform-status" role="status"></span>
+            </div>
+          </form>
+        </div>
+        <section class="contact-process">
+          <p class="eyebrow">문의 이후에는</p>
+          <div>
+            <article class="reveal">
+              <span class="row-number">01</span>
+              <h3>상황을 이해합니다</h3>
+              <p>보유 데이터와 목적, 현재의 어려움을 함께 확인합니다.</p>
+            </article>
+            <article class="reveal">
+              <span class="row-number">02</span>
+              <h3>범위를 정합니다</h3>
+              <p>가능한 접근과 산출물, 일정과 비용을 협의합니다.</p>
+            </article>
+            <article class="reveal">
+              <span class="row-number">03</span>
+              <h3>직접 만들고 넘깁니다</h3>
+              <p>과정을 공유하고 검증하며, 운영 이관까지 함께합니다.</p>
+            </article>
+          </div>
+        </section>
       </div>
-      <label class="if-agree">
-        <input type="checkbox" name="agree" required>
-        <span>개인정보 수집 · 이용에 동의합니다. 이름 · 이메일 · 문의 내용은 문의 응대 목적으로만 사용하고, 처리 후 파기합니다. <a href="privacy.html">개인정보처리방침</a></span>
-      </label>
-      <div class="if-foot">
-        <button class="btn primary" type="submit">문의 보내기</button>
-        <span id="iform-status" role="status"></span>
-      </div>
-    </form>
-  </div>
-</section>
-
-<section class="page soft">
-  <div class="wrap">
-    <div class="sec-head fade">
-      <div class="kicker">진행 절차</div>
-      <h2>진행 절차</h2>
-      <p>대형 입찰보다는 빠르게 착수해 짧게 끝내는 소규모 과제에 강점이 있습니다. 소규모 과제는 2~4주 내 결과 제출이 가능합니다.</p>
-    </div>
-    <div class="paths" data-stagger>
-      <div class="fade"><h4>01 · 사전 진단</h4><p>보유 데이터로 무엇이 가능한지 무료 검토</p></div>
-      <div class="fade"><h4>02 · 범위 합의</h4><p>목표 · 산출물 · 기간 · 비용 확정</p></div>
-      <div class="fade"><h4>03 · 수행</h4><p>2주 단위 중간 공유로 방향 조기 교정</p></div>
-      <div class="fade"><h4>04 · 납품 · 교육</h4><p>산출물 + 매뉴얼 + 담당자 교육까지</p></div>
-    </div>
-    <div class="sec-head fade" style="margin-top:72px">
-      <div class="kicker">계약 경로</div>
-      <h2>가능한 계약 경로</h2>
-    </div>
-    <div class="paths" data-stagger>
-      <div class="fade"><h4>소액 수의계약</h4><p>2천만 원 이하 용역 · 가장 현실적인 첫 거래 경로 (기관별 조례에 따라 상이)</p></div>
-      <div class="fade"><h4>연구용역 · 정책연구</h4><p>부처 · 기관 자체 연구비 항목 활용</p></div>
-      <div class="fade"><h4>산학협력단 경유</h4><p>대학 연구용역의 공동수행 · 재위탁 구조</p></div>
-      <div class="fade"><h4>공개입찰 · 컨소시엄</h4><p>나라장터 · 규모가 큰 과제</p></div>
-    </div>
-    <div class="band fade" style="margin-top:40px">
-      <b>보안 요건이 있어도 됩니다</b>
-      <p>폐쇄망 · 개인정보 · 의료정보 취급 사업 경험으로 반입 · 비식별 · 감사 요건에 익숙합니다. 분석을 수행하는 사람이 회의에 들어가고 직접 답변합니다.</p>
-      <a class="btn" href="mailto:contact@tridatum.co" data-c-link="contact.email">메일 보내기</a>
-    </div>
-  </div>
-</section>
-
-<div data-include="partials/footer.html"></div>
-
-<script src="assets/js/include.js?v=20260827c"></script>
-<script src="assets/js/fade.js?v=20260827c"></script>
-<script src="assets/js/content.js?v=20260827c"></script>
-<script src="assets/js/inquiry.js?v=20260827c"></script>
-</body>
+    </main>
+    <div data-include="partials/footer.html"></div>
+    <script src="assets/js/include.js?v=20260907a"></script>
+    <script src="assets/js/fade.js?v=20260907a"></script>
+    <script src="assets/js/motion.js?v=20260907a"></script>
+    <script src="assets/js/content.js?v=20260907a"></script>
+    <script src="assets/js/inquiry.js?v=20260907a"></script>
+  </body>
 </html>

@@ -1,217 +1,554 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>서비스 · Tridatum</title>
-<meta name="description" content="판단을 돕는 분석, 먼저 찾아내는 모델, 읽고 쓰는 AI. 발주처가 실제로 겪는 문제 단위로 일합니다.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Tridatum">
-<meta property="og:title" content="서비스 · Tridatum">
-<meta property="og:description" content="판단을 돕는 분석, 먼저 찾아내는 모델, 읽고 쓰는 AI. 발주처가 실제로 겪는 문제 단위로 일합니다.">
-<meta property="og:url" content="https://tridatum.co/services.html">
-<meta property="og:image" content="https://tridatum.co/assets/img/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<script>document.documentElement.classList.add('js')</script>
-<link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="assets/css/base.css?v=20260827c">
-<link rel="stylesheet" href="assets/css/site.css?v=20260827c">
-<link rel="stylesheet" href="assets/css/components.css?v=20260827c">
-</head>
-<body data-page="services">
-
-<div data-include="partials/header.html"></div>
-
-<section class="page glow">
-  <div class="wrap">
-    <div class="kicker">서비스</div>
-    <h1 style="font-size:clamp(30px,4.4vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.3">기술이 아니라,<br>겪고 있는 <em style="font-style:normal;color:var(--accent)">문제</em>에서 출발합니다</h1>
-    <p style="margin-top:20px;font-size:17px;color:var(--ink-70);max-width:560px">발주처가 실제로 겪는 상황 단위로 서비스를 구성했습니다. 지금 상황이 아래 세 가지 중 하나와 비슷하다면, 그대로 문의 주시면 됩니다.</p>
-    <div class="btns" style="margin-top:36px">
-      <a class="btn primary" href="contact.html">프로젝트 문의</a>
-      <a class="btn ghost" href="work.html">수행 경험 보기</a>
-    </div>
-  </div>
-</section>
-
-<section class="page soft">
-  <div class="wrap">
-    <div class="svc-row">
-      <div class="svc-txt fade">
-        <div class="num">01 · 분석</div>
-        <h2>판단을 돕는 분석</h2>
-        <div class="when">"근거가 없어 정책을 정하지 못할 때"</div>
-        <ul>
-          <li><b>실태 진단</b> · 현황 분석 · 수급 격차 · 공간 분포</li>
-          <li><b>효과 검증</b> · 정책효과 · 인과추론(DID) · 유의성 판정</li>
-          <li><b>지표 체계</b> · BI 대시보드 · 반복 측정 가능한 정책 지표</li>
-        </ul>
-        <div class="ev">
-          <span class="chip info">정책효과 인과추론</span><span class="chip info">무효과 구간 보고</span><span class="chip info">BI 대시보드</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>서비스 · Tridatum</title>
+    <meta
+      name="description"
+      content="판단을 돕는 분석, 먼저 찾아내는 모델, 문서와 대화하는 AI. 현장의 문제를 데이터로 해결합니다."
+    />
+    <meta name="theme-color" content="#10110f" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tridatum" />
+    <meta property="og:title" content="서비스 · Tridatum" />
+    <meta
+      property="og:description"
+      content="판단을 돕는 분석, 먼저 찾아내는 모델, 문서와 대화하는 AI. 현장의 문제를 데이터로 해결합니다."
+    />
+    <meta property="og:url" content="https://tridatum.co/services.html" />
+    <meta property="og:image" content="https://tridatum.co/assets/img/og.png?v=20260907a" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://tridatum.co/services.html" />
+    <link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/base.css?v=20260907a" />
+    <link rel="stylesheet" href="assets/css/components.css?v=20260907a" />
+    <link rel="stylesheet" href="assets/css/site.css?v=20260907a" />
+    <link rel="stylesheet" href="assets/css/design.css?v=20260907a" />
+  </head>
+  <body data-page="services" class="editorial">
+    <a class="skip-link" href="#main">본문 바로가기</a>
+    <div data-include="partials/header.html"></div>
+    <main id="main" tabindex="-1">
+      <section class="masthead">
+        <div class="hero-copy">
+          <p class="eyebrow">서비스</p>
+          <h1>
+            <span class="reveal-line"><span>지금의 문제에,</span></span
+            ><span class="reveal-line"><span>필요한 기술을.</span></span>
+          </h1>
+          <p class="hero-caption">
+            분석·예측·문서 AI를 업무 흐름에 맞춰 설계합니다.
+          </p>
         </div>
-      </div>
-      <div class="shot fade"><div class="bar"><i></i><i></i><i></i><span class="url">https://policy-report.internal · 폐쇄망</span></div>
-        <div class="panel">
-          <div class="pt">정책효과 분석 <span>SAMPLE</span></div>
-          <div class="box">
-            <div class="bt">정책 시행 기준 개월별 효과 추정 (95% 신뢰구간)</div>
-            <svg class="sweep" viewBox="0 0 300 130" role="img" aria-label="이벤트 스터디 차트">
-              <rect x="10" y="8" width="104" height="104" fill="rgba(15,34,51,.04)"/>
-              <line x1="10" y1="95" x2="290" y2="95" stroke="rgba(15,34,51,.25)"/>
-              <line x1="114" y1="8" x2="114" y2="112" stroke="#0F2233" stroke-dasharray="4 3" stroke-width="1.2"/>
-              <text x="118" y="16" font-size="8" font-weight="700" fill="#0F2233">정책 시행</text>
-              <text x="16" y="16" font-size="7.5" fill="rgba(15,34,51,.45)">사전 추세 · 유의한 차이 없음</text>
-              <g class="es" style="--i:0" stroke="rgba(15,34,51,.35)" stroke-width="1.2" fill="rgba(15,34,51,.45)"><line x1="15" y1="84" x2="15" y2="104"/><circle cx="15" cy="94" r="3" stroke="none"/></g>
-              <g class="es" style="--i:1" stroke="rgba(15,34,51,.35)" stroke-width="1.2" fill="rgba(15,34,51,.45)"><line x1="48" y1="86" x2="48" y2="106"/><circle cx="48" cy="96" r="3" stroke="none"/></g>
-              <g class="es" style="--i:2" stroke="rgba(15,34,51,.35)" stroke-width="1.2" fill="rgba(15,34,51,.45)"><line x1="81" y1="90" x2="81" y2="110"/><circle cx="81" cy="100" r="3" stroke="none"/></g>
-              <g class="es" style="--i:3" fill="rgba(15,34,51,.45)"><circle cx="114" cy="95" r="3"/></g>
-              <g class="es" style="--i:4" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="147" y1="72" x2="147" y2="92"/><circle cx="147" cy="82" r="3" stroke="none"/></g>
-              <g class="es" style="--i:5" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="180" y1="60" x2="180" y2="80"/><circle cx="180" cy="70" r="3" stroke="none"/></g>
-              <g class="es" style="--i:6" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="213" y1="47" x2="213" y2="67"/><circle cx="213" cy="57" r="3" stroke="none"/></g>
-              <g class="es" style="--i:7" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="246" y1="35" x2="246" y2="55"/><circle cx="246" cy="45" r="3" stroke="none"/></g>
-              <g class="es" style="--i:8" stroke="#E0703C" stroke-width="1.2" fill="#E0703C"><line x1="279" y1="21" x2="279" y2="41"/><circle cx="279" cy="31" r="3" stroke="none"/></g>
-              <text x="15" y="124" font-size="8" fill="rgba(15,34,51,.4)">-6개월</text>
-              <text x="290" y="124" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="end">+9개월</text>
-            </svg>
-          </div>
-          <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
-            <div class="kpi"><span class="k">순효과 <i class="up">시행 12개월</i></span><b>+9.4%</b></div>
-            <div class="kpi"><span class="k">유의 시작</span><b>4개월차</b></div>
-            <div class="kpi"><span class="k">사전 추세 <i class="ok">DID 충족</i></span><b>평행</b></div>
-          </div>
+        <div class="hero-index" aria-hidden="true">T<span>↗</span></div>
+        <div class="hero-bottom">
+          <span>분석부터 운영까지.</span
+          ><a href="#overview" class="scroll-link"
+            >아래로 살펴보기 <span aria-hidden="true">↓</span></a
+          >
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="page">
-  <div class="wrap">
-    <div class="svc-row">
-      <div class="svc-txt fade">
-        <div class="num">02 · 예측</div>
-        <h2>먼저 찾아내는 모델</h2>
-        <div class="when">"사람이 다 볼 수 없어 놓치는 것이 있을 때"</div>
-        <ul>
-          <li><b>발생 예측</b> · 위험도 등급화 · 우선순위 산출</li>
-          <li><b>이상 탐지</b> · 이상징후 · 부정행위 선별 · 조사 대상 축소</li>
-          <li><b>조기 경보</b> · 실시간 모니터링 · 파이프라인 자동화</li>
-        </ul>
-        <div class="ev">
-          <span class="chip info">불균형 데이터 대응</span><span class="chip info">조사 대상 축소</span><span class="chip info">조기경보 구축</span>
-        </div>
-      </div>
-      <div class="shot fade"><div class="bar"><i></i><i></i><i></i><span class="url">https://model-report.internal · 폐쇄망</span></div>
-        <div class="panel">
-          <div class="pt">예측 모델 검증 <span>SAMPLE</span></div>
-          <div class="box">
-            <div class="bt">Precision–Recall 곡선 · 채택 지점</div>
-            <svg class="sweep" viewBox="0 0 220 130" role="img" aria-label="Precision-Recall 곡선">
-              <line x1="10" y1="110" x2="210" y2="110" stroke="rgba(15,34,51,.15)"/>
-              <line x1="10" y1="110" x2="10" y2="10" stroke="rgba(15,34,51,.15)"/>
-              <line x1="10" y1="108.6" x2="210" y2="108.6" stroke="rgba(15,34,51,.3)" stroke-dasharray="3 3"/>
-              <text x="210" y="105" font-size="7.5" fill="rgba(15,34,51,.4)" text-anchor="end">무작위 기준선</text>
-              <path class="line" pathLength="1" d="M10,13 C60,14 110,22 150,33 C168,39 172,44 180.8,49.7 C193,58 202,70 210,80" fill="none" stroke="#E0703C" stroke-width="2" stroke-linecap="round"/>
-              <g class="pop">
-                <circle cx="180.8" cy="49.7" r="4" fill="#0F2233" stroke="#fff" stroke-width="1.5"/>
-                <text x="176" y="42" font-size="8" font-weight="700" fill="#0F2233" text-anchor="end">채택 P .72 / R .88</text>
-              </g>
-              <text x="110" y="124" font-size="8" fill="rgba(15,34,51,.4)" text-anchor="middle">Recall</text>
-            </svg>
-          </div>
-          <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
-            <div class="kpi"><span class="k">발생 예측</span><b>R 0.88</b></div>
-            <div class="kpi"><span class="k">조사 대상</span><b>축소</b></div>
-            <div class="kpi"><span class="k">이상 탐지</span><b>자동 선별</b></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="page soft">
-  <div class="wrap">
-    <div class="svc-row">
-      <div class="svc-txt fade">
-        <div class="num">03 · 문서 AI</div>
-        <h2>읽고 쓰는 AI</h2>
-        <div class="when">"서류를 사람이 일일이 읽고 있을 때"</div>
-        <ul>
-          <li><b>문서 지능</b> · 스캔 서류 전사 · 필수정보 추출 · 구조화</li>
-          <li><b>지식 검색</b> · 폐쇄망 LLM · 하이브리드 RAG · 출처 추적</li>
-          <li><b>초안 생성</b> · 판단 문안 자동작성 · 이미지 분류</li>
-        </ul>
-        <div class="ev">
-          <span class="chip info">폐쇄망 챗봇 구축</span><span class="chip info">대규모 문서 임베딩</span><span class="chip info">환각 기계검사</span>
-        </div>
-      </div>
-      <div class="shot fade"><div class="bar"><i></i><i></i><i></i><span class="url">https://doc-ai.internal · 폐쇄망</span></div>
-        <div class="panel">
-          <div class="pt">문서 AI + 폐쇄망 챗봇 <span>SAMPLE</span></div>
-          <div class="box">
-            <div class="bt">스캔 서류 전사 · 구조화</div>
-            <div class="docv">
-              <div class="f"><span class="n">발급일자</span><span class="v">2019-03-14 <span class="chip ok">정규화 완료</span></span></div>
-              <div class="f"><span class="n">확인란</span><span class="v"><span class="chip warn">⟦판독불가⟧</span> 추측하지 않고 검수 큐로</span></div>
-              <div class="f"><span class="n">원문 위치</span><span class="v">p.7 / 3행 <span class="chip info">역추적 가능</span></span></div>
-            </div>
-          </div>
-          <div class="box">
-            <div class="bt">출처가 붙는 질의응답</div>
-            <div class="chat">
-              <div class="q">이 신청 건과 유사한 과거 처리 사례 있어?</div>
-              <div class="a">동일 유형 · 유사 조건의 처리 사례 <b>4건</b>이 확인됩니다.
-                <div class="src">출처 · 내부 결정문 2023-0842 p.3 외 · 원문 발췌 첨부</div>
+      </section>
+      <div class="sheet">
+        <div class="sheet-layout">
+          <aside class="section-rail">
+            <nav aria-label="페이지 목차">
+              <a href="#overview" class="active" aria-current="location"
+                ><span>01</span>서비스</a
+              ><a href="#analysis"><span>02</span>데이터 분석</a
+              ><a href="#prediction"><span>03</span>예측 모델</a
+              ><a href="#document-ai"><span>04</span>문서 AI</a>
+            </nav>
+            <span class="rail-sign">Tridatum<br />Data into practice.</span>
+          </aside>
+          <div class="sheet-body">
+            <section class="chapter" id="overview" data-chapter>
+              <div class="chapter-head">
+                <p class="eyebrow">서비스</p>
+                <h2 class="reveal">
+                  업무의 시작점은 달라도,<br />쓰이는 결과로 만납니다.
+                </h2>
               </div>
-            </div>
+              <p class="intro-copy">
+                데이터 진단부터 설계, 검증, 운영 이관까지.<br />필요한 범위를
+                함께 정하고 직접 구현합니다.
+              </p>
+            </section>
+            <section class="chapter service-detail" id="analysis" data-chapter>
+              <div class="svc-row">
+                <div class="svc-txt fade">
+                  <div class="num">01 · 분석</div>
+                  <h2>판단을 돕는 분석</h2>
+                  <div class="when">"근거가 없어 정책을 정하지 못할 때"</div>
+                  <ul>
+                    <li>
+                      <b>실태 진단</b> · 현황 분석 · 수급 격차 · 공간 분포
+                    </li>
+                    <li>
+                      <b>효과 검증</b> · 정책효과 · 인과추론(DID) · 유의성 판정
+                    </li>
+                    <li>
+                      <b>지표 체계</b> · BI 대시보드 · 반복 측정 가능한 정책
+                      지표
+                    </li>
+                  </ul>
+                  <div class="ev">
+                    <span class="chip info">정책효과 인과추론</span
+                    ><span class="chip info">무효과 구간 보고</span
+                    ><span class="chip info">BI 대시보드</span>
+                  </div>
+                </div>
+                <div class="shot fade">
+                  <div class="bar">
+                    <i></i><i></i><i></i
+                    ><span class="url">policy / report · sample workspace</span>
+                  </div>
+                  <div class="panel">
+                    <div class="pt">정책효과 분석 <span>SAMPLE</span></div>
+                    <div class="box">
+                      <div class="bt">
+                        정책 시행 기준 개월별 효과 추정 (95% 신뢰구간)
+                      </div>
+                      <svg
+                        class="sweep"
+                        viewBox="0 0 300 130"
+                        role="img"
+                        aria-label="이벤트 스터디 차트"
+                      >
+                        <rect
+                          x="10"
+                          y="8"
+                          width="104"
+                          height="104"
+                          fill="rgba(15,34,51,.04)"
+                        />
+                        <line
+                          x1="10"
+                          y1="95"
+                          x2="290"
+                          y2="95"
+                          stroke="rgba(15,34,51,.25)"
+                        />
+                        <line
+                          x1="114"
+                          y1="8"
+                          x2="114"
+                          y2="112"
+                          stroke="#0F2233"
+                          stroke-dasharray="4 3"
+                          stroke-width="1.2"
+                        />
+                        <text
+                          x="118"
+                          y="16"
+                          font-size="8"
+                          font-weight="700"
+                          fill="#0F2233"
+                        >
+                          정책 시행
+                        </text>
+                        <text
+                          x="16"
+                          y="16"
+                          font-size="7.5"
+                          fill="rgba(15,34,51,.45)"
+                        >
+                          사전 추세 · 유의한 차이 없음
+                        </text>
+                        <g
+                          class="es"
+                          style="--i: 0"
+                          stroke="rgba(15,34,51,.35)"
+                          stroke-width="1.2"
+                          fill="rgba(15,34,51,.45)"
+                        >
+                          <line x1="15" y1="84" x2="15" y2="104" />
+                          <circle cx="15" cy="94" r="3" stroke="none" />
+                        </g>
+                        <g
+                          class="es"
+                          style="--i: 1"
+                          stroke="rgba(15,34,51,.35)"
+                          stroke-width="1.2"
+                          fill="rgba(15,34,51,.45)"
+                        >
+                          <line x1="48" y1="86" x2="48" y2="106" />
+                          <circle cx="48" cy="96" r="3" stroke="none" />
+                        </g>
+                        <g
+                          class="es"
+                          style="--i: 2"
+                          stroke="rgba(15,34,51,.35)"
+                          stroke-width="1.2"
+                          fill="rgba(15,34,51,.45)"
+                        >
+                          <line x1="81" y1="90" x2="81" y2="110" />
+                          <circle cx="81" cy="100" r="3" stroke="none" />
+                        </g>
+                        <g class="es" style="--i: 3" fill="rgba(15,34,51,.45)">
+                          <circle cx="114" cy="95" r="3" />
+                        </g>
+                        <g
+                          class="es"
+                          style="--i: 4"
+                          stroke="#E0703C"
+                          stroke-width="1.2"
+                          fill="#E0703C"
+                        >
+                          <line x1="147" y1="72" x2="147" y2="92" />
+                          <circle cx="147" cy="82" r="3" stroke="none" />
+                        </g>
+                        <g
+                          class="es"
+                          style="--i: 5"
+                          stroke="#E0703C"
+                          stroke-width="1.2"
+                          fill="#E0703C"
+                        >
+                          <line x1="180" y1="60" x2="180" y2="80" />
+                          <circle cx="180" cy="70" r="3" stroke="none" />
+                        </g>
+                        <g
+                          class="es"
+                          style="--i: 6"
+                          stroke="#E0703C"
+                          stroke-width="1.2"
+                          fill="#E0703C"
+                        >
+                          <line x1="213" y1="47" x2="213" y2="67" />
+                          <circle cx="213" cy="57" r="3" stroke="none" />
+                        </g>
+                        <g
+                          class="es"
+                          style="--i: 7"
+                          stroke="#E0703C"
+                          stroke-width="1.2"
+                          fill="#E0703C"
+                        >
+                          <line x1="246" y1="35" x2="246" y2="55" />
+                          <circle cx="246" cy="45" r="3" stroke="none" />
+                        </g>
+                        <g
+                          class="es"
+                          style="--i: 8"
+                          stroke="#E0703C"
+                          stroke-width="1.2"
+                          fill="#E0703C"
+                        >
+                          <line x1="279" y1="21" x2="279" y2="41" />
+                          <circle cx="279" cy="31" r="3" stroke="none" />
+                        </g>
+                        <text
+                          x="15"
+                          y="124"
+                          font-size="8"
+                          fill="rgba(15,34,51,.4)"
+                        >
+                          -6개월
+                        </text>
+                        <text
+                          x="290"
+                          y="124"
+                          font-size="8"
+                          fill="rgba(15,34,51,.4)"
+                          text-anchor="end"
+                        >
+                          +9개월
+                        </text>
+                      </svg>
+                    </div>
+                    <div
+                      class="kpis"
+                      style="grid-template-columns: repeat(3, 1fr)"
+                    >
+                      <div class="kpi">
+                        <span class="k"
+                          >순효과 <i class="up">시행 12개월</i></span
+                        ><b>+9.4%</b>
+                      </div>
+                      <div class="kpi">
+                        <span class="k">유의 시작</span><b>4개월차</b>
+                      </div>
+                      <div class="kpi">
+                        <span class="k"
+                          >사전 추세 <i class="ok">DID 충족</i></span
+                        ><b>평행</b>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="service-tech">
+                구현에 활용하는 기술
+                <span>Python · PostgreSQL · Tableau · statsmodels</span>
+              </p>
+              <p class="fineprint">
+                예시 데이터 기반 데모입니다. 실제 납품물은 업무와 데이터에 맞춰
+                구성합니다.
+              </p>
+              <a class="text-link" href="index.html#showcase" data-open-demo="2"
+                >관련 화면 살펴보기 <span aria-hidden="true">↗</span></a
+              >
+            </section>
+            <section
+              class="chapter service-detail"
+              id="prediction"
+              data-chapter
+            >
+              <div class="svc-row">
+                <div class="svc-txt fade">
+                  <div class="num">02 · 예측</div>
+                  <h2>먼저 찾아내는 모델</h2>
+                  <div class="when">
+                    "사람이 다 볼 수 없어 놓치는 것이 있을 때"
+                  </div>
+                  <ul>
+                    <li><b>발생 예측</b> · 위험도 등급화 · 우선순위 산출</li>
+                    <li>
+                      <b>이상 탐지</b> · 이상징후 · 부정행위 선별 · 조사 대상
+                      축소
+                    </li>
+                    <li>
+                      <b>조기 경보</b> · 실시간 모니터링 · 파이프라인 자동화
+                    </li>
+                  </ul>
+                  <div class="ev">
+                    <span class="chip info">불균형 데이터 대응</span
+                    ><span class="chip info">조사 대상 축소</span
+                    ><span class="chip info">조기경보 구축</span>
+                  </div>
+                </div>
+                <div class="shot fade">
+                  <div class="bar">
+                    <i></i><i></i><i></i
+                    ><span class="url">model / report · sample workspace</span>
+                  </div>
+                  <div class="panel">
+                    <div class="pt">예측 모델 검증 <span>SAMPLE</span></div>
+                    <div class="box">
+                      <div class="bt">Precision–Recall 곡선 · 채택 지점</div>
+                      <svg
+                        class="sweep"
+                        viewBox="0 0 220 130"
+                        role="img"
+                        aria-label="Precision-Recall 곡선"
+                      >
+                        <line
+                          x1="10"
+                          y1="110"
+                          x2="210"
+                          y2="110"
+                          stroke="rgba(15,34,51,.15)"
+                        />
+                        <line
+                          x1="10"
+                          y1="110"
+                          x2="10"
+                          y2="10"
+                          stroke="rgba(15,34,51,.15)"
+                        />
+                        <line
+                          x1="10"
+                          y1="108.6"
+                          x2="210"
+                          y2="108.6"
+                          stroke="rgba(15,34,51,.3)"
+                          stroke-dasharray="3 3"
+                        />
+                        <text
+                          x="210"
+                          y="105"
+                          font-size="7.5"
+                          fill="rgba(15,34,51,.4)"
+                          text-anchor="end"
+                        >
+                          무작위 기준선
+                        </text>
+                        <path
+                          class="line"
+                          pathLength="1"
+                          d="M10,13 C60,14 110,22 150,33 C168,39 172,44 180.8,49.7 C193,58 202,70 210,80"
+                          fill="none"
+                          stroke="#E0703C"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        />
+                        <g class="pop">
+                          <circle
+                            cx="180.8"
+                            cy="49.7"
+                            r="4"
+                            fill="#0F2233"
+                            stroke="#fff"
+                            stroke-width="1.5"
+                          />
+                          <text
+                            x="176"
+                            y="42"
+                            font-size="8"
+                            font-weight="700"
+                            fill="#0F2233"
+                            text-anchor="end"
+                          >
+                            채택 P .72 / R .88
+                          </text>
+                        </g>
+                        <text
+                          x="110"
+                          y="124"
+                          font-size="8"
+                          fill="rgba(15,34,51,.4)"
+                          text-anchor="middle"
+                        >
+                          Recall
+                        </text>
+                      </svg>
+                    </div>
+                    <div
+                      class="kpis"
+                      style="grid-template-columns: repeat(3, 1fr)"
+                    >
+                      <div class="kpi">
+                        <span class="k">발생 예측</span><b>R 0.88</b>
+                      </div>
+                      <div class="kpi">
+                        <span class="k">조사 대상</span><b>축소</b>
+                      </div>
+                      <div class="kpi">
+                        <span class="k">이상 탐지</span><b>자동 선별</b>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="service-tech">
+                구현에 활용하는 기술
+                <span>Python · XGBoost · scikit-learn · SHAP</span>
+              </p>
+              <p class="fineprint">
+                예시 데이터 기반 데모입니다. 실제 납품물은 업무와 데이터에 맞춰
+                구성합니다.
+              </p>
+              <a class="text-link" href="index.html#showcase" data-open-demo="1"
+                >관련 화면 살펴보기 <span aria-hidden="true">↗</span></a
+              >
+            </section>
+            <section
+              class="chapter service-detail"
+              id="document-ai"
+              data-chapter
+            >
+              <div class="svc-row">
+                <div class="svc-txt fade">
+                  <div class="num">03 · 문서 AI</div>
+                  <h2>읽고 쓰는 AI</h2>
+                  <div class="when">"서류를 사람이 일일이 읽고 있을 때"</div>
+                  <ul>
+                    <li>
+                      <b>문서 지능</b> · 스캔 서류 전사 · 필수정보 추출 · 구조화
+                    </li>
+                    <li>
+                      <b>지식 검색</b> · 폐쇄망 LLM · 하이브리드 RAG · 출처 추적
+                    </li>
+                    <li><b>초안 생성</b> · 판단 문안 자동작성 · 이미지 분류</li>
+                  </ul>
+                  <div class="ev">
+                    <span class="chip info">폐쇄망 챗봇 구축</span
+                    ><span class="chip info">대규모 문서 임베딩</span
+                    ><span class="chip info">환각 기계검사</span>
+                  </div>
+                </div>
+                <div class="shot fade">
+                  <div class="bar">
+                    <i></i><i></i><i></i
+                    ><span class="url">doc / ai · sample workspace</span>
+                  </div>
+                  <div class="panel">
+                    <div class="pt">
+                      문서 AI + 폐쇄망 챗봇 <span>SAMPLE</span>
+                    </div>
+                    <div class="box">
+                      <div class="bt">스캔 서류 전사 · 구조화</div>
+                      <div class="docv">
+                        <div class="f">
+                          <span class="n">발급일자</span
+                          ><span class="v"
+                            >2019-03-14
+                            <span class="chip ok">정규화 완료</span></span
+                          >
+                        </div>
+                        <div class="f">
+                          <span class="n">확인란</span
+                          ><span class="v"
+                            ><span class="chip warn">⟦판독불가⟧</span> 추측하지
+                            않고 검수 큐로</span
+                          >
+                        </div>
+                        <div class="f">
+                          <span class="n">원문 위치</span
+                          ><span class="v"
+                            >p.7 / 3행
+                            <span class="chip info">역추적 가능</span></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="bt">출처가 붙는 질의응답</div>
+                      <div class="chat">
+                        <div class="q">
+                          이 신청 건과 유사한 과거 처리 사례 있어?
+                        </div>
+                        <div class="a">
+                          동일 유형 · 유사 조건의 처리 사례 <b>4건</b>이
+                          확인됩니다.
+                          <div class="src">
+                            출처 · 내부 결정문 2023-0842 p.3 외 · 원문 발췌 첨부
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="service-tech">
+                구현에 활용하는 기술
+                <span>vLLM · LangGraph · Elasticsearch · Hugging Face</span>
+              </p>
+              <p class="fineprint">
+                예시 데이터 기반 데모입니다. 실제 납품물은 업무와 데이터에 맞춰
+                구성합니다.
+              </p>
+              <a class="text-link" href="index.html#showcase" data-open-demo="3"
+                >관련 화면 살펴보기 <span aria-hidden="true">↗</span></a
+              >
+            </section>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="page principles">
-  <div class="wrap">
-    <div class="kicker">공통 기반</div>
-    <h2 class="fade">모든 서비스는 같은 기반 위에서 돌아갑니다</h2>
-    <div class="grid">
-      <div class="fade"><b>폐쇄망 자체 구축</b><p>외부 API 차단 환경에서 LLM 서빙 · 검색 · 관측 · 배포까지. 오프라인 반입 킷도 직접 제작합니다.</p></div>
-      <div class="fade"><b>억 단위 데이터 엔지니어링</b><p>억 단위 DW 이관 · 증분 배치 자동화 · 재실행 가능한 파이프라인.</p></div>
-      <div class="fade"><b>개인정보 보호</b><p>비식별 · 마스킹 · 감사 추적 로그. 의료 · 개인정보 취급 사업 경험.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="page">
-  <div class="wrap">
-    <div class="sec-head fade">
-      <div class="kicker">기술</div>
-      <h2>실제 사업에서 사용해 본 기술만 적습니다</h2>
-      <p>학습 수준이거나 검토만 한 기술은 제외했습니다.</p>
-    </div>
-    <div class="tech" data-stagger>
-      <div class="fade"><h4>데이터 처리 · 인프라</h4><p>Python · FastAPI · Docker · Oracle · PostgreSQL · Airflow · DuckDB · pgvector · 전자정부프레임워크</p></div>
-      <div class="fade"><h4>분석 · 모델링</h4><p>scikit-learn · XGBoost · CatBoost · PU Learning · SHAP · 인과추론(DID) · 시계열 · 임계값 최적화</p></div>
-      <div class="fade"><h4>생성형 AI · LLM</h4><p>vLLM · LangGraph · Ollama · bge-m3 · 하이브리드 RAG · Text-to-SQL(AST 검증) · 지식그래프</p></div>
-      <div class="fade"><h4>비전 · 이미지</h4><p>EfficientNet · MobileNetV3 · 이미지+메타데이터 결합 분류 · 환각 · 오전사 기계 검출</p></div>
-      <div class="fade"><h4>공간분석 · GIS</h4><p>QGIS · GeoPandas · Moran's I · Maxent 등가 서식지 모델 · 격자 분석 · O-D 복원</p></div>
-      <div class="fade"><h4>시각화 · 운영</h4><p>Tableau · Prometheus · Grafana · Langfuse · 산출 자동화 · 개인정보 마스킹 · 감사 추적</p></div>
-    </div>
-    <p class="fineprint fade">환경 독립 설계 · 개발과 운영(폐쇄망)이 같은 코드로 동작하도록 구성합니다. 발주처 인프라가 바뀌어도 재개발이 필요 없습니다.</p>
-    <div class="band fade" style="margin-top:40px">
-      <b>어느 축에 해당하는지 모르셔도 됩니다</b>
-      <p>데이터와 상황만 말씀해 주시면, 무엇이 가능하고 무엇이 어려운지부터 정리해 드립니다.</p>
-      <a class="btn" href="contact.html">문의하기</a>
-    </div>
-  </div>
-</section>
-
-<div data-include="partials/footer.html"></div>
-
-<script src="assets/js/include.js?v=20260827c"></script>
-<script src="assets/js/fade.js?v=20260827c"></script>
-</body>
+      <section class="contact-banner">
+        <div>
+          <p class="eyebrow">다음 이야기</p>
+          <h2 class="reveal" data-c="cta.title">
+            데이터로 무엇이 가능할지,<br />함께 이야기해 볼까요?
+          </h2>
+          <p data-c="cta.desc">
+            보유 데이터와 고민을 들려주세요. 가능성과 시작점을 함께 찾겠습니다.
+          </p>
+        </div>
+        <a class="round-link" href="contact.html" aria-label="프로젝트 문의하기"
+          >↗</a
+        >
+      </section>
+    </main>
+    <div data-include="partials/footer.html"></div>
+    <script src="assets/js/include.js?v=20260907a"></script>
+    <script src="assets/js/fade.js?v=20260907a"></script>
+    <script src="assets/js/motion.js?v=20260907a"></script>
+    <script src="assets/js/content.js?v=20260907a"></script>
+  </body>
 </html>

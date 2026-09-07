@@ -1,156 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>수행 경험 · Tridatum</title>
-<meta name="description" content="억 단위 DW 이관, 발생 예측, 폐쇄망 LLM 실서비스 운영까지 · 팀이 직접 풀어 본 문제 유형으로 정리했습니다.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Tridatum">
-<meta property="og:title" content="수행 경험 · Tridatum">
-<meta property="og:description" content="억 단위 DW 이관, 발생 예측, 폐쇄망 LLM 실서비스 운영까지 · 팀이 직접 풀어 본 문제 유형으로 정리했습니다.">
-<meta property="og:url" content="https://tridatum.co/work.html">
-<meta property="og:image" content="https://tridatum.co/assets/img/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<script>document.documentElement.classList.add('js')</script>
-<link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="assets/css/base.css?v=20260827c">
-<link rel="stylesheet" href="assets/css/site.css?v=20260827c">
-<link rel="stylesheet" href="assets/css/components.css?v=20260827c">
-</head>
-<body data-page="work">
-
-<div data-include="partials/header.html"></div>
-
-<section class="page glow">
-  <div class="wrap">
-    <div class="kicker">수행 경험</div>
-    <h1 style="font-size:clamp(30px,4.4vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.3">무엇을 해봤는지,<br><em style="font-style:normal;color:var(--accent)">문제 유형</em>으로 말씀드립니다</h1>
-    <p style="margin-top:20px;font-size:17px;color:var(--ink-70);max-width:580px">팀 구성원들이 공공 데이터 현장에서 직접 다뤄 온 문제들입니다. 특정 사업이 아니라, 풀 수 있는 문제의 유형으로 정리했습니다.</p>
-    <div class="numbers" data-stagger style="margin-top:48px">
-      <div class="fade"><b>DW 구축 · 이관</b><span class="what">억 단위 데이터 · 증분 배치 자동화</span><span class="who">재실행 가능한 파이프라인</span></div>
-      <div class="fade"><b>시계열 통합</b><span class="what">대규모 원천 데이터 결합</span><span class="who">정합성 검증 · 이력 관리</span></div>
-      <div class="fade"><b>문서 임베딩 · RAG</b><span class="what">대규모 말뭉치 지식 검색</span><span class="who">폐쇄망 배치 처리 · 출처 추적</span></div>
-      <div class="fade"><b>발생 예측</b><span class="what">위험도 등급화 · 우선순위</span><span class="who">불균형 데이터 대응</span></div>
-      <div class="fade"><b>이상탐지 · 조기경보</b><span class="what">이상징후 자동 선별</span><span class="who">실시간 모니터링 체계</span></div>
-      <div class="fade"><b>정책효과 분석</b><span class="what">인과추론 · 유의성 판정</span><span class="who">무효과 구간까지 보고</span></div>
-      <div class="fade"><b>공간분석 · GIS</b><span class="what">격자 분석 · O-D 복원</span><span class="who">공간 자기상관 검정</span></div>
-      <div class="fade"><b>이미지 AI</b><span class="what">분류 · 문서 전사 검증</span><span class="who">환각 · 오전사 기계 검출</span></div>
-    </div>
-    <p class="fineprint fade">※ 위 역량은 팀 구성원의 공공 데이터 실무 경험에 기반합니다.</p>
-  </div>
-</section>
-
-<section class="page soft">
-  <div class="wrap">
-    <div class="sec-head fade">
-      <div class="kicker">신뢰의 근거</div>
-      <h2>검증이 다음 단계로 이어졌습니다</h2>
-      <p>결과를 직접 확인한 발주처가 다음 단계를 맡기는 경험을 반복해 왔습니다.</p>
-    </div>
-    <div class="rebuy">
-      <article class="fade">
-        <div class="org">공모 과제 → 본사업</div>
-        <div class="field">중앙행정기관 · 이상징후 탐지</div>
-        <div class="flow">
-          <div class="step">
-            <div class="yr">1차 · 공모 과제</div>
-            <h4>수십 종 데이터 연계 · 탐지 모델 검증</h4>
-            <p>수십 종 원천 데이터를 연계해 이상징후 의심군을 도출하고 실제 사례로 성능을 검증</p>
-          </div>
-          <div class="step">
-            <div class="yr hl">이듬해 · 기관 자체예산 본사업</div>
-            <h4>조기경보 시스템 구축</h4>
-            <p>억 단위 DW 이관과 함께 담당 부서가 직접 분석하는 체계로 전환</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>수행 경험 · Tridatum</title>
+    <meta
+      name="description"
+      content="공공 데이터 실무에서 다뤄 온 데이터 연계, 예측, 공간분석, 문서 AI와 운영 경험을 소개합니다."
+    />
+    <meta name="theme-color" content="#10110f" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tridatum" />
+    <meta property="og:title" content="수행 경험 · Tridatum" />
+    <meta
+      property="og:description"
+      content="공공 데이터 실무에서 다뤄 온 데이터 연계, 예측, 공간분석, 문서 AI와 운영 경험을 소개합니다."
+    />
+    <meta property="og:url" content="https://tridatum.co/work.html" />
+    <meta property="og:image" content="https://tridatum.co/assets/img/og.png?v=20260907a" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://tridatum.co/work.html" />
+    <link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/base.css?v=20260907a" />
+    <link rel="stylesheet" href="assets/css/components.css?v=20260907a" />
+    <link rel="stylesheet" href="assets/css/site.css?v=20260907a" />
+    <link rel="stylesheet" href="assets/css/design.css?v=20260907a" />
+  </head>
+  <body data-page="work" class="editorial">
+    <a class="skip-link" href="#main">본문 바로가기</a>
+    <div data-include="partials/header.html"></div>
+    <main id="main" tabindex="-1">
+      <section class="masthead">
+        <div class="hero-copy">
+          <p class="eyebrow">수행 경험</p>
+          <h1>
+            <span class="reveal-line"><span>현장에서 다뤄 온 문제,</span></span
+            ><span class="reveal-line"><span>다음 해법의 출발점.</span></span>
+          </h1>
+          <p class="hero-caption">
+            팀 구성원이 쌓아 온 경험을, 해결할 수 있는 문제로 소개합니다.
+          </p>
+        </div>
+        <div class="hero-index" aria-hidden="true">T<span>↗</span></div>
+        <div class="hero-bottom">
+          <span>분석부터 운영까지.</span
+          ><a href="#overview" class="scroll-link"
+            >아래로 살펴보기 <span aria-hidden="true">↓</span></a
+          >
+        </div>
+      </section>
+      <div class="sheet">
+        <div class="sheet-layout">
+          <aside class="section-rail">
+            <nav aria-label="페이지 목차">
+              <a href="#overview" class="active" aria-current="location"
+                ><span>01</span>경험의 영역</a
+              ><a href="#capabilities"><span>02</span>문제와 해법</a>
+            </nav>
+            <span class="rail-sign">Tridatum<br />Data into practice.</span>
+          </aside>
+          <div class="sheet-body">
+            <section class="chapter" id="overview" data-chapter>
+              <div class="chapter-head">
+                <p class="eyebrow">경험의 영역</p>
+                <h2 class="reveal">
+                  연결하고, 예측하고,<br />업무로 이어갑니다.
+                </h2>
+              </div>
+              <p class="intro-copy">
+                공공 데이터 분석부터 운영 시스템 구축까지.<br />데이터와 실제
+                사용 환경을 함께 다뤄 온 경험이 있습니다.
+              </p>
+              <p class="fineprint">
+                팀 구성원의 이전 소속 실무 경험을 바탕으로 정리했습니다.
+              </p>
+            </section>
+            <section class="chapter" id="capabilities" data-chapter>
+              <div class="chapter-head">
+                <p class="eyebrow">문제와 해법</p>
+                <h2 class="reveal">지금 겪는 문제와<br />연결해 보세요.</h2>
+              </div>
+              <div class="capability-grid">
+                <a
+                  class="capability reveal"
+                  href="index.html#showcase"
+                  data-open-demo="0"
+                  ><p class="eyebrow">데이터가 흩어져 있다면</p>
+                  <h3>데이터 통합 · 파이프라인</h3>
+                  <p>
+                    원천 데이터 연계, 정합성 검증, DW 구축과 증분 배치 자동화.
+                  </p>
+                  <div class="capability-foot">
+                    <span>PostgreSQL · Airflow · Python</span
+                    ><span class="row-arrow" aria-hidden="true">↗</span>
+                  </div></a
+                ><a
+                  class="capability reveal"
+                  href="index.html#showcase"
+                  data-open-demo="1"
+                  ><p class="eyebrow">먼저 살펴볼 대상을 찾는다면</p>
+                  <h3>예측 · 이상탐지</h3>
+                  <p>시계열과 위험 신호를 분석해 점검 우선순위를 제시합니다.</p>
+                  <div class="capability-foot">
+                    <span>XGBoost · scikit-learn · SHAP</span
+                    ><span class="row-arrow" aria-hidden="true">↗</span>
+                  </div></a
+                ><a
+                  class="capability reveal"
+                  href="index.html#showcase"
+                  data-open-demo="2"
+                  ><p class="eyebrow">정책의 변화를 확인한다면</p>
+                  <h3>정책효과 분석</h3>
+                  <p>
+                    전후 변화와 비교집단을 살펴보고, 효과와 불확실성을 함께
+                    제시합니다.
+                  </p>
+                  <div class="capability-foot">
+                    <span>Python · statsmodels · DID</span
+                    ><span class="row-arrow" aria-hidden="true">↗</span>
+                  </div></a
+                ><a
+                  class="capability reveal"
+                  href="index.html#showcase"
+                  data-open-demo="0"
+                  ><p class="eyebrow">지역마다 다른 이유를 찾는다면</p>
+                  <h3>공간분석 · GIS</h3>
+                  <p>격자와 이동 데이터를 연결해 지역의 패턴을 읽습니다.</p>
+                  <div class="capability-foot">
+                    <span>QGIS · GeoPandas · Shapely</span
+                    ><span class="row-arrow" aria-hidden="true">↗</span>
+                  </div></a
+                ><a
+                  class="capability reveal"
+                  href="index.html#showcase"
+                  data-open-demo="3"
+                  ><p class="eyebrow">문서가 업무의 시작이라면</p>
+                  <h3>문서 AI · 지식 검색</h3>
+                  <p>
+                    문서 전사와 구조화, 하이브리드 검색, 출처를 확인하는
+                    질의응답.
+                  </p>
+                  <div class="capability-foot">
+                    <span>vLLM · LangGraph · Elasticsearch</span
+                    ><span class="row-arrow" aria-hidden="true">↗</span>
+                  </div></a
+                ><a
+                  class="capability reveal"
+                  href="index.html#showcase"
+                  data-open-demo="4"
+                  ><p class="eyebrow">서비스를 안정적으로 운영한다면</p>
+                  <h3>배포 · 운영 관측</h3>
+                  <p>
+                    폐쇄망 배포와 재실행 절차, 서비스 지표와 LLM 응답 품질 관측.
+                  </p>
+                  <div class="capability-foot">
+                    <span>Docker · Grafana · Langfuse</span
+                    ><span class="row-arrow" aria-hidden="true">↗</span>
+                  </div></a
+                >
+              </div>
+            </section>
           </div>
         </div>
-      </article>
-      <article class="fade">
-        <div class="org">1차 분석 → 후속 사업</div>
-        <div class="field">국립 연구기관 · 확산 예측</div>
-        <div class="flow">
-          <div class="step">
-            <div class="yr">1차 · 예측 모델 검증</div>
-            <h4>발생 예측 · 조사 대상 축소</h4>
-            <p>예측 성능을 정량 검증하고 현장 조사 대상을 크게 축소</p>
-          </div>
-          <div class="step">
-            <div class="yr hl">이듬해 · 과업을 넓힌 후속 사업</div>
-            <h4>예측 고도화 · 이미지 AI 확장</h4>
-            <p>공간 해상도 상향과 이미지 분류 과제가 새로 편입</p>
-          </div>
+      </div>
+      <section class="contact-banner">
+        <div>
+          <p class="eyebrow">다음 이야기</p>
+          <h2 class="reveal" data-c="cta.title">
+            데이터로 무엇이 가능할지,<br />함께 이야기해 볼까요?
+          </h2>
+          <p data-c="cta.desc">
+            보유 데이터와 고민을 들려주세요. 가능성과 시작점을 함께 찾겠습니다.
+          </p>
         </div>
-      </article>
-    </div>
-    <div class="note-box fade">
-      또 다른 공공기관에서는 예측 파이프라인으로 시작한 단일 사업이 초기 결과 확인 후 <b>폐쇄망 AI 챗봇 구축까지 과업이 확대</b>되어 기간이 연장되기도 했습니다.
-    </div>
-  </div>
-</section>
-
-<section class="page">
-  <div class="wrap">
-    <div class="sec-head fade">
-      <div class="kicker">문제 유형</div>
-      <h2>풀어 본 문제 유형</h2>
-      <p>기관 유형과 문제 단위로 정리했습니다. 비슷한 문제라면 바로 대입해 보셔도 됩니다.</p>
-    </div>
-    <div class="plist">
-      <div class="prow fade">
-        <div class="org">중앙행정기관</div>
-        <div class="name">이상징후 탐지 → 조기경보 시스템 구축<span>수십 종 데이터 연계 · 대규모 DW 이관 · 담당 부서 직접 분석 체계 전환</span></div>
-        <div class="tag">탐지 · DW</div>
-      </div>
-      <div class="prow fade">
-        <div class="org">공공기관</div>
-        <div class="name">전국 단위 예측 파이프라인 + 폐쇄망 AI 챗봇 실서비스<span>예측 앙상블 · 폐쇄망 챗봇 실서비스 운영</span></div>
-        <div class="tag">예측 · LLM</div>
-      </div>
-      <div class="prow fade">
-        <div class="org">국립 연구기관</div>
-        <div class="name">가축전염병 확산 예측 · 방역 지원<span>발생 예측 · 조사 대상 축소 · 이미지 AI 확장</span></div>
-        <div class="tag">예측</div>
-      </div>
-      <div class="prow fade">
-        <div class="org">중앙부처</div>
-        <div class="name">심사 지원 문서 AI · 폐쇄망 질의응답<span>대규모 문서 임베딩 · 환각 차단 · 전 답변 출처 추적</span></div>
-        <div class="tag">문서 AI</div>
-      </div>
-      <div class="prow fade">
-        <div class="org">공공기관</div>
-        <div class="name">센서 측정치 이상탐지<span>실시간 모니터링 · 이상징후 자동 선별</span></div>
-        <div class="tag">이상탐지</div>
-      </div>
-      <div class="prow fade">
-        <div class="org">지자체</div>
-        <div class="name">지역화폐 정책효과 분석<span>인과추론(DID) · 신뢰구간 · 무효과 구간까지 보고</span></div>
-        <div class="tag">정책 분석</div>
-      </div>
-      <div class="prow fade">
-        <div class="org">연구기관</div>
-        <div class="name">대중교통 노선 최적화 공간분석<span>O-D 복원 · 격자 분석 · 공간 자기상관 검정</span></div>
-        <div class="tag">공간분석</div>
-      </div>
-      <div class="prow fade">
-        <div class="org">연구기관</div>
-        <div class="name">교통수요 시계열 예측<span>수요 패턴 분석 · 변화점 탐지</span></div>
-        <div class="tag">예측</div>
-      </div>
-    </div>
-    <p class="fineprint fade">이 외 빅데이터 플랫폼 유지관리, 홍보 효과성 인과분석, 돌봄 수급 격차 진단, 운행데이터 분석 등을 수행했습니다.</p>
-    <p class="fineprint fade">※ 위 경험은 팀 구성원이 이전 소속 재직 중 공동 수행한 사업 기준이며, 분석 · AI 설계 · 모델 개발 영역을 담당했습니다.</p>
-    <div class="band fade" style="margin-top:40px">
-      <b>비슷한 문제를 갖고 계신가요?</b>
-      <p>보유하신 데이터로 무엇이 가능한지, 사전 진단과 가능성 검토는 비용 없이 진행합니다.</p>
-      <a class="btn" href="contact.html">문의하기</a>
-    </div>
-  </div>
-</section>
-
-<div data-include="partials/footer.html"></div>
-
-<script src="assets/js/include.js?v=20260827c"></script>
-<script src="assets/js/fade.js?v=20260827c"></script>
-</body>
+        <a class="round-link" href="contact.html" aria-label="프로젝트 문의하기"
+          >↗</a
+        >
+      </section>
+    </main>
+    <div data-include="partials/footer.html"></div>
+    <script src="assets/js/include.js?v=20260907a"></script>
+    <script src="assets/js/fade.js?v=20260907a"></script>
+    <script src="assets/js/motion.js?v=20260907a"></script>
+    <script src="assets/js/content.js?v=20260907a"></script>
+  </body>
 </html>

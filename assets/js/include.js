@@ -1,26 +1,51 @@
-// 공용 헤더 · 푸터 주입 + 현재 페이지 내비 표시
-// 사용법: <div data-include="partials/header.html"></div> + <body data-page="home">
+// Shared chrome is revalidated on load; failed includes must not block editable content.
 (async () => {
-  const mounts = document.querySelectorAll('[data-include]');
-  await Promise.all([...mounts].map(async (el) => {
-    // 헤더 · 푸터가 옛 캐시로 주입되지 않도록 항상 서버와 재검증
-    const res = await fetch(el.dataset.include, { cache: 'no-cache' });
-    if (res.ok) el.outerHTML = await res.text();
-  }));
+  const mounts = [...document.querySelectorAll("[data-include]")];
+  await Promise.allSettled(
+    mounts.map(async (el) => {
+      const res = await fetch(el.dataset.include, { cache: "no-cache" });
+      if (!res.ok) throw new Error(`Include unavailable: ${res.status}`);
+      el.outerHTML = await res.text();
+    }),
+  );
   const page = document.body.dataset.page;
-  if (page) document.querySelector(`[data-nav="${page}"]`)?.classList.add('active');
-
-  // 모바일 햄버거 토글
-  const toggle = document.querySelector('.nav-toggle');
+  const active = document.querySelector(`[data-nav="${page}"]`);
+  active?.classList.add("active");
+  active?.setAttribute("aria-current", "page");
+  const header = document.querySelector(".site-header");
+  const toggle = header?.querySelector(".nav-toggle");
   if (toggle) {
-    const header = toggle.closest('header');
-    toggle.addEventListener('click', () => {
-      const open = header.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
+    const close = (returnFocus = false) => {
+      header.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "메뉴 열기");
+      if (returnFocus) toggle.focus();
+    };
+    toggle.addEventListener("click", () => {
+      const opened = header.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(opened));
+      toggle.setAttribute("aria-label", opened ? "메뉴 닫기" : "메뉴 열기");
     });
-    header.querySelectorAll('nav.menu a').forEach(a =>
-      a.addEventListener('click', () => header.classList.remove('open')));
+    header
+      .querySelectorAll("a")
+      .forEach((a) => a.addEventListener("click", () => close()));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && header.classList.contains("open")) close(true);
+    });
+    document.addEventListener("click", (e) => {
+      if (!header.contains(e.target)) close();
+    });
+    matchMedia("(min-width: 801px)").addEventListener("change", () => close());
   }
-
-  document.dispatchEvent(new CustomEvent('includes:done'));
+  document.querySelector(".back-top")?.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
+    document.querySelector(".logo")?.focus({ preventScroll: true });
+  });
+  document.documentElement.dataset.includesReady = "true";
+  document.dispatchEvent(new CustomEvent("includes:done"));
 })();

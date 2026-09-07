@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#10110f"/>
+<g fill="#f5f5ed"><rect x="68" y="75" width="9" height="23" rx="4"/><rect x="83" y="59" width="9" height="39" rx="4"/><rect x="98" y="84" width="9" height="14" rx="4"/></g>
+<text x="126" y="91" fill="#f5f5ed" font-family="Helvetica,Arial,sans-serif" font-size="35" font-weight="700" letter-spacing="-1.8">Tridatum</text>
+<text x="68" y="200" fill="#a6a99b" font-family="Apple SD Gothic Neo,sans-serif" font-size="21">공공 데이터 분석 · AI</text>
+<g fill="#f5f5ed" font-family="Apple SD Gothic Neo,sans-serif" font-weight="700" font-size="78" letter-spacing="-4"><text x="66" y="307">데이터를,</text><text x="66" y="410">일하는 시스템으로.</text></g>
+<g fill="none" stroke="#b8c29c" opacity=".35"><path d="M907 310 1010 171 1113 310 1010 449Z"/><path d="M921 310 1010 182 1099 310 1010 438Z"/><path d="M935 310 1010 193 1085 310 1010 427Z"/><path d="M949 310 1010 204 1071 310 1010 416Z"/><path d="M963 310 1010 215 1057 310 1010 405Z"/></g>
+<path d="M1010 171 1113 310 1089 342" fill="none" stroke="#f3ec69" stroke-width="2"/><circle cx="1089" cy="342" r="5" fill="#f3ec69"/>
+<path d="M0 570Q0 535 35 535H1165Q1200 535 1200 570V630H0Z" fill="#f3ec69"/>
+<text x="68" y="592" fill="#181a15" font-family="Apple SD Gothic Neo,sans-serif" font-size="22">분석부터 운영까지.</text>
+<text x="1129" y="592" text-anchor="end" fill="#181a15" font-family="Helvetica,Arial,sans-serif" font-size="22">tridatum.co ↗</text>
+</svg>
