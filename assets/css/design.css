@@ -1,17 +1,22 @@
 /* Public site composition. Tokens and motion can be tuned without changing demo logic. */
 body.editorial {
-  --ink: #181a15;
-  --ink-70: #5c6056;
-  --ink-45: #73786c;
-  --line: #dedfd6;
-  --accent: #75792d;
-  --bg: #f6f6f0;
-  --bg-soft: #eeeee7;
-  --signal: #f3ec69;
-  --night: #10110f;
-  --paper: #f6f6f0;
+  --ink: #29332f;
+  --ink-70: #616e67;
+  --ink-45: #6e7a73;
+  --line: #d7dcd5;
+  --accent: #4d7969;
+  --bg: #f0f1eb;
+  --bg-soft: #e7ebe4;
+  --signal: #adc5b7;
+  --night: #242b29;
+  --paper: #f0f1eb;
   background: var(--night);
   color: var(--ink);
+  font-family:
+    "Wanted Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-weight: 400;
   line-height: 1.6;
 }
@@ -31,12 +36,12 @@ html {
   font-family: inherit;
 }
 .editorial :focus-visible {
-  outline: 2px solid #858d26;
+  outline: 2px solid #467a6c;
   outline-offset: 5px;
 }
 .editorial ::selection {
-  background: #e6ec7d;
-  color: #10110f;
+  background: #c3d5c8;
+  color: #242b29;
 }
 [hidden] {
   display: none !important;
@@ -47,7 +52,7 @@ html {
   top: -80px;
   z-index: 100;
   background: var(--signal);
-  color: #10110f;
+  color: #242b29;
   padding: 10px 18px;
   border-radius: 4px;
 }
@@ -63,7 +68,7 @@ html {
   margin-bottom: 26px;
 }
 .masthead {
-  color: #f6f6f0;
+  color: #f0f1eb;
   position: relative;
   max-width: 1480px;
   margin: auto;
@@ -73,15 +78,15 @@ html {
   overflow: hidden;
 }
 .masthead .eyebrow {
-  color: #a6a99b;
+  color: #afbcb4;
   font-size: 14px;
   margin-bottom: 34px;
 }
 .masthead h1 {
   font-size: clamp(43px, 6.2vw, 94px);
-  font-weight: 720;
+  font-weight: 600;
   line-height: 1.17;
-  letter-spacing: -0.072em;
+  letter-spacing: -0.035em;
   max-width: 1160px;
   position: relative;
   z-index: 2;
@@ -98,7 +103,7 @@ html {
 }
 .masthead .hero-caption {
   font-size: 15px;
-  color: #a6a99b;
+  color: #afbcb4;
   margin-top: 29px;
   max-width: 560px;
   position: relative;
@@ -136,11 +141,11 @@ html {
   font-size: 120px;
   font-weight: 700;
   letter-spacing: -0.13em;
-  color: #292c23;
+  color: #303c36;
   line-height: 1;
 }
 .hero-index span {
-  color: #b5b650;
+  color: #86a799;
   font-weight: 300;
   font-size: 0.6em;
   display: inline-block;
@@ -199,11 +204,11 @@ html {
 }
 .sheet-layout {
   display: grid;
-  grid-template-columns: 178px minmax(0, 1fr);
+  grid-template-columns: 150px minmax(0, 1fr);
   max-width: 1380px;
   margin-inline: auto;
   padding-inline: 4.8%;
-  gap: 64px;
+  gap: 48px;
 }
 .section-rail {
   border-right: 1px solid var(--line);
@@ -272,8 +277,8 @@ html {
 }
 .chapter h2 {
   font-size: clamp(29px, 3.6vw, 52px);
-  font-weight: 720;
-  letter-spacing: -0.055em;
+  font-weight: 600;
+  letter-spacing: -0.035em;
   line-height: 1.23;
 }
 .intro-copy {
@@ -372,17 +377,17 @@ html {
 .contact-banner h2 {
   font-size: clamp(30px, 4.2vw, 60px);
   line-height: 1.28;
-  letter-spacing: -0.055em;
-  font-weight: 680;
+  letter-spacing: -0.035em;
+  font-weight: 580;
 }
 .contact-banner p:not(.eyebrow) {
   font-size: 14px;
   margin-top: 22px;
-  color: #666727;
+  color: #4e6758;
   max-width: 600px;
 }
 .contact-banner .eyebrow {
-  color: #646326;
+  color: #4e6758;
   margin-bottom: 24px;
 }
 .round-link {
@@ -458,123 +463,25 @@ html {
 .demo-slide.on {
   animation: demoin 0.32s ease;
 }
-.showcase .shot {
-  box-shadow:
-    0 8px 32px #2630170b,
-    0 0 0 1px #d5daca;
-  border-radius: 13px;
-  transition: none;
-}
-.editorial .shot:hover {
-  transform: none;
-}
-.editorial .shot .bar {
-  background: #e8ecdf;
-  border-color: #dce2d0;
-  padding: 10px 13px;
-}
-.editorial .shot .bar .url {
-  background: none;
-  border: none;
-  margin-left: 4px;
-  font-size: 10px;
-  color: #7e8672;
-  padding: 0;
-  flex: 1;
-}
-.editorial .shot .bar i {
-  width: 6px;
-  height: 6px;
-  background: #b8c2a8;
-}
-.editorial .panel {
-  --ink: #263022;
-  --ink-70: #65715b;
-  --ink-45: #76836b;
-  --line: #dde4d5;
-  --accent: #788644;
-  background: #f0f3ea;
-  padding: 18px;
-  gap: 12px;
-}
-.editorial .panel .box,
-.editorial .panel .kpi {
-  border: 0;
-  box-shadow: 0 0 0 1px #dfe6d7;
-  border-radius: 8px;
-  background: #fcfdf9;
-}
-.editorial .panel .pt {
-  font-size: 13px;
-  margin-bottom: 3px;
-}
-.editorial .panel .bt {
-  font-size: 10px;
-  color: #5f7055;
-  font-weight: 600;
-}
-.editorial .kpi {
-  padding: 12px;
-}
-.editorial .kpi b {
-  font-size: 23px;
-  letter-spacing: -0.035em;
-}
-.editorial .panel .kpi .k {
-  font-size: 10px;
-}
-.editorial .panel .pt .ctrls i {
-  border-radius: 5px;
-  padding: 5px 8px;
-  background: #fcfdf9;
-  letter-spacing: 0;
-}
-.editorial .panel .pt span {
-  letter-spacing: 0;
-}
-.editorial .panel.gfx {
-  --ink: #e4ecdd;
-  --ink-70: #b5c1ac;
-  --ink-45: #99a991;
-  background: #181c17;
-  color: #dde5d8;
-}
-.editorial .panel.gfx .box,
-.editorial .panel.gfx .kpi {
-  box-shadow: 0 0 0 1px #333e2d;
-  background: #22291d;
-}
-.editorial .panel.gfx .bt {
-  color: #b4c0a9;
-}
-.editorial .panel.gfx .pt .ctrls i {
-  background: #2a3424;
-  color: #ccd9c1;
-}
 .editorial .demo-tech {
-  gap: 5px 12px;
-  margin-top: 17px;
+  gap: 6px 14px;
+  margin-top: 18px;
 }
-.editorial .demo-tech .lab {
-  font-size: 10px;
-  font-weight: 450;
-  color: #69745c;
-}
+.editorial .demo-tech .lab,
 .editorial .demo-tech .chip {
   background: none;
-  box-shadow: none;
   padding: 0;
-  font-size: 10px;
-  font-weight: 500;
-  color: #656f58;
-  border-radius: 0;
+  border: 0;
+  font-size: 11px;
+  color: #64736b;
+  font-weight: 450;
 }
 .editorial .var-toggle {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 15px 0;
-  color: #667156;
+  padding: 16px 0;
+  color: #5c7166;
   font-size: 12px;
   border-top: 1px solid var(--line);
   margin-top: 16px;
@@ -587,33 +494,32 @@ html {
 }
 .editorial .var-grid {
   gap: 14px;
-  transition:
-    opacity 0.25s,
-    transform 0.25s;
 }
 .editorial .var-card {
-  background: #e9eddf;
-  padding: 12px;
-  border-radius: 10px;
+  background: #e5eae3;
+  padding: 14px;
+  border-radius: 12px;
 }
 .editorial .var-thumb {
-  background: #fff;
+  background: #f9faf6;
+  border-radius: 7px;
+  overflow: hidden;
+  margin-bottom: 14px;
 }
 .editorial .var-card b {
   font-size: 14px;
+  font-weight: 600;
 }
 .editorial .var-card span {
   font-size: 12px;
-  color: #637053;
+  color: #62736a;
+  line-height: 1.7;
 }
 .editorial .fineprint {
-  font-size: 12px;
-  color: #69745c;
-  margin-top: 22px;
+  font-size: 11px;
+  color: #69786f;
+  margin-top: 20px;
   line-height: 1.8;
-}
-.editorial .panel .tagrow .chip {
-  align-self: center;
 }
 /* Service pages reuse the live illustrations and keep their labels nearby. */
 .editorial .service-detail .svc-row {
@@ -629,7 +535,7 @@ html {
 .editorial .svc-txt h2 {
   font-size: 30px;
   line-height: 1.3;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
 }
 .editorial .svc-txt .when {
   font-size: 14px;
@@ -649,7 +555,7 @@ html {
 .editorial .svc-txt .chip {
   font-size: 10px;
   padding: 4px 9px;
-  background: #e7ecdc;
+  background: #e0e8df;
   color: #65744f;
 }
 .service-tech {
@@ -680,18 +586,18 @@ html {
   width: 62px;
   height: 66px;
   border-radius: 8px;
-  background: #e2e7d6;
+  background: #dce4db;
   display: grid;
   place-items: center;
   font-size: 29px;
   color: #7a8867;
 }
 .person:nth-child(2) .person-monogram {
-  background: #e5e4cf;
+  background: #e5e1d5;
   color: #8e8c5b;
 }
 .person:nth-child(3) .person-monogram {
-  background: #dfe5dd;
+  background: #dae3df;
   color: #708b68;
 }
 .person-role {
@@ -702,7 +608,7 @@ html {
 .person h3 {
   font-size: 24px;
   font-weight: 650;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
 }
 .person-detail p {
   font-size: 13px;
@@ -722,7 +628,7 @@ html {
   gap: 16px;
 }
 .capability {
-  background: #e9edde;
+  background: #e6eae3;
   padding: 30px 26px;
   border-radius: 15px;
   display: flex;
@@ -731,7 +637,7 @@ html {
   transition: background 0.3s;
 }
 .capability:hover {
-  background: #e2e8d0;
+  background: #dce4db;
 }
 .capability .eyebrow {
   font-size: 10px;
@@ -742,7 +648,7 @@ html {
   font-size: 24px;
   font-weight: 640;
   line-height: 1.4;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
 }
 .capability > p:not(.eyebrow) {
   font-size: 13px;
@@ -776,7 +682,7 @@ html {
 .contact-info h2 {
   font-size: clamp(34px, 3.8vw, 54px);
   line-height: 1.25;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.035em;
   font-weight: 650;
 }
 .contact-email {
@@ -784,7 +690,7 @@ html {
   font-size: clamp(19px, 2vw, 27px);
   letter-spacing: -0.035em;
   margin-top: 32px;
-  border-bottom: 1px solid #b3bba1;
+  border-bottom: 1px solid #97aca0;
   overflow-wrap: anywhere;
 }
 .contact-info dl {
@@ -807,7 +713,7 @@ html {
 .editorial .iform {
   border-radius: 18px;
   padding: 28px;
-  background: #e9edde;
+  background: #e6eae3;
   max-width: none;
   margin: 0;
   min-width: 0;
@@ -882,7 +788,7 @@ html {
 .contact-process h3 {
   font-size: 17px;
   font-weight: 600;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
   margin-top: 17px;
 }
 .contact-process article p {
@@ -986,7 +892,7 @@ html {
   .masthead h1 {
     font-size: clamp(35px, 6.7vw, 56px);
     line-height: 1.24;
-    letter-spacing: -0.065em;
+    letter-spacing: -0.035em;
   }
   .masthead .eyebrow {
     font-size: 12px;
@@ -1252,7 +1158,7 @@ html {
   }
   .masthead h1 {
     font-size: clamp(29px, 7.5vw, 38px);
-    letter-spacing: -0.06em;
+    letter-spacing: -0.035em;
   }
   .home-masthead h1 {
     font-size: clamp(32px, 8vw, 40px);

@@ -1,0 +1,8 @@
+/* Wanted Sans · WantedLab · SIL Open Font License 1.1 (assets/fonts). */
+@font-face {
+  font-family: "Wanted Sans";
+  src: url("../fonts/WantedSansVariable.woff2") format("woff2");
+  font-weight: 400 1000;
+  font-style: normal;
+  font-display: swap;
+}

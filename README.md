@@ -16,11 +16,16 @@
 
 - `assets/css/design.css`: 공개 페이지 디자인 토큰, 레이아웃, 반응형, 등장 효과
 - `assets/css/site.css`: 공용 헤더와 푸터
-- `assets/css/components.css`: 기존 HTML/SVG 데모 컴포넌트
+- `assets/css/components.css`: 공통 카드와 유틸리티
+- `assets/css/analytics.css`: 대시보드의 지표·차트·표와 좁은 화면 대응
+- `assets/css/fonts.css`, `assets/fonts/`: 직접 제공하는 Wanted Sans와 SIL 라이선스
 - `assets/css/base.css`: 기본 리셋. 관리자 화면에서도 사용하므로 공통 변경에 주의
 - `assets/js/motion.js`: 스크롤 목차, 헤더 색 전환, 장식의 이동, 섹션 등장
 - `assets/js/demos.js`: 데모 탭, 방향키 탐색, 추가 화면 펼치기
-- `assets/js/dash.js`: 운영 데모의 기간/지역 필터
+- `assets/js/analytics-view.mjs`: 공통 화면 렌더러와 가상 데이터
+- `assets/js/dash.js`: 권역·기간·모델·임계값·질문·요청 필터
+- `scripts/render-demos.mjs`: 같은 렌더러로 정적 HTML 미리보기 생성
+- `assets/img/logo-*.svg`: 새 심볼과 밝은/어두운 배경용 로고
 - `assets/js/include.js`: 공용 헤더/푸터와 모바일 메뉴
 - `assets/js/content.js`: `assets/content/site.json`의 관리자 수정 문구 반영
 
@@ -43,3 +48,16 @@ python3 -m http.server 8934 --bind 127.0.0.1
 관리자 문구 저장도 GitHub 콘텐츠 변경이므로 다음 수동 배포에 반영됩니다. 문의함은 Worker의 비공개 저장소를 사용합니다. 도메인/DNS/Access 설정은 디자인 변경과 별개로 관리합니다.
 
 공개 화면에 이전 소속의 사업명·기관명·로고·실측 성과를 추가하지 않습니다. 모든 데모는 예시 데이터로 표시하고, 기술은 해당 기능 옆에 설명합니다.
+
+## 데모 편집
+
+샘플 데이터와 화면 구조는 `assets/js/analytics-view.mjs`, 스타일은 `assets/css/analytics.css`에서 수정합니다. 정적 첫 화면과 조작 후 화면이 같도록 수정 후 아래 명령으로 HTML을 갱신합니다. 배포·실행 시 빌드 과정은 필요 없습니다.
+
+```sh
+node scripts/render-demos.mjs
+node --test scripts/analytics.test.mjs
+```
+
+생성된 `index.html`과 `services.html`도 함께 커밋합니다. 스크립트를 변경하면 `dash.js`의 모듈 import 버전과 HTML의 정적 리소스 버전도 함께 갱신합니다. 검증 테스트는 집계값, 기간 필터, 혼동 행렬과 지표의 일치, 집단별 변화 차이, 요청 로그 합계를 확인합니다.
+
+Wanted Sans 원본은 [공식 저장소](https://github.com/wanteddev/wanted-sans)에서 제공하며 라이선스를 `assets/fonts/OFL-WantedSans.txt`에 포함했습니다. 로고·공유 이미지의 SVG 텍스트는 경로로 저장해 외부 폰트가 없어도 같은 형태로 표시됩니다.

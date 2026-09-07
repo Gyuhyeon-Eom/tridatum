@@ -3,8 +3,8 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 50;
-  color: #f7f7f1;
-  background: rgba(16, 17, 15, 0.94);
+  color: #edf0e8;
+  background: rgba(36, 43, 41, 0.94);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   transition:
@@ -26,7 +26,7 @@
   align-items: center;
   gap: 10px;
   font-size: 24px;
-  font-weight: 760;
+  font-weight: 650;
   letter-spacing: -1px;
   flex-shrink: 0;
 }
@@ -38,7 +38,7 @@ nav.menu {
   display: flex;
   align-items: center;
   padding: 6px;
-  background: #252622;
+  background: #303936;
   border-radius: 999px;
   gap: 3px;
 }
@@ -54,7 +54,7 @@ nav.menu a {
 }
 nav.menu a:hover,
 nav.menu a.active {
-  background: #393a34;
+  background: #414c46;
   color: #fff;
 }
 .nav-cta {
@@ -62,8 +62,8 @@ nav.menu a.active {
   gap: 24px;
   align-items: center;
   justify-content: space-between;
-  background: #f3ec69;
-  color: #151610;
+  background: #adc5b7;
+  color: #29372f;
   padding: 12px 18px;
   border-radius: 9px;
   font-size: 13px;
@@ -84,8 +84,8 @@ nav.menu a.active {
   display: none;
 }
 .site-header.on-light {
-  color: #181916;
-  background: rgba(244, 244, 239, 0.94);
+  color: #29372f;
+  background: rgba(240, 241, 235, 0.94);
 }
 .site-header.on-light nav.menu {
   background: #e7e7df;
@@ -96,17 +96,17 @@ nav.menu a.active {
 .site-header.on-light nav.menu a:hover,
 .site-header.on-light nav.menu a.active {
   background: #fff;
-  color: #151610;
+  color: #29372f;
 }
 .site-header.on-light .nav-cta {
-  background: #181916;
+  background: #29372f;
   color: #fff;
 }
 .site-header.on-light .nav-cta:hover {
   background: #35362e;
 }
 .site-footer {
-  background: #10110f;
+  background: #242b29;
   color: #f5f5ed;
   padding: 64px max(5vw, 24px) 28px;
   margin: 0;
@@ -122,13 +122,13 @@ nav.menu a.active {
 .footer-brand {
   font-size: clamp(46px, 9vw, 130px);
   font-weight: 750;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.045em;
   line-height: 1.1;
   display: inline-flex;
   gap: 0.32em;
 }
 .footer-brand span {
-  color: #f3ec69;
+  color: #adc5b7;
   font-weight: 350;
   font-size: 0.64em;
   transition: transform 0.3s;
@@ -290,4 +290,15 @@ nav.menu a.active {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+.footer-brand .brand-symbol {
+  width: 0.7em;
+  height: 0.7em;
+  align-self: center;
+  color: #adc5b7;
+}
+.logo .mark {
+  width: 34px;
+  height: 34px;
 }
