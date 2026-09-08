@@ -185,7 +185,7 @@ body.editorial {
 }
 .sculpture-stage {
   position: absolute;
-  inset: 0 0 52px;
+  inset: 0;
   isolation: isolate;
 }
 .sculpture-stage canvas {
@@ -238,38 +238,6 @@ body.editorial {
   width: 112px;
   transform: translate(-14px, -50px) perspective(850px) rotateY(12deg);
   filter: drop-shadow(2px 2px 0 #888);
-}
-.sculpture-controls[hidden] {
-  display: none;
-}
-.sculpture-controls {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.sculpture-controls button {
-  border: 1px solid var(--tone-200);
-  background: transparent;
-  color: var(--tone-700);
-  border-radius: var(--radius-control);
-  padding: 12px 16px;
-  min-height: 44px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.sculpture-controls button[data-sculpture-mode][aria-pressed="true"] {
-  background: #000;
-  color: #fff;
-  border-color: #000;
-}
-.sculpture-controls button:hover:not([aria-pressed="true"]) {
-  background: #fff;
 }
 .sheet {
   position: relative;
@@ -1017,9 +985,6 @@ body.editorial {
     bottom: 80px;
     height: 355px;
   }
-  .sculpture-stage {
-    inset: 0 0 50px;
-  }
   .hero-bottom {
     bottom: 20px;
     left: 24px;
@@ -1041,10 +1006,6 @@ body.editorial {
   }
   .hero-actions .btn {
     min-height: 48px;
-  }
-  .sculpture-controls button {
-    font-size: 13px;
-    padding: 10px 12px;
   }
   .chapter {
     margin-inline: 8px;
@@ -1215,12 +1176,6 @@ body.editorial {
   .sculpture-fallback {
     inset: 12% 18%;
   }
-  .sculpture-controls {
-    gap: 4px;
-  }
-  .sculpture-controls button {
-    padding-inline: 8px;
-  }
   .chapter {
     padding-inline: 20px;
   }
@@ -1256,9 +1211,6 @@ body.editorial {
   .motion-active .hero-actions,
   .accordion-content {
     animation: none;
-  }
-  .sculpture-controls {
-    display: none;
   }
   .sculpture-stage canvas,
   .reveal,

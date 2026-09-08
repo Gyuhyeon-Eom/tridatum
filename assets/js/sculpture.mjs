@@ -10,9 +10,6 @@ import {
 const host = document.querySelector("[data-sculpture]");
 if (host) {
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-  const controls = document.querySelector(".sculpture-controls");
-  const modes = [...document.querySelectorAll("[data-sculpture-mode]")];
-  let mode = 0;
   let renderer,
     observer,
     resizeObserver,
@@ -40,8 +37,6 @@ if (host) {
     const key = [reduced.matches, lost, currentPose.phase].join(":");
     if (key === lastUi) return;
     lastUi = key;
-    const staticOnly = reduced.matches || lost;
-    controls.hidden = staticOnly;
     host.dataset.motion = lost
       ? "fallback"
       : reduced.matches
@@ -152,7 +147,7 @@ if (host) {
     const stack = new THREE.Group();
     scene.add(stack);
     const initialFrames = frameLayout();
-    const layers = ["#eeeeee", "#8d8d8d", "#161616"].map((color, i) => {
+    ["#eeeeee", "#8d8d8d", "#161616"].forEach((color, i) => {
       const layer = new THREE.Mesh(
         frameGeometry,
         new THREE.MeshPhysicalMaterial({
@@ -190,7 +185,6 @@ if (host) {
       );
       label.position.set(0, 0, 1.541);
       layer.add(label);
-      return layer;
     });
     const material = new THREE.MeshPhysicalMaterial({
       color: "#101113",
@@ -255,22 +249,9 @@ if (host) {
           hopCount++;
         }
       }
-      const settle = reduced.matches ? 1 : 1 - Math.exp(-dt * 5);
-      const targetFrames = frameLayout(mode);
-      layers.forEach((layer, i) => {
-        const target = targetFrames[i];
-        layer.position.y += (target.y - layer.position.y) * settle;
-        layer.rotation.y += (target.yaw - layer.rotation.y) * settle;
-      });
-      const liveFrames = layers.map((l) => ({
-        x: l.position.x,
-        y: l.position.y,
-        z: l.position.z,
-        yaw: l.rotation.y,
-      }));
       currentPose = reduced.matches
-        ? standingPose({ level: 0, x: 0, z: 1.27 }, liveFrames)
-        : logoPose(elapsed, hop, liveFrames);
+        ? standingPose({ level: 0, x: 0, z: 1.27 }, initialFrames)
+        : logoPose(elapsed, hop, initialFrames);
       const p = currentPose;
       if (!reduced.matches)
         look += (pointer * 0.1 - look) * (1 - Math.exp(-dt * 7));
@@ -289,16 +270,7 @@ if (host) {
         p.z,
       );
       shadow.material.opacity = 0.65;
-      const nextFrame = [
-        p.x,
-        p.y,
-        p.z,
-        p.scaleY,
-        p.tilt,
-        p.yaw,
-        look,
-        ...layers.flatMap((l) => [l.position.y, l.rotation.y]),
-      ]
+      const nextFrame = [p.x, p.y, p.z, p.scaleY, p.tilt, p.yaw, look]
         .map((v) => v.toFixed(4))
         .join("|");
       if (dirty || frameKey !== nextFrame) {
@@ -334,16 +306,6 @@ if (host) {
       camera.updateProjectionMatrix();
       start();
     }
-    modes.forEach((button, i) =>
-      button.addEventListener("click", () => {
-        mode = i;
-        modes.forEach((b, j) =>
-          b.setAttribute("aria-pressed", String(i === j)),
-        );
-        ui();
-        start();
-      }),
-    );
     host.addEventListener("pointermove", (e) => {
       if (e.pointerType === "touch") return;
       const r = host.getBoundingClientRect();
@@ -419,6 +381,5 @@ if (host) {
     renderer?.dispose();
     host.removeAttribute("data-rendered");
     host.dataset.motion = "fallback";
-    controls.hidden = true;
   }
 }
