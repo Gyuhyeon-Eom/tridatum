@@ -13,6 +13,7 @@ binding = "INQUIRIES"
 id = "9ecc3620646c48439dc05da3081a0240"
 
 [vars]
+INQUIRY_FROM = "website@tridatum.co"
 # Cloudflare Zero Trust 팀 도메인 (예: tridatum.cloudflareaccess.com)
 ACCESS_TEAM_DOMAIN = "super-night-b710.cloudflareaccess.com"
 # Access 애플리케이션의 Application Audience(AUD) 태그
@@ -23,3 +24,9 @@ GH_BRANCH = "main"
 
 # 비밀값은 vars가 아니라 secret으로 등록:
 #   npx wrangler secret put GITHUB_TOKEN
+
+# 문의 알림: Email Sending 도메인 설정과 수신 주소 인증 후 배포합니다.
+# 설정 순서: docs/inquiry-email.md
+[[send_email]]
+name = "INQUIRY_EMAIL"
+destination_address = "contact@tridatum.co"

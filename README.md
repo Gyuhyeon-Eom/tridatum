@@ -91,3 +91,7 @@ python3 -m http.server 8934 --bind 127.0.0.1
 3. 배포 컴퓨터에서 승인한 코드를 받아 기존 Cloudflare Pages 배포 절차를 실행합니다.
 
 관리자 문구 저장은 GitHub 콘텐츠 변경이므로 다음 수동 배포에 반영됩니다. 도메인·DNS·Access 설정은 별도로 관리합니다.
+
+## 문의 메일 알림
+
+문의는 Worker의 KV에 먼저 저장한 뒤 `contact@tridatum.co`로 알림을 요청합니다. 관리자 문의함은 `https://tridatum.co/admin/`에서 허용 이메일로 로그인한 뒤 **문의함** 탭으로 엽니다. 메일 연결 상태와 개별 발송 결과를 확인할 수 있습니다. 최초 발신 도메인·수신 주소 인증과 Worker 배포가 필요합니다. 절차는 [문의 이메일 연결](docs/inquiry-email.md)을 따릅니다.

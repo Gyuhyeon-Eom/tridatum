@@ -50,6 +50,7 @@ body{background:var(--bg)}
 .inq .m{display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;font-size:13px;color:var(--ink-45)}
 .inq .m b{font-size:15px;color:var(--ink)}
 .inq p{margin-top:10px;font-size:14px;color:var(--ink-70);white-space:pre-wrap}
+.inq-notification{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:14px;font-size:12px;color:var(--ink-70)}
 .empty{font-size:14px;color:var(--ink-45);padding:24px 4px}
 #adm-error{display:none;background:#FBEFEA;color:#8A3B26;border-radius:14px;padding:16px 18px;font-size:14px;margin-bottom:20px}
 </style>
@@ -81,11 +82,12 @@ body{background:var(--bg)}
 
   <div class="pane" id="pane-inq">
     <p class="hint">홈페이지 문의 폼으로 들어온 내용입니다. 저장소가 아닌 별도 저장소에 보관됩니다.</p>
+    <p class="hint" id="inq-mail-status" role="status"></p>
     <div id="inq-list"></div>
   </div>
 
   <div class="abar"><span id="adm-status" role="status"></span></div>
 </div>
-<script src="admin.js?v=20260827c"></script>
+<script src="admin.js?v=20260908mail1"></script>
 </body>
 </html>
