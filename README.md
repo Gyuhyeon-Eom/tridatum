@@ -18,11 +18,14 @@
 - `assets/css/solutions.css`: 업무 화면·필터·지도·목록·문서 검토의 반응형 스타일
 - `assets/css/analytics.css`: 공통 SVG 차트와 분석 컴포넌트
 - `assets/css/workspace.css`: 화면 높이에 맞춘 대시보드, 상세 페이지와 내부 스크롤
-- `assets/js/sculpture.mjs`: 직접 만든 세 개의 입체 프레임, 조명·반사·포인터·스크롤·버튼 반응
+- `assets/js/sculpture.mjs`: 세 개의 입체 프레임, 조명·그림자, 프레임 전환과 모션 제어
+- `assets/js/logo-character.mjs`, `logo-motion.mjs`: td 심볼의 둥근 입체 형태와 도약·착지 동작
 - `assets/js/motion.js`: 제목 등장, 페이지 전환, 섹션 추적, 스크롤에 따른 화면 움직임
 - `assets/vendor/three/`: three.js 0.185.1의 공식 WebGL 모듈과 MIT 라이선스. 외부 CDN 요청 없음
 
-첫 화면의 WebGL은 화면을 벗어나거나 탭이 숨겨지면 멈춥니다. 모션 감소 설정에서는 정지된 형태로 표시하고 페이지 전환 애니메이션을 생략합니다. WebGL을 사용할 수 없으면 CSS 입체 도형을 표시합니다. JavaScript가 없어도 기본 내용과 첫 업무 화면을 읽을 수 있습니다.
+첫 화면은 기존 세 겹 프레임 위에서 둥근 노란 td가 통통 뛰는 구성입니다. 세 번 뛰고 잠시 쉬며, 오브젝트를 누르면 다시 움직입니다. 연속 클릭은 착지가 끝난 뒤 처리합니다. 세 개의 모드 버튼으로 프레임 간격과 방향을 바꾸고, 멈추기 버튼으로 모션을 정지할 수 있습니다.
+
+WebGL은 화면을 벗어나거나 탭이 숨겨지면 멈춥니다. 모션 감소 설정에서는 정지된 형태로 표시하고 페이지 전환 애니메이션을 생략합니다. WebGL을 사용할 수 없으면 CSS 프레임과 정적 td 심볼을 표시합니다. JavaScript가 없어도 기본 내용과 첫 업무 화면을 읽을 수 있습니다.
 
 영문 첫 화면은 Archivo 가변 서체의 75% 폭, 한글과 본문은 Wanted Sans를 자체 제공합니다. 한글 첫 화면 85px, 섹션 제목 64px, 중간 제목 53px, 리드 27px, 본문 19px를 데스크톱 기준으로 사용합니다. 영문 표제는 화면 폭에 따라 최대 144px까지 커집니다.
 
@@ -46,7 +49,7 @@
 
 ```sh
 node scripts/render-demos.mjs
-node --test scripts/solutions.test.mjs scripts/analytics.test.mjs scripts/operations.test.mjs
+node --test scripts/solutions.test.mjs scripts/analytics.test.mjs scripts/operations.test.mjs scripts/logo-motion.test.mjs
 ```
 
 생성된 `index.html`, `services.html`을 함께 커밋합니다. 모듈과 정적 에셋을 수정한 뒤 HTML 및 모듈 import의 버전 쿼리를 같이 갱신합니다.

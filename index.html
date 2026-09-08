@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="assets/css/base.css?v=20260907v1" />
     <link rel="stylesheet" href="assets/css/design-tokens.css?v=20260907v1" />
     <link rel="stylesheet" href="assets/css/site.css?v=20260907v1" />
-    <link rel="stylesheet" href="assets/css/design.css?v=20260907v1" />
+    <link rel="stylesheet" href="assets/css/design.css?v=20260908a2" />
     <link rel="stylesheet" href="assets/css/analytics.css?v=20260907v1" />
     <script>
       document.documentElement.classList.add("motion-active");
@@ -86,19 +86,41 @@
         </div>
         <div class="hero-visual">
           <div class="sculpture-stage" data-sculpture aria-hidden="true">
-            <div class="sculpture-fallback"><i></i><i></i><i></i></div>
+            <div class="sculpture-fallback">
+              <i></i><i></i><i></i
+              ><img src="assets/img/logo-character.svg" alt="" />
+            </div>
           </div>
+          <button
+            class="sculpture-trigger"
+            type="button"
+            data-logo-jump
+            aria-label="td 로고 다시 뛰기"
+            title="클릭한 쪽으로 뛰기"
+            hidden
+          ></button>
           <div
             class="sculpture-controls"
             role="group"
-            aria-label="역량별 입체 모션"
+            aria-label="입체 프레임과 td 로고 모션"
+            hidden
           >
             <button type="button" data-sculpture-mode="0" aria-pressed="true">
-              데이터 분석</button
-            ><button type="button" data-sculpture-mode="1" aria-pressed="false">
-              모델 검증</button
-            ><button type="button" data-sculpture-mode="2" aria-pressed="false">
+              데이터 분석
+            </button>
+            <button type="button" data-sculpture-mode="1" aria-pressed="false">
+              모델 검증
+            </button>
+            <button type="button" data-sculpture-mode="2" aria-pressed="false">
               AI 시스템
+            </button>
+            <button
+              type="button"
+              data-logo-pause
+              aria-pressed="false"
+              aria-label="td 로고 모션 일시정지"
+            >
+              <span data-pause-label>멈추기</span>
             </button>
           </div>
         </div>
@@ -1419,6 +1441,6 @@
     <script src="assets/js/content.js?v=20260907v1"></script>
     <script type="module" src="assets/js/solutions.mjs?v=20260907v1"></script>
 
-    <script type="module" src="assets/js/sculpture.mjs?v=20260907v1"></script>
+    <script type="module" src="assets/js/sculpture.mjs?v=20260908a2"></script>
   </body>
 </html>

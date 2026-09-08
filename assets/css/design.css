@@ -200,44 +200,63 @@ body.editorial {
 .sculpture-stage[data-rendered] canvas {
   opacity: 1;
 }
-.sculpture-shadow {
-  position: absolute;
-  width: 52%;
-  height: 6%;
-  left: 24%;
-  bottom: 12%;
-  border-radius: 50%;
-  background: #0002;
-  filter: blur(18px);
-}
 .sculpture-stage[data-rendered] .sculpture-fallback {
   display: none;
 }
 .sculpture-fallback {
   position: absolute;
-  inset: 20% 10%;
-  perspective: 850px;
+  inset: 14% 10% 12%;
   display: grid;
   place-items: center;
 }
 .sculpture-fallback i {
   position: absolute;
-  width: 220px;
-  height: 220px;
-  border: 40px solid #ddd;
-  border-radius: 24px;
-  transform: rotateX(56deg) rotateZ(-30deg) translateZ(50px);
-  box-shadow: 8px 16px 0 #aaa;
+  z-index: 3;
+  box-sizing: border-box;
+  width: 210px;
+  height: 210px;
+  border: 34px solid #e8e8e8;
+  border-radius: 30px;
+  transform: matrix(0.94, 0.18, -0.58, 0.48, 0, 28);
+  box-shadow: 10px 18px 0 #bbb;
 }
 .sculpture-fallback i:nth-child(2) {
-  transform: rotateX(56deg) rotateZ(-20deg) translateZ(-30px);
-  border-color: #888;
-  box-shadow: 8px 16px 0 #555;
+  z-index: 2;
+  transform: matrix(0.96, 0.14, -0.5, 0.5, 0, 54);
+  border-color: #999;
+  box-shadow: 7px 12px 0 #777;
 }
 .sculpture-fallback i:nth-child(3) {
-  transform: rotateX(56deg) rotateZ(-10deg) translateZ(-110px);
-  border-color: #252525;
-  box-shadow: 8px 16px 0 #111;
+  z-index: 1;
+  transform: matrix(0.98, 0.1, -0.42, 0.52, 0, 80);
+  border-color: #202020;
+  box-shadow: 7px 12px 0 #111;
+}
+.sculpture-fallback img {
+  position: relative;
+  z-index: 4;
+  width: 145px;
+  transform: translate(-14px, -50px) perspective(850px) rotateY(12deg);
+  filter: drop-shadow(2px 2px 0 #cab600);
+}
+.sculpture-trigger {
+  position: absolute;
+  inset: 0 0 52px;
+  z-index: 3;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+.sculpture-trigger:focus-visible {
+  outline: 2px solid #999;
+  outline-offset: -12px;
+}
+.sculpture-controls[hidden],
+.sculpture-trigger[hidden] {
+  display: none;
 }
 .sculpture-controls {
   position: absolute;
@@ -260,7 +279,7 @@ body.editorial {
   cursor: pointer;
   transition: background 0.2s;
 }
-.sculpture-controls button[aria-pressed="true"] {
+.sculpture-controls button[data-sculpture-mode][aria-pressed="true"] {
   background: #000;
   color: #fff;
   border-color: #000;
@@ -1210,7 +1229,13 @@ body.editorial {
     height: 320px;
   }
   .sculpture-fallback {
-    transform: scale(0.7);
+    inset: 12% 18%;
+  }
+  .sculpture-controls {
+    gap: 4px;
+  }
+  .sculpture-controls button {
+    padding-inline: 8px;
   }
   .chapter {
     padding-inline: 20px;
@@ -1247,6 +1272,10 @@ body.editorial {
   .motion-active .hero-actions,
   .accordion-content {
     animation: none;
+  }
+  .sculpture-controls,
+  .sculpture-trigger {
+    display: none;
   }
   .sculpture-stage canvas,
   .reveal,
