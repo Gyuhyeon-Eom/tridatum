@@ -1,11 +1,12 @@
 import * as THREE from "../vendor/three/three.module.min.js";
-import { createLogoCharacter } from "./logo-character.mjs?v=20260908a2";
+import { createLogoCharacter } from "./logo-character.mjs?v=20260908b2";
 import {
   logoPose,
   logoRoute,
   JOURNEY_DURATION,
   REST_DURATION,
-} from "./logo-motion.mjs?v=20260908a1";
+  frameLayout,
+} from "./logo-motion.mjs?v=20260908b2";
 
 const host = document.querySelector("[data-sculpture]");
 if (host) {
@@ -79,7 +80,7 @@ if (host) {
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-3, 3, 3, -3, 0.1, 40);
     camera.position.set(5, 4.4, 8.5);
-    camera.lookAt(0, 0.6, 0);
+    camera.lookAt(0, 0.25, 0.5);
     scene.add(new THREE.HemisphereLight(0xffffff, 0x555555, 2.3));
     const key = new THREE.DirectionalLight(0xffffff, 4.3);
     key.position.set(-3, 7, 6);
@@ -134,8 +135,8 @@ if (host) {
       });
     }
     studioEnvironment();
-    // Retain the original three stacked frames. The td character is attached
-    // to the top frame so its landings stay on the surface as the layers move.
+    // Offset the original frames into exposed treads. The character follows
+    // world-space landing anchors across all three levels and the ground.
     function rectangle(path, size, r) {
       const a = -size / 2,
         b = size / 2;
@@ -165,6 +166,7 @@ if (host) {
     frameGeometry.rotateX(-Math.PI / 2);
     const stack = new THREE.Group();
     scene.add(stack);
+    const initialFrames = frameLayout();
     const layers = ["#eeeeee", "#8d8d8d", "#161616"].map((color, i) => {
       const layer = new THREE.Mesh(
         frameGeometry,
@@ -177,8 +179,9 @@ if (host) {
           envMapIntensity: 0.8,
         }),
       );
-      layer.position.y = 0.2 - i * 0.54;
-      layer.rotation.y = (i - 1) * 0.16;
+      const f = initialFrames[i];
+      layer.position.set(f.x, f.y, f.z);
+      layer.rotation.y = f.yaw;
       layer.castShadow = layer.receiveShadow = true;
       stack.add(layer);
       const print = document.createElement("canvas");
@@ -205,22 +208,25 @@ if (host) {
       return layer;
     });
     const material = new THREE.MeshPhysicalMaterial({
-      color: "#f3d900",
+      color: "#101113",
       metalness: 0.02,
       roughness: 0.3,
-      clearcoat: 0.42,
+      clearcoat: 0.32,
       clearcoatRoughness: 0.3,
       envMapIntensity: 0.6,
     });
-    const character = createLogoCharacter(material);
+    const accentMaterial = new THREE.MeshPhysicalMaterial({
+      color: "#f5db00",
+      roughness: 0.32,
+      metalness: 0.02,
+      clearcoat: 0.3,
+    });
+    const character = createLogoCharacter(material, accentMaterial);
     const halfWidth = 1.43,
-      characterScale = 0.66;
+      characterScale = 0.49;
     const body = new THREE.Group();
     body.add(character);
-    const perch = new THREE.Group();
-    perch.position.set(0, 0.216, 1.16);
-    perch.add(body);
-    layers[0].add(perch);
+    scene.add(body);
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(40, 40),
       new THREE.ShadowMaterial({ opacity: 0.07 }),
@@ -240,7 +246,7 @@ if (host) {
     ctx.fillRect(0, 0, 128, 128);
     const shadowTexture = new THREE.CanvasTexture(canvas);
     const shadow = new THREE.Mesh(
-      new THREE.PlaneGeometry(4.5, 4.5),
+      new THREE.PlaneGeometry(5, 7),
       new THREE.MeshBasicMaterial({
         map: shadowTexture,
         transparent: true,
@@ -258,8 +264,10 @@ if (host) {
         queuedTarget = target;
         return;
       }
-      route = logoRoute(currentPose.x, target, direction);
-      direction *= -1;
+      const travelDirection = target ? Math.sign(target) : direction;
+      const from = elapsed < 0 ? route[0] : route.at(-1);
+      route = logoRoute(from, travelDirection);
+      direction = -travelDirection;
       elapsed = 0;
       queuedTarget = null;
       paused = false;
@@ -276,7 +284,22 @@ if (host) {
         if (queuedTarget !== null) begin(queuedTarget, false);
         else if (elapsed >= JOURNEY_DURATION + REST_DURATION) begin(0, false);
       }
-      currentPose = reduced.matches ? logoPose(-1) : logoPose(elapsed, route);
+      const settle = reduced.matches ? 1 : paused ? 0 : 1 - Math.exp(-dt * 5);
+      const targetFrames = frameLayout(mode);
+      layers.forEach((layer, i) => {
+        const target = targetFrames[i];
+        layer.position.y += (target.y - layer.position.y) * settle;
+        layer.rotation.y += (target.yaw - layer.rotation.y) * settle;
+      });
+      const liveFrames = layers.map((l) => ({
+        x: l.position.x,
+        y: l.position.y,
+        z: l.position.z,
+        yaw: l.rotation.y,
+      }));
+      currentPose = reduced.matches
+        ? logoPose(-1, [{ level: 0, x: 0, z: 1.27 }], liveFrames)
+        : logoPose(elapsed, route, liveFrames);
       const p = currentPose;
       if (!paused && !reduced.matches)
         look += (pointer * 0.1 - look) * (1 - Math.exp(-dt * 7));
@@ -286,27 +309,19 @@ if (host) {
         p.scaleY * characterScale,
         p.scaleX * characterScale,
       );
-      body.rotation.set(0, 0.42 + p.yaw * 0.65 + look, p.tilt);
-      const settle = reduced.matches ? 1 : paused ? 0 : 1 - Math.exp(-dt * 5);
-      layers.forEach((layer, i) => {
-        const spread = mode === 1 ? 0.72 : 0.54;
-        layer.position.y +=
-          (0.2 + (2 - i) * (spread - 0.54) - i * 0.54 - layer.position.y) *
-          settle;
-        layer.rotation.y +=
-          ((i - 1) * (mode === 2 ? 0.45 : 0.16) - layer.rotation.y) * settle;
-      });
+      body.rotation.set(0, 0.42 + p.yaw + look, p.tilt);
       // The pivot is on the floor; compensate for the low corner while rocking.
       body.position.set(
-        p.x * 0.53,
-        p.y * 0.78 +
+        p.x,
+        p.y +
           Math.abs(Math.sin(p.tilt)) * halfWidth * p.scaleX * characterScale,
-        0,
+        p.z,
       );
       shadow.material.opacity = 0.65;
       const nextFrame = [
         p.x,
         p.y,
+        p.z,
         p.scaleY,
         p.tilt,
         p.yaw,
@@ -321,6 +336,8 @@ if (host) {
         dirty = false;
       }
       host.dataset.rendered = "true";
+      host.dataset.level = String(p.level);
+      host.dataset.leg = String(p.leg);
       ui();
       if (!paused && !reduced.matches && visible && !document.hidden)
         raf = requestAnimationFrame(draw);
@@ -337,7 +354,7 @@ if (host) {
       dirty = true;
       renderer.setSize(width, height);
       const aspect = width / height;
-      const vertical = Math.max(5.4, 6.4 / aspect);
+      const vertical = Math.max(5.8, 7.2 / aspect);
       camera.left = (-vertical * aspect) / 2;
       camera.right = (vertical * aspect) / 2;
       camera.top = vertical / 2;

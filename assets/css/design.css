@@ -235,9 +235,9 @@ body.editorial {
 .sculpture-fallback img {
   position: relative;
   z-index: 4;
-  width: 145px;
+  width: 112px;
   transform: translate(-14px, -50px) perspective(850px) rotateY(12deg);
-  filter: drop-shadow(2px 2px 0 #cab600);
+  filter: drop-shadow(2px 2px 0 #888);
 }
 .sculpture-trigger {
   position: absolute;

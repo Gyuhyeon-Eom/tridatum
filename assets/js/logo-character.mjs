@@ -2,7 +2,7 @@ import * as THREE from "../vendor/three/three.module.min.js";
 
 // The same centerlines as logo-symbol.svg, rounded into a soft tubular body.
 // Four strokes preserve the interlocking t/d and both open spaces.
-export function createLogoCharacter(material) {
+export function createLogoCharacter(material, accentMaterial) {
   const group = new THREE.Group(),
     radius = 0.205;
   const point = (x, y) =>
@@ -37,23 +37,31 @@ export function createLogoCharacter(material) {
     new THREE.LineCurve3(point(27, 55), point(29, 55)),
   ]);
   stroke([new THREE.LineCurve3(point(9, 28), point(32, 28))]);
-  stroke([new THREE.LineCurve3(point(56, 14), point(56, 55))]);
+  stroke([new THREE.LineCurve3(point(56, 20), point(56, 55))]);
   stroke(
     [
       new THREE.CubicBezierCurve3(
-        point(56, 40),
-        point(56, 21),
-        point(30, 21),
-        point(30, 40),
+        point(56, 43),
+        point(56, 28),
+        point(34, 28),
+        point(34, 43),
       ),
       new THREE.CubicBezierCurve3(
-        point(30, 40),
-        point(30, 59),
-        point(56, 59),
-        point(56, 40),
+        point(34, 43),
+        point(34, 58),
+        point(56, 58),
+        point(56, 43),
       ),
     ],
     true,
   );
+  const dot = new THREE.Mesh(
+    new THREE.SphereGeometry(0.19, 24, 20),
+    accentMaterial,
+  );
+  dot.name = "brand-dot";
+  dot.position.copy(point(56, 12));
+  dot.castShadow = true;
+  group.add(dot);
   return group;
 }

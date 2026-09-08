@@ -119,13 +119,19 @@ nav.menu a.active {
 .footer-brand {
   display: inline-flex;
   align-items: center;
+  gap: 12px;
 }
 .footer-brand .brand-wordmark {
-  width: clamp(250px, 47vw, 680px);
+  width: clamp(210px, 42vw, 600px);
   height: auto;
 }
+.footer-brand .brand-monogram {
+  width: clamp(42px, 8.4vw, 120px);
+  height: auto;
+  flex: none;
+}
 .footer-brand .brand-point {
-  fill: #fff100;
+  fill: currentColor;
 }
 .back-top {
   display: inline-flex;
@@ -339,8 +345,8 @@ nav.menu a.active {
 
 /* The supplied td monogram accompanies the wordmark at every viewport. */
 .logo .brand-badge {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   flex: none;
 }
 @media (max-width: 1100px) {
