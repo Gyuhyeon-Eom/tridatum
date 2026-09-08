@@ -17,7 +17,7 @@ function fixture(send = true) {
     outbox = [],
     events = [];
   const env = {
-    INQUIRY_FROM: "website@tridatum.co",
+    INQUIRY_FROM: "website@notify.tridatum.co",
     INQUIRIES: {
       async get(k) {
         return data.get(k) || null;
@@ -71,7 +71,7 @@ test("saves before notifying the fixed mailbox and sets the visitor as Reply-To"
   assert.equal((await response.json()).ok, true);
   assert.equal(f.outbox.length, 1);
   assert.equal(f.outbox[0].to, "contact@tridatum.co");
-  assert.equal(f.outbox[0].from.email, "website@tridatum.co");
+  assert.equal(f.outbox[0].from.email, "website@notify.tridatum.co");
   assert.equal(f.outbox[0].replyTo, payload.email);
   assert(!/[\r\n]/.test(f.outbox[0].subject));
   assert(f.outbox[0].text.includes(payload.msg));
