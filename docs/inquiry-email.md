@@ -14,7 +14,9 @@
 
 ## 최초 연결
 
-2026-09-08에 알림 전용 `notify.tridatum.co`의 Email Routing을 활성화하고 MX·SPF 레코드를 연결했습니다. 루트 `tridatum.co`의 Google MX·SPF는 유지합니다. `contact@tridatum.co`에는 수신 주소 인증 메일을 발송했습니다. 수신 인증과 운영 Worker 배포·실제 발송 확인이 끝나야 알림 연결이 완료됩니다.
+2026-09-08에 알림 전용 `notify.tridatum.co`의 Email Routing을 활성화하고 MX·SPF 레코드를 연결했습니다. 루트 `tridatum.co`의 Google MX·SPF는 유지합니다. `contact@tridatum.co` 수신 인증을 확인한 뒤 운영 Worker를 배포했습니다(버전 `cb7da4dc-9567-4e94-a087-80b89df850e0`). 공개 `/api/inquiry`에 내부 테스트 한 건을 제출해 접수 성공과 메일 발송 요청 수락(`accepted`, messageId 반환)을 확인했습니다. 같은 messageId의 Cloudflare `emailRoutingAdaptive` 로그에서도 `delivered`와 빈 오류 내용을 확인했습니다. 이는 수신 메일 서버로의 전달 완료이며, 받은편지함·스팸함 분류는 수신 서비스에서 결정합니다.
+
+기존 공개 문의 폼은 같은 API를 사용하므로 Worker 배포 후부터 자동 알림이 동작합니다. 관리자 화면의 메일 상태 표시 등 정적 파일 개선은 저장소 최신 파일을 기존 수동 배포 절차로 반영하면 됩니다.
 
 1. **Compute → Email Service → Email Routing → tridatum.co → Settings → Subdomains**에서 `notify.tridatum.co`가 Enabled인지 확인합니다. 초기 재설정이 필요하면 알림용 하위 도메인에만 Email Routing을 설정합니다. `POST /zones/{zone_id}/email/routing/dns`를 사용할 때는 반드시 `{"name":"notify.tridatum.co"}`를 지정합니다.
 2. **Email Service → Email Routing → Destination Addresses**에서 `contact@tridatum.co`를 등록하고, 해당 메일함으로 온 **Verify email address** 링크를 누릅니다. 관리자 Access 로그인용 숫자 코드와는 별도 인증입니다.
