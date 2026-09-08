@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
   logoPose,
-  logoRoute,
-  JOURNEY_DURATION,
+  nextHop,
+  START,
   frameLayout,
   resolveAnchor,
   GROUND,
@@ -12,58 +12,83 @@ import {
 import { createLogoCharacter } from "../assets/js/logo-character.mjs";
 import * as THREE from "../assets/vendor/three/three.module.min.js";
 
-test("routes climb all three treads and return to the ground without position jumps", () => {
+test("random hops stay on adjacent treads and join continuously without resting", () => {
+  const levels = [-1, 2, 1, 0];
   for (const mode of [0, 1, 2])
-    for (const direction of [-1, 1]) {
-      const frames = frameLayout(mode);
-      const route = logoRoute(
-        { level: -1, x: -direction * 1.3, z: 3.25 },
-        direction,
-      );
-      let prev = logoPose(0, route, frames);
-      const landings = [];
-      for (let t = 0; t <= JOURNEY_DURATION + 0.02; t += 0.002) {
-        const p = logoPose(t, route, frames);
-        for (const key of [
-          "x",
-          "y",
-          "z",
-          "scaleX",
-          "scaleY",
-          "tilt",
-          "yaw",
-          "jump",
-        ])
-          assert(Number.isFinite(p[key]));
-        assert(p.y >= GROUND && p.y < 2);
-        assert(Math.abs(p.x) < 2 && Math.abs(p.z) < 3.5);
-        assert(p.scaleY >= 0.82 && p.scaleY <= 1.1);
-        for (const key of ["x", "y", "z", "scaleY"])
-          assert(
-            Math.abs(p[key] - prev[key]) < 0.03,
-            `${key} changes continuously`,
-          );
-        if (p.phase === "landing" && prev.phase === "airborne")
-          landings.push(p.level);
-        if (p.phase === "landing" || p.phase === "looking") {
-          const anchor = resolveAnchor(route[p.leg + 1], frames);
-          assert.equal(p.y, anchor.y, "every landing touches its own tread");
-        }
-        prev = p;
-      }
-      assert.deepEqual(landings, [2, 1, 0, 0, 1, 2, -1]);
-      const rest = logoPose(JOURNEY_DURATION + 1, route, frames);
-      assert.equal(rest.y, GROUND);
-      assert.equal(rest.x, direction * 1.3);
-      assert.equal(rest.scaleY, 1);
-      assert.equal(rest.phase, "resting");
-      const next = logoPose(0, logoRoute(route.at(-1), -direction), frames);
-      for (const key of ["x", "y", "z"])
-        assert.equal(
-          next[key],
-          rest[key],
-          "repeated routes share the same ground contact",
+    for (const seed of [8, 92, 517, 9001]) {
+      let state = seed;
+      const random = () => {
+        state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
+        return state / 4294967296;
+      };
+      const frames = frameLayout(mode),
+        visited = new Set(),
+        destinations = new Set(),
+        timings = new Set();
+      let hop = nextHop(START, null, random);
+      for (let n = 0; n < 120; n++) {
+        assert(
+          Math.abs(
+            levels.indexOf(hop.from.level) - levels.indexOf(hop.to.level),
+          ) <= 1,
+          "no jump skips a tread",
         );
+        assert(
+          hop.duration < 1.3 && hop.duration > 0.8,
+          "each landing immediately starts another short hop",
+        );
+        const a = resolveAnchor(hop.from, frames),
+          b = resolveAnchor(hop.to, frames);
+        assert(
+          Math.hypot(b.x - a.x, b.z - a.z) > 0.2,
+          "each hop moves to a different location",
+        );
+        let prev = logoPose(0, hop, frames);
+        for (let t = 0; t <= hop.duration; t += 0.006) {
+          const p = logoPose(t, hop, frames);
+          for (const key of [
+            "x",
+            "y",
+            "z",
+            "scaleX",
+            "scaleY",
+            "tilt",
+            "yaw",
+            "jump",
+          ])
+            assert(Number.isFinite(p[key]));
+          assert(p.y >= GROUND && p.y < 2);
+          assert(Math.abs(p.x) < 2 && p.z < 3.5 && p.z > -0.1);
+          for (const key of ["x", "y", "z", "scaleY"])
+            assert(
+              Math.abs(p[key] - prev[key]) < 0.08,
+              `${key} remains continuous`,
+            );
+          if (p.phase === "landing")
+            assert.equal(p.y, b.y, "landing is on the selected surface");
+          prev = p;
+        }
+        const end = logoPose(hop.duration, hop, frames);
+        assert.equal(end.phase, "landed");
+        for (const key of ["x", "y", "z"]) assert.equal(end[key], b[key]);
+        visited.add(hop.to.level);
+        destinations.add(hop.to.x.toFixed(3));
+        timings.add(hop.flight.toFixed(3));
+        const next = nextHop(hop.to, hop.from.level, random);
+        const start = logoPose(0, next, frames);
+        for (const key of ["x", "y", "z", "scaleY"])
+          assert.equal(
+            start[key],
+            end[key],
+            "new random destinations never teleport the character",
+          );
+        hop = next;
+      }
+      assert.equal(visited.size, 4, "ground and all three frames are reached");
+      assert(
+        destinations.size > 50 && timings.size > 30,
+        "both destinations and pace vary",
+      );
     }
 });
 test("the rounded character keeps the brand centerlines and both open spaces", () => {

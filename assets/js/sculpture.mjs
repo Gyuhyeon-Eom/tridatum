@@ -2,11 +2,10 @@ import * as THREE from "../vendor/three/three.module.min.js";
 import { createLogoCharacter } from "./logo-character.mjs?v=20260908b2";
 import {
   logoPose,
-  logoRoute,
-  JOURNEY_DURATION,
-  REST_DURATION,
+  nextHop,
+  standingPose,
   frameLayout,
-} from "./logo-motion.mjs?v=20260908b2";
+} from "./logo-motion.mjs?v=20260908c1";
 
 const host = document.querySelector("[data-sculpture]");
 if (host) {
@@ -14,8 +13,6 @@ if (host) {
   const controls = document.querySelector(".sculpture-controls");
   const modes = [...document.querySelectorAll("[data-sculpture-mode]")];
   let mode = 0;
-  const pause = document.querySelector("[data-logo-pause]");
-  const trigger = document.querySelector("[data-logo-jump]");
   let renderer,
     observer,
     resizeObserver,
@@ -23,16 +20,14 @@ if (host) {
     disposed = false;
   let raf = 0,
     last = 0,
-    elapsed = -1.25,
+    elapsed = -0.65,
     visible = false,
-    paused = false,
     lost = false;
-  let route = logoRoute(),
-    direction = 1,
+  let hop = nextHop(),
+    hopCount = 0,
     pointer = 0,
-    look = 0,
-    queuedTarget = null;
-  let currentPose = logoPose(-1),
+    look = 0;
+  let currentPose = logoPose(-1, hop),
     lastUi = "",
     frameKey = "",
     dirty = true;
@@ -42,26 +37,16 @@ if (host) {
     last = 0;
   }
   function ui() {
-    const key = [reduced.matches, lost, paused, currentPose.phase].join(":");
+    const key = [reduced.matches, lost, currentPose.phase].join(":");
     if (key === lastUi) return;
     lastUi = key;
     const staticOnly = reduced.matches || lost;
-    controls.hidden = trigger.hidden = staticOnly;
-    pause.setAttribute("aria-pressed", String(paused));
-    pause.setAttribute(
-      "aria-label",
-      paused ? "td 로고 모션 재생" : "td 로고 모션 일시정지",
-    );
-    pause.querySelector("[data-pause-label]").textContent = paused
-      ? "재생하기"
-      : "멈추기";
+    controls.hidden = staticOnly;
     host.dataset.motion = lost
       ? "fallback"
       : reduced.matches
         ? "reduced"
-        : paused
-          ? "paused"
-          : currentPose.phase;
+        : currentPose.phase;
   }
   try {
     renderer = new THREE.WebGLRenderer({
@@ -257,34 +242,20 @@ if (host) {
     shadow.rotation.x = -Math.PI / 2;
     shadow.position.y = -1.115;
     scene.add(shadow);
-    function begin(target = 0, schedule = true) {
-      // Complete the current landing before accepting another destination.
-      // Rapid clicks never reset an airborne body onto the floor.
-      if (elapsed >= 0 && elapsed < JOURNEY_DURATION) {
-        queuedTarget = target;
-        return;
-      }
-      const travelDirection = target ? Math.sign(target) : direction;
-      const from = elapsed < 0 ? route[0] : route.at(-1);
-      route = logoRoute(from, travelDirection);
-      direction = -travelDirection;
-      elapsed = 0;
-      queuedTarget = null;
-      paused = false;
-      ui();
-      if (schedule) start();
-    }
     function draw(now) {
       raf = 0;
       if (disposed || lost || !visible || document.hidden) return;
       const dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
       last = now;
-      if (!paused && !reduced.matches) elapsed += dt;
-      if (!paused && !reduced.matches && elapsed >= JOURNEY_DURATION) {
-        if (queuedTarget !== null) begin(queuedTarget, false);
-        else if (elapsed >= JOURNEY_DURATION + REST_DURATION) begin(0, false);
+      if (!reduced.matches) {
+        elapsed += dt;
+        while (elapsed >= hop.duration) {
+          elapsed -= hop.duration;
+          hop = nextHop(hop.to, hop.from.level);
+          hopCount++;
+        }
       }
-      const settle = reduced.matches ? 1 : paused ? 0 : 1 - Math.exp(-dt * 5);
+      const settle = reduced.matches ? 1 : 1 - Math.exp(-dt * 5);
       const targetFrames = frameLayout(mode);
       layers.forEach((layer, i) => {
         const target = targetFrames[i];
@@ -298,10 +269,10 @@ if (host) {
         yaw: l.rotation.y,
       }));
       currentPose = reduced.matches
-        ? logoPose(-1, [{ level: 0, x: 0, z: 1.27 }], liveFrames)
-        : logoPose(elapsed, route, liveFrames);
+        ? standingPose({ level: 0, x: 0, z: 1.27 }, liveFrames)
+        : logoPose(elapsed, hop, liveFrames);
       const p = currentPose;
-      if (!paused && !reduced.matches)
+      if (!reduced.matches)
         look += (pointer * 0.1 - look) * (1 - Math.exp(-dt * 7));
       if (reduced.matches) look = 0;
       body.scale.set(
@@ -337,9 +308,10 @@ if (host) {
       }
       host.dataset.rendered = "true";
       host.dataset.level = String(p.level);
-      host.dataset.leg = String(p.leg);
+      host.dataset.hops = String(hopCount);
+      host.dataset.destination = String(hop.to.level);
       ui();
-      if (!paused && !reduced.matches && visible && !document.hidden)
+      if (!reduced.matches && visible && !document.hidden)
         raf = requestAnimationFrame(draw);
     }
     function start() {
@@ -368,51 +340,25 @@ if (host) {
         modes.forEach((b, j) =>
           b.setAttribute("aria-pressed", String(i === j)),
         );
-        paused = false;
-        begin(0);
         ui();
         start();
       }),
     );
-    trigger.addEventListener("click", (e) => {
-      if (reduced.matches) return;
-      const r = trigger.getBoundingClientRect();
-      const target = e.detail
-        ? Math.max(
-            -0.85,
-            Math.min(0.85, ((e.clientX - r.left) / r.width - 0.5) * 2),
-          )
-        : 0;
-      if (paused) {
-        paused = false;
-        ui();
-        start();
-      }
-      begin(target);
-    });
-    trigger.addEventListener("pointermove", (e) => {
+    host.addEventListener("pointermove", (e) => {
       if (e.pointerType === "touch") return;
-      const r = trigger.getBoundingClientRect();
+      const r = host.getBoundingClientRect();
       pointer = (e.clientX - r.left) / r.width - 0.5;
-      start();
     });
-    trigger.addEventListener("pointerleave", () => {
+    host.addEventListener("pointerleave", () => {
       pointer = 0;
-      start();
-    });
-    pause.addEventListener("click", () => {
-      paused = !paused;
-      ui();
-      if (paused) stop();
-      else start();
     });
     reduced.addEventListener("change", () => {
       stop();
-      elapsed = -1.25;
-      route = logoRoute();
-      currentPose = logoPose(-1);
+      elapsed = -0.65;
+      hop = nextHop();
+      hopCount = 0;
+      currentPose = logoPose(-1, hop);
       look = pointer = 0;
-      queuedTarget = null;
       ui();
       start();
     });
@@ -473,6 +419,6 @@ if (host) {
     renderer?.dispose();
     host.removeAttribute("data-rendered");
     host.dataset.motion = "fallback";
-    controls.hidden = trigger.hidden = true;
+    controls.hidden = true;
   }
 }
