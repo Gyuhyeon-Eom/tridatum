@@ -1,5 +1,10 @@
 // 문의 폼: API의 명시적 접수 확인 후에만 입력을 지운다.
 (() => {
+  // The GitHub Pages mirror has no inquiry API. Always use the official form.
+  if (window.location.hostname === "gyuhyeon-eom.github.io") {
+    window.location.replace("https://tridatum.co/contact");
+    return;
+  }
   const form = document.getElementById("iform");
   if (!form) return;
   const status = document.getElementById("iform-status");

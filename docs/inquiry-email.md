@@ -18,6 +18,8 @@
 
 기존 공개 문의 폼은 같은 API를 사용하므로 Worker 배포 후부터 자동 알림이 동작합니다. 관리자 화면의 메일 상태 표시 등 정적 파일 개선은 저장소 최신 파일을 기존 수동 배포 절차로 반영하면 됩니다.
 
+문의 접수는 `https://tridatum.co/contact`에서 합니다. GitHub Pages의 `gyuhyeon-eom.github.io/tridatum/contact.html`에는 Worker API가 없으므로, 해당 미러의 문의 페이지를 열면 공식 접수 페이지로 이동합니다. 로컬 정적 미리보기 역시 운영 문의 접수에 사용하지 않습니다.
+
 1. **Compute → Email Service → Email Routing → tridatum.co → Settings → Subdomains**에서 `notify.tridatum.co`가 Enabled인지 확인합니다. 초기 재설정이 필요하면 알림용 하위 도메인에만 Email Routing을 설정합니다. `POST /zones/{zone_id}/email/routing/dns`를 사용할 때는 반드시 `{"name":"notify.tridatum.co"}`를 지정합니다.
 2. **Email Service → Email Routing → Destination Addresses**에서 `contact@tridatum.co`를 등록하고, 해당 메일함으로 온 **Verify email address** 링크를 누릅니다. 관리자 Access 로그인용 숫자 코드와는 별도 인증입니다.
 3. 루트 도메인은 Google 수신을 유지하므로 Routing 화면에 루트 MX·SPF가 Conflicting 또는 Missing으로 표시될 수 있습니다. 이를 해소하려고 Google 레코드를 삭제하거나 루트의 **Add missing records / Activate**를 누르지 않습니다. 알림 발신에는 `notify.tridatum.co`만 사용합니다.

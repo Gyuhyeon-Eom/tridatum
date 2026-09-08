@@ -15,6 +15,7 @@
   ];
 
   let copyData = {};
+  let copyWritable = false;
 
   const esc = (s) =>
     String(s ?? "").replace(
@@ -39,6 +40,11 @@
   }
   const say = (msg) => {
     status.textContent = msg;
+  };
+  const showError = (selector, message = "") => {
+    const box = $(selector);
+    box.textContent = message;
+    box.style.display = message ? "block" : "none";
   };
 
   /* 탭 전환 */
@@ -67,8 +73,13 @@
         }
       </label>`,
     ).join("")}</div>`;
+    document.querySelectorAll("#copy-editor [data-k]").forEach((el) => {
+      el.disabled = !copyWritable;
+    });
+    $("#copy-save").disabled = !copyWritable;
   }
   $("#copy-save").addEventListener("click", async () => {
+    if (!copyWritable) return;
     document.querySelectorAll("#copy-editor [data-k]").forEach((el) => {
       copyData[el.dataset.k] = el.value.trim();
     });
@@ -84,12 +95,31 @@
     } catch (err) {
       say(err.message);
     } finally {
-      $("#copy-save").disabled = false;
+      $("#copy-save").disabled = !copyWritable;
     }
   });
 
   /* ---------- 문의함 ---------- */
   let notifications = { configured: false };
+  async function loadInquiries() {
+    const reload = $("#inq-reload");
+    reload.disabled = true;
+    showError("#inq-error");
+    try {
+      const inq = await api("/api/admin/inquiries");
+      if (!Array.isArray(inq.items))
+        throw new Error("문의 목록 응답을 확인할 수 없습니다.");
+      renderInq(inq.items, inq.notifications);
+    } catch (err) {
+      showError(
+        "#inq-error",
+        `문의 목록을 불러오지 못했습니다. ${err.message}`,
+      );
+    } finally {
+      reload.disabled = false;
+    }
+  }
+  $("#inq-reload").addEventListener("click", loadInquiries);
   function renderInq(items, config) {
     if (config) notifications = config;
     $("#inq-mail-status").textContent = notifications.configured
@@ -154,31 +184,47 @@
       say(err.message);
     } finally {
       button.disabled = false;
-      try {
-        const inq = await api("/api/admin/inquiries");
-        renderInq(inq.items, inq.notifications);
-      } catch (err) {
-        say(err.message);
-      }
+      await loadInquiries();
     }
   });
 
   /* ---------- 초기 로드 ---------- */
+  async function loadCopy() {
+    showError("#copy-error");
+    try {
+      const site = await api("/api/admin/content?file=site");
+      if (
+        !site.data ||
+        typeof site.data !== "object" ||
+        Array.isArray(site.data)
+      )
+        throw new Error("문구 응답을 확인할 수 없습니다.");
+      copyData = site.data;
+      copyWritable = !site.readOnly;
+      renderCopy();
+      if (site.warning)
+        showError(
+          "#copy-error",
+          `${site.warning} 현재 문구는 읽기 전용이며, 문의함은 계속 사용할 수 있습니다.`,
+        );
+    } catch (err) {
+      showError(
+        "#copy-error",
+        `문구를 불러오지 못했습니다. ${err.message} 문의함은 별도로 사용할 수 있습니다.`,
+      );
+    }
+  }
   (async () => {
     try {
       const me = await api("/api/admin/me");
       $("#adm-who").textContent = me.email;
-      const [site, inq] = await Promise.all([
-        api("/api/admin/content?file=site"),
-        api("/api/admin/inquiries"),
-      ]);
-      copyData = site.data;
-      renderCopy();
-      renderInq(inq.items, inq.notifications);
+      // Each pane renders as soon as its own request finishes.
+      await Promise.allSettled([loadCopy(), loadInquiries()]);
     } catch (err) {
-      const box = $("#adm-error");
-      box.style.display = "block";
-      box.textContent = `불러오지 못했습니다: ${err.message} · 워커 배포와 Access 설정(docs/admin-setup.md)을 확인해 주세요.`;
+      showError(
+        "#adm-error",
+        `로그인 상태를 확인하지 못했습니다. ${err.message}`,
+      );
     }
   })();
 })();

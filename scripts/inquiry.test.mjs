@@ -189,6 +189,7 @@ async function submitClient(response) {
     reset: () => resets++,
   };
   runInNewContext(client, {
+    window: { location: { hostname: "tridatum.co" } },
     document: { getElementById: (id) => (id === "iform" ? form : status) },
     FormData: class {
       entries() {
@@ -215,4 +216,27 @@ test("the form keeps input when a static HTML page or unconfirmed JSON is return
   );
   assert.equal(result.resets, 1);
   assert(result.status.includes("접수되었습니다"));
+});
+
+test("the GitHub Pages contact mirror opens the official form before accepting data", () => {
+  let destination;
+  runInNewContext(client, {
+    window: {
+      location: {
+        hostname: "gyuhyeon-eom.github.io",
+        replace(url) {
+          destination = url;
+        },
+      },
+    },
+    document: {
+      getElementById() {
+        throw new Error("mirror form must not accept inquiries");
+      },
+    },
+    fetch() {
+      throw new Error("mirror must not send to an absent API");
+    },
+  });
+  assert.equal(destination, "https://tridatum.co/contact");
 });

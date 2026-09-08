@@ -50,6 +50,8 @@ export default {
       }
       return json({ error: "not found" }, 404);
     } catch (e) {
+      if (e.code === "GITHUB_AUTH_FAILED")
+        return json({ error: e.message, code: e.code }, 502);
       return json({ error: String(e.message || e) }, 500);
     }
   },
@@ -99,7 +101,17 @@ async function requireAccess(req, env) {
 
 /* ---------- 콘텐츠: GitHub 커밋으로 읽고 쓴다 ---------- */
 
+function githubAuthError() {
+  return Object.assign(
+    new Error(
+      "문구 저장용 GitHub 인증이 만료되었거나 유효하지 않습니다. Worker의 GITHUB_TOKEN을 갱신해 주세요.",
+    ),
+    { code: "GITHUB_AUTH_FAILED" },
+  );
+}
+
 async function ghRequest(env, method, apiPath, body) {
+  if (!env.GITHUB_TOKEN) throw githubAuthError();
   const r = await fetch(`https://api.github.com${apiPath}`, {
     method,
     headers: {
@@ -109,25 +121,46 @@ async function ghRequest(env, method, apiPath, body) {
     },
     body: body ? JSON.stringify(body) : undefined,
   });
+  if (r.status === 401) throw githubAuthError();
   if (!r.ok)
     throw new Error(
-      `GitHub API ${r.status}: ${(await r.text()).slice(0, 200)}`,
+      `문구 저장소 요청에 실패했습니다 (GitHub ${r.status}). 저장소 접근 권한과 호출 한도를 확인해 주세요.`,
     );
   return r.json();
 }
 
-async function getContent(url, env) {
+export async function getContent(url, env) {
   const file = CONTENT_FILES[url.searchParams.get("file")];
   if (!file) return json({ error: "file은 site 또는 news" }, 400);
-  const meta = await ghRequest(
-    env,
-    "GET",
-    `/repos/${env.GH_OWNER}/${env.GH_REPO}/contents/${file}?ref=${env.GH_BRANCH}`,
-  );
-  return json({ sha: meta.sha, data: JSON.parse(utf8Decode(meta.content)) });
+  const apiPath = `/repos/${env.GH_OWNER}/${env.GH_REPO}/contents/${file}?ref=${env.GH_BRANCH}`;
+  let meta;
+  try {
+    meta = await ghRequest(env, "GET", apiPath);
+  } catch (error) {
+    if (error.code !== "GITHUB_AUTH_FAILED") throw error;
+    // Public repository content remains readable if the editing token expires.
+    // Access authentication still runs before this handler; writes never fall back.
+    // Use the public file host, not the unauthenticated GitHub API quota shared
+    // by other Workers on the same egress address. Never send credentials here.
+    const repo = [env.GH_OWNER, env.GH_REPO, env.GH_BRANCH]
+      .map(encodeURIComponent)
+      .join("/");
+    const publicFile = await fetch(
+      `https://raw.githubusercontent.com/${repo}/${file}`,
+    );
+    if (!publicFile.ok)
+      throw new Error("공개 문구 파일을 불러오지 못했습니다.");
+    const data = await publicFile.json();
+    return json({ sha: null, data, readOnly: true, warning: error.message });
+  }
+  return json({
+    sha: meta.sha,
+    data: JSON.parse(utf8Decode(meta.content)),
+    readOnly: false,
+  });
 }
 
-async function putContent(req, env, who) {
+export async function putContent(req, env, who) {
   const { file: fileKey, data } = await req.json();
   const file = CONTENT_FILES[fileKey];
   if (!file || typeof data !== "object")

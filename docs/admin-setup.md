@@ -87,3 +87,13 @@ npx wrangler deploy
 ## 문의 이메일 알림
 
 문의 저장과 메일 발송은 별도 단계입니다. 관리자 문의함에서 확인하고, 알림을 받을 수 있도록 [문의 이메일 연결](inquiry-email.md)의 최초 설정을 완료합니다. 공개 홈페이지와 관리자 파일은 기존 수동 배포 절차로 반영하며, Worker도 별도로 배포해야 합니다.
+
+## GitHub 인증 오류와 문의함
+
+`GitHub API 401 / Bad credentials`는 문구 저장용 `GITHUB_TOKEN` 인증 오류입니다. Cloudflare Access 로그인이나 문의 메일 발송의 실패를 뜻하지 않습니다. 문의는 KV에서 독립적으로 조회합니다.
+
+Worker는 편집 토큰이 유효하지 않아도 공개 저장소의 허용된 콘텐츠 파일을 읽기 전용으로 반환합니다. 관리자 화면은 문구와 문의 목록을 각각 불러오며, 한쪽 요청의 오류나 지연이 다른 탭을 막지 않습니다. 읽기 전용 상태에서는 문구 저장을 비활성화합니다. 이 화면 처리는 최신 `admin/index.html`, `admin/admin.js`를 정적 사이트에 배포해야 적용됩니다.
+
+문구 저장을 복구하려면 `tridatum` 저장소의 Contents 읽기·쓰기 권한을 가진 유효한 토큰으로 Worker의 `GITHUB_TOKEN` secret을 갱신합니다. 토큰은 채팅이나 저장소 파일에 넣지 않고 Cloudflare secret 입력란 또는 `wrangler secret put GITHUB_TOKEN`으로 직접 입력합니다. 문의함과 자동 메일 알림은 이 토큰 갱신과 무관하게 사용할 수 있습니다.
+
+검증: `node --test scripts/admin.test.mjs scripts/inquiry.test.mjs`
