@@ -428,15 +428,20 @@ nav.menu a.active {
   opacity: 0;
   pointer-events: none;
 }
-.brand-name > svg {
-  transition: opacity 160ms ease;
+/* Fade out first, then reveal the other name without overlapping strokes. */
+.brand-name .brand-wordmark {
+  transition: opacity 80ms ease 80ms;
+}
+.brand-name .brand-pronunciation {
+  transition: opacity 80ms ease;
 }
 @media (hover: hover) and (pointer: fine) {
-  .brand-name:hover .brand-wordmark { opacity: 0; }
-  .brand-name:hover .brand-pronunciation { opacity: 1; }
+  .brand-name:hover .brand-wordmark { opacity: 0; transition-delay: 0ms; }
+  .brand-name:hover .brand-pronunciation { opacity: 1; transition-delay: 80ms; }
 }
-:is(.logo, .footer-brand):focus-visible .brand-wordmark { opacity: 0; }
-:is(.logo, .footer-brand):focus-visible .brand-pronunciation { opacity: 1; }
+:is(.logo, .footer-brand):focus-visible .brand-wordmark { opacity: 0; transition-delay: 0ms; }
+:is(.logo, .footer-brand):focus-visible .brand-pronunciation { opacity: 1; transition-delay: 80ms; }
 @media (prefers-reduced-motion: reduce) {
-  .brand-name > svg { transition: none; }
+  .brand-name .brand-wordmark,
+  .brand-name .brand-pronunciation { transition: none !important; }
 }
