@@ -405,3 +405,38 @@ nav.menu a.active {
     display: none;
   }
 }
+
+/* Both names occupy the same box so the navigation never shifts. */
+.brand-name {
+  position: relative;
+  display: block;
+  flex: none;
+}
+.brand-name .brand-wordmark {
+  display: block;
+}
+.brand-pronunciation {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif;
+  font-size: 49px;
+  font-weight: 600;
+  letter-spacing: -2px;
+  opacity: 0;
+  pointer-events: none;
+}
+.brand-name > svg {
+  transition: opacity 160ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .brand-name:hover .brand-wordmark { opacity: 0; }
+  .brand-name:hover .brand-pronunciation { opacity: 1; }
+}
+:is(.logo, .footer-brand):focus-visible .brand-wordmark { opacity: 0; }
+:is(.logo, .footer-brand):focus-visible .brand-pronunciation { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .brand-name > svg { transition: none; }
+}
