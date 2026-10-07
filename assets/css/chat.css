@@ -94,3 +94,40 @@
   .ai-masthead.home-masthead .hero-visual { height: 240px; margin-block: 0 12px; }
   .ai-masthead.home-masthead h1 { font-size: clamp(58px, 13vw, 94px); }
 }
+
+/* Compact entry, full-height conversation surface. */
+.ai-entry { align-self: center; }
+.ai-entry-copy { padding: 30px 24px 24px; }
+.ai-entry-copy h2 { white-space: pre-line; font-size: clamp(23px, 2.2vw, 32px); line-height: 1.4; letter-spacing: -.04em; }
+.ai-entry-copy p { font-size: 14px; color: #777; line-height: 1.7; margin-top: 14px; max-width: 390px; }
+.ai-entry-note { font-size: 11px; color: #777; }
+.ai-entry .ai-suggestions { display: grid; padding: 0 24px; gap: 0; }
+.ai-entry .ai-suggestions button { padding: 16px 0; border: 0; border-bottom: 1px solid #eee; border-radius: 0; font-size: 13px; }
+.ai-open { display: flex; justify-content: space-between; width: calc(100% - 48px); margin: 24px; padding: 15px 18px; background: #191919; color: #fff; border: 0; border-radius: 10px; font-size: 14px; }
+.ai-launcher { position: fixed; z-index: 110; bottom: max(24px, env(safe-area-inset-bottom)); right: 24px; display: flex; gap: 20px; align-items: center; border: 1px solid #333; border-radius: 99px; padding: 16px 22px; background: #191919; color: #fff; font: inherit; font-size: 14px; cursor: pointer; box-shadow: 0 6px 24px #0002; }
+.ai-panel-open { overflow: hidden; }
+dialog.ai-panel { position: fixed; inset: 16px 16px 16px auto; margin: 0; padding: 0; width: min(560px, calc(100vw - 32px)); height: calc(100dvh - 32px); max-height: none; max-width: none; }
+dialog.ai-panel:not([open]) { display: none; }
+dialog.ai-panel[open] { display: flex; flex-direction: column; animation: ai-enter .2s ease-out; }
+.ai-panel::backdrop { background: #0003; }
+.ai-panel > :not(.ai-messages) { flex-shrink: 0; }
+.ai-panel .ai-studio-top { border-bottom: 1px solid #eee; margin-bottom: 14px; }
+.ai-panel .ai-connection { margin-top: 6px; }
+.ai-panel .ai-close { background: #f4f4f1; border: 0; border-radius: 50%; width: 40px; height: 40px; font-size: 27px; line-height: 1; }
+.ai-panel .ai-messages { position: relative; flex: 1 1 0; height: auto; min-height: 0; padding: 16px 24px 24px; scroll-padding-block: 16px; }
+.ai-panel .ai-message { font-size: 15px; line-height: 1.85; }
+.ai-panel .ai-panel-footer { padding-top: 12px; border-top: 1px solid #eee; }
+.ai-panel .ai-composer textarea { font-size: 16px; }
+.ai-panel .ai-welcome { padding-top: 16px; }
+.ai-masthead.home-masthead .hero-visual { height: clamp(240px, 25vw, 340px); }
+@keyframes ai-enter { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+@media (max-width: 767px) {
+  dialog.ai-panel { inset: 0; width: 100%; height: 100dvh; border: 0; border-radius: 0; }
+  .ai-panel .ai-studio-top { padding-top: max(16px, env(safe-area-inset-top)); }
+  .ai-panel-footer { padding-bottom: env(safe-area-inset-bottom); }
+  .ai-launcher { right: 16px; bottom: max(16px, env(safe-area-inset-bottom)); }
+  .ai-panel .ai-messages { padding-inline: 18px; }
+  .ai-entry-copy { padding: 24px 20px; }
+  .ai-panel .ai-disclaimer { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { dialog.ai-panel[open] { animation: none; } }

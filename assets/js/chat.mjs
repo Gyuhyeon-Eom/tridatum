@@ -7,6 +7,23 @@ const $ = id => document.getElementById(id);
 const log = $("ai-messages"), form = $("ai-form"), field = $("ai-question"), send = $("ai-send");
 const state = { agency: "public", history: [], busy: false, ready: false, controller: null, generation: 0 };
 const el = (tag, cls, text) => { const node = document.createElement(tag); if (cls) node.className = cls; if (text !== undefined) node.textContent = text; return node; };
+const panel = $("ai-panel");
+let returnFocus;
+function openPanel() {
+  if (panel.open) return;
+  returnFocus = document.activeElement;
+  panel.showModal();
+  document.documentElement.classList.add("ai-panel-open");
+  $("ai-close").focus();
+}
+function closePanel() { panel.close(); }
+panel.addEventListener("close", () => {
+  document.documentElement.classList.remove("ai-panel-open");
+  returnFocus?.focus();
+});
+$("ai-close").addEventListener("click", closePanel);
+$("ai-open").addEventListener("click", openPanel);
+$("ai-launcher").addEventListener("click", openPanel);
 function controls() {
   send.disabled = state.busy || !state.ready;
   send.textContent = state.busy ? "·" : "↑";
@@ -19,10 +36,11 @@ function select(agency) {
   field.value = ""; $("ai-error").textContent = ""; log.replaceChildren();
   document.querySelectorAll("[data-agency]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.agency === agency)));
   const info = agencies[agency]; $("ai-mode").textContent = info.mode;
+  $("ai-entry-title").textContent = info.title; $("ai-entry-desc").textContent = info.desc;
   const welcome = el("div", "ai-welcome"); const title = el("h2", "", info.title); title.style.whiteSpace = "pre-line";
   welcome.append(title, el("p", "", info.desc));
   const tags = el("div", "ai-capabilities"); info.tags.forEach(t => tags.append(el("span", "", t))); welcome.append(tags); log.append(welcome);
-  $("ai-suggestions").replaceChildren(...info.questions.map(q => { const b = el("button", "", q + " ↗"); b.type = "button"; b.addEventListener("click", () => { field.value = q; form.requestSubmit(); }); return b; }));
+  $("ai-suggestions").replaceChildren(...info.questions.map(q => { const b = el("button", "", q + " ↗"); b.type = "button"; b.addEventListener("click", () => { openPanel(); field.value = q; form.requestSubmit(); }); return b; }));
   controls();
 }
 function addMessage(role, text) {
@@ -86,6 +104,6 @@ form.addEventListener("submit", async event => {
   }
 });
 field.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
-document.querySelectorAll("[data-agency]").forEach(b => b.addEventListener("click", () => select(b.dataset.agency)));
+document.querySelectorAll("[data-agency]").forEach(b => b.addEventListener("click", () => { if (state.agency !== b.dataset.agency) select(b.dataset.agency); }));
 $("ai-reset").addEventListener("click", () => { select(state.agency); field.focus(); });
 select("public"); connection();

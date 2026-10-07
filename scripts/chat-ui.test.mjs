@@ -12,13 +12,15 @@ class Element {
   remove() { if(this.parent) this.parent.children=this.parent.children.filter(c=>c!==this); }
   querySelector(selector) { return this.children.find(n=>n.className?.split(' ').includes(selector.slice(1))) || null; }
   focus() {}
+  showModal() { this.open=true; }
+  close() { this.open=false; this.listeners.close?.(); }
   requestSubmit() { return this.listeners.submit({preventDefault(){}}); }
 }
 async function setup(handler) {
-  const ids=Object.fromEntries(['ai-messages','ai-form','ai-question','ai-send','ai-error','ai-mode','ai-suggestions','ai-connection','ai-reset'].map(id=>[id,new Element()]));
+  const ids=Object.fromEntries(['ai-messages','ai-form','ai-question','ai-send','ai-error','ai-mode','ai-suggestions','ai-connection','ai-reset','ai-panel','ai-close','ai-open','ai-launcher','ai-entry-title','ai-entry-desc'].map(id=>[id,new Element()]));
   const tabs=['public','business','school'].map(agency=>Object.assign(new Element('button'),{dataset:{agency}}));
   const calls=[];
-  const document={ getElementById:id=>ids[id],createElement:tag=>new Element(tag),createTextNode:text=>Object.assign(new Element('#text'),{textContent:text}),querySelectorAll:s=>s==='[data-agency]'?tabs:ids['ai-suggestions'].children };
+  const document={ documentElement:{classList:{add(){},remove(){}}}, getElementById:id=>ids[id],createElement:tag=>new Element(tag),createTextNode:text=>Object.assign(new Element('#text'),{textContent:text}),querySelectorAll:s=>s==='[data-agency]'?tabs:ids['ai-suggestions'].children };
   runInNewContext(readFileSync(new URL('../assets/js/chat.mjs',import.meta.url),'utf8'),{document,AbortController,AbortSignal,setTimeout,clearTimeout,fetch:async(url,options)=>{if(url.endsWith('/status')) return Response.json({available:true}); calls.push(JSON.parse(options.body)); return handler(url,options);}});
   await new Promise(setImmediate);
   return {ids,tabs,calls,submit:async q=>{ids['ai-question'].value=q;return ids['ai-form'].requestSubmit();}};
@@ -58,4 +60,28 @@ test('Korean IME enter and shift-enter do not submit',async()=>{
  ui.ids['ai-question'].value='한글';
  for(const props of [{isComposing:true},{shiftKey:true}])ui.ids['ai-question'].listeners.keydown({key:'Enter',preventDefault(){},...props});
  assert.equal(ui.calls.length,0);
+});
+
+test('closing and reopening the panel preserves conversation and draft without another API call',async()=>{
+ const ui=await setup(async()=>Response.json(answer));
+ ui.ids['ai-open'].listeners.click();
+ assert.equal(ui.ids['ai-panel'].open,true);
+ await ui.submit('우리 회사에 어떤 도움을 줄 수 있나요?');
+ ui.ids['ai-question'].value='후속 질문 초안';
+ const messages=ui.ids['ai-messages'].children;
+ ui.ids['ai-close'].listeners.click();
+ assert.equal(ui.ids['ai-panel'].open,false);
+ ui.ids['ai-launcher'].listeners.click();
+ assert.equal(ui.ids['ai-panel'].open,true);
+ assert.equal(ui.ids['ai-messages'].children,messages);
+ assert.equal(ui.ids['ai-question'].value,'후속 질문 초안');
+ assert.equal(ui.calls.length,1);
+});
+test('entry suggestion opens panel and submits the selected sector',async()=>{
+ const ui=await setup(async()=>Response.json(answer));
+ ui.tabs[2].listeners.click();
+ ui.ids['ai-suggestions'].children[0].listeners.click();
+ await new Promise(setImmediate);
+ assert.equal(ui.ids['ai-panel'].open,true);
+ assert.equal(ui.calls[0].agency,'school');
 });
