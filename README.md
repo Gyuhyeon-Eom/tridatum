@@ -80,13 +80,15 @@ node --test scripts/solutions.test.mjs scripts/analytics.test.mjs scripts/operat
 
 ## 로컬 검토와 배포
 
-첫 화면의 AI Studio는 `assets/js/chat.mjs`, `assets/css/chat.css`,
-`worker/src/chat.mjs`로 구성합니다. 공공기관·사기업·학교 유형을
-선택하면 OpenAI Responses API의 `web_search`를 유형별로 지정한 공공기관 공식 도메인으로
-제한합니다. 기관과의 협업·구축 사례가 아닌 비공식 기술 데모입니다.
+첫 화면의 AI 도입 상담은 `assets/js/chat.mjs`, `assets/css/chat.css`,
+`worker/src/chat.mjs`로 구성합니다. 공기업·공공기관 / 사기업 / 학교 담당자의
+문제를 듣고 Tridatum이 제공할 수 있는 분석·예측·문서 AI와 결과물을 설명합니다.
+서버의 `COMPANY_CONTEXT`는 공개 서비스 페이지를 바탕으로 관리합니다.
+업종별 적용 제안은 수행 실적이 아닙니다. 가격·일정·성과를 확정하지 않습니다.
+외부 웹 검색 없이 OpenAI Responses API에 회사 역량과 상담 지침을 전달합니다.
 
 Worker의 Secret `OPENAI_API_KEY`가 필요합니다. 기본 모델은 `gpt-5-mini`이며
-`OPENAI_MODEL`로 변경합니다. API와 검색 사용료가 발생합니다.
+`OPENAI_MODEL`로 변경합니다. API 사용료가 발생합니다.
 `CHAT_ENABLED=false`로 체험을 끌 수 있습니다. IP별 6회/분 제한과
 `CHAT_DAILY_LIMIT=100`의 전체 일일 요청 제한(한국 자정 초기화)을 적용합니다.
 일일 한도는 Durable Object가 원자적으로 예약하며 실패한 API 요청도 횟수에 포함합니다.
@@ -94,8 +96,8 @@ Worker의 Secret `OPENAI_API_KEY`가 필요합니다. 기본 모델은 `gpt-5-mi
 
 대화는 브라우저 메모리에만 두고 서버에는 일별 횟수만 저장합니다.
 OpenAI 요청은 `store:false`이며 제공자 자체 보안 로그 정책과는 별개입니다.
-모델이 반환한 인용 URL은 선택 유형에 허용된 공식 HTTPS 주소만 허용하며,
-인용이 없거나 응답이 불완전하면 확인되지 않은 답변을 노출하지 않습니다.
+서비스·문의 링크는 서버가 고정한 주소만 제공합니다.
+미완료 또는 빈 답변은 오류로 처리하며 모델이 만든 URL을 링크로 변환하지 않습니다.
 처음 배포할 때는 Worker를 먼저 배포하고 세 기관의 실제 응답을 확인한 뒤 Pages를 배포합니다.
 키가 없을 때 화면은 연결 준비 상태를 표시하고 전송을 비활성화합니다.
 

@@ -1,9 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { validateChat, allowedSource, answerFromResponse, postChat, ChatBudget } from "../worker/src/chat.mjs";
+import { validateChat, consultationInstructions, answerFromResponse, postChat, ChatBudget } from "../worker/src/chat.mjs";
 import worker from "../worker/src/index.js";
 
-const input = { agency: "public", messages: [{ role: "user", content: "사업자등록 절차는?" }] };
+const input = { agency: "public", messages: [{ role: "user", content: "내부 문서 검색 챗봇을 만들 수 있나요?" }] };
 function request(body = input, origin = "https://tridatum.co", contentType = "application/json") {
   return new Request("https://tridatum.co/api/chat", { method: "POST", headers: { origin, "content-type": contentType, "CF-Connecting-IP": "192.0.2.1" }, body: typeof body === "string" ? body : JSON.stringify(body) });
 }
@@ -21,18 +21,23 @@ test("rejects injected roles, oversized questions, unknown agencies and private 
   ]) assert.throws(() => validateChat(body));
   assert.deepEqual(validateChat(input), input);
 });
-test("only selected institution HTTPS sources are allowed", () => {
-  assert.equal(allowedSource("https://www.nts.go.kr/a", "public"), true);
-  for (const url of ["https://nts.go.kr.evil.com/", "https://evil.com/?nts.go.kr", "javascript:alert(1)", "http://nts.go.kr/a", "https://nhis.or.kr/", "https://user@nts.go.kr/"]) assert.equal(allowedSource(url, "public"), false);
+test("consultation is grounded in company capabilities, not agency guidance or invented projects", () => {
+  for (const agency of ["public", "business", "school"]) {
+    const prompt = consultationInstructions(agency);
+    assert.match(prompt, /서비스 도입 상담/);
+    assert.match(prompt, /납품 사례가 아니다/);
+    assert.match(prompt, /가격·기간·성능·계약 조건을 임의 제시하지/);
+    assert.match(prompt, /개인정보/);
+  }
 });
-test("preserves inline source placement and rejects ungrounded responses", () => {
-  const a = answerFromResponse(result(), "public");
-  assert.equal(a.sources.length, 1);
-  assert.deepEqual(a.parts, [{ text: "공식 안내입니다." }, { citation: 1 }, { text: " 확인하세요.\n" }]);
-  assert.throws(() => answerFromResponse(result("https://evil.com"), "public"));
-  assert.throws(() => answerFromResponse({ status: "incomplete" }, "public"));
-  const missing = result(); missing.output[0].content[0].annotations = [];
-  assert.match(answerFromResponse(missing, "public").parts[0].text, /근거를 확인하지 못/);
+test("accepts consultation text without search citations and returns only fixed navigation links", () => {
+  const r = result("https://evil.com"); r.output[0].content[0].text = "문서 검색 챗봇을 설계할 수 있습니다.";
+  const a = answerFromResponse(r);
+  assert.deepEqual(a.parts, [{text: "문서 검색 챗봇을 설계할 수 있습니다."}]);
+  assert.deepEqual(a.sources.map(s=>s.url), ["https://tridatum.co/services.html", "https://tridatum.co/contact.html"]);
+  assert.throws(() => answerFromResponse({status:"incomplete"}));
+  assert.throws(() => answerFromResponse({status:"completed",output:[]}));
+  assert.equal(answerFromResponse({status:"completed",output:[{type:"message",role:"assistant",content:[{type:"refusal"}]}]}).sources.length,0);
 });
 test("invalid requests and missing bindings never call a paid API", async () => {
   let calls = 0; const upstream = async () => { calls++; return Response.json(result()); };
@@ -53,14 +58,14 @@ test("rate and budget limits are checked before OpenAI", async () => {
   assert.equal((await postChat(request(), e, upstream)).status, 429);
   assert.equal(calls, 0);
 });
-test("each institution uses its own search allowlist and real Responses API", async () => {
+test("each sector sends company context without external search to Responses API", async () => {
   for (const [agency, host] of [["public", "nts.go.kr"], ["business", "moel.go.kr"], ["school", "moe.go.kr"]]) {
     const response = await postChat(request({ ...input, agency }), env(), async (url, init) => {
       assert.equal(url, "https://api.openai.com/v1/responses");
       const body = JSON.parse(init.body);
-      assert.equal(body.store, false); assert.equal(body.tool_choice, "required");
-      assert.ok(body.tools[0].filters.allowed_domains.includes(host));
-      assert.equal(body.max_tool_calls, 2); assert.equal(body.model, "gpt-5-mini");
+      assert.equal(body.store, false); assert.equal(body.tool_choice, undefined);
+      assert.equal(body.tools, undefined); assert.equal(body.instructions, consultationInstructions(agency));
+      assert.equal(body.max_tool_calls, undefined); assert.equal(body.model, "gpt-5-mini");
       assert.equal(body.input[0].content, input.messages[0].content);
       return Response.json(result("https://" + host + "/guide"));
     });

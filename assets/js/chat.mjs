@@ -1,7 +1,7 @@
 const agencies = {
-  public: { mode: "공공기관 · 민원 안내", title: "복잡한 절차를,\n알기 쉬운 안내로.", desc: "민원과 행정 절차를 공개 자료에서 찾아, 필요한 서류와 순서를 정리합니다.", tags: ["민원 상담", "신청 절차", "근거 확인"], questions: ["전입신고는 어떻게 하나요?", "사업자등록 준비 서류를 알려주세요."] },
-  business: { mode: "사기업 · 업무 지원", title: "반복되는 업무 질문,\n바로 꺼내 쓰는 답변.", desc: "인사·노무와 사업 운영에 필요한 공개 지침을 찾아 업무 체크리스트로 정리합니다.", tags: ["업무 가이드", "온보딩", "체크리스트"], questions: ["신입사원 입사 준비 체크리스트를 만들어줘.", "근로계약서에 꼭 포함할 항목은?"] },
-  school: { mode: "학교 · 교육 안내", title: "학생과 교직원의 질문을,\n다음 행동으로 연결합니다.", desc: "교육 제도와 학교생활 안내를 찾아, 확인할 조건과 다음 단계를 정리합니다.", tags: ["교육 안내", "학생 지원", "절차 정리"], questions: ["국가장학금 신청 절차를 알려주세요.", "학교생활기록부는 어떻게 발급받나요?"] },
+  public: { mode: "공기업 · 공공기관 도입 상담", title: "우리 기관의 데이터,\n어떤 업무에 쓸 수 있을까요?", desc: "정책·사업 분석부터 내부 문서 AI까지, 트라이데이텀이 구현할 수 있는 방법을 이야기합니다.", tags: ["정책·사업 분석", "위험 예측", "내부 문서 AI"], questions: ["우리 기관에 어떤 도움을 줄 수 있나요?", "내부 규정을 찾는 챗봇을 만들고 싶어요."] },
+  business: { mode: "사기업 도입 상담", title: "반복되는 일은 줄이고,\n데이터는 판단에 쓰도록.", desc: "매출 분석, 수요 예측, 사내 지식 검색. 우리 회사에 맞는 개발 방향을 함께 찾아보세요.", tags: ["데이터 대시보드", "예측 모델", "업무 자동화"], questions: ["매출 데이터를 어떻게 활용할 수 있나요?", "반복적인 문서 업무를 줄이고 싶어요."] },
+  school: { mode: "학교 도입 상담", title: "학교의 행정과 데이터,\n어떻게 더 잘 연결할까요?", desc: "학사 문서 검색부터 교육 프로그램 분석까지, 학교에 필요한 AI와 분석 시스템을 제안합니다.", tags: ["학사 문서 검색", "행정 지원", "교육 데이터 분석"], questions: ["학교에는 어떤 시스템을 만들어줄 수 있나요?", "학사 규정 안내 챗봇을 만들고 싶어요."] },
 };
 const $ = id => document.getElementById(id);
 const log = $("ai-messages"), form = $("ai-form"), field = $("ai-question"), send = $("ai-send");
@@ -44,7 +44,7 @@ function renderAnswer(answer) {
   node.append(body);
   if (answer.sources.length) {
     const sources = el("div", "ai-source-list");
-    answer.sources.forEach((s, i) => sources.append(link(s, `${i + 1}. ${s.title} ↗`, ""))); node.append(sources);
+    answer.sources.forEach((s, i) => sources.append(link(s, `${s.title} ↗`, ""))); node.append(sources);
   }
   log.scrollTop = node.offsetTop - log.offsetTop;
 }
@@ -55,7 +55,7 @@ async function connection() {
   } catch { state.ready = false; }
   $("ai-connection").textContent = state.ready ? "AI 연결됨" : "AI 연결 준비 중";
   $("ai-connection").dataset.ready = String(state.ready);
-  if (!state.ready) $("ai-error").textContent = "지금은 연결을 준비하고 있습니다. 유형별 체험 내용을 먼저 살펴보세요.";
+  if (!state.ready) $("ai-error").textContent = "지금은 연결을 준비하고 있습니다. 유형별 도입 상담 내용을 먼저 살펴보세요.";
   controls();
 }
 form.addEventListener("submit", async event => {
@@ -64,7 +64,7 @@ form.addEventListener("submit", async event => {
   if (!question || state.busy || !state.ready) return;
   const generation = state.generation;
   state.busy = true; state.controller = new AbortController(); controls(); $("ai-error").textContent = "";
-  const user = addMessage("user", question), pending = el("p", "ai-loading", "공식 자료를 확인해 답변을 작성하고 있습니다."); log.append(pending); log.scrollTop = log.scrollHeight;
+  const user = addMessage("user", question), pending = el("p", "ai-loading", "업무에 맞는 활용 방법을 정리하고 있습니다."); log.append(pending); log.scrollTop = log.scrollHeight;
   const messages = [...state.history.slice(-4), { role: "user", content: question }];
   const controller = state.controller;
   const timeout = setTimeout(() => controller.abort(), 55000);
