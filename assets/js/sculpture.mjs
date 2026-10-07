@@ -244,7 +244,7 @@ if (host) {
       const dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
       last = now;
       if (!reduced.matches) {
-        elapsed += dt;
+        elapsed += dt * 0.5;
         while (elapsed >= hop.duration) {
           elapsed -= hop.duration;
           hop = nextHop(hop.to, hop.from.level);
