@@ -55,6 +55,9 @@ function bars(rows, unit = "") {
   const max = Math.max(...rows.map((r) => r.value), 1);
   return `<div class="ops-bars">${rows.map((r, i) => `<div><span>${r.name}</span><div><i style="width:${(r.value / max) * 100}%;--bar:${COLORS[i % 3]}"></i></div><b>${n(r.value)}${unit}</b></div>`).join("")}</div>`;
 }
+export function citySceneMarkup(rows, selected, scope = "all") {
+ return `<div class="city-dashboard"><div class="city-viewport" data-city-scene data-city-key="vacancy" data-city-scope="${esc(scope)}" data-city-selected="${esc(selected)}">3D 공간을 준비하고 있습니다.</div><div class="city-tools" role="group" aria-label="3D 보기 조절"><button data-city-action="left" aria-label="왼쪽 회전">↶</button><button data-city-action="right" aria-label="오른쪽 회전">↷</button><button data-city-action="in" aria-label="확대">+</button><button data-city-action="out" aria-label="축소">−</button><button data-city-action="reset" aria-label="시점 초기화">⟲</button></div><div class="city-caption"><b>노란색 · 우선 조사 후보</b><span>가상 공간 · 높이는 예시 · 드래그로 회전</span></div><label class="city-picker">건물 선택<select data-city-select aria-label="3D 건물 선택">${rows.map(r=>`<option value="${esc(r.id)}" ${r.id===selected?'selected':''}>${esc(r.id)} · ${esc(r.name)}</option>`).join('')}</select></label></div>`;
+}
 function cityMap(
   rows,
   selected,
@@ -190,7 +193,7 @@ function vacancyView(state) {
         "우선 조사 중 미확인",
       ),
     ],
-    body: `<div class="ops-grid wide-left">${panel("조사 후보 위치", "색이 짙을수록 높은 예측 점수", cityMap(rows, r.id))}${panel(`${r.id} · ${r.name}`, status(r.checked ? "확인 완료" : "현장 확인 필요"), `<div class="ops-score"><span>빈집 예측 점수</span><strong>${r.score.toFixed(2)}</strong><div><i style="width:${r.score * 100}%"></i></div></div><dl class="ops-facts"><div><dt>건축 경과</dt><dd>${r.age}년</dd></div><div><dt>미사용 추정 기간</dt><dd>${r.empty}개월</dd></div><div><dt>에너지 사용 지수</dt><dd>${r.utility} / 100</dd></div></dl><p class="ops-note">사용량과 건물 특성을 함께 검토한 뒤 현장 조사로 확인합니다.</p>`)}</div>${panel(
+    body: `<div class="ops-grid wide-left">${panel("3D 조사 후보", "건물 선택 · 상세 정보 연결", citySceneMarkup(rows, r.id, state.scope || "all"))}${panel(`${r.id} · ${r.name}`, status(r.checked ? "확인 완료" : "현장 확인 필요"), `<div class="ops-score"><span>빈집 예측 점수</span><strong>${r.score.toFixed(2)}</strong><div><i style="width:${r.score * 100}%"></i></div></div><dl class="ops-facts"><div><dt>건축 경과</dt><dd>${r.age}년</dd></div><div><dt>미사용 추정 기간</dt><dd>${r.empty}개월</dd></div><div><dt>에너지 사용 지수</dt><dd>${r.utility} / 100</dd></div></dl><p class="ops-note">사용량과 건물 특성을 함께 검토한 뒤 현장 조사로 확인합니다.</p>`)}</div>${panel(
       "현장 조사 우선순위",
       `${ordered.length}동 · 예측 점수순`,
       table(

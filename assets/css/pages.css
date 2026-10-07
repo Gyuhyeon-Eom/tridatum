@@ -1,0 +1,35 @@
+/* Shared type and spacing, distinct page structures. */
+:is(.page-services,.page-work,.page-about,.page-contact) .sheet { margin: 0; border-radius: 0; }
+:is(.page-services,.page-about) .sheet-layout { display: block; max-width: 1320px; margin: auto; }
+:is(.page-services,.page-about) .sheet-body { min-width: 0; }
+.service-intro,.work-intro,.about-intro,.experience-index,.service-selector { max-width: 1320px; margin-inline: auto; padding-inline: clamp(24px,5vw,72px); }
+.service-intro { padding-top: 170px; padding-bottom: 56px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px 70px; align-items: end; }
+.service-intro .eyebrow { grid-column: 1/-1; }
+.service-intro h1,.work-intro h1,.about-intro h1,.page-contact h1 { font-size: clamp(42px,5vw,70px); letter-spacing: -.06em; line-height: 1.16; font-weight: 600; }
+.service-intro > p:last-child,.about-intro p:not(.eyebrow),.work-intro > p:last-child { font-size: 17px; line-height: 1.8; color: #666; }
+.service-selector { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; padding-bottom: 48px; }
+.service-selector a { position: relative; display: grid; gap: 12px; background: #e8e8e3; border-radius: 14px; padding: 24px; text-decoration: none; transition: background .2s; }
+.service-selector a[aria-current="true"] { background: #eae038; color: #171717; }
+.service-selector a:hover { background: #deded7; }
+.service-selector strong { font-size: 24px; font-weight: 600; }.service-selector span,.service-selector small { font-size: 12px; }.service-selector b { position: absolute; right: 24px; top: 24px; font-weight: 400; }
+.page-services .chapter.service-detail { padding: 40px clamp(24px,5vw,72px) 80px; min-height: 0; color: #191919; background: #fff; border-top: 1px solid #e4e4df; }
+.page-services .service-detail[hidden] { display: none; }
+.page-services .svc-row { display: grid; grid-template-columns: .8fr 1.2fr; gap: 50px; align-items: start; }
+.page-services .svc-txt { padding-top: 28px; }.page-services .svc-txt h2 { font-size: 35px; }.page-services .ops-service-preview { min-width: 0; }
+.page-services .service-detail .techline,.page-services .service-detail > p { font-size: 13px; }
+.work-intro { padding-block: 166px 60px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px 70px; background: #191919; color: #fff; max-width: none; }
+.work-intro .eyebrow { grid-column: 1/-1; color: #d6d235; }.work-intro > p:last-child { color: #c8c8c3; align-self: end; }
+.experience-index { padding-block: 58px 90px; }.experience-tools { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-bottom: 30px; }.experience-tools h2 { font-size: 23px; }
+.experience-tools [role="group"] { display: flex; flex-wrap: wrap; gap: 8px; }.experience-tools button { padding: 9px 16px; border: 0; border-radius: 99px; font: inherit; font-size: 13px; cursor: pointer; background: #e7e7e1; }.experience-tools button[aria-pressed="true"] { background: #191919; color: #fff; }
+.experience-row { display: grid; grid-template-columns: 50px 1.2fr 1fr; gap: 28px; border-top: 1px solid #d5d5cf; padding: 38px 0; }.experience-row[hidden] { display: none; }.experience-number { font-size: 14px; color: #888; }.experience-row h3 { font-size: 27px; letter-spacing: -.04em; margin-block: 10px; }.experience-row p:not(.eyebrow) { font-size: 14px; color: #666; line-height: 1.7; }.experience-row dl { display: grid; gap: 18px; font-size: 14px; line-height: 1.6; }.experience-row dt { color: #888; font-size: 11px; margin-bottom: 4px; }.experience-index .text-link { margin-top: 24px; }
+.about-intro { padding-block: 150px 64px; display: grid; grid-template-columns: 1fr 1.15fr; gap: 45px; align-items: center; }.about-intro h1 { margin-block: 22px; }.about-intro .text-link { margin-top: 28px; }.about-intro figure { margin: 0; }.about-intro figure img { width: 100%; height: auto; border-radius: 4px 90px 4px 4px; }.about-intro figcaption { font-size: 11px; color: #777; margin-top: 12px; text-align: right; }
+.page-about #team { background: #edece5; padding: 56px clamp(24px,5vw,72px); min-height: 0; }.page-about .chapter-head { margin-bottom: 32px; }.page-about .chapter-head h2 { font-size: 32px; }.page-about .people-list { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }.page-about .person { background: transparent; padding: 0; display: grid; grid-template-columns: 110px 1fr; gap: 20px; }.page-about .person-portrait { width: 110px; height: 128px; border-radius: 4px; margin: 0; }.page-about .person-detail { grid-column: 1/-1; }.page-about .person h3 { font-size: 28px; }.page-about #principles { padding: 64px clamp(24px,5vw,72px); min-height: 0; background: #fff; color: #171717; }.page-about .principle-list { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }.page-about .editorial-row { display: block; padding: 24px 0; border-top: 1px solid #ddd; }.page-about .editorial-row h3 { font-size: 23px; margin-block: 16px; }.page-about .editorial-row p { font-size: 15px; color: #666; }
+.page-contact .contact-sheet { padding: 145px clamp(24px,5vw,72px) 60px; background: #ecece6; }.page-contact .contact-layout { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; padding: 0; }.page-contact h1 { margin: 20px 0; }.contact-lede { font-size: 16px; color: #666; line-height: 1.8; margin-bottom: 30px; }.page-contact .contact-email { font-size: 23px; }.page-contact .iform { padding: 32px; border-radius: 18px; background: #fff; }.page-contact .contact-process { max-width: 1200px; margin: 65px auto 0; padding: 34px 0 0; border-top: 1px solid #ccc; }.page-contact .contact-process article h3 { font-size: 20px; }
+@media(max-width:800px) {
+ .service-intro,.work-intro,.about-intro { grid-template-columns: 1fr; padding-top: 124px; gap: 20px; }.service-selector { gap: 6px; }.service-selector a { padding: 15px 10px; }.service-selector strong { font-size: 17px; }.service-selector small { display: none; }.service-selector b { right: 10px; top: 12px; }.page-services .svc-row { grid-template-columns: 1fr; gap: 24px; }
+ .experience-tools { align-items: start; flex-direction: column; }.experience-row { grid-template-columns: 28px 1fr; gap: 14px; }.experience-row dl { grid-column: 2; }.experience-row h3 { font-size: 23px; }
+ .page-about .people-list,.page-about .principle-list { grid-template-columns: 1fr; }.about-intro figure { max-width: 560px; }.page-contact .contact-layout { grid-template-columns: 1fr; gap: 28px; }.page-contact .contact-sheet { padding-top: 124px; }.page-contact .iform { padding: 22px; }
+}
+
+.editorial.page-services .sheet,.editorial.page-about .sheet,.editorial.page-contact .sheet { margin-inline: 0; border-radius: 0; }
+.service-selector a[aria-current="true"]:hover { background: #eae038; }

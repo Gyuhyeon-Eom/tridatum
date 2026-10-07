@@ -1,3 +1,4 @@
+import { mountCities } from "./city-dashboard.mjs?v=20261007p1";
 import {
   GROUPS,
   operationalDetail,
@@ -7,7 +8,7 @@ import { DEFINITIONS, csv } from "./solutions-data.mjs?v=20260907v1";
 import {
   renderSolution,
   solutionModel,
-} from "./solutions-view.mjs?v=20260907v1";
+} from "./solutions-view.mjs?v=20261007p1";
 const screen = document.getElementById("solution-screen");
 if (screen) {
   const tabs = [...document.querySelectorAll("[data-solution]")],
@@ -27,8 +28,11 @@ if (screen) {
   );
   let current = "market";
   const state = () => states.get(current) || {};
+  let disposeCities = () => {};
   function render(focus) {
+    disposeCities();
     screen.innerHTML = renderSolution(current, state());
+    disposeCities = mountCities(screen, id => { states.set(current, { ...state(), selected: id }); render("[data-city-select]"); });
     screen.setAttribute("aria-labelledby", `solution-tab-${current}`);
     if (focus) screen.querySelector(focus)?.focus({ preventScroll: true });
   }
@@ -64,6 +68,7 @@ if (screen) {
   function show(id, keyboard = false) {
     if (!DEFINITIONS.some((d) => d.id === id)) return;
     current = id;
+    if (id === "vacancy" && !states.has(id)) states.set(id, { view: "overview" });
     setGroup(GROUPS.find((g) => g.members.includes(id)).id);
     tabs.forEach((t) => {
       const active = t.dataset.solution === id;
