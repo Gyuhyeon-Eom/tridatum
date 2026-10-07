@@ -36,7 +36,6 @@ function select(agency) {
   field.value = ""; $("ai-error").textContent = ""; log.replaceChildren();
   document.querySelectorAll("[data-agency]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.agency === agency)));
   const info = agencies[agency]; $("ai-mode").textContent = info.mode;
-  $("ai-entry-title").textContent = info.title; $("ai-entry-desc").textContent = info.desc;
   const welcome = el("div", "ai-welcome"); const title = el("h2", "", info.title); title.style.whiteSpace = "pre-line";
   welcome.append(title, el("p", "", info.desc));
   const tags = el("div", "ai-capabilities"); info.tags.forEach(t => tags.append(el("span", "", t))); welcome.append(tags); log.append(welcome);
@@ -109,3 +108,12 @@ field.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey &&
 document.querySelectorAll("[data-agency]").forEach(b => b.addEventListener("click", () => { if (state.agency !== b.dataset.agency) select(b.dataset.agency); }));
 $("ai-reset").addEventListener("click", () => { select(state.agency); field.focus(); });
 select("public"); connection();
+
+// The floating entry appears only after the hero invitation leaves view.
+if (typeof window !== "undefined") {
+  const hero = document.querySelector(".ai-masthead");
+  const updateLauncher = () => { $("ai-launcher").hidden = hero.getBoundingClientRect().bottom > 100; };
+  window.addEventListener("scroll", updateLauncher, { passive: true });
+  window.addEventListener("resize", updateLauncher);
+  updateLauncher();
+}

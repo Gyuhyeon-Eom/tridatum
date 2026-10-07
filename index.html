@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="assets/css/solutions.css?v=20260907v1" />
     <link rel="stylesheet" href="assets/css/operations.css?v=20260907v1" />
     <link rel="stylesheet" href="assets/css/workspace.css?v=20260907v1" />
-    <link rel="stylesheet" href="assets/css/chat.css?v=20261007d1" />
+    <link rel="stylesheet" href="assets/css/chat.css?v=20261007f1" />
   </head>
   <body data-page="home" class="editorial">
     <div class="page-transition" aria-hidden="true">
@@ -74,15 +74,9 @@
             <span class="reveal-line"><span>DATA INTO</span></span
             ><span class="reveal-line"><span>ACTION.</span></span>
           </h1>
-          <div class="hero-visual">
-            <div class="sculpture-stage" data-sculpture aria-hidden="true">
-              <div class="sculpture-fallback"><i></i><i></i><i></i><img src="assets/img/logo-character.svg?v=20260908b2" alt="" /></div>
-            </div>
-          </div>
           <p class="hero-caption" data-c="hero.lede">
             정책 분석, 예측 모델링, 문서 AI를 설계하고 구현합니다.
           </p>
-          <p class="ai-hero-invite">우리 조직에 무엇을 만들어줄 수 있는지 물어보세요.</p>
           <div class="hero-actions">
             <a class="btn primary" href="#showcase"
               >업무 화면 보기 <span aria-hidden="true">↘</span></a
@@ -91,18 +85,18 @@
             >
           </div>
         </div>
-        <section class="ai-studio ai-entry" id="ai-demo" aria-label="트라이데이텀 AI 도입 상담">
-          <div class="ai-studio-top"><span class="ai-studio-brand"><img src="assets/img/logo-symbol.svg" width="24" height="24" alt="" /> AI 도입 상담</span><span class="ai-entry-note">무엇부터 시작할까요?</span></div>
-          <div class="ai-agencies" role="group" aria-label="체험할 조직 유형 선택">
-            <button type="button" data-agency="public" aria-pressed="true">공기업·공공기관<span>정책 · 데이터</span></button>
-            <button type="button" data-agency="business" aria-pressed="false">사기업<span>분석 · 자동화</span></button>
-            <button type="button" data-agency="school" aria-pressed="false">학교<span>행정 · 교육</span></button>
+        <div class="ai-invitation" id="ai-demo">
+          <button type="button" class="ai-character-invite" id="ai-open" aria-haspopup="dialog" aria-controls="ai-panel">
+          <div class="hero-visual">
+            <div class="sculpture-stage" data-sculpture aria-hidden="true">
+              <div class="sculpture-fallback"><i></i><i></i><i></i><img src="assets/img/logo-character.svg?v=20260908b2" alt="" /></div>
+            </div>
           </div>
-          <div class="ai-entry-copy"><h2 id="ai-entry-title"></h2><p id="ai-entry-desc"></p></div>
-          <div class="ai-suggestions" id="ai-suggestions" aria-label="추천 질문"></div>
-          <button type="button" class="ai-open" id="ai-open" aria-haspopup="dialog" aria-controls="ai-panel">직접 질문하기 <span aria-hidden="true">↗</span></button>
-          <noscript><p class="ai-disclaimer">AI 상담은 JavaScript를 켜면 이용할 수 있습니다.</p></noscript>
-        </section>
+            <span class="ai-invitation-copy">우리가 만드는 것,<br />우리가 만든 AI에게 물어보세요.</span>
+            <span class="ai-invitation-link">트라이데이텀 AI와 이야기하기 <span aria-hidden="true">↗</span></span>
+          </button>
+          <noscript><p>AI 상담은 JavaScript를 켜면 이용할 수 있습니다.</p></noscript>
+        </div>
         <div class="hero-bottom">
           <span>TRIDATUM / DATA &amp; AI</span
           ><a href="#approach" class="scroll-link"
@@ -1414,7 +1408,7 @@
       </section>
     </main>
     <div data-include="partials/footer.html"></div>
-    <button type="button" class="ai-launcher" id="ai-launcher" aria-haspopup="dialog" aria-controls="ai-panel">AI 상담 <span aria-hidden="true">↗</span></button>
+    <button type="button" class="ai-launcher" id="ai-launcher" hidden aria-haspopup="dialog" aria-controls="ai-panel">AI에게 물어보기 <span aria-hidden="true">↗</span></button>
     <dialog class="ai-studio ai-panel" id="ai-panel" aria-labelledby="ai-panel-title">
       <div class="ai-studio-top"><div><h2 class="ai-studio-brand" id="ai-panel-title">트라이데이텀 AI 상담</h2><p class="ai-connection" id="ai-connection">연결 확인 중</p></div><button type="button" class="ai-close" id="ai-close" aria-label="상담 닫기">×</button></div>
           <div class="ai-agencies" role="group" aria-label="상담할 조직 유형 선택">
@@ -1425,6 +1419,7 @@
           <div class="ai-workspace-head"><span id="ai-mode">공기업 · 공공기관 도입 상담</span><button type="button" id="ai-reset">새 대화 ↺</button></div>
           <div class="ai-messages" id="ai-messages" role="log" aria-label="AI와의 대화" aria-live="polite" aria-relevant="additions" tabindex="0"></div>
           <div class="ai-panel-footer">
+          <div class="ai-suggestions" id="ai-suggestions" aria-label="추천 질문"></div>
           <form id="ai-form" class="ai-composer">
             <label class="ai-sr-only" for="ai-question">업무에 관한 질문</label>
             <textarea id="ai-question" name="question" rows="2" maxlength="800" placeholder="어떤 업무를 개선하고 싶으신가요?" required aria-describedby="ai-privacy"></textarea>
@@ -1443,6 +1438,6 @@
     <script type="module" src="assets/js/solutions.mjs?v=20260907v1"></script>
 
     <script type="module" src="assets/js/sculpture.mjs?v=20260908c1"></script>
-    <script type="module" src="assets/js/chat.mjs?v=20261007e1"></script>
+    <script type="module" src="assets/js/chat.mjs?v=20261007f1"></script>
   </body>
 </html>
