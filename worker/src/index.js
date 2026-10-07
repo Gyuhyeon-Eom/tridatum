@@ -1,4 +1,6 @@
 import { postInquiry, listInquiries, notifyInquiry } from "./inquiries.mjs";
+import { postChat, chatAvailable } from "./chat.mjs";
+export { ChatBudget } from "./chat.mjs";
 
 // 관리자 API — Cloudflare Worker
 // 보안 경계는 이 워커다. 관리자 페이지(/admin)는 정적 파일이라 누구나 소스를 볼 수 있지만,
@@ -23,6 +25,10 @@ export default {
     const path = url.pathname;
 
     try {
+      if (path === "/api/chat/status" && req.method === "GET")
+        return json({ available: chatAvailable(env) });
+      if (path === "/api/chat" && req.method === "POST")
+        return await postChat(req, env);
       if (path === "/api/inquiry" && req.method === "POST")
         return await postInquiry(req, env);
 

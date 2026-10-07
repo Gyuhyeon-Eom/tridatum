@@ -80,6 +80,35 @@ node --test scripts/solutions.test.mjs scripts/analytics.test.mjs scripts/operat
 
 ## 로컬 검토와 배포
 
+첫 화면의 AI Studio는 `assets/js/chat.mjs`, `assets/css/chat.css`,
+`worker/src/chat.mjs`로 구성합니다. 국세청·국민건강보험공단·한국부동산원을
+선택하면 OpenAI Responses API의 `web_search`를 해당 기관 공식 도메인으로
+제한합니다. 기관과의 협업·구축 사례가 아닌 비공식 기술 데모입니다.
+
+Worker의 Secret `OPENAI_API_KEY`가 필요합니다. 기본 모델은 `gpt-5-mini`이며
+`OPENAI_MODEL`로 변경합니다. API와 검색 사용료가 발생합니다.
+`CHAT_ENABLED=false`로 체험을 끌 수 있습니다. IP별 6회/분 제한과
+`CHAT_DAILY_LIMIT=100`의 전체 일일 요청 제한(한국 자정 초기화)을 적용합니다.
+일일 한도는 Durable Object가 원자적으로 예약하며 실패한 API 요청도 횟수에 포함합니다.
+이 제한은 요청 수 기준이며 금액 한도는 아닙니다.
+
+대화는 브라우저 메모리에만 두고 서버에는 일별 횟수만 저장합니다.
+OpenAI 요청은 `store:false`이며 제공자 자체 보안 로그 정책과는 별개입니다.
+모델이 반환한 인용 URL은 선택 기관의 HTTPS 주소만 허용하며,
+인용이 없거나 응답이 불완전하면 확인되지 않은 답변을 노출하지 않습니다.
+처음 배포할 때는 Worker를 먼저 배포하고 세 기관의 실제 응답을 확인한 뒤 Pages를 배포합니다.
+키가 없을 때 화면은 연결 준비 상태를 표시하고 전송을 비활성화합니다.
+
+```sh
+node --test scripts/chat.test.mjs scripts/chat-ui.test.mjs scripts/inquiry.test.mjs scripts/admin.test.mjs
+cd worker
+npx wrangler secret put OPENAI_API_KEY
+npx wrangler deploy
+```
+
+공식 API 문서: [웹 검색·도메인 제한](https://developers.openai.com/api/docs/guides/tools-web-search),
+[API 데이터 처리](https://developers.openai.com/api/docs/guides/your-data).
+
 ```sh
 python3 -m http.server 8934 --bind 127.0.0.1
 ```
