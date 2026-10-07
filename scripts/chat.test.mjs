@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { validateChat, allowedSource, answerFromResponse, postChat, ChatBudget } from "../worker/src/chat.mjs";
 import worker from "../worker/src/index.js";
 
-const input = { agency: "nts", messages: [{ role: "user", content: "사업자등록 절차는?" }] };
+const input = { agency: "public", messages: [{ role: "user", content: "사업자등록 절차는?" }] };
 function request(body = input, origin = "https://tridatum.co", contentType = "application/json") {
   return new Request("https://tridatum.co/api/chat", { method: "POST", headers: { origin, "content-type": contentType, "CF-Connecting-IP": "192.0.2.1" }, body: typeof body === "string" ? body : JSON.stringify(body) });
 }
@@ -22,17 +22,17 @@ test("rejects injected roles, oversized questions, unknown agencies and private 
   assert.deepEqual(validateChat(input), input);
 });
 test("only selected institution HTTPS sources are allowed", () => {
-  assert.equal(allowedSource("https://www.nts.go.kr/a", "nts"), true);
-  for (const url of ["https://nts.go.kr.evil.com/", "https://evil.com/?nts.go.kr", "javascript:alert(1)", "http://nts.go.kr/a", "https://nhis.or.kr/", "https://user@nts.go.kr/"]) assert.equal(allowedSource(url, "nts"), false);
+  assert.equal(allowedSource("https://www.nts.go.kr/a", "public"), true);
+  for (const url of ["https://nts.go.kr.evil.com/", "https://evil.com/?nts.go.kr", "javascript:alert(1)", "http://nts.go.kr/a", "https://nhis.or.kr/", "https://user@nts.go.kr/"]) assert.equal(allowedSource(url, "public"), false);
 });
 test("preserves inline source placement and rejects ungrounded responses", () => {
-  const a = answerFromResponse(result(), "nts");
+  const a = answerFromResponse(result(), "public");
   assert.equal(a.sources.length, 1);
   assert.deepEqual(a.parts, [{ text: "공식 안내입니다." }, { citation: 1 }, { text: " 확인하세요.\n" }]);
-  assert.throws(() => answerFromResponse(result("https://evil.com"), "nts"));
-  assert.throws(() => answerFromResponse({ status: "incomplete" }, "nts"));
+  assert.throws(() => answerFromResponse(result("https://evil.com"), "public"));
+  assert.throws(() => answerFromResponse({ status: "incomplete" }, "public"));
   const missing = result(); missing.output[0].content[0].annotations = [];
-  assert.match(answerFromResponse(missing, "nts").parts[0].text, /근거를 확인하지 못/);
+  assert.match(answerFromResponse(missing, "public").parts[0].text, /근거를 확인하지 못/);
 });
 test("invalid requests and missing bindings never call a paid API", async () => {
   let calls = 0; const upstream = async () => { calls++; return Response.json(result()); };
@@ -54,7 +54,7 @@ test("rate and budget limits are checked before OpenAI", async () => {
   assert.equal(calls, 0);
 });
 test("each institution uses its own search allowlist and real Responses API", async () => {
-  for (const [agency, host] of [["nts", "nts.go.kr"], ["nhis", "nhis.or.kr"], ["reb", "reb.or.kr"]]) {
+  for (const [agency, host] of [["public", "nts.go.kr"], ["business", "moel.go.kr"], ["school", "moe.go.kr"]]) {
     const response = await postChat(request({ ...input, agency }), env(), async (url, init) => {
       assert.equal(url, "https://api.openai.com/v1/responses");
       const body = JSON.parse(init.body);

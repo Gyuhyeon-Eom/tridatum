@@ -19,7 +19,7 @@
 .ai-studio-brand { display: inline-flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 650; }
 .ai-connection { font-size: 11px; color: #777; }
 .ai-connection[data-ready="true"]::before { content: ""; display: inline-block; width: 5px; height: 5px; margin: 0 6px 2px 0; background: #508262; border-radius: 50%; }
-.ai-agencies { display: grid; grid-template-columns: .9fr 1.2fr 1fr; gap: 5px; padding: 5px; margin: 0 16px; background: #f3f3f0; border-radius: 12px; }
+.ai-agencies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 5px; margin: 0 16px; background: #f3f3f0; border-radius: 12px; }
 .ai-agencies button { border: 0; background: none; padding: 12px 4px; border-radius: 8px; text-align: left; padding-left: 12px; font-size: 13px; font-weight: 650; color: #777; }
 .ai-agencies button span { display: block; margin-top: 4px; font-size: 11px; font-weight: 450; }
 .ai-agencies button[aria-pressed="true"] { background: #191919; color: #fff; }
@@ -83,3 +83,14 @@
   .ai-composer { margin-inline: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { .ai-loading::before { animation: none; } }
+
+/* Keep the animated brand character alongside the live AI workspace. */
+.ai-masthead.home-masthead .hero-visual { position: relative; inset: auto; width: 100%; height: clamp(190px, 19vw, 270px); margin-block: 4px 12px; pointer-events: auto; }
+.ai-masthead.home-masthead h1 { font-size: clamp(60px, 6.4vw, 96px); }
+.ai-masthead.home-masthead .hero-caption { margin-top: 0; font-size: 18px; }
+.ai-masthead .ai-hero-invite { margin-top: 12px; }
+.ai-masthead .hero-actions { margin-top: 22px; }
+@media (max-width: 767px) {
+  .ai-masthead.home-masthead .hero-visual { height: 240px; margin-block: 0 12px; }
+  .ai-masthead.home-masthead h1 { font-size: clamp(58px, 13vw, 94px); }
+}

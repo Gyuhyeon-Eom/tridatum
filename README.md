@@ -81,8 +81,8 @@ node --test scripts/solutions.test.mjs scripts/analytics.test.mjs scripts/operat
 ## 로컬 검토와 배포
 
 첫 화면의 AI Studio는 `assets/js/chat.mjs`, `assets/css/chat.css`,
-`worker/src/chat.mjs`로 구성합니다. 국세청·국민건강보험공단·한국부동산원을
-선택하면 OpenAI Responses API의 `web_search`를 해당 기관 공식 도메인으로
+`worker/src/chat.mjs`로 구성합니다. 공공기관·사기업·학교 유형을
+선택하면 OpenAI Responses API의 `web_search`를 유형별로 지정한 공공기관 공식 도메인으로
 제한합니다. 기관과의 협업·구축 사례가 아닌 비공식 기술 데모입니다.
 
 Worker의 Secret `OPENAI_API_KEY`가 필요합니다. 기본 모델은 `gpt-5-mini`이며
@@ -94,7 +94,7 @@ Worker의 Secret `OPENAI_API_KEY`가 필요합니다. 기본 모델은 `gpt-5-mi
 
 대화는 브라우저 메모리에만 두고 서버에는 일별 횟수만 저장합니다.
 OpenAI 요청은 `store:false`이며 제공자 자체 보안 로그 정책과는 별개입니다.
-모델이 반환한 인용 URL은 선택 기관의 HTTPS 주소만 허용하며,
+모델이 반환한 인용 URL은 선택 유형에 허용된 공식 HTTPS 주소만 허용하며,
 인용이 없거나 응답이 불완전하면 확인되지 않은 답변을 노출하지 않습니다.
 처음 배포할 때는 Worker를 먼저 배포하고 세 기관의 실제 응답을 확인한 뒤 Pages를 배포합니다.
 키가 없을 때 화면은 연결 준비 상태를 표시하고 전송을 비활성화합니다.

@@ -1,11 +1,11 @@
 const agencies = {
-  nts: { mode: "세금 안내 · 절차 정리", title: "복잡한 세금 업무,\n어디서 시작할까요?", desc: "국세청 공개 자료를 찾아 신고 절차와 확인할 사항을 정리합니다.", tags: ["신고 안내", "단계별 정리", "공식 출처"], questions: ["처음 사업자등록을 하려면?", "종합소득세와 연말정산의 차이는?"] },
-  nhis: { mode: "건강보험 안내 · 체크리스트", title: "필요한 서류부터\n확인할 조건까지.", desc: "국민건강보험공단의 안내를 바탕으로 자격·증명서 관련 질문을 풀어드립니다.", tags: ["자격 안내", "준비 서류", "공식 출처"], questions: ["자격득실확인서는 어떻게 발급받나요?", "피부양자 등록 전 무엇을 확인하나요?"] },
-  reb: { mode: "부동산 통계 · 지표 해석", title: "숫자의 의미를\n질문으로 확인하세요.", desc: "한국부동산원 공개 통계에서 지표의 의미와 비교할 때 주의할 점을 찾습니다.", tags: ["통계 조회", "지표 비교", "기준 시점"], questions: ["주택가격지수와 실거래가격지수의 차이는?", "서울 아파트 가격동향은 어디서 확인하나요?"] },
+  public: { mode: "공공기관 · 민원 안내", title: "복잡한 절차를,\n알기 쉬운 안내로.", desc: "민원과 행정 절차를 공개 자료에서 찾아, 필요한 서류와 순서를 정리합니다.", tags: ["민원 상담", "신청 절차", "근거 확인"], questions: ["전입신고는 어떻게 하나요?", "사업자등록 준비 서류를 알려주세요."] },
+  business: { mode: "사기업 · 업무 지원", title: "반복되는 업무 질문,\n바로 꺼내 쓰는 답변.", desc: "인사·노무와 사업 운영에 필요한 공개 지침을 찾아 업무 체크리스트로 정리합니다.", tags: ["업무 가이드", "온보딩", "체크리스트"], questions: ["신입사원 입사 준비 체크리스트를 만들어줘.", "근로계약서에 꼭 포함할 항목은?"] },
+  school: { mode: "학교 · 교육 안내", title: "학생과 교직원의 질문을,\n다음 행동으로 연결합니다.", desc: "교육 제도와 학교생활 안내를 찾아, 확인할 조건과 다음 단계를 정리합니다.", tags: ["교육 안내", "학생 지원", "절차 정리"], questions: ["국가장학금 신청 절차를 알려주세요.", "학교생활기록부는 어떻게 발급받나요?"] },
 };
 const $ = id => document.getElementById(id);
 const log = $("ai-messages"), form = $("ai-form"), field = $("ai-question"), send = $("ai-send");
-const state = { agency: "nts", history: [], busy: false, ready: false, controller: null, generation: 0 };
+const state = { agency: "public", history: [], busy: false, ready: false, controller: null, generation: 0 };
 const el = (tag, cls, text) => { const node = document.createElement(tag); if (cls) node.className = cls; if (text !== undefined) node.textContent = text; return node; };
 function controls() {
   send.disabled = state.busy || !state.ready;
@@ -55,7 +55,7 @@ async function connection() {
   } catch { state.ready = false; }
   $("ai-connection").textContent = state.ready ? "AI 연결됨" : "AI 연결 준비 중";
   $("ai-connection").dataset.ready = String(state.ready);
-  if (!state.ready) $("ai-error").textContent = "지금은 연결을 준비하고 있습니다. 기관별 체험 내용을 먼저 살펴보세요.";
+  if (!state.ready) $("ai-error").textContent = "지금은 연결을 준비하고 있습니다. 유형별 체험 내용을 먼저 살펴보세요.";
   controls();
 }
 form.addEventListener("submit", async event => {
@@ -88,4 +88,4 @@ form.addEventListener("submit", async event => {
 field.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
 document.querySelectorAll("[data-agency]").forEach(b => b.addEventListener("click", () => select(b.dataset.agency)));
 $("ai-reset").addEventListener("click", () => { select(state.agency); field.focus(); });
-select("nts"); connection();
+select("public"); connection();

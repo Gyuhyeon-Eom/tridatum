@@ -16,7 +16,7 @@ class Element {
 }
 async function setup(handler) {
   const ids=Object.fromEntries(['ai-messages','ai-form','ai-question','ai-send','ai-error','ai-mode','ai-suggestions','ai-connection','ai-reset'].map(id=>[id,new Element()]));
-  const tabs=['nts','nhis','reb'].map(agency=>Object.assign(new Element('button'),{dataset:{agency}}));
+  const tabs=['public','business','school'].map(agency=>Object.assign(new Element('button'),{dataset:{agency}}));
   const calls=[];
   const document={ getElementById:id=>ids[id],createElement:tag=>new Element(tag),createTextNode:text=>Object.assign(new Element('#text'),{textContent:text}),querySelectorAll:s=>s==='[data-agency]'?tabs:ids['ai-suggestions'].children };
   runInNewContext(readFileSync(new URL('../assets/js/chat.mjs',import.meta.url),'utf8'),{document,AbortController,AbortSignal,setTimeout,clearTimeout,fetch:async(url,options)=>{if(url.endsWith('/status')) return Response.json({available:true}); calls.push(JSON.parse(options.body)); return handler(url,options);}});
