@@ -236,6 +236,8 @@ if (host) {
     shadow.rotation.x = -Math.PI / 2;
     shadow.position.y = -1.115;
     scene.add(shadow);
+    const bubbleAnchor = new THREE.Vector3();
+    const bubble = host.querySelector(".ai-character-bubble");
     function draw(now) {
       raf = 0;
       if (disposed || lost || !visible || document.hidden) return;
@@ -275,6 +277,13 @@ if (host) {
         .join("|");
       if (dirty || frameKey !== nextFrame) {
         renderer.render(scene, camera);
+        if (bubble) {
+          bubbleAnchor.set(0, 2.1, 0);
+          body.localToWorld(bubbleAnchor);
+          bubbleAnchor.project(camera);
+          host.style.setProperty("--bubble-x", `${(bubbleAnchor.x + 1) * 50}%`);
+          host.style.setProperty("--bubble-y", `${(1 - bubbleAnchor.y) * 50}%`);
+        }
         frameKey = nextFrame;
         dirty = false;
       }

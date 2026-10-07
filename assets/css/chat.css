@@ -152,3 +152,9 @@ dialog.ai-panel[open] { display: flex; flex-direction: column; animation: ai-ent
 @media (prefers-reduced-motion: reduce) {
   .ai-character-invite .hero-visual, .ai-invitation-link > span { transition: none !important; transform: none !important; }
 }
+
+.ai-character-bubble { position: absolute; z-index: 3; left: clamp(100px, var(--bubble-x, 50%), calc(100% - 100px)); top: max(94px, var(--bubble-y, 38%)); transform: translate(-50%, calc(-100% - 12px)); display: block; padding: 14px 20px; width: 198px; border: 1px solid #e3e3df; border-radius: 18px; background: #fff; box-shadow: 0 6px 22px #00000009; color: #222; font-size: 15px; font-weight: 550; line-height: 1.6; letter-spacing: -.03em; pointer-events: auto; }
+.ai-character-bubble::after { content: ""; position: absolute; width: 12px; height: 12px; background: #fff; border-right: 1px solid #e3e3df; border-bottom: 1px solid #e3e3df; bottom: -7px; left: calc(50% - 6px); transform: rotate(45deg); }
+.ai-character-bubble > span { display: inline-block; margin-left: 4px; color: #777; }
+.ai-masthead.home-masthead .ai-character-invite .hero-visual { height: clamp(360px, 40vw, 530px); }
+@media (max-width: 767px) { .ai-masthead.home-masthead .ai-character-invite .hero-visual { height: 340px; } }
