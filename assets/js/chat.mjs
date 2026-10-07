@@ -38,7 +38,7 @@ function link(source, label, cls) {
 function renderAnswer(answer) {
   const node = addMessage("assistant"), body = el("div", "ai-answer-text");
   for (const part of answer.parts) {
-    if (typeof part.text === "string") body.append(document.createTextNode(part.text.replace(/\*\*/g, "")));
+    if (typeof part.text === "string") body.append(document.createTextNode(part.text.replace(/\*\*/g, "").replace(/—/g, "·")));
     else if (answer.sources[part.citation - 1]) body.append(link(answer.sources[part.citation - 1], "[" + part.citation + "]", "ai-citation"));
   }
   node.append(body);
