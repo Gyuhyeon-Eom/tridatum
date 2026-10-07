@@ -83,6 +83,7 @@ form.addEventListener("submit", async event => {
   const generation = state.generation;
   state.busy = true; state.controller = new AbortController(); controls(); $("ai-error").textContent = "";
   const user = addMessage("user", question), pending = el("p", "ai-loading", "업무에 맞는 활용 방법을 정리하고 있습니다."); log.append(pending); log.scrollTop = log.scrollHeight;
+  field.value = "";
   const messages = [...state.history.slice(-4), { role: "user", content: question }];
   const controller = state.controller;
   const timeout = setTimeout(() => controller.abort(), 55000);
@@ -96,6 +97,7 @@ form.addEventListener("submit", async event => {
     state.history = [...messages, { role: "assistant", content: data.parts.map(p => p.text || "").join("").slice(0, 2800) }]; field.value = "";
   } catch (e) {
     if (generation !== state.generation) return;
+    field.value = question;
     user.remove();
     $("ai-error").textContent = e.name === "AbortError" ? "응답 시간이 길어졌습니다. 잠시 후 다시 보내 주세요." : e.message;
   } finally {

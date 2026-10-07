@@ -85,3 +85,13 @@ test('entry suggestion opens panel and submits the selected sector',async()=>{
  assert.equal(ui.ids['ai-panel'].open,true);
  assert.equal(ui.calls[0].agency,'school');
 });
+
+test('clears the composer immediately while the response is pending',async()=>{
+ let resolve;
+ const ui=await setup(()=>new Promise(r=>{resolve=r;}));
+ const pending=ui.submit('문서 AI를 만들고 싶어요');
+ assert.equal(ui.ids['ai-question'].value,'');
+ assert.equal(ui.ids['ai-messages'].children[0].children[1].textContent,'문서 AI를 만들고 싶어요');
+ resolve(Response.json(answer));await pending;
+ assert.equal(ui.ids['ai-question'].value,'');
+});
