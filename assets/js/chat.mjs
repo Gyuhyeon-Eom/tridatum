@@ -1,11 +1,37 @@
 const agencies = {
-  public: { mode: "공기업 · 공공기관 도입 상담", title: "우리 기관의 데이터,\n어떤 업무에 쓸 수 있을까요?", desc: "정책·사업 분석부터 내부 문서 AI까지, 트라이데이텀이 구현할 수 있는 방법을 이야기합니다.", tags: ["정책·사업 분석", "위험 예측", "내부 문서 AI"], questions: ["우리 기관에 어떤 도움을 줄 수 있나요?", "내부 규정을 찾는 챗봇을 만들고 싶어요."] },
-  business: { mode: "사기업 도입 상담", title: "반복되는 일은 줄이고,\n데이터는 판단에 쓰도록.", desc: "매출 분석, 수요 예측, 사내 지식 검색. 우리 회사에 맞는 개발 방향을 함께 찾아보세요.", tags: ["데이터 대시보드", "예측 모델", "업무 자동화"], questions: ["매출 데이터를 어떻게 활용할 수 있나요?", "반복적인 문서 업무를 줄이고 싶어요."] },
-  school: { mode: "학교 도입 상담", title: "학교의 행정과 데이터,\n어떻게 더 잘 연결할까요?", desc: "학사 문서 검색부터 교육 프로그램 분석까지, 학교에 필요한 AI와 분석 시스템을 제안합니다.", tags: ["학사 문서 검색", "행정 지원", "교육 데이터 분석"], questions: ["학교에는 어떤 시스템을 만들어줄 수 있나요?", "학사 규정 안내 챗봇을 만들고 싶어요."] },
+  public: { mode: "공기업 · 공공기관 도입 상담", title: "우리 기관의 데이터,\n어떤 업무에 쓸 수 있을까요?", desc: "정책·사업 분석부터 내부 문서 AI까지, 트라이데이텀이 구현할 수 있는 방법을 이야기합니다.", tags: ["정책·사업 분석", "위험 예측", "LLM 챗봇"], questions: ["우리 기관에 어떤 도움을 줄 수 있나요?", "내부 규정을 찾는 챗봇을 만들고 싶어요."] },
+  business: { mode: "사기업 도입 상담", title: "반복되는 일은 줄이고,\n데이터는 판단에 쓰도록.", desc: "매출 분석, 수요 예측, 사내 지식 검색. 우리 회사에 맞는 개발 방향을 함께 찾아보세요.", tags: ["데이터 대시보드", "예측 모델", "LLM·RAG"], questions: ["매출 데이터를 어떻게 활용할 수 있나요?", "반복적인 문서 업무를 줄이고 싶어요."] },
+  school: { mode: "학교 도입 상담", title: "학교의 행정과 데이터,\n어떻게 더 잘 연결할까요?", desc: "학사 문서 검색부터 교육 프로그램 분석까지, 학교에 필요한 AI와 분석 시스템을 제안합니다.", tags: ["교육 데이터 분석", "예측 모델", "LLM 챗봇"], questions: ["학교에는 어떤 시스템을 만들어줄 수 있나요?", "학사 규정 안내 챗봇을 만들고 싶어요."] },
 };
 const $ = id => document.getElementById(id);
 const log = $("ai-messages"), form = $("ai-form"), field = $("ai-question"), send = $("ai-send");
 const state = { agency: "public", history: [], busy: false, ready: false, controller: null, generation: 0 };
+const SESSION_KEY = "tridatum.consultation.v1";
+const emptySession = () => ({ turns: [], draft: "" });
+const sessions = Object.fromEntries(Object.keys(agencies).map(key => [key, emptySession()]));
+let restoredAgency = "public", pendingQuestion = "";
+try {
+  const saved = JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null");
+  if (saved?.version === 1) {
+    if (Object.hasOwn(agencies, saved.agency)) restoredAgency = saved.agency;
+    for (const key of Object.keys(agencies)) {
+      const item = saved.sessions?.[key];
+      if (!item || !Array.isArray(item.turns)) continue;
+      const turns = item.turns.filter(t => typeof t?.question === "string" && t.question.length <= 800 && Array.isArray(t.answer?.parts) && t.answer.parts.every(p => typeof p.text === "string" && p.text.length <= 12000));
+      sessions[key] = { turns: turns.map(t => ({ question: t.question, answer: { parts: t.answer.parts, sources: [
+        { url: "https://tridatum.co/services.html", title: "제공 서비스 보기" },
+        { url: "https://tridatum.co/contact.html", title: "프로젝트 문의" }
+      ] } })), draft: typeof item.draft === "string" ? item.draft.slice(0, 800) : "" };
+    }
+  }
+} catch { /* Storage may be unavailable; retain in-memory sessions. */ }
+function persist() {
+  try { sessionStorage.setItem(SESSION_KEY, JSON.stringify({ version: 1, agency: state.agency, sessions })); } catch { /* Keep the current in-memory conversation. */ }
+}
+function saveDraft() {
+  sessions[state.agency].draft = state.busy ? pendingQuestion : field.value;
+  persist();
+}
 const el = (tag, cls, text) => { const node = document.createElement(tag); if (cls) node.className = cls; if (text !== undefined) node.textContent = text; return node; };
 const panel = $("ai-panel");
 let returnFocus;
@@ -31,16 +57,19 @@ function controls() {
   document.querySelectorAll("#ai-suggestions button").forEach(b => b.disabled = state.busy || !state.ready);
   log.setAttribute("aria-busy", String(state.busy));
 }
-function select(agency) {
-  state.controller?.abort(); state.generation++; state.busy = false; state.agency = agency; state.history = [];
-  field.value = ""; $("ai-error").textContent = ""; log.replaceChildren();
+function select(agency, save = true) {
+  if (save) saveDraft();
+  state.controller?.abort(); state.generation++; state.busy = false; state.agency = agency; pendingQuestion = "";
+  state.history = sessions[agency].turns.flatMap(t => [{ role: "user", content: t.question }, { role: "assistant", content: t.answer.parts.map(p => p.text || "").join("").slice(0, 2800) }]);
+  field.value = sessions[agency].draft; $("ai-error").textContent = ""; log.replaceChildren();
   document.querySelectorAll("[data-agency]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.agency === agency)));
   const info = agencies[agency]; $("ai-mode").textContent = info.mode;
   const welcome = el("div", "ai-welcome"); const title = el("h2", "", info.title); title.style.whiteSpace = "pre-line";
   welcome.append(title, el("p", "", info.desc));
   const tags = el("div", "ai-capabilities"); info.tags.forEach(t => tags.append(el("span", "", t))); welcome.append(tags); log.append(welcome);
   $("ai-suggestions").replaceChildren(...info.questions.map(q => { const b = el("button", "", q + " ↗"); b.type = "button"; b.addEventListener("click", () => { openPanel(); field.value = q; form.requestSubmit(); }); return b; }));
-  controls();
+  for (const turn of sessions[agency].turns) { addMessage("user", turn.question); renderAnswer(turn.answer); }
+  persist(); controls();
 }
 function addMessage(role, text) {
   log.querySelector(".ai-welcome")?.remove();
@@ -80,6 +109,7 @@ form.addEventListener("submit", async event => {
   const question = field.value.trim();
   if (!question || state.busy || !state.ready) return;
   const generation = state.generation;
+  pendingQuestion = question; sessions[state.agency].draft = question; persist();
   state.busy = true; state.controller = new AbortController(); controls(); $("ai-error").textContent = "";
   const user = addMessage("user", question), pending = el("p", "ai-loading", "업무에 맞는 활용 방법을 정리하고 있습니다."); log.append(pending); log.scrollTop = log.scrollHeight;
   field.value = "";
@@ -93,10 +123,12 @@ form.addEventListener("submit", async event => {
     if (!r.ok) throw new Error(data.error || "답변을 받지 못했습니다. 다시 시도해 주세요.");
     if (!Array.isArray(data.parts) || !Array.isArray(data.sources)) throw new Error("응답을 읽을 수 없습니다. 다시 시도해 주세요.");
     pending.remove(); renderAnswer(data);
+    sessions[state.agency].turns.push({ question, answer: data });
+    sessions[state.agency].draft = ""; pendingQuestion = ""; persist();
     state.history = [...messages, { role: "assistant", content: data.parts.map(p => p.text || "").join("").slice(0, 2800) }]; field.value = "";
   } catch (e) {
     if (generation !== state.generation) return;
-    field.value = question;
+    field.value = question; sessions[state.agency].draft = question; pendingQuestion = ""; persist();
     user.remove();
     $("ai-error").textContent = e.name === "AbortError" ? "응답 시간이 길어졌습니다. 잠시 후 다시 보내 주세요." : e.message;
   } finally {
@@ -106,11 +138,13 @@ form.addEventListener("submit", async event => {
 });
 field.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
 document.querySelectorAll("[data-agency]").forEach(b => b.addEventListener("click", () => { if (state.agency !== b.dataset.agency) select(b.dataset.agency); }));
-$("ai-reset").addEventListener("click", () => { select(state.agency); field.focus(); });
-select("public"); connection();
+$("ai-reset").addEventListener("click", () => { sessions[state.agency] = emptySession(); select(state.agency, false); field.focus(); });
+field.addEventListener("input", saveDraft);
+select(restoredAgency, false); connection();
 
 // The floating entry appears only after the hero invitation leaves view.
 if (typeof window !== "undefined") {
+  window.addEventListener("pagehide", saveDraft);
   const hero = document.querySelector(".ai-masthead");
   const updateLauncher = () => { $("ai-launcher").hidden = hero.getBoundingClientRect().bottom > 100; };
   window.addEventListener("scroll", updateLauncher, { passive: true });

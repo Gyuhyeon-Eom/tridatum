@@ -16,12 +16,12 @@ class Element {
   close() { this.open=false; this.listeners.close?.(); }
   requestSubmit() { return this.listeners.submit({preventDefault(){}}); }
 }
-async function setup(handler) {
+async function setup(handler, sessionStorage) {
   const ids=Object.fromEntries(['ai-messages','ai-form','ai-question','ai-send','ai-error','ai-mode','ai-suggestions','ai-connection','ai-reset','ai-panel','ai-close','ai-open','ai-launcher','ai-entry-title','ai-entry-desc'].map(id=>[id,new Element()]));
   const tabs=['public','business','school'].map(agency=>Object.assign(new Element('button'),{dataset:{agency}}));
   const calls=[];
   const document={ documentElement:{classList:{add(){},remove(){}}}, getElementById:id=>ids[id],createElement:tag=>new Element(tag),createTextNode:text=>Object.assign(new Element('#text'),{textContent:text}),querySelectorAll:s=>s==='[data-agency]'?tabs:ids['ai-suggestions'].children };
-  runInNewContext(readFileSync(new URL('../assets/js/chat.mjs',import.meta.url),'utf8'),{document,AbortController,AbortSignal,setTimeout,clearTimeout,fetch:async(url,options)=>{if(url.endsWith('/status')) return Response.json({available:true}); calls.push(JSON.parse(options.body)); return handler(url,options);}});
+  runInNewContext(readFileSync(new URL('../assets/js/chat.mjs',import.meta.url),'utf8'),{document,sessionStorage,AbortController,AbortSignal,setTimeout,clearTimeout,fetch:async(url,options)=>{if(url.endsWith('/status')) return Response.json({available:true}); calls.push(JSON.parse(options.body)); return handler(url,options);}});
   await new Promise(setImmediate);
   return {ids,tabs,calls,submit:async q=>{ids['ai-question'].value=q;return ids['ai-form'].requestSubmit();}};
 }
@@ -94,4 +94,44 @@ test('clears the composer immediately while the response is pending',async()=>{
  assert.equal(ui.ids['ai-messages'].children[0].children[1].textContent,'문서 AI를 만들고 싶어요');
  resolve(Response.json(answer));await pending;
  assert.equal(ui.ids['ai-question'].value,'');
+});
+
+test('sector history and drafts survive switching and reload; reset clears only the selected sector',async()=>{
+ const data=new Map(); const storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};
+ const reply={parts:[{text:'데이터 분석과 예측모델을 제안합니다.'}],sources:[]};
+ const handler=async()=>Response.json(reply);
+ const ui=await setup(handler,storage);
+ await ui.submit('공공 데이터 분석');
+ ui.ids['ai-question'].value='공공 초안'; ui.ids['ai-question'].listeners.input();
+ ui.tabs[1].listeners.click();
+ await ui.submit('매출 예측');
+ ui.tabs[0].listeners.click();
+ assert.equal(ui.ids['ai-question'].value,'공공 초안');
+ assert.equal(ui.ids['ai-messages'].children.length,2);
+ const reload=await setup(handler,storage);
+ assert.equal(reload.ids['ai-question'].value,'공공 초안');
+ assert.equal(reload.ids['ai-messages'].children.length,2);
+ await reload.submit('이어서 설명해 주세요');
+ assert.equal(reload.calls[0].messages[0].content,'공공 데이터 분석');
+ reload.ids['ai-reset'].listeners.click();
+ assert.equal(reload.ids['ai-messages'].children.length,1);
+ reload.tabs[1].listeners.click();
+ assert.equal(reload.ids['ai-messages'].children[0].children[1].textContent,'매출 예측');
+ const again=await setup(handler,storage); again.tabs[0].listeners.click();
+ assert.equal(again.ids['ai-messages'].children.length,1);
+});
+test('switching during a pending request preserves its question for retry without contaminating another sector',async()=>{
+ let resolve; const ui=await setup(()=>new Promise(r=>resolve=r));
+ const pending=ui.submit('공공기관 예측모델'); ui.tabs[2].listeners.click();
+ resolve(Response.json(answer)); await pending;
+ ui.tabs[0].listeners.click();
+ assert.equal(ui.ids['ai-question'].value,'공공기관 예측모델');
+ assert.equal(ui.ids['ai-messages'].children.length,1);
+});
+test('unavailable or corrupt session storage does not prevent chatting',async()=>{
+ for(const storage of [{getItem:()=>'{bad',setItem(){}},{getItem(){throw Error('blocked')},setItem(){throw Error('blocked')}}]) {
+ const ui=await setup(async()=>Response.json(answer),storage);
+ await ui.submit('LLM 개발'); ui.tabs[1].listeners.click(); ui.tabs[0].listeners.click();
+ assert.equal(ui.ids['ai-messages'].children.length,2);
+ }
 });
