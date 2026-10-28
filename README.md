@@ -10,6 +10,8 @@
 - `contact.html`, `privacy.html`: 문의 폼과 개인정보처리방침
 - `admin/`: 콘텐츠 편집·문의함. 인증·저장은 기존 Worker API 사용
 
+홈페이지의 빈집 데모는 [전국 빈집 × 상권 대시보드](https://binzib.tridatum.co/)로 연결합니다. 전국 빈집 현황과 상권 지표를 지도에서 함께 살펴보고 지역별로 비교하는 서비스로 소개합니다.
+
 ## 화면과 모션
 
 - `assets/css/design-tokens.css`: 흑백·회색·노란색, 간격, 모서리, 타이포그래피 규칙
