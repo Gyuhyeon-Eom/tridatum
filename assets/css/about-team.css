@@ -1,5 +1,5 @@
 /* Team portraits retain the supplied artwork through CSS framing. */
-.page-about .team-intro-portraits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: hidden; border-radius: 4px 52px 4px 4px; background: #f1eadf; }
+.page-about .team-intro-portraits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: hidden; border-radius: 4px 52px 4px 4px; background: #f1eadf; }
 .page-about .team-intro-portraits img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 0; }
 .page-about .team-intro-portraits .portrait-kwon { object-position: left center; }
 .page-about .team-intro-portraits .portrait-eom { object-position: right center; }
@@ -11,3 +11,5 @@
 .page-about .person-detail .person-career { margin-top: 16px; font-size: 13px; line-height: 1.75; color: #70706b; }
 @media (max-width: 1000px) { .page-about .people-list { grid-template-columns: 1fr; gap: 32px; } .page-about .person { border-top: 1px solid #d5d5cf; padding-top: 24px; } }
 @media (max-width: 600px) { .page-about .team-intro-portraits { border-top-right-radius: 30px; } }
+
+.page-about .person-no-photo > div:first-child { grid-column: 1 / -1; min-height: 104px; display: flex; flex-direction: column; justify-content: center; }
